@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AgentRegistration">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.02" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical">
+
+
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:freezesText="true"
+                android:text="Office Address"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="20dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/localityView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="@+id/textView2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+                <EditText
+                    android:id="@+id/locality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPostalAddress"
+                    android:maxLength="150"
+                    android:hint="Locality" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/addressView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/localityView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/localityView"
+                app:layout_constraintTop_toBottomOf="@+id/localityView">
+
+                <EditText
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:inputType="textPostalAddress"
+                    android:maxLength="150"
+                    android:hint="Address" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/contactView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/addressView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/addressView"
+                app:layout_constraintTop_toBottomOf="@+id/addressView">
+
+                <EditText
+                    android:id="@+id/contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="50"
+                    android:hint="Contact Person" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/agencyNmeView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/contactView"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/contactView"
+                app:layout_constraintTop_toBottomOf="@+id/contactView">
+
+
+                <EditText
+                    android:id="@+id/agency_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="100"
+                    android:hint="Agency/Company Name" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:freezesText="true"
+                android:text="Company Details"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/agencyNmeView"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/agencyNmeView"
+                app:layout_constraintTop_toBottomOf="@+id/agencyNmeView" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/descripView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="@+id/textView3"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+
+                <EditText
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="255"
+                    android:hint="Breif Description of your Business" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/Since"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/descripView"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/descripView"
+                app:layout_constraintTop_toBottomOf="@+id/descripView">
+
+                <Spinner
+                    android:id="@+id/operating_since"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spinnerHeight"
+                    android:hint="Operating Since" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/head"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Transaction Type"
+                app:layout_constraintEnd_toEndOf="@+id/Since"
+                app:layout_constraintStart_toStartOf="@+id/Since"
+                app:layout_constraintTop_toBottomOf="@+id/Since" />
+
+            <TextView
+                android:id="@+id/rent"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/boader"
+                android:padding="10dp"
+                android:onClick="rent"
+                android:text="Rent/\nLease"
+                android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@+id/booking"
+                app:layout_constraintStart_toStartOf="@+id/head"
+                app:layout_constraintTop_toBottomOf="@+id/head" />
+
+
+            <TextView
+                android:id="@+id/booking"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/boader"
+                android:padding="10dp"
+                android:onClick="booking"
+                android:text="Original\nBooking"
+                android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@+id/launch"
+                app:layout_constraintStart_toEndOf="@+id/rent"
+                app:layout_constraintTop_toBottomOf="@+id/head" />
+
+            <TextView
+                android:id="@+id/launch"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/boader"
+                android:padding="10dp"
+                android:onClick="prelaunch"
+                android:text="Pre-\nLaunch"
+                android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@+id/resale"
+                app:layout_constraintStart_toEndOf="@+id/booking"
+                app:layout_constraintTop_toBottomOf="@+id/head" />
+
+            <TextView
+                android:id="@+id/resale"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/boader"
+                android:padding="10dp"
+                android:text="Resale"
+                android:onClick="resale"
+                android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@+id/other"
+                app:layout_constraintStart_toEndOf="@+id/launch"
+                app:layout_constraintTop_toBottomOf="@+id/head" />
+
+            <TextView
+                android:id="@+id/other"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/boader"
+                android:padding="10dp"
+                android:onClick="other"
+                android:text="Others"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="@+id/head"
+                app:layout_constraintStart_toEndOf="@+id/resale"
+                app:layout_constraintTop_toBottomOf="@+id/head" />
+
+            <TextView
+                android:id="@+id/typeshead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Types of Property"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rent" />
+
+            <TextView
+                android:id="@+id/multistory"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:onClick="multistory"
+                android:padding="10dp"
+                android:text="Multistory\nApartment"
+                app:layout_constraintEnd_toStartOf="@+id/builderfloor"
+                app:layout_constraintStart_toStartOf="@+id/typeshead"
+                app:layout_constraintTop_toBottomOf="@+id/typeshead" />
+
+            <TextView
+                android:id="@+id/builderfloor"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:onClick="BuilderFloor"
+                android:padding="10dp"
+                android:text="Builder Floor\nApartment"
+                app:layout_constraintEnd_toStartOf="@+id/residentialhouse"
+                app:layout_constraintStart_toEndOf="@+id/multistory"
+                app:layout_constraintTop_toBottomOf="@+id/typeshead" />
+
+            <TextView
+                android:id="@+id/residentialhouse"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:onClick="Residentialhouse"
+                android:padding="10dp"
+                android:text="Residential\nHouse"
+                app:layout_constraintEnd_toEndOf="@+id/typeshead"
+                app:layout_constraintStart_toEndOf="@+id/builderfloor"
+                app:layout_constraintTop_toBottomOf="@+id/typeshead" />
+
+            <TextView
+                android:id="@+id/villa"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:padding="10dp"
+                android:onClick="villa"
+                android:text="Villa"
+                app:layout_constraintEnd_toStartOf="@+id/residentialplot"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/multistory" />
+
+            <TextView
+                android:id="@+id/residentialplot"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:padding="10dp"
+                android:onClick="Residentialplot"
+                android:text="Residential\nPlot"
+                app:layout_constraintEnd_toStartOf="@+id/pentahouse"
+                app:layout_constraintStart_toEndOf="@+id/villa"
+                app:layout_constraintTop_toBottomOf="@+id/builderfloor" />
+
+            <TextView
+                android:id="@+id/pentahouse"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:onClick="pentahouse"
+                android:padding="10dp"
+                android:text="Pentahouse"
+                app:layout_constraintEnd_toEndOf="@+id/residentialhouse"
+                app:layout_constraintStart_toEndOf="@+id/residentialplot"
+                app:layout_constraintTop_toBottomOf="@+id/residentialhouse" />
+
+            <TextView
+                android:id="@+id/villa2"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:padding="10dp"
+                android:onClick="Commercialshop"
+                android:text="Commercial\nShop"
+                app:layout_constraintEnd_toStartOf="@+id/residentialplot"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/villa3"
+                app:layout_constraintTop_toBottomOf="@+id/villa3" />
+
+            <TextView
+                android:id="@+id/residentialplot2"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:padding="10dp"
+                android:onClick="Commercial"
+                android:text="Commercial\nOffice Space"
+                app:layout_constraintEnd_toStartOf="@+id/pentahouse"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/villa"
+                app:layout_constraintTop_toBottomOf="@+id/residentialplot" />
+
+            <TextView
+                android:id="@+id/pentahouse2"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:padding="10dp"
+                android:onClick="Office"
+                android:text="Office in IT\nPark/SEZ"
+                app:layout_constraintEnd_toEndOf="@+id/pentahouse"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/residentialplot"
+                app:layout_constraintTop_toBottomOf="@+id/pentahouse" />
+
+            <TextView
+                android:id="@+id/villa3"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:onClick="Studio"
+                android:padding="10dp"
+                android:text="Studio\nApartment"
+                app:layout_constraintEnd_toStartOf="@+id/residentialplot"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/villa"
+                app:layout_constraintTop_toBottomOf="@+id/villa" />
+
+            <TextView
+                android:id="@+id/residentialplot3"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:padding="10dp"
+                android:onClick="showroom"
+                android:text="Commercial\nShowroom"
+                app:layout_constraintEnd_toStartOf="@+id/pentahouse"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/villa"
+                app:layout_constraintTop_toBottomOf="@+id/residentialplot2" />
+
+            <TextView
+                android:id="@+id/pentahouse3"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:padding="10dp"
+                android:onClick="Commercialland"
+                android:text="Commercial\nLand"
+                app:layout_constraintEnd_toEndOf="@+id/pentahouse2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/residentialplot"
+                app:layout_constraintTop_toBottomOf="@+id/pentahouse2" />
+
+            <TextView
+                android:id="@+id/villa4"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:padding="10dp"
+                android:onClick="warehouse"
+                android:text="Warehouse\nGodown"
+                app:layout_constraintEnd_toStartOf="@+id/residentialplot"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/villa2"
+                app:layout_constraintTop_toBottomOf="@+id/villa2" />
+
+            <TextView
+                android:id="@+id/residentialplot4"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:padding="10dp"
+                android:onClick="industrialland"
+                android:text="Industrial\nLand"
+                app:layout_constraintEnd_toStartOf="@+id/pentahouse"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/villa"
+                app:layout_constraintTop_toBottomOf="@+id/residentialplot3" />
+
+            <TextView
+                android:id="@+id/pentahouse4"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Industrial\nBuilding"
+                app:layout_constraintEnd_toEndOf="@+id/pentahouse3"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/residentialplot"
+                app:layout_constraintTop_toBottomOf="@+id/pentahouse3" />
+
+            <TextView
+                android:id="@+id/villa5"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:padding="10dp"
+                android:onClick="Industrialshed"
+                android:text="Industrial\nShed"
+                app:layout_constraintEnd_toStartOf="@+id/residentialplot"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/villa4"
+                app:layout_constraintTop_toBottomOf="@+id/villa4" />
+
+            <TextView
+                android:id="@+id/residentialplot5"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:padding="10dp"
+                android:onClick="Agriculture"
+                android:text="Agriculture\nLand"
+                app:layout_constraintEnd_toStartOf="@+id/pentahouse"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/villa"
+                app:layout_constraintTop_toBottomOf="@+id/residentialplot4" />
+
+            <TextView
+                android:id="@+id/pentahouse5"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/boader"
+                android:gravity="center"
+                android:padding="10dp"
+                android:onClick="Farmhouse"
+                android:text="Farm\nHouse"
+                app:layout_constraintEnd_toEndOf="@+id/pentahouse4"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/residentialplot"
+                app:layout_constraintTop_toBottomOf="@+id/pentahouse4" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="next"
+        android:text="Done"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

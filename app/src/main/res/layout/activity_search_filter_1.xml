@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.searchFilter_1">
+
+    <Button
+        android:id="@+id/clear_search2"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="right|center_vertical"
+        android:onClick="reset"
+        android:text="Reset"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/back4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/bac"
+        android:onClick="back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:padding="20dp"
+        android:text="Filters (selected filters)"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/back4"
+        app:layout_constraintEnd_toStartOf="@+id/clear_search2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/back4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="BUY"
+        app:layout_constraintEnd_toStartOf="@+id/rent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/rent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="RENT"
+        app:layout_constraintEnd_toStartOf="@+id/pg"
+        app:layout_constraintStart_toEndOf="@+id/buy"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/pg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="PG"
+        app:layout_constraintEnd_toStartOf="@+id/commercial"
+        app:layout_constraintStart_toEndOf="@+id/rent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/commercial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="COMMERCIAL"
+        app:layout_constraintEnd_toStartOf="@+id/project"
+        app:layout_constraintStart_toEndOf="@+id/pg"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/project"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="PROJECT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/commercial"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/next2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="#EA0404"
+        android:gravity="center"
+        android:onClick="next"
+        android:text="See No of Properties"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/myScrollView"
+        app:layout_constraintBottom_toTopOf="@id/guideline2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="Locality/Project/Landmark"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Search in a CIty, locality"
+                app:layout_constraintEnd_toEndOf="@+id/textView15"
+                app:layout_constraintStart_toStartOf="@+id/textView15"
+                app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+            <TextView
+                android:id="@+id/loc1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_edit_text"
+                android:text="Location"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/loc2"
+                app:layout_constraintStart_toStartOf="@+id/textView15"
+                tools:layout_editor_absoluteY="165dp" />
+
+            <TextView
+                android:id="@+id/loc2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_edit_text"
+                android:text="Location"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/search"
+                app:layout_constraintStart_toStartOf="@+id/loc1"
+                tools:layout_editor_absoluteY="165dp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Property Type"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/search"
+                app:layout_constraintStart_toStartOf="@+id/search"
+                app:layout_constraintTop_toBottomOf="@+id/search" />
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:scrollbarSize="0dp"
+                app:layout_constraintEnd_toEndOf="@+id/textView1"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView1"
+                app:layout_constraintTop_toBottomOf="@+id/textView1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/flat"
+                        android:layout_width="@dimen/width"
+                        android:layout_height="@dimen/height">
+
+                        <ImageView
+                            android:layout_width="@dimen/widthimage"
+                            android:layout_height="@dimen/heightimage"
+                            android:layout_gravity="top|center_horizontal"
+                            android:src="@drawable/flat" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_gravity="center|bottom"
+                            android:text="Flat" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/house"
+                        android:layout_width="@dimen/width"
+                        android:layout_height="@dimen/height">
+
+                        <ImageView
+                            android:layout_width="@dimen/widthimage"
+                            android:layout_height="@dimen/heightimage"
+                            android:layout_gravity="top|center_horizontal"
+                            android:src="@drawable/house" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:text="House/\nVilla" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/plot"
+                        android:layout_width="@dimen/width"
+                        android:layout_height="@dimen/height">
+
+                        <ImageView
+                            android:layout_width="@dimen/widthimage"
+                            android:layout_height="@dimen/heightimage"
+                            android:layout_gravity="top|center_horizontal"
+                            android:src="@drawable/plot" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_gravity="center|bottom"
+                            android:text="Plot" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/office"
+                        android:layout_width="@dimen/width"
+                        android:layout_height="@dimen/height">
+
+                        <ImageView
+                            android:layout_width="@dimen/widthimage"
+                            android:layout_height="@dimen/heightimage"
+                            android:layout_gravity="top|center_horizontal"
+                            android:layout_marginBottom="5dp"
+                            android:src="@drawable/office" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_gravity="center_horizontal|bottom"
+                            android:text="Office\nSpace" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/shop"
+                        android:layout_width="@dimen/width"
+                        android:layout_height="@dimen/height">
+
+                        <ImageView
+                            android:layout_width="@dimen/widthimage"
+                            android:layout_height="@dimen/heightimage"
+                            android:layout_gravity="top|center_horizontal"
+                            android:layout_marginBottom="5dp"
+                            android:src="@drawable/shop" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:gravity="center"
+                            android:text="Shop/\nShowroom" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/other"
+                        android:layout_width="@dimen/width"
+                        android:layout_height="@dimen/height">
+
+                        <ImageView
+                            android:layout_width="@dimen/widthimage"
+                            android:layout_height="@dimen/heightimage"
+                            android:layout_gravity="top|center_horizontal"
+                            android:layout_marginBottom="5dp"
+                            android:src="@drawable/comm" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:text="Other\nCommercial" />
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Budget"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView"
+                app:layout_constraintStart_toStartOf="@+id/horizontalScrollView"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+            <Spinner
+                android:id="@+id/minRupee"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:entries="@array/budget_min"
+                app:layout_constraintEnd_toStartOf="@+id/maxRupee"
+                app:layout_constraintStart_toStartOf="@+id/textView7"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+            <Spinner
+                android:id="@+id/maxRupee"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:entries="@array/budget_max"
+                app:layout_constraintEnd_toEndOf="@+id/textView7"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/minRupee"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:freezesText="true"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Bedroom"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/maxRupee"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/minRupee"
+                app:layout_constraintTop_toBottomOf="@+id/minRupee" />
+
+            <include
+                android:id="@+id/bedroom"
+                layout="@layout/layout_bedroom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/textView4"
+                app:layout_constraintStart_toStartOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Area"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/bedroom"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/bedroom"
+                app:layout_constraintTop_toBottomOf="@+id/bedroom" />
+
+            <Spinner
+                android:id="@+id/area_parameter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:entries="@array/area_parameter"
+                app:layout_constraintEnd_toStartOf="@+id/area_min"
+                app:layout_constraintStart_toStartOf="@+id/textView8"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <Spinner
+                android:id="@+id/area_min"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:entries="@array/area_min"
+                app:layout_constraintEnd_toStartOf="@+id/area_max"
+                app:layout_constraintStart_toEndOf="@+id/area_parameter"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <Spinner
+                android:id="@+id/area_max"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:entries="@array/area_max"
+                app:layout_constraintEnd_toEndOf="@+id/textView8"
+                app:layout_constraintStart_toEndOf="@+id/area_min"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Posted By"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/area_max"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/area_parameter"
+                app:layout_constraintTop_toBottomOf="@+id/area_max" />
+
+            <Button
+                android:id="@+id/agent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:text="Agent"
+                app:layout_constraintEnd_toStartOf="@+id/owner"
+                app:layout_constraintStart_toStartOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <Button
+                android:id="@+id/owner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:text="Owner"
+                app:layout_constraintEnd_toStartOf="@+id/builder"
+                app:layout_constraintStart_toEndOf="@+id/agent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <Button
+                android:id="@+id/builder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="Builder"
+                app:layout_constraintEnd_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toEndOf="@+id/owner"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Possession Status"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/builder"
+                app:layout_constraintStart_toStartOf="@+id/agent"
+                app:layout_constraintTop_toBottomOf="@+id/owner" />
+
+            <Button
+                android:id="@+id/under"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:text="Under Construction"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toStartOf="@+id/ready"
+                app:layout_constraintStart_toStartOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <Button
+                android:id="@+id/ready"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:text="Ready to Move"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="@+id/textView3"
+                app:layout_constraintStart_toEndOf="@+id/under"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/textView0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Posted since"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/ready"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/under"
+                app:layout_constraintTop_toBottomOf="@+id/under" />
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:scrollbarSize="0dp"
+                app:layout_constraintEnd_toEndOf="@+id/textView0"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView0"
+                app:layout_constraintTop_toBottomOf="@+id/textView0">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/anytime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Anytime" />
+
+                    <TextView
+                        android:id="@+id/yesterday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Yesterday" />
+
+                    <TextView
+                        android:id="@+id/lastweek"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Last Week" />
+
+                    <TextView
+                        android:id="@+id/last2week"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Last 2 Weeks" />
+
+                    <TextView
+                        android:id="@+id/last3week"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Last 3 Weeks" />
+
+                    <TextView
+                        android:id="@+id/lastmonth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Last Month" />
+
+                    <TextView
+                        android:id="@+id/last2moth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Last Month" />
+
+                    <TextView
+                        android:id="@+id/last4month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Last 4 Month" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Sale type"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView2"
+                app:layout_constraintStart_toStartOf="@+id/horizontalScrollView2"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
+
+            <Button
+                android:id="@+id/newsale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:text="New"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toStartOf="@+id/resale"
+                app:layout_constraintStart_toStartOf="@+id/textView13"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <Button
+                android:id="@+id/resale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:text="Resale"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="@+id/textView13"
+                app:layout_constraintStart_toEndOf="@+id/newsale"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <TextView
+                android:id="@+id/textView81"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:freezesText="true"
+                android:text="Furnishing"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/resale"
+                app:layout_constraintStart_toStartOf="@+id/newsale"
+                app:layout_constraintTop_toBottomOf="@+id/resale" />
+
+            <ImageView
+                android:id="@+id/furnished"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:padding="10dp"
+                android:src="@drawable/flat"
+                app:layout_constraintEnd_toStartOf="@+id/semifurnished"
+                app:layout_constraintStart_toStartOf="@+id/textView81"
+                app:layout_constraintTop_toBottomOf="@+id/textView81" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  Furnished  "
+                app:layout_constraintBottom_toBottomOf="@+id/furnished"
+                app:layout_constraintEnd_toEndOf="@+id/furnished"
+                app:layout_constraintHorizontal_bias="0.472"
+                app:layout_constraintStart_toStartOf="@+id/furnished"
+                app:layout_constraintTop_toTopOf="@+id/furnished"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ImageView
+                android:id="@+id/semifurnished"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
+                android:padding="10dp"
+                android:src="@drawable/house"
+                app:layout_constraintEnd_toStartOf="@+id/unfurnished"
+                app:layout_constraintStart_toEndOf="@+id/furnished"
+                app:layout_constraintTop_toBottomOf="@+id/textView81" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Semi-Furnished"
+                app:layout_constraintBottom_toBottomOf="@+id/semifurnished"
+                app:layout_constraintEnd_toEndOf="@+id/semifurnished"
+                app:layout_constraintHorizontal_bias="0.472"
+                app:layout_constraintStart_toStartOf="@+id/semifurnished"
+                app:layout_constraintTop_toTopOf="@+id/semifurnished"
+                app:layout_constraintVertical_bias="1.0" />
+
+
+            <ImageView
+                android:id="@+id/unfurnished"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                android:src="@drawable/plot"
+                app:layout_constraintEnd_toEndOf="@+id/textView81"
+                app:layout_constraintStart_toEndOf="@+id/semifurnished"
+                app:layout_constraintTop_toBottomOf="@+id/textView81" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unfurnished"
+                app:layout_constraintBottom_toBottomOf="@+id/unfurnished"
+                app:layout_constraintEnd_toEndOf="@+id/unfurnished"
+                app:layout_constraintHorizontal_bias="0.472"
+                app:layout_constraintStart_toStartOf="@+id/unfurnished"
+                app:layout_constraintTop_toTopOf="@+id/unfurnished"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Amenities"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/unfurnished"
+                app:layout_constraintStart_toStartOf="@+id/furnished"
+                app:layout_constraintTop_toBottomOf="@+id/semifurnished" />
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/textView11"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView11"
+                app:layout_constraintTop_toBottomOf="@+id/textView11">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/parking"
+                        android:layout_width="@dimen/width"
+                        android:layout_height="@dimen/height">
+
+                        <ImageView
+                            android:layout_width="@dimen/widthimage"
+                            android:layout_height="@dimen/heightimage"
+                            android:layout_gravity="top|center_horizontal"
+                            android:src="@drawable/parking" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|bottom"
+                            android:text="Parking" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/lift"
+                        android:layout_width="@dimen/width"
+                        android:layout_height="@dimen/height">
+
+                        <ImageView
+                            android:layout_width="@dimen/widthimage"
+                            android:layout_height="@dimen/heightimage"
+                            android:layout_gravity="top|center_horizontal"
+                            android:src="@drawable/house" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|bottom"
+                            android:text="Lift" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/gymnasium"
+                        android:layout_width="@dimen/width"
+                        android:layout_height="@dimen/height">
+
+                        <ImageView
+                            android:layout_width="@dimen/widthimage"
+                            android:layout_height="@dimen/heightimage"
+                            android:layout_gravity="top|center_horizontal"
+                            android:src="@drawable/plot" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|bottom"
+                            android:text="Gymnasium" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/powerBackup"
+                        android:layout_width="@dimen/width"
+                        android:layout_height="@dimen/height">
+
+                        <ImageView
+                            android:layout_width="@dimen/widthimage"
+                            android:layout_height="@dimen/heightimage"
+                            android:layout_gravity="top|center_horizontal"
+
+                            android:src="@drawable/office" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|bottom"
+                            android:text="Power Backup" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/gaspipeline"
+                        android:layout_width="@dimen/width"
+                        android:layout_height="@dimen/height">
+
+                        <ImageView
+                            android:layout_width="@dimen/widthimage"
+                            android:layout_height="@dimen/heightimage"
+                            android:layout_gravity="top|center_horizontal"
+                            android:src="@drawable/flat" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|bottom"
+                            android:text="Gas\nPipeline" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/park"
+                        android:layout_width="@dimen/width"
+                        android:layout_height="@dimen/height">
+
+                        <ImageView
+                            android:layout_width="@dimen/widthimage"
+                            android:layout_height="@dimen/heightimage"
+                            android:layout_gravity="top|center_horizontal"
+                            android:src="@drawable/flat" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|bottom"
+                            android:text="Park" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/swimmingpool"
+                        android:layout_width="@dimen/width"
+                        android:layout_height="@dimen/height">
+
+                        <ImageView
+                            android:layout_width="@dimen/widthimage"
+                            android:layout_height="@dimen/heightimage"
+                            android:layout_gravity="top|center_horizontal"
+                            android:src="@drawable/flat" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|bottom"
+                            android:text="Swimming\nPool" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/clubhouse"
+                            android:layout_width="@dimen/width"
+                            android:layout_height="@dimen/height">
+
+                            <ImageView
+                                android:layout_width="@dimen/widthimage"
+                                android:layout_height="@dimen/heightimage"
+                                android:layout_gravity="top|center_horizontal"
+                                android:src="@drawable/flat" />
+
+                            <TextView
+                                android:gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|bottom"
+                                android:text="Club\nHouse" />
+                        </androidx.cardview.widget.CardView>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/textView001"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Verified Properties"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView3"
+                app:layout_constraintStart_toStartOf="@+id/horizontalScrollView3"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView3" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="Show only Verified properties"
+                app:layout_constraintEnd_toEndOf="@+id/textView001"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView001"
+                app:layout_constraintTop_toBottomOf="@+id/textView001" />
+
+            <TextView
+                android:id="@+id/textView002"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Photos/videos"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/checkBox"
+                app:layout_constraintStart_toStartOf="@+id/checkBox"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+            <Button
+                android:id="@+id/photo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="Photos"
+                app:layout_constraintEnd_toStartOf="@+id/videos"
+                app:layout_constraintStart_toStartOf="@+id/textView002"
+                app:layout_constraintTop_toBottomOf="@+id/textView002" />
+
+            <Button
+                android:id="@+id/videos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Videos"
+                app:layout_constraintEnd_toEndOf="@+id/textView002"
+                app:layout_constraintStart_toEndOf="@+id/photo"
+                app:layout_constraintTop_toBottomOf="@+id/textView002" />
+
+            <TextView
+                android:id="@+id/textView003"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Society"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/videos"
+                app:layout_constraintStart_toStartOf="@+id/photo"
+                app:layout_constraintTop_toBottomOf="@+id/photo" />
+
+            <EditText
+                android:id="@+id/society"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Select a society"
+                app:layout_constraintEnd_toEndOf="@+id/textView003"
+                app:layout_constraintStart_toStartOf="@+id/textView003"
+                app:layout_constraintTop_toBottomOf="@+id/textView003" />
+
+            <TextView
+                android:id="@+id/textView004"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Facing"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/society"
+                app:layout_constraintStart_toStartOf="@+id/society"
+                app:layout_constraintTop_toBottomOf="@+id/society" />
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:scrollbarSize="5dp"
+                android:scrollbars="horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/textView004"
+                app:layout_constraintStart_toStartOf="@+id/textView004"
+                app:layout_constraintTop_toBottomOf="@+id/textView004">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/east"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:padding="10dp"
+                        android:text="East" />
+
+                    <TextView
+                        android:id="@+id/north"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:padding="10dp"
+                        android:text="North" />
+
+                    <TextView
+                        android:id="@+id/northeast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:padding="10dp"
+                        android:text="North-East" />
+
+                    <TextView
+                        android:id="@+id/northwest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:padding="10dp"
+                        android:text="North-west" />
+
+                    <TextView
+                        android:id="@+id/south"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:padding="10dp"
+                        android:text="South" />
+
+                    <TextView
+                        android:id="@+id/southeast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:padding="10dp"
+                        android:text="South-East" />
+
+                    <TextView
+                        android:id="@+id/southwest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:padding="10dp"
+                        android:text="South-west" />
+
+                    <TextView
+                        android:id="@+id/west"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="West" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:freezesText="true"
+                android:text="Bathroom"
+                app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView5"
+                app:layout_constraintStart_toStartOf="@+id/horizontalScrollView5"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView5" />
+
+
+            <include
+                android:id="@+id/bathroom"
+                layout="@layout/layout_bathroom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/textView5"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <TextView
+                android:id="@+id/textView500"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:freezesText="true"
+                android:text="Floors"
+                app:layout_constraintEnd_toEndOf="@+id/bathroom"
+                app:layout_constraintStart_toStartOf="@+id/bathroom"
+                app:layout_constraintTop_toBottomOf="@+id/bathroom" />
+
+            <Spinner
+                android:id="@+id/minimumFloor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:entries="@array/area_min"
+                app:layout_constraintEnd_toStartOf="@+id/maximumFloor"
+                app:layout_constraintStart_toStartOf="@+id/textView500"
+                app:layout_constraintTop_toBottomOf="@+id/textView500" />
+
+            <Spinner
+                android:id="@+id/maximumFloor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:entries="@array/area_max"
+                app:layout_constraintEnd_toEndOf="@+id/textView500"
+                app:layout_constraintStart_toEndOf="@+id/minimumFloor"
+                app:layout_constraintTop_toBottomOf="@+id/textView500" />
+
+            <TextView
+                android:id="@+id/textView600"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:freezesText="true"
+                android:text="Show only"
+                app:layout_constraintEnd_toEndOf="@+id/maximumFloor"
+                app:layout_constraintStart_toStartOf="@+id/minimumFloor"
+                app:layout_constraintTop_toBottomOf="@+id/maximumFloor" />
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="Properties with Discount and Offers"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView600"
+                app:layout_constraintTop_toBottomOf="@+id/textView600" />
+
+            <CheckBox
+                android:id="@+id/checkBox3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="10dp"
+                android:text="Exclusive properties"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/checkBox2"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+
+            <CheckBox
+                android:id="@+id/checkBox4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="10dp"
+                android:text="Properties posted by Certified Agents"
+                app:layout_constraintEnd_toEndOf="@+id/checkBox3"
+                app:layout_constraintStart_toStartOf="@+id/checkBox3"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="60dp" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

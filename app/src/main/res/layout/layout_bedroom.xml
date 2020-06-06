@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <HorizontalScrollView
+        android:id="@+id/firsthor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:scrollbars="horizontal"
+        android:scrollbarSize="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/bhk1"
+                android:onClick="selectBHK1"
+                android:background="@drawable/boader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="1 BHK" />
+
+            <TextView
+                android:id="@+id/bhk2"
+                android:padding="10dp"
+                android:background="@drawable/boader"
+                android:onClick="selectBHK2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 BHK" />
+
+            <TextView
+                android:id="@+id/bhk3"
+                android:onClick="selectBHK3"
+                android:background="@drawable/boader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="3 BHK" />
+
+            <TextView
+                android:id="@+id/bhk4"
+                android:onClick="selectBHK4"
+                android:background="@drawable/boader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="4 BHK" />
+
+            <TextView
+                android:background="@drawable/boader"
+                android:id="@+id/bhk5"
+                android:onClick="selectBHK5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="5 BHK" />
+
+            <TextView
+                android:id="@+id/bhk6"
+                android:onClick="selectBHK6"
+                android:layout_width="wrap_content"
+                android:background="@drawable/boader"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="6 BHK" />
+
+            <TextView
+                android:id="@+id/bhk7"
+                android:background="@drawable/boader"
+                android:onClick="selectBHK7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="7 BHK" />
+
+            <TextView
+                android:id="@+id/bhk8"
+                android:onClick="selectBHK8"
+                android:background="@drawable/boader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="8 BHK" />
+
+            <TextView
+                android:id="@+id/bhk9"
+                android:onClick="selectBHK9"
+                android:layout_width="wrap_content"
+                android:background="@drawable/boader"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="9 BHK" />
+
+            <TextView
+                android:id="@+id/bhk10"
+                android:padding="10dp"
+                android:onClick="selectBHK10"
+                android:background="@drawable/boader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10 BHK" />
+
+            <TextView
+                android:id="@+id/bhk11"
+                android:background="@drawable/boader"
+                android:padding="10dp"
+                android:onClick="selectBHK11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=">10 BHK" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

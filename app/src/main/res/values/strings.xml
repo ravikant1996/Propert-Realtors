@@ -1,0 +1,334 @@
+<resources>
+    <string name="app_name">Property Realtors</string>
+    <string name="a_k_p">AIzaSyDDaW_rQKqJtwEdqnib_-WQLCeSodUnb5g</string>
+    <string name="password_sign_up">Sign up</string>
+    <string name="password_sign_in">Sign in</string>
+    <string name="google_sign_in">Sign In with Google</string>
+    <string name="facebook_sign_in">Sign In with Facebook</string>
+    <string name="main_add">Add Listing</string>
+    <string name="main_change_currency">Change Currency</string>
+    <string name="main_edit">Edit a Listing</string>
+    <string name="main_search">Search</string>
+    <string name="main_loan_simulator">Loan Simulator</string>
+    <string name="lorem_ipsum">Where does it come from? Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</string>
+    <string name="access_internal_storage_not_granted">Access to Internal Storage Not Granted</string>
+    <string name="there_was_an_error">There was an ERROR</string>
+    <string name="no_image_was_picked">No image was picked</string>
+    <string name="some_access_not_granted">Some access not granted</string>
+    <string name="noInternet">Internet NOT available</string>
+    <string name="snackbarNoInternetButton">HIDE</string>
+    <string name="notif_notification_channel_name">notification_channel</string>
+    <string name="loading_please_wait">Loading... please wait...</string>
+    <string name="notification_title_create">Listing created successfully</string>
+    <string name="notification_title_edit">Listing edited successfully</string>
+    <string name="notification_text">Address: %1$s</string>
+    <string name="main_current_location">Current Location</string>
+    <string name="cant_make_map_requests">You can\'t make map request with these Google Services</string>
+    <string name="change_currency">Change Currency</string>
+    <string name="go_back">Go back</string>
+    <string name="information_not_available">Information not Available</string>
+    <string name="not_implemented">Not implemented yet</string>
+    <string name="no_description_available">No description available</string>
+    <string name="modify_loan">Modify Loan</string>
+    <string name="show_list">Show List</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profile</string>
+
+
+    <string-array name="City_array">
+        <item>Select City</item>
+        <item>Faridabad</item>
+        <item>Delhi</item>
+        <item>Gurugoan</item>
+        <item>Noida</item>
+    </string-array>
+
+    <string-array name="items_div_class_1">
+        <item>Div 1-A</item>
+        <item>Div 1-B</item>
+        <item>Div 1-C</item>
+        <item>Div 1-D</item>
+    </string-array>
+
+    <string-array name="items_div_class_2">
+        <item>Div 2-A</item>
+        <item>Div 2-B</item>
+        <item>Div 2-C</item>
+        <item>Div 2-D</item>
+    </string-array>
+
+    <string-array name="items_div_class_3">
+        <item>Div 3-A</item>
+        <item>Div 3-B</item>
+        <item>Div 3-C</item>
+        <item>Div 3-D</item>
+    </string-array>
+
+    <string-array name="items_div_class_4">
+        <item>Div 4-A</item>
+        <item>Div 4-B</item>
+        <item>Div 4-C</item>
+        <item>Div 4-D</item>
+    </string-array>
+
+    <string-array name="budget_min">
+        <item>₹ Min</item>
+        <item>₹ 5 Lac</item>
+        <item>₹ 10 Lac</item>
+        <item>₹ 20 Lac</item>
+        <item>₹ 30 Lac</item>
+        <item>₹ 40 Lac</item>
+        <item>₹ 50 Lac</item>
+        <item>₹ 60 Lac</item>
+        <item>₹ 70 Lac</item>
+        <item>₹ 80 Lac</item>
+        <item>₹ 90 Lac</item>
+        <item>₹ 1 Cr</item>
+        <item>₹ 1.2 Cr</item>
+        <item>₹ 1.4 Cr</item>
+        <item>₹ 1.6 Cr</item>
+        <item>₹ 1.8 Cr</item>
+        <item>₹ 2 Cr</item>
+        <item>₹ 2.3 Cr</item>
+        <item>₹ 2.6 Cr</item>
+        <item>₹ 3 Cr</item>
+        <item>₹ 3.5 Cr</item>
+        <item>₹ 4 Cr</item>
+        <item>₹ 4.5 Cr</item>
+        <item>₹ 5 Cr</item>
+        <item>₹ 10 Cr</item>
+        <item>₹ 15 Cr</item>
+    </string-array>
+
+    <string-array name="budget_max">
+        <item>₹ Max</item>
+        <item>₹ 10 Lac</item>
+        <item>₹ 20 Lac</item>
+        <item>₹ 30 Lac</item>
+        <item>₹ 40 Lac</item>
+        <item>₹ 50 Lac</item>
+        <item>₹ 60 Lac</item>
+        <item>₹ 70 Lac</item>
+        <item>₹ 80 Lac</item>
+        <item>₹ 90 Lac</item>
+        <item>₹ 1 Cr</item>
+        <item>₹ 1.2 Cr</item>
+        <item>₹ 1.4 Cr</item>
+        <item>₹ 1.6 Cr</item>
+        <item>₹ 1.8 Cr</item>
+        <item>₹ 2 Cr</item>
+        <item>₹ 2.3 Cr</item>
+        <item>₹ 2.6 Cr</item>
+        <item>₹ 3 Cr</item>
+        <item>₹ 3.5 Cr</item>
+        <item>₹ 4 Cr</item>
+        <item>₹ 4.5 Cr</item>
+        <item>₹ 5 Cr</item>
+        <item>₹ 10 Cr</item>
+        <item>₹ 15 Cr</item>
+    </string-array>
+
+    <string-array name="area_parameter">
+        <item>Sqft</item>
+        <item>Sqyrd</item>
+        <item> Sqm         </item>
+        <item> Acre         </item>
+        <item> Bigha         </item>
+        <item>  Hectare        </item>
+        <item>   Marla       </item>
+        <item>   Kanal       </item>
+        <item> Biswa1         </item>
+        <item>  Biswa2        </item>
+        <item> Ground         </item>
+        <item>  Aankadam        </item>
+        <item>   Rood       </item>
+        <item>  Chatak        </item>
+        <item> Kottah         </item>
+        <item> Cent         </item>
+        <item> Perch         </item>
+        <item> Guntha         </item>
+        <item>   Are       </item>
+    </string-array>
+    <string-array name="area_min">
+        <item>  Min   </item>
+        <item>   100  </item>
+        <item>  200   </item>
+        <item>  300   </item>
+        <item>  400   </item>
+        <item>  1000   </item>
+        <item>  1500   </item>
+        <item>  2000   </item>
+        <item>  3000   </item>
+        <item>  4000    </item>
+        <item>  5000   </item>
+        <item>  10000  </item>
+        <item>  25000  </item>
+        <item>   50000 </item>
+        <item>   50000+ </item>
+    </string-array>
+    <string-array name="area_max">
+        <item>  Max            </item>
+        <item>   100           </item>
+        <item>  200            </item>
+        <item>  300            </item>
+        <item>  400            </item>
+        <item>  1000            </item>
+        <item>  1500            </item>
+        <item>  2000            </item>
+        <item>  3000        </item>
+        <item>   4000    </item>
+        <item>  5000            </item>
+        <item>  10000            </item>
+        <item>  25000            </item>
+        <item>   50000           </item>
+        <item>   50000+           </item>
+    </string-array>
+
+    <string-array name="openSides">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="ageofConstruction">
+        <item>----------</item>
+        <item>New Construction</item>
+        <item>Less than 5 years</item>
+        <item>5 to 10 years</item>
+        <item>10 to 15 years</item>
+        <item>15 to 20 years</item>
+        <item>Above 20 years</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Open">open</string>
+    <string name="Close">close</string>
+
+    <string-array name="floors">
+        <item>Lower Basement</item>
+        <item>Upper Basement</item>
+        <item>Ground</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>43</item>
+        <item>44</item>
+        <item>45</item>
+        <item>46</item>
+        <item>47</item>
+        <item>48</item>
+        <item>49</item>
+        <item>50</item>
+        <item>51</item>
+        <item>52</item>
+        <item>53</item>
+        <item>54</item>
+        <item>55</item>
+        <item>56</item>
+        <item>57</item>
+        <item>58</item>
+        <item>59</item>
+        <item>60</item>
+        <item>61</item>
+        <item>62</item>
+        <item>63</item>
+        <item>64</item>
+        <item>65</item>
+        <item>66</item>
+        <item>67</item>
+        <item>68</item>
+        <item>69</item>
+        <item>70</item>
+        <item>81</item>
+        <item>82</item>
+        <item>83</item>
+        <item>84</item>
+        <item>85</item>
+        <item>86</item>
+        <item>87</item>
+        <item>88</item>
+        <item>89</item>
+        <item>90</item>
+        <item>91</item>
+        <item>92</item>
+        <item>93</item>
+        <item>94</item>
+        <item>95</item>
+        <item>96</item>
+        <item>97</item>
+        <item>98</item>
+        <item>99</item>
+        <item>100</item>
+    </string-array>
+
+    <string-array name="maintenance">
+        <item>Monthly</item>
+        <item>Quarterly</item>
+        <item>Half Yearly</item>
+        <item>Yearly</item>
+        <item>One Half Yearly</item>
+        <item>Two Yearly</item>
+    </string-array>
+
+    <string-array name="coveredParameter">
+        <item>Sqft</item>
+        <item>Sqyrd</item>
+    </string-array>
+
+    <string-array name="furnishing">
+        <item>Unfurnished</item>
+        <item>Semi-Furnished</item>
+        <item>Fully-Furnishedd</item>
+    </string-array>
+
+    <string-array name="PropertyStatus">
+        <item>Ready to Move</item>
+        <item>Under Construction</item>
+    </string-array>
+
+</resources>
+

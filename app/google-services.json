@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "450705663532",
+    "firebase_url": "https://property-realtor.firebaseio.com",
+    "project_id": "property-realtor",
+    "storage_bucket": "property-realtor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450705663532:android:3ba6a1cf10a36b6bed9389",
+        "android_client_info": {
+          "package_name": "com.example.propertyrealtors"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450705663532-fbs5e4is0a74kmjh9qpb3ta3faulqb8g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.propertyrealtors",
+            "certificate_hash": "dd5f696583797dbe9f1ca059b1f74b1a098ffefc"
+          }
+        },
+        {
+          "client_id": "450705663532-q5m65a2rqf4ni46pgsk9vj9pekfvov1p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAY_c751uIbhVWAAeIZcCEQswYeq0w3kK0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "450705663532-q5m65a2rqf4ni46pgsk9vj9pekfvov1p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".activity.Start331">
+    <ImageView
+        android:id="@+id/Back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:onClick="back"
+        android:src="@drawable/bac"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/propertytype"/>
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:freezesText="true"
+                android:paddingBottom="5dp"
+                android:paddingTop="20dp"
+                android:text="What type of property is it?"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="20dp" />
+
+            <Button
+                android:id="@+id/residential"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:onClick="select"
+                android:text="Residential"
+                app:layout_constraintEnd_toStartOf="@+id/commercial"
+                app:layout_constraintStart_toStartOf="@+id/textView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <Button
+                android:id="@+id/commercial"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:onClick="select"
+                android:text="Commercial"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/residential"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:freezesText="true"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="Property type"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/radio1"
+                app:layout_constraintEnd_toEndOf="@+id/commercial"
+                app:layout_constraintStart_toStartOf="@+id/residential"
+                app:layout_constraintTop_toBottomOf="@+id/residential" />
+
+            <RadioGroup
+                android:id="@+id/radio1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView3"
+                app:layout_constraintStart_toStartOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+                <RadioButton
+                    android:id="@+id/radio11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Flat/Apartment" />
+
+                <RadioButton
+                    android:id="@+id/radio12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="House" />
+
+                <RadioButton
+                    android:id="@+id/radio13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Villa" />
+
+                <RadioButton
+                    android:id="@+id/radio14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Builder Floor" />
+
+                <RadioButton
+                    android:id="@+id/radio15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Plot" />
+
+                <RadioButton
+                    android:id="@+id/radio16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Studio Apartment" />
+
+                <RadioButton
+                    android:id="@+id/radio17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Pentahouse" />
+
+                <RadioButton
+                    android:id="@+id/radio18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Farm House" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/radio2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toEndOf="@+id/textView3"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+                <RadioButton
+                    android:id="@+id/radio21"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButton2Clicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Office Space" />
+
+                <RadioButton
+                    android:id="@+id/radio22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButton2Clicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Office in IT Park/SEZ" />
+
+                <RadioButton
+                    android:id="@+id/radio23"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButton2Clicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Shop" />
+
+                <RadioButton
+                    android:id="@+id/radio24"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButton2Clicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Showroom" />
+
+                <RadioButton
+                    android:id="@+id/radio25"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButton2Clicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Commercial Land" />
+
+                <RadioButton
+                    android:id="@+id/radio26"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButton2Clicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Warehouse/ Godown" />
+
+                <RadioButton
+                    android:id="@+id/radio27"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButton2Clicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Industrial Land" />
+
+                <RadioButton
+                    android:id="@+id/radio28"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButton2Clicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Industrial Shed" />
+
+                <RadioButton
+                    android:id="@+id/radio29"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButton2Clicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Industrial Building" />
+
+                <RadioButton
+                    android:id="@+id/radio31"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButton2Clicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Coworking Space"
+                    android:visibility="gone" />
+
+                <RadioButton
+                    android:id="@+id/radio30"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButton2Clicked"
+                    android:padding="@dimen/propertyTypeRadioButton"
+                    android:text="Agriculture Land" />
+            </RadioGroup>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

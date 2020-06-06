@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/buy_property"
+            android:title="Properties for Buy" />
+        <item
+            android:id="@+id/rent_property"
+            android:title="Properties for Rent" />
+        <item
+            android:id="@+id/new_project"
+            android:title="New Project" />
+        <item
+            android:id="@+id/localities"
+            android:title="Explore Localities" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item android:title="Sell/Rent your Property">
+            <menu>
+                <item
+                    android:id="@+id/post_property"
+                    android:title="Post Property" />
+            </menu>
+        </item>
+    </group>
+
+    <item android:title="Share &amp; Rates">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/share"
+                    android:title="Share" />
+                <item
+                    android:id="@+id/rates"
+                    android:title="Rates us" />
+            </group>
+
+        </menu>
+    </item>
+    <item android:title="City">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/addcity"
+                    android:title="Add city" />
+            </group>
+
+        </menu>
+    </item>
+    <item android:title="Profile">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/login"
+                    android:title="Login" />
+                <item
+                    android:id="@+id/logout"
+                    android:title="Logout" />
+            </group>
+
+        </menu>
+    </item>
+
+    <!-- <item android:id="@+id/advertise"
+         android:title="Advertise with us"/>
+     <item
+         android:id="@+id/toolAdvice"
+         android:title="Tools &amp; Advice"/>
+
+     <item android:id="@+id/propworth"
+         android:title="Propworth"/>
+
+     <item android:id="@+id/ratesTrends"
+         android:title="Rates &amp; Trends"/>
+     <item
+         android:id="@+id/forum"
+         android:title="Forum"/>
+
+     <item android:id="@+id/calculator"
+         android:title="EMI Calculator"/>
+
+     <item android:id="@+id/Loan"
+         android:title="Loan Eligibility"/>
+
+     <item android:id="@+id/propendex"
+         android:title="Propindex"/>
+
+     <item
+         android:id="@+id/Services_heading"
+         android:title="Property Services"
+         />
+     <item android:id="@+id/valuation"
+         android:title="Property Valuation"/>
+     <item
+         android:id="@+id/call"
+         android:title="Advocate on Call"/>
+
+     <item android:id="@+id/astrology"
+         android:title="Property Astrology"/>
+
+     <item android:id="@+id/newsHeading"
+         android:title="Property News"/>
+     <item
+         android:id="@+id/smartCities"
+         android:title="Smart Cities"/>
+
+     <item android:id="@+id/buzz"
+         android:title="Industry Buzz"/>
+
+     <item android:id="@+id/corner"
+         android:title="Expert Corner"/>
+     <item
+         android:id="@+id/taxation"
+         android:title="Legal &amp; Taxation"
+         />
+     <item android:id="@+id/affordable"
+         android:title="Affordable Housing"/>
+     <item
+         android:id="@+id/listen_heading"
+         android:title="We Listen"/>
+
+     <item android:id="@+id/feedback"
+         android:title="Feedback"/>
+
+     <item android:id="@+id/rateUs"
+         android:title="Rate Us"/>
+     <item
+         android:id="@+id/share"
+         android:title="Share"/>
+
+     <item android:id="@+id/alerts"
+         android:title="Set Alerts"/>
+
+     <item android:id="@+id/setting"
+         android:title="Settings"/>
+ -->
+
+</menu>
