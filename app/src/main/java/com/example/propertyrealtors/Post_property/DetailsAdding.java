@@ -39,6 +39,10 @@ public class DetailsAdding extends AppCompatActivity {
     String UID, propertyFor, propertyType, price, bedroom, address,
             covered_areaParameter, covered_areaParameter2, carpet, propertyStatus, configuration,
             floor, furnish, PropertySubType;
+    String totalfloor, superArea, roadWidth, open_Sides, construction_done, boundary_wall,
+            gated_colony, plotArea, plot_bredth, plot_length, cafateria, washroom, cornerShop, main_road_facing, personal_washroom,
+            lock_in_periodString, token_amount, ageOfconstruction, availableFrom, security, maintenance;
+
     TextView Bedroom, Address, ConfigMode, Floor;
     EditText Money, CarpetArea, Status, Facing, Furnishing, Society, Location, CoverdArea, Flooring, OverLooking, Landmark,
             Water, Price_per_sqft_sqyrd, Carparking, ElectricityAvailability;
@@ -94,6 +98,27 @@ public class DetailsAdding extends AppCompatActivity {
                 floor = getData[9];
                 furnish = getData[10];
                 PropertySubType = getData[11];
+                availableFrom = getData[12];
+                ageOfconstruction = getData[13];
+                boundary_wall = getData[14];
+                cafateria = getData[15];
+                construction_done= getData[16];
+                cornerShop = getData[17];
+                totalfloor = getData[18];
+                gated_colony = getData[19];
+                lock_in_periodString= getData[20];
+                main_road_facing= getData[21];
+                open_Sides= getData[22];
+                personal_washroom= getData[23];
+                plotArea = getData[24];
+                plot_bredth = getData[25];
+                plot_length= getData[26];
+                roadWidth = getData[27];
+                security = getData[28];
+                superArea = getData[29];
+                token_amount = getData[30];
+                washroom = getData[31];
+                maintenance= getData[32];
 
                 Money.setText(price);
                 Bedroom.setText(bedroom);
@@ -217,19 +242,22 @@ public class DetailsAdding extends AppCompatActivity {
                 }
             }
         });
-        Next.setOnClickListener(v -> {
-          //  Submit.setEnabled(false);
-            updateAdditionalDetails();
-            updateDetails();
-            Intent intent = new Intent(DetailsAdding.this, ImagesUpload.class);
-            Bundle bundle2 = new Bundle();
-            bundle2.putString("KEY_ID", additionalId);
-            bundle2.putString("TYPE", propertyType);
-            bundle2.putString("PROPERTYID_Keyid", propertyId);
-            intent.putExtras(bundle2);
-            startActivity(intent);
-            finish();
+        Next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateAdditionalDetails();
+                updateDetails();
+                Intent intent = new Intent(DetailsAdding.this, ImagesUpload.class);
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("KEY_ID", additionalId);
+                bundle2.putString("TYPE", propertyType);
+                bundle2.putString("PROPERTYID_Keyid", propertyId);
+                intent.putExtras(bundle2);
+                startActivity(intent);
+                finish();
+            }
         });
+          //  Submit.setEnabled(false);
 
     }
 
@@ -305,8 +333,8 @@ public class DetailsAdding extends AppCompatActivity {
         int rand_int1 = random.nextInt(1000000000);
         String keyId= reference.push().getKey();
         keyId = keyId.concat("KANT"+rand_int1);
-      DatabaseReference ref= reference.child("additionalInfo");
-        String finalKeyId = keyId;
+      final DatabaseReference ref= reference.child("additionalInfo");
+        final String finalKeyId = keyId;
         residentialModel.setId(finalKeyId);
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {

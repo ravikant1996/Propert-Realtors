@@ -98,7 +98,7 @@ public class Start131 extends AppCompatActivity {
                 header.setText("You are searching in "+selectedCity);
 
 
-                List<String> list2 = new ArrayList<>();
+                final List<String> list2 = new ArrayList<>();
                 adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, list2);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 listView2.setAdapter(adapter);

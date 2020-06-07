@@ -179,6 +179,8 @@ public class post_package extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(post_package.this, "Error", Toast.LENGTH_SHORT).show();
+
             }
         });
     }
@@ -202,7 +204,6 @@ public class post_package extends AppCompatActivity {
                 finish();
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

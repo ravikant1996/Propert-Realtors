@@ -24,9 +24,10 @@ public class Start331AllResidential3 extends AppCompatActivity {
     EditText plot_Area, road_Width, bredth, length;
     ArrayList<String> arrayList;
     String totalfloor, open_Sides, construction_done, boundary_wall, gated_colony, plotAreaParameter;
-    String propertyFor, propertyType, propertySubType, city, project, PlotArea, Plot_length, Plot_bredth, RoadWidth;
+    String  propertyType, city, project, PlotArea, Plot_length, Plot_bredth, RoadWidth;
     String UID;
-
+    static String propertyFor;
+    static String propertySubType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

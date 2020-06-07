@@ -2,7 +2,7 @@ package com.example.propertyrealtors.model;
 
 import java.util.ArrayList;
 
-public class PropertyModel extends ArrayList<PropertyModel> {
+public class PropertyModel {
     String keyId, propertyFor, UID, propertySubType, city, project, bathroom, bedroom, balcony, totalfloor,
             floorNo, furnished, carpetArea, superArea, roadWidth, open_Sides, construction_done, boundary_wall,
             gated_colony, plotArea, plot_bredth, plot_length, cafateria, washroom, cornerShop, main_road_facing, personal_washroom,

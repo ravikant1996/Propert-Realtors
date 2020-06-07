@@ -85,6 +85,15 @@ public class Start31 extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent= new Intent(Start31.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
+
+    }
+
     public void back(View view) {
 /*        if(!Signal) {
             startActivity(new Intent(Start31.this, StartActivty.class));

@@ -36,7 +36,7 @@ public class DetailsAdapterResiRorL extends RecyclerView.Adapter<DetailsAdapterR
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PropertyDetailsAdapterViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PropertyDetailsAdapterViewHolder holder, final int position) {
         PropertyModel propertyModel = arrayList.get(position);
 
         holder.rupee.setText(arrayList.get(position).getPrice());
@@ -66,9 +66,33 @@ public class DetailsAdapterResiRorL extends RecyclerView.Adapter<DetailsAdapterR
                 String configuration = arrayList.get(position).getBedroom()+" Bed "+arrayList.get(position).getBathroom()+" Bath "+arrayList.get(position).getBalcony();
                 String floorNo = arrayList.get(position).getFloorNo()+" of "+arrayList.get(position).getTotalfloor()+" Floor";
                 String furnishing = arrayList.get(position).getFurnished();
+                String availableFrom = arrayList.get(position).getAvailablefrom();
+                String ageOfconstruction = arrayList.get(position).getAgeOfconstruction();
+                String boundaryWall = arrayList.get(position).getBoundary_wall();
+                String cafateria = arrayList.get(position).getCafateria();
+                String construction_done = arrayList.get(position).getConstruction_done();
+                String cornerShop = arrayList.get(position).getCornerShop();
+                String TotalFloor = arrayList.get(position).getTotalfloor();
+                String gated_colony = arrayList.get(position).getGated_colony();
+                String lock_in_periodString = arrayList.get(position).getLock_in_periodString();
+                String main_road_facing = arrayList.get(position).getMain_road_facing();
+                String open_Sides = arrayList.get(position).getOpen_Sides();
+                String personal_washroom = arrayList.get(position).getPersonal_washroom();
+                String plotArea = arrayList.get(position).getPlotArea();
+                String plot_bredth = arrayList.get(position).getPlot_bredth();
+                String plot_length = arrayList.get(position).getPlot_length();
+                String roadWidth = arrayList.get(position).getRoadWidth();
+                String security = arrayList.get(position).getSecurity();
+                String superArea = arrayList.get(position).getSuperArea();
+                String token_amount = arrayList.get(position).getToken_amount();
+                String washroom = arrayList.get(position).getWashroom();
+                String maintenance = arrayList.get(position).getMaintenance();
+
 
                 String [] strings={propertyId, propertyFor, propertyType, price, bedroom, address, carpet, propertyStatus, configuration,
-                        floorNo, furnishing, PropertySubType};
+                        floorNo, furnishing, PropertySubType, availableFrom, ageOfconstruction, boundaryWall, cafateria, construction_done,
+                        cornerShop, TotalFloor, gated_colony, lock_in_periodString, main_road_facing, open_Sides, personal_washroom, plotArea, plot_bredth,
+                plot_length, roadWidth, security, superArea, token_amount, washroom, maintenance};
                 Toast.makeText(view.getContext(), "Recycler view Click" + propertyId , Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mCntx, DetailsAdding.class);
                 Bundle bundle = new Bundle();

@@ -31,7 +31,9 @@ public class Start331AllCommercial extends AppCompatActivity {
     EditText superArea;
     TextInputLayout carpetHead;
     EditText carpetArea;
-    String propertyFor, propertyType, propertySubType, city, project;
+    String  propertyType, city, project;
+    static String propertyFor;
+    static String propertySubType;
     String CarpetArea, SuperArea;
     String UID;
     @Override

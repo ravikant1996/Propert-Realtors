@@ -31,6 +31,7 @@ public class Start332AllResidentialPrice extends AppCompatActivity {
     String  open_Sides, construction_done, boundary_wall, gated_colony, plotAreaParameter, cafateria, washroom, personal_washroom, cornerShop, main_road_facing;
     String UID;
     String Rupees = null, paise;
+    String _price, _secuityAmount, _maintenance;
     TextView Watcher, Watcher2;
 
 
@@ -200,41 +201,53 @@ public class Start332AllResidentialPrice extends AppCompatActivity {
     }
 
     public void back(View view) {
-        Intent intent = null;
-        if(propertySubType.equals("Flat/Apartment") || propertySubType.equals("Builder_Floor")
-                || propertySubType.equals("Pentahouse") || propertySubType.equals("Studio_Apartment")){
+        try {
 
-            intent = new Intent(Start332AllResidentialPrice.this, Start331AllResidential.class);
-        }
-        else if(propertySubType.equals("House") || propertySubType.equals("Farm_House") || propertySubType.equals("Villa")){
-            intent = new Intent(Start332AllResidentialPrice.this, Start331AllResidential2.class);
+            Intent intent = null;
+            Bundle bundle = new Bundle();
+            bundle.putString("UID", UID);
+            bundle.putString("R/C_TYPE", propertySubType);
+            bundle.putString("PROPERTY_FOR", propertyFor);
+            bundle.putString("PROPERTY_TYPE", propertyType);
 
-        }
+            if (propertySubType.equals("Flat/Apartment") || propertySubType.equals("Builder_Floor")
+                    || propertySubType.equals("Pentahouse") || propertySubType.equals("Studio_Apartment")) {
+
+                intent = new Intent(Start332AllResidentialPrice.this, Start331AllResidential.class);
+            } else if (propertySubType.equals("House") || propertySubType.equals("Farm_House") || propertySubType.equals("Villa")) {
+                intent = new Intent(Start332AllResidentialPrice.this, Start331AllResidential2.class);
+
+            }
        /* else if(propertySubType.equals("Plot")){
             intent = new Intent(Start332AllResidentialPrice.this, Start331AllResidential3.class);
 
-        }*/else if(propertySubType.equals("office") || propertySubType.equals("IT_Park")){
-            intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial.class);
+        }*/
+            else if (propertySubType.equals("office") || propertySubType.equals("IT_Park")) {
+                intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial.class);
 
-        }else if(propertySubType.equals("Shop") || propertySubType.equals("Showroom")){
-            intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial2.class);
+            } else if (propertySubType.equals("Shop") || propertySubType.equals("Showroom")) {
+                intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial2.class);
 
-        }else if(propertySubType.equals("Commercial_Land") || propertySubType.equals("Agriculture_Land")){
-            intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial3.class);
+            } else if (propertySubType.equals("Commercial_Land") || propertySubType.equals("Agriculture_Land")) {
+                intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial3.class);
 
-        }else if(propertySubType.equals("Warehouse") || propertySubType.equals("Industrial_Building")
-                || propertySubType.equals("Industrial_Shed")){
-            intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial4.class);
+            } else if (propertySubType.equals("Warehouse") || propertySubType.equals("Industrial_Building")
+                    || propertySubType.equals("Industrial_Shed")) {
+                intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial4.class);
 
-        }else if(propertySubType.equals("Industrial_Land")){
-            intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial5.class);
+            } else if (propertySubType.equals("Industrial_Land")) {
+                intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial5.class);
 
-        }else if(propertySubType.equals("Coworking_Space")){
-            intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial6.class);
+            } else if (propertySubType.equals("Coworking_Space")) {
+                intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial6.class);
 
+            }
+            intent.putExtras(bundle);
+            startActivity(intent);
+            finish();
+        }catch (IllegalStateException e){
+            e.printStackTrace();
         }
-        startActivity(intent);
-        finish();
     }
     public void intenter(){
         Intent intent;
@@ -273,9 +286,9 @@ public class Start332AllResidentialPrice extends AppCompatActivity {
         bundle.putString("BALCONY", balcony);
         bundle.putString("gated_colony", gated_colony);
 
-        bundle.putString("PRICE", price);
-        bundle.putString("MAINTENANCE_AMOUNT", maintenance);
-        bundle.putString("SECURITY_AMOUNT", secuityAmount);
+        bundle.putString("PRICE", _price);
+        bundle.putString("MAINTENANCE_AMOUNT", _maintenance);
+        bundle.putString("SECURITY_AMOUNT", _secuityAmount);
         bundle.putString("MAINTENANCE_Parameter", maintenance_parameter);
 
         intent= new Intent(Start332AllResidentialPrice.this, Start332AllPropertyStatus.class);
@@ -298,17 +311,17 @@ public class Start332AllResidentialPrice extends AppCompatActivity {
             // price
             if(!TextUtils.isEmpty(price)) {
                 double result = Double.parseDouble(price);
-                price = String.format("%,.2f", result);
+                _price = String.format("%,.2f", result);
             }
             // token
             if(!TextUtils.isEmpty(secuityAmount)) {
                 double result2 = Double.parseDouble(secuityAmount);
-                secuityAmount = String.format("%,.2f", result2);
+                _secuityAmount = String.format("%,.2f", result2);
                 // maintenance
             }
             if(!TextUtils.isEmpty(maintenance)) {
                 double result3 = Double.parseDouble(maintenance);
-                maintenance = String.format("%,.2f", result3);
+                _maintenance = String.format("%,.2f", result3);
             }
             intenter();
         }

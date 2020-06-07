@@ -109,10 +109,7 @@ public class All331ProjectSearch extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-         /*       addlocal = query;
-                textView.setVisibility(View.VISIBLE);
-                addlocalitybtn.setVisibility(View.VISIBLE);
-        */        return true;
+                 return true;
             }
             @Override
             public boolean onQueryTextChange(String newText) {

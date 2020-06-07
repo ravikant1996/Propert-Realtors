@@ -36,7 +36,7 @@ public class DetailsAdapterResiSELL extends RecyclerView.Adapter<DetailsAdapterR
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PropertyDetailsAdapterViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PropertyDetailsAdapterViewHolder holder, final int position) {
         PropertyModel propertyModel = arrayList.get(position);
 
         holder.rupee.setText(arrayList.get(position).getPrice());

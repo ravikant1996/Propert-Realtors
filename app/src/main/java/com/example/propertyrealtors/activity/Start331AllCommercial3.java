@@ -25,8 +25,10 @@ public class Start331AllCommercial3 extends AppCompatActivity {
     EditText Plot_Area, road_Width_EditText, bredth, length;
     ArrayList<String> arrayList;
     String totalfloor, open_Sides, boundary_wall, plotAreaParameter;
-    String propertyFor, propertyType, propertySubType, city, project, plotArea, plot_length, plot_bredth, RoadWidth;
+    String  propertyType, city, project, plotArea, plot_length, plot_bredth, RoadWidth;
     String UID;
+    static String propertyFor;
+    static String propertySubType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

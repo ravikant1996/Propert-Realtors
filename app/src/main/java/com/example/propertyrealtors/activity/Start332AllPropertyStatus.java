@@ -234,7 +234,12 @@ public class Start332AllPropertyStatus extends AppCompatActivity {
         }
     }
     public void back(View view) {
-        startActivity(new Intent(Start332AllPropertyStatus.this, Start332AllResidentialPrice.class));
+        Intent intent= new Intent(Start332AllPropertyStatus.this, Start332AllResidentialPrice.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("UID", UID);
+        bundle.putString("R/C_TYPE", propertySubType);
+        intent.putExtras(bundle);
+        startActivity(intent);
         finish();
     }
     public void intenter(){

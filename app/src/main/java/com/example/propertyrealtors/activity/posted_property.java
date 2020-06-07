@@ -92,5 +92,16 @@ public class posted_property extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent= new Intent(posted_property.this, MainActivity.class);
+        Bundle bundle= new Bundle();
+        bundle.putString("UID", UID);
+        intent.putExtras(bundle);
+        startActivity(intent);
+        super.onBackPressed();
+
+    }
 }
 

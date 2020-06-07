@@ -39,16 +39,6 @@
 
         </menu>
     </item>
-    <item android:title="City">
-        <menu>
-            <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/addcity"
-                    android:title="Add city" />
-            </group>
-
-        </menu>
-    </item>
     <item android:title="Profile">
         <menu>
             <group android:checkableBehavior="single">

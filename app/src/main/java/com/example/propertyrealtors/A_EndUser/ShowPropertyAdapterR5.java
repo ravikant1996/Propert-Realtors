@@ -43,7 +43,7 @@ public class ShowPropertyAdapterR5 extends RecyclerView.Adapter<ShowPropertyAdap
     }
 
     @Override
-    public void onBindViewHolder(ShowPropertyAdapterViewHolder holder, int position) {
+    public void onBindViewHolder(ShowPropertyAdapterViewHolder holder, final int position) {
         try {
             if(position < arrayList.size()) {
                 holder.rupee.setText(arrayList.get(position).getPrice());

@@ -25,9 +25,11 @@ public class Start331AllCommercial4 extends AppCompatActivity {
     String bathroom, bedroom, washroom, totalfloor, floorNo, furnished, carpetAreaParameter, superAreaParameter;
     String plotAreaParameter;
     EditText superArea, carpetArea;
-    String propertyFor, propertyType, propertySubType, city, project, plotArea, plot_length, plot_bredth, RoadWidth;
+    String  propertyType, city, project, plotArea, plot_length, plot_bredth, RoadWidth;
     String CarpetArea, SuperArea;
     String UID;
+    static String propertyFor;
+    static String propertySubType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

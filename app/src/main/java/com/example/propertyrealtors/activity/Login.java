@@ -85,9 +85,14 @@ public class Login extends AppCompatActivity {
 
             Toast.makeText(getApplicationContext(),
                     "UserName cannot be Blank", Toast.LENGTH_LONG).show();
-            UserName.setError("UserName cannot be Blank");
+         //   UserName.setError("UserName cannot be Blank");
             return;
-        } else if (android.util.Patterns.EMAIL_ADDRESS.matcher(
+        }else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(
+                UserName.getText().toString()).matches()){
+            Toast.makeText(Login.this, "Enter a valid Username", Toast.LENGTH_LONG).show();
+            return;
+        }
+        else if (android.util.Patterns.EMAIL_ADDRESS.matcher(
                 UserName.getText().toString()).matches()) {
             Password.setVisibility(View.VISIBLE);
             if (Password.getText().toString().length() == 0) {

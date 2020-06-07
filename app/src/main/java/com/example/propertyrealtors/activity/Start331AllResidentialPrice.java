@@ -26,6 +26,8 @@ import java.util.HashMap;
 public class Start331AllResidentialPrice extends AppCompatActivity {
     EditText ExpectedPrice, Token_amount;
     String price, token_amount;
+    String _price, _token_amount;
+
     String UID;
     Button next;
     String bathroom, bedroom, balcony, totalfloor, floorNo, furnished, carpetAreaParameter, RoadWidth, superAreaParameter, lock_in_periodString;
@@ -192,41 +194,50 @@ public class Start331AllResidentialPrice extends AppCompatActivity {
     }
 
     public void back(View view) {
-        Intent intent = null;
-        if(propertySubType.equals("Flat/Apartment") || propertySubType.equals("Builder_Floor")
-                || propertySubType.equals("Pentahouse") || propertySubType.equals("Studio_Apartment")){
+        try {
+            Intent intent = null;
+            Bundle bundle = new Bundle();
+            bundle.putString("UID", UID);
+            bundle.putString("R/C_TYPE", propertySubType);
+            bundle.putString("PROPERTY_FOR", propertyFor);
+            bundle.putString("PROPERTY_TYPE", propertyType);
 
-            intent = new Intent(Start331AllResidentialPrice.this, Start331AllResidential.class);
+            if (propertySubType.equals("Flat/Apartment") || propertySubType.equals("Builder_Floor")
+                    || propertySubType.equals("Pentahouse") || propertySubType.equals("Studio_Apartment")) {
+
+                intent = new Intent(Start331AllResidentialPrice.this, Start331AllResidential.class);
+            } else if (propertySubType.equals("House") || propertySubType.equals("Farm_House") || propertySubType.equals("Villa")) {
+                intent = new Intent(Start331AllResidentialPrice.this, Start331AllResidential2.class);
+
+            } else if (propertySubType.equals("Plot")) {
+                intent = new Intent(Start331AllResidentialPrice.this, Start331AllResidential3.class);
+
+            } else if (propertySubType.equals("office") || propertySubType.equals("IT_Park")) {
+                intent = new Intent(Start331AllResidentialPrice.this, Start331AllCommercial.class);
+
+            } else if (propertySubType.equals("Shop") || propertySubType.equals("Showroom")) {
+                intent = new Intent(Start331AllResidentialPrice.this, Start331AllCommercial2.class);
+
+            } else if (propertySubType.equals("Commercial_Land") || propertySubType.equals("Agriculture_Land")) {
+                intent = new Intent(Start331AllResidentialPrice.this, Start331AllCommercial3.class);
+
+            } else if (propertySubType.equals("Warehouse") || propertySubType.equals("Industrial_Building")
+                    || propertySubType.equals("Industrial_Shed")) {
+                intent = new Intent(Start331AllResidentialPrice.this, Start331AllCommercial4.class);
+
+            } else if (propertySubType.equals("Industrial_Land")) {
+                intent = new Intent(Start331AllResidentialPrice.this, Start331AllCommercial5.class);
+
+            } else if (propertySubType.equals("Coworking_Space")) {
+                intent = new Intent(Start331AllResidentialPrice.this, Start331AllCommercial6.class);
+
+            }
+            intent.putExtras(bundle);
+            startActivity(intent);
+            finish();
+        }catch (IllegalStateException e){
+            e.printStackTrace();
         }
-        else if(propertySubType.equals("House") || propertySubType.equals("Farm_House") || propertySubType.equals("Villa")){
-            intent = new Intent(Start331AllResidentialPrice.this, Start331AllResidential2.class);
-
-        }
-        else if(propertySubType.equals("Plot")){
-            intent = new Intent(Start331AllResidentialPrice.this, Start331AllResidential3.class);
-
-        }else if(propertySubType.equals("office") || propertySubType.equals("IT_Park")){
-            intent = new Intent(Start331AllResidentialPrice.this, Start331AllCommercial.class);
-           
-        }else if(propertySubType.equals("Shop") || propertySubType.equals("Showroom")){
-            intent = new Intent(Start331AllResidentialPrice.this, Start331AllCommercial2.class);
-
-        }else if(propertySubType.equals("Commercial_Land") || propertySubType.equals("Agriculture_Land")){
-            intent = new Intent(Start331AllResidentialPrice.this, Start331AllCommercial3.class);
-          
-        }else if(propertySubType.equals("Warehouse") || propertySubType.equals("Industrial_Building")
-                || propertySubType.equals("Industrial_Shed")){
-            intent = new Intent(Start331AllResidentialPrice.this, Start331AllCommercial4.class);
-            
-        }else if(propertySubType.equals("Industrial_Land")){
-            intent = new Intent(Start331AllResidentialPrice.this, Start331AllCommercial5.class);
-
-        }else if(propertySubType.equals("Coworking_Space")){
-            intent = new Intent(Start331AllResidentialPrice.this, Start331AllCommercial6.class);
-
-        }
-        startActivity(intent);
-        finish();
     }
     public void intenter(){
         Intent intent;
@@ -265,8 +276,8 @@ public class Start331AllResidentialPrice extends AppCompatActivity {
         bundle.putString("BALCONY", balcony);
         bundle.putString("gated_colony", gated_colony);
 
-        bundle.putString("PRICE", price);
-        bundle.putString("TOKEN_AMOUNT", token_amount);
+        bundle.putString("PRICE", _price);
+        bundle.putString("TOKEN_AMOUNT", _token_amount);
 
         intent= new Intent(Start331AllResidentialPrice.this, Start331AllPropertyStatus.class);
         intent.putExtras(bundle);
@@ -284,13 +295,13 @@ public class Start331AllResidentialPrice extends AppCompatActivity {
             price = ExpectedPrice.getText().toString();
             if(!TextUtils.isEmpty(price)) {
                 double result = Double.parseDouble(price);
-                price = String.format("%,.2f", result);
+                _price = String.format("%,.2f", result);
             }
             // token
             token_amount = Token_amount.getText().toString();
             if(!TextUtils.isEmpty(token_amount)) {
                 double result2 = Double.parseDouble(token_amount);
-                token_amount = String.format("%,.2f", result2);
+                _token_amount = String.format("%,.2f", result2);
             }
             intenter();
         }

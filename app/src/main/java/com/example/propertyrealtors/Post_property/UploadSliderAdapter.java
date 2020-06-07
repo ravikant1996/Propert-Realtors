@@ -24,12 +24,6 @@ public class UploadSliderAdapter extends SliderViewAdapter<UploadSliderAdapter.S
         this.context = context;
         this.mImages = sliderItems;
     }
-
-    public void deleteItem(int position) {
-        this.mImages.remove(position);
-        notifyDataSetChanged();
-    }
-
     @Override
     public SliderAdapterVH onCreateViewHolder(ViewGroup parent) {
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_image_slider_item, parent,false);

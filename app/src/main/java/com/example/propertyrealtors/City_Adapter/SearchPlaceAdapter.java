@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.AndroidRuntimeException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,17 +71,23 @@ public class SearchPlaceAdapter extends RecyclerView.Adapter<SearchPlaceAdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String city= txtPlace.getText().toString();
-                    Intent intent = new Intent(context, Start331All.class);
-                  //  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    Bundle bundle = new Bundle();
-                    int flag=1;
-                    bundle.putInt("FLAG", flag);
-                    bundle.putString("CITY_SELECTED", city);
-                    intent.putExtras(bundle);
-                    context.startActivity(intent);
-                 //   ((Activity)context).finishAndRemoveTask();
+                    try {
+                        String city = txtPlace.getText().toString();
+                        Intent intent = new Intent(context, Start331All.class);
+                        //  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        Bundle bundle = new Bundle();
+                        int flag = 1;
+                        bundle.putInt("FLAG", flag);
+                        bundle.putString("CITY_SELECTED", city);
+                        intent.putExtras(bundle);
+                        context.startActivity(intent);
+                        //   ((Activity)context).finishAndRemoveTask();
+                    }catch (AndroidRuntimeException e){
+                        e.printStackTrace();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             });
 

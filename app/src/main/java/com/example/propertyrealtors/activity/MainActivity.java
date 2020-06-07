@@ -3,6 +3,8 @@ package com.example.propertyrealtors.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.AndroidRuntimeException;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -128,26 +130,27 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "local", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.post_property:
-                        Bundle bundle = new Bundle();
-                        if (TextUtils.isEmpty(UID)) {
-                            Intent intent = new Intent(MainActivity.this, Start31.class);
-                            Boolean Signal = true;
-                            bundle.putBoolean("SiGNAL", Signal);
-                            intent.putExtras(bundle);
-                            getApplicationContext().startActivity(intent);
-                        } else {
-                            Intent intent = new Intent(MainActivity.this, Start33.class);
-                            bundle.putString("UID", UID);
-                            intent.putExtras(bundle);
-                            getApplicationContext().startActivity(intent);
+                        try {
+                            if (TextUtils.isEmpty(UID)) {
+                                Intent intent = new Intent(MainActivity.this, Start31.class);
+                                Bundle bundle = new Bundle();
+                                Boolean Signal = true;
+                                bundle.putBoolean("SiGNAL", Signal);
+                                intent.putExtras(bundle);
+                                getApplicationContext().startActivity(intent);
+                            } else {
+                                Intent intent = new Intent(MainActivity.this, Start33.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putString("UID", UID);
+                                intent.putExtras(bundle);
+                                getApplicationContext().startActivity(intent);
+                            }
+                            Toast.makeText(MainActivity.this, "post", Toast.LENGTH_SHORT).show();
+                        }catch (AndroidRuntimeException e){
+                            e.printStackTrace();
+                        }finally {
+                            Log.e("MainActivity", "caught error");
                         }
-                        Toast.makeText(MainActivity.this, "post", Toast.LENGTH_SHORT).show();
-
-                        break;
-                    case R.id.addcity:
-                        Toast.makeText(MainActivity.this, "addcity", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this, Adding_City.class);
-                        getApplicationContext().startActivity(intent);
                         break;
                     case R.id.logout:
                         Toast.makeText(MainActivity.this, "logout", Toast.LENGTH_SHORT).show();

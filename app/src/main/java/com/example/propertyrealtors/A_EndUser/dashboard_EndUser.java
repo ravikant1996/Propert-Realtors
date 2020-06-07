@@ -51,7 +51,6 @@ public class dashboard_EndUser extends Fragment {
     ShowPropertyAdapterR4 adapterR4;
     ShowPropertyAdapterR5 adapterR5;
     DatabaseReference reference, databaseReference;
-    StorageReference storageReference;
     String propertyType, propertyFor;
 
 
@@ -72,7 +71,6 @@ public class dashboard_EndUser extends Fragment {
         getActivity().setTitle("Home");
 
         SearchTextView = view.findViewById(R.id.searchBar);
-        addcity = view.findViewById(R.id.addcity);
 
         propertyFor = "RENT or LEASE";
         propertyType = "residential";
@@ -80,7 +78,6 @@ public class dashboard_EndUser extends Fragment {
          bindViews(view);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("PropertyTable");
-        storageReference = FirebaseStorage.getInstance().getReference().child("PropertyImages");
 
         SearchTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,8 +194,8 @@ public class dashboard_EndUser extends Fragment {
         RecyclerViewLayoutManager = new LinearLayoutManager(getActivity());
         // Set LayoutManager on Recycler View
         recyclerView1.setLayoutManager(RecyclerViewLayoutManager);
-        ArrayList<PropertyModel> propertyModelArrayList1 = new ArrayList<PropertyModel>();
-        ArrayList<Image> imageArrayList1 = new ArrayList<Image>();
+        final ArrayList<PropertyModel> propertyModelArrayList1 = new ArrayList<PropertyModel>();
+        final ArrayList<Image> imageArrayList1 = new ArrayList<Image>();
         // layout visibility
         // Adding items to RecyclerView.
         reference = databaseReference.child(propertyType);
@@ -270,8 +267,8 @@ public class dashboard_EndUser extends Fragment {
 
         // Set LayoutManager on Recycler View
         recyclerView2.setLayoutManager(RecyclerViewLayoutManager);
-        ArrayList<PropertyModel> propertyModelArrayList2 = new ArrayList<PropertyModel>();
-        ArrayList<Image> imageArrayList2 = new ArrayList<Image>();
+        final ArrayList<PropertyModel> propertyModelArrayList2 = new ArrayList<PropertyModel>();
+        final ArrayList<Image> imageArrayList2 = new ArrayList<Image>();
 
         // Adding items to RecyclerView.
         reference = databaseReference.child(propertyType);
@@ -340,8 +337,8 @@ public class dashboard_EndUser extends Fragment {
 
         // Set LayoutManager on Recycler View
         recyclerView3.setLayoutManager(RecyclerViewLayoutManager);
-        ArrayList<PropertyModel> propertyModelArrayList3 = new ArrayList<PropertyModel>();
-        ArrayList<Image> imageArrayList3 = new ArrayList<Image>();
+        final ArrayList<PropertyModel> propertyModelArrayList3 = new ArrayList<PropertyModel>();
+        final ArrayList<Image> imageArrayList3 = new ArrayList<Image>();
         reference = databaseReference.child(propertyType);
         Query query = reference.orderByChild("propertyFor").equalTo("SELL").limitToFirst(5);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -409,8 +406,8 @@ public class dashboard_EndUser extends Fragment {
 
         // Set LayoutManager on Recycler View
         recyclerView4.setLayoutManager(RecyclerViewLayoutManager);
-        ArrayList<PropertyModel> propertyModelArrayList4 = new ArrayList<PropertyModel>();
-        ArrayList<Image> imageArrayList4 = new ArrayList<Image>();
+        final ArrayList<PropertyModel> propertyModelArrayList4 = new ArrayList<PropertyModel>();
+        final ArrayList<Image> imageArrayList4 = new ArrayList<Image>();
 
         reference = databaseReference.child(propertyType);
         Query query = reference.orderByChild("propertyFor").equalTo(propertyFor).limitToFirst(5);
@@ -481,8 +478,8 @@ public class dashboard_EndUser extends Fragment {
 
         // Set LayoutManager on Recycler View
         recyclerView5.setLayoutManager(RecyclerViewLayoutManager);
-        ArrayList<PropertyModel> propertyModelArrayList5 = new ArrayList<PropertyModel>();
-        ArrayList<Image> imageArrayList5 = new ArrayList<Image>();
+        final ArrayList<PropertyModel> propertyModelArrayList5 = new ArrayList<PropertyModel>();
+        final ArrayList<Image> imageArrayList5 = new ArrayList<Image>();
 
         // Adding items to RecyclerView.
         reference = databaseReference.child(propertyType);

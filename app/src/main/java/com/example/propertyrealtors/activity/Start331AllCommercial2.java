@@ -25,7 +25,9 @@ public class Start331AllCommercial2 extends AppCompatActivity {
     ArrayList<String> arrayList;
     String totalfloor, floorNo, furnished, carpetAreaParameter, superAreaParameter;
     EditText superArea, carpetArea;
-    String propertyFor, propertyType, propertySubType, city, project;
+    String  propertyType, city, project;
+    static String propertyFor;
+    static String propertySubType;
     String CarpetArea, SuperArea, personal_washroom, cornerShop, main_road_facing, cafateria;
     String UID;
 

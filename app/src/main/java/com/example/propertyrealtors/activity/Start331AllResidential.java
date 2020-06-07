@@ -30,7 +30,9 @@ public class Start331AllResidential extends AppCompatActivity {
     EditText superArea, carpetArea;
     ArrayList<String> arrayList;
     String bathroom, bedroom, balcony, totalfloor, floorNo, furnished, carpetAreaParameter, superAreaParameter;
-    String propertyFor, propertyType, propertySubType, city, project, CarpetArea, SuperArea;
+    String  propertyType, city, project, CarpetArea, SuperArea;
+    static String propertyFor;
+    static String propertySubType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -489,15 +491,19 @@ public class Start331AllResidential extends AppCompatActivity {
     }
 
     public void next(View view) {
-       if(propertySubType.equals("Studio_Apartment")){
-          validate();
-       }else {
-           if(errorBed.getText().toString().length()==0){
-               errorBed.setError("Select Bedroom");
-               Toast.makeText(Start331AllResidential.this, "Please Select Bathroom", Toast.LENGTH_SHORT).show();
-           }else {
-               validate();
-           }
-       }
+        try {
+            if (propertySubType.equals("Studio_Apartment")) {
+                validate();
+            } else {
+                if (errorBed.getText().toString().length() == 0) {
+                    errorBed.setError("Select Bedroom");
+                    Toast.makeText(Start331AllResidential.this, "Please Select Bathroom", Toast.LENGTH_SHORT).show();
+                } else {
+                    validate();
+                }
+            }
+        }catch (IllegalStateException | NullPointerException e){
+            e.printStackTrace();
+        }
     }
 }

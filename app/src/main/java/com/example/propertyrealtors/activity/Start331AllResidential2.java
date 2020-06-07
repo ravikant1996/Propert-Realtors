@@ -28,8 +28,9 @@ public class Start331AllResidential2 extends AppCompatActivity {
     ArrayList<String> arrayList;
     String UID;
     String bathroom, bedroom, balcony, totalfloor, open_Sides, furnished, carpetAreaParameter, superAreaParameter;
-    String propertyFor, propertyType, propertySubType, city, project, CarpetArea, SuperArea, RoadWidth;
-
+    String propertyType, city, project, CarpetArea, SuperArea, RoadWidth;
+    static String propertyFor;
+    static String propertySubType;
     static final String TAG= "Start331AllResidential2";
 
     @Override
@@ -46,7 +47,7 @@ public class Start331AllResidential2 extends AppCompatActivity {
             propertySubType= bundle.getString("R/C_TYPE", null);
             city = bundle.getString("CITY", null);
             project = bundle.getString("LOCALITY", null);
-            Log.e(TAG, UID + "===UID");
+        //    Log.e(TAG, UID + "===UID");
 
         }catch (Exception e){
             e.printStackTrace();
@@ -493,7 +494,10 @@ public class Start331AllResidential2 extends AppCompatActivity {
     }
 
     public void next(View view) {
-
-        validate();
+        try {
+            validate();
+        }catch (NullPointerException | IllegalStateException e){
+            e.printStackTrace();
+        }
     }
 }

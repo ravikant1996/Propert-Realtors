@@ -116,7 +116,7 @@ public class ImagesUpload extends AppCompatActivity {
         }
 */
         residentialModel = new ResidentialModel();
-        String[] PERMISSIONS = {
+        final String[] PERMISSIONS = {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.CAMERA,
@@ -273,7 +273,7 @@ public class ImagesUpload extends AppCompatActivity {
     private void addIntoDataabase(String link) {
         image = new Image();
         image.setImageAddress(link);
-        DatabaseReference reference1 =FirebaseDatabase.getInstance().getReference().child("PropertyTable")
+        final DatabaseReference reference1 =FirebaseDatabase.getInstance().getReference().child("PropertyTable")
                 .child(propertyType).child(propertyId);
         //   Image im = new Image(image);
         reference1.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -317,7 +317,7 @@ public class ImagesUpload extends AppCompatActivity {
 
     public void ViewImages(View view) {
         Button removeLastItem;
-        List<Image> pic= new ArrayList<>();
+        final List<Image> pic= new ArrayList<>();
         final Dialog dialog = new Dialog(this,R.style.Dialog);
 
         // Include dialog.xml file
@@ -325,8 +325,7 @@ public class ImagesUpload extends AppCompatActivity {
         // Set dialog title
         dialog.setTitle("Loaded Images");
 
-        SliderView sliderView = dialog.findViewById(R.id.imageSlider);
-        removeLastItem = dialog.findViewById(R.id.removeLastItem);
+        final SliderView sliderView = dialog.findViewById(R.id.imageSlider);
 
         DatabaseReference reference1 =FirebaseDatabase.getInstance().getReference().child("PropertyTable")
                 .child(propertyType).child(propertyId).child("images");
@@ -368,20 +367,5 @@ public class ImagesUpload extends AppCompatActivity {
                 sliderView.setCurrentPagePosition(position);
             }
         });
-
-
-
-        removeLastItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    if (adapter.getCount() - 1 >= 0)
-                        adapter.deleteItem(adapter.getCount() - 1);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-        });
-
     }
 }
