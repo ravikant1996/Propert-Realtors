@@ -1,6 +1,7 @@
 package com.example.propertyrealtors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class Start331All extends AppCompatActivity {
     static String  PROPERTY_TYPE;
     static String  PROPERTY_SUBTYPE;
     static String  UID;
+    Toolbar toolbar;
 
     static final String TAG= "Start331All";
 
@@ -35,6 +37,16 @@ public class Start331All extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start331_all);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.bac);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         City= findViewById(R.id.city);
         Project= findViewById(R.id.project);
         Next= findViewById(R.id.next);
@@ -86,10 +98,12 @@ public class Start331All extends AppCompatActivity {
 
     public void back(View view) {
         Intent intent = new Intent(Start331All.this, Start331.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         Bundle bundle = new Bundle();
         bundle.putString("R/C_TYPE", PROPERTY_SUBTYPE);
         intent.putExtras(bundle);
         startActivity(intent);
+        finish();
     }
 
   /*  @Override

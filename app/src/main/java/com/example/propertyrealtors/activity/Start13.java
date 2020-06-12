@@ -1,6 +1,7 @@
 package com.example.propertyrealtors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +19,18 @@ public class Start13 extends AppCompatActivity {
         setContentView(R.layout.activity_start13);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.bac);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(Start13.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         try {
             PURPOSE = bundle.getString("PURPOSE_OF_USER", null);
         }catch (Exception e){
@@ -27,7 +39,9 @@ public class Start13 extends AppCompatActivity {
     }
 
     public void back(View view) {
-        startActivity(new Intent(Start13.this, MainActivity.class));
+        Intent intent =new Intent(Start13.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
     }
 

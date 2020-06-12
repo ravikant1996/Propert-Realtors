@@ -1,6 +1,7 @@
 package com.example.propertyrealtors.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.AndroidRuntimeException;
@@ -28,6 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.HashMap;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,16 +59,29 @@ public class MainActivity extends AppCompatActivity {
     String UID;
     SessionManager session;
 
+    //double tap of exit
+    private static final int TIME_INTERVAL = 4000;
+    private long mBackPressed;
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread paramThread, Throwable paramThrowable) {
+                //Catch your exception
+                // Without System.exit() this will not work.
+                System.exit(2);
+            }
+        });
+
         session = new SessionManager(getApplicationContext());
         drawerLayout = (DrawerLayout) findViewById(R.id.enduser_drawer);
         navigationbottom = findViewById(R.id.navigation);
         toolbar1 = (Toolbar) findViewById(R.id.toolbar);
-        toolbar1.setTitle("Property Realtors");
 
 //        navigationView.bringToFront();
         //  drawerLayout.requestLayout();
@@ -190,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
+   /* @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -198,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
             //   this.finishAffinity();
         }
-    }
+    }*/
 
 
    /* @Override
@@ -235,12 +250,15 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                 }
                 return true;
+            case R.id.favourite:
+                Toast.makeText(MainActivity.this, "Empty", Toast.LENGTH_SHORT).show();
+
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -316,5 +334,17 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
-
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+            super.onBackPressed();
+            return;
+        } else {
+            Toast.makeText(getBaseContext(), "Press back if you want to exit",    Toast.LENGTH_SHORT).show();
+        }
+        mBackPressed = System.currentTimeMillis();
+    }
 }

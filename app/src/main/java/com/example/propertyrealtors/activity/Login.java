@@ -2,7 +2,10 @@ package com.example.propertyrealtors.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.Gravity;
@@ -33,6 +36,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.tuyenmonkey.mkloader.MKLoader;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,7 +44,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Login extends AppCompatActivity {
-
+    MKLoader loader;
     EditText UserName, Otp, Password;
     Button Login, Register, VerifyBtn;
     String unameORphone, password, otp;
@@ -64,8 +68,33 @@ public class Login extends AppCompatActivity {
         Register = findViewById(R.id.register);
         VerifyBtn = findViewById(R.id.button2);
         Otp = findViewById(R.id.otp);
+        loader= findViewById(R.id.loader);
+        loader.setVisibility(View.INVISIBLE);
         Password = findViewById(R.id.password);
+        UserName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!TextUtils.isDigitsOnly(UserName.getText().toString())) {
+                    if (android.util.Patterns.EMAIL_ADDRESS.matcher(UserName.getText().toString()).matches()) {
+                        Password.setVisibility(View.VISIBLE);
+                        return;
+                    }
+                }else if (Patterns.PHONE.matcher(UserName.getText().toString()).matches()) {
+                    Password.setVisibility(View.GONE);
+
+                }
+            }
+        });
 
         StartFirebaseLogin();
 
@@ -73,7 +102,9 @@ public class Login extends AppCompatActivity {
     }
 
     public void back(View view) {
-        startActivity(new Intent(Login.this, MainActivity.class));
+        Intent intent =new Intent(Login.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
     }
 
@@ -85,35 +116,36 @@ public class Login extends AppCompatActivity {
 
             Toast.makeText(getApplicationContext(),
                     "UserName cannot be Blank", Toast.LENGTH_LONG).show();
-         //   UserName.setError("UserName cannot be Blank");
+            //   UserName.setError("UserName cannot be Blank");
             return;
-        }else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(
-                UserName.getText().toString()).matches()){
-            Toast.makeText(Login.this, "Enter a valid Username", Toast.LENGTH_LONG).show();
-            return;
-        }
-        else if (android.util.Patterns.EMAIL_ADDRESS.matcher(
-                UserName.getText().toString()).matches()) {
-            Password.setVisibility(View.VISIBLE);
-            if (Password.getText().toString().length() == 0) {
-                Toast.makeText(getApplicationContext(),
-                        "Enter Password", Toast.LENGTH_LONG).show();
-              //  Password.setError("Password?");
+        } else if (!TextUtils.isDigitsOnly(UserName.getText().toString())) {
+            if (android.util.Patterns.EMAIL_ADDRESS.matcher(UserName.getText().toString()).matches()) {
+                Password.setVisibility(View.VISIBLE);
+                if (Password.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(),
+                            "Enter Password", Toast.LENGTH_LONG).show();
+                    //  Password.setError("Password?");
+                    return;
+                } else {
+                    loader.setVisibility(View.VISIBLE);
+                    validateEmail();
+                    //   loginWithEmailandPassword();
+                }
                 return;
             } else {
-                validateEmail();
-             //   loginWithEmailandPassword();
+                Toast.makeText(getApplicationContext(),
+                        "Enter a valid Username", Toast.LENGTH_LONG).show();
             }
-            return;
         } else if (Patterns.PHONE.matcher(UserName.getText().toString()).matches()) {
             Password.setVisibility(View.GONE);
             if (!(UserName.getText().toString().length() == 10)) {
-                int no= UserName.getText().toString().length();
+                int no = UserName.getText().toString().length();
                 Toast.makeText(getApplicationContext(),
-                        "You have enter only "+ no+" digit", Toast.LENGTH_LONG).show();
-               // UserName.setError("You have enter only "+ no+" digit");
+                        "You have enter only " + no + " digit", Toast.LENGTH_LONG).show();
+                // UserName.setError("You have enter only "+ no+" digit");
                 return;
             } else {
+                loader.setVisibility(View.VISIBLE);
                 validatePhone();
 
             }
@@ -121,7 +153,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void validateEmail() {
-        reference= FirebaseDatabase.getInstance().getReference().child("User");
+        reference = FirebaseDatabase.getInstance().getReference().child("User");
         Query checkUser = reference.orderByChild("email").equalTo(unameORphone);
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -132,38 +164,41 @@ public class Login extends AppCompatActivity {
                         String pass = data.getPassword();
                         if (pass.equals(password)) {
                             String uid = data.getId();
+                            loader.setVisibility(View.INVISIBLE);
                             Toast.makeText(Login.this, "Registered", Toast.LENGTH_SHORT).show();
                             session.createIdSession(uid);
                             getDetails(uid);
                         }
                     }
-                }else{
-                    UserName.setError("Wrong Password");
-                    Toast.makeText(Login.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                } else {
+                    Password.setError("Email and Password doesn't exist");
+                    Toast.makeText(Login.this, "Email and Password doesn't exist", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(Login.this, "First registered the Email", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login.this, "Error in Fetching Details", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void validatePhone(){
-        reference= FirebaseDatabase.getInstance().getReference().child("User");
+    public void validatePhone() {
+        reference = FirebaseDatabase.getInstance().getReference().child("User");
         Query checkUser = reference.orderByChild("phone").equalTo(unameORphone);
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()) {
-                    VerifyBtn.setVisibility(View.VISIBLE);
-                    Otp.setVisibility(View.VISIBLE);
+                if (dataSnapshot.exists()) {
+                  //     VerifyBtn.setVisibility(View.VISIBLE);
+                  //  Otp.setVisibility(View.VISIBLE);
                     sendVerificationCode(unameORphone);
-                }else{
+                } else {
                     UserName.setError("First registered the number");
                     Toast.makeText(Login.this, "First registered the number", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -171,6 +206,7 @@ public class Login extends AppCompatActivity {
         });
 
     }
+
     private void sendVerificationCode(String phone) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 "+1" + phone,
@@ -195,6 +231,7 @@ public class Login extends AppCompatActivity {
                 }
                 Toast.makeText(Login.this, "verification completed", Toast.LENGTH_SHORT).show();
             }
+
             @Override
             public void onVerificationFailed(FirebaseException e) {
                 Log.w(TAG, "onVerificationFailed", e);
@@ -206,11 +243,14 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "unlimited attempted !", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 super.onCodeSent(s, forceResendingToken);
                 verificationCode = s;
                 Toast.makeText(Login.this, "Code sent", Toast.LENGTH_SHORT).show();
+                VerifyBtn.setVisibility(View.VISIBLE);
+                Otp.setVisibility(View.VISIBLE);
             }
         };
     }
@@ -226,6 +266,7 @@ public class Login extends AppCompatActivity {
                             String uid = getuser.getUid();
                             Toast.makeText(Login.this, "Registered", Toast.LENGTH_SHORT).show();
                             session.createIdSession(uid);
+                            loader.setVisibility(View.INVISIBLE);
                             Intent intent = new Intent(Login.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         } else {
@@ -278,6 +319,7 @@ public class Login extends AppCompatActivity {
                     }
                 });
     }
+
     private void getDetails(String id) {
         reference = FirebaseDatabase.getInstance().getReference().child("User").child(id);
         reference.addValueEventListener(new ValueEventListener() {
@@ -294,7 +336,7 @@ public class Login extends AppCompatActivity {
                     intent.putExtras(bundle);*/
                     startActivity(intent);
                     finish();
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

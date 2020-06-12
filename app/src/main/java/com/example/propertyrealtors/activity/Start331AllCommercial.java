@@ -1,6 +1,7 @@
 package com.example.propertyrealtors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -40,7 +41,16 @@ public class Start331AllCommercial extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start331_all_commercial);
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.bac);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         try {
@@ -144,9 +154,10 @@ public class Start331AllCommercial extends AppCompatActivity {
 
 
     public void back(View view) {
-        startActivity(new Intent(Start331AllCommercial.this, Start331All.class));
+        Intent intent = new Intent(Start331AllCommercial.this, Start331All.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
-
     }
 
     @SuppressLint("SetTextI18n")

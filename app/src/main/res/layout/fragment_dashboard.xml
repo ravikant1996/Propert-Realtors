@@ -19,49 +19,89 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <androidx.cardview.widget.CardView
         android:id="@+id/abc"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
-        android:padding="20dp"
-        android:background="@drawable/boader"
-        android:text="Show Added Properties ☞ "
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="30dp"
         app:layout_constraintEnd_toEndOf="@+id/textView32"
         app:layout_constraintStart_toStartOf="@+id/textView32"
-        app:layout_constraintTop_toBottomOf="@+id/textView32" />
+        app:layout_constraintTop_toBottomOf="@+id/textView32">
 
-    <TextView
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="Show Added Properties ☞ " />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/contacted"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:background="@drawable/boader"
-        android:text="✆ Contacted Properties ☞ "
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/abc"
+        app:cardElevation="30dp"
         app:layout_constraintStart_toStartOf="@+id/abc"
-        app:layout_constraintTop_toBottomOf="@+id/abc" />
+        app:layout_constraintTop_toBottomOf="@+id/abc" >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="✆ Contacted Properties ☞ "
+            />
+    </androidx.cardview.widget.CardView>
 
-    <TextView
+    <androidx.cardview.widget.CardView
         android:id="@+id/shortlisted"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/boader"
-        android:padding="20dp"
-        android:text="♡  Shortlisted Properties ☞ "
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="30dp"
         app:layout_constraintEnd_toEndOf="@+id/contacted"
         app:layout_constraintStart_toStartOf="@+id/contacted"
-        app:layout_constraintTop_toBottomOf="@+id/contacted" />
+        app:layout_constraintTop_toBottomOf="@+id/contacted" >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="♡  Shortlisted Properties ☞ "
+            />
+    </androidx.cardview.widget.CardView>
 
-    <TextView
+    <androidx.cardview.widget.CardView
         android:id="@+id/lastview"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:background="@drawable/boader"
-        android:text="👁 Last Viewed Properties ☞ "
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/shortlisted"
+        app:cardElevation="30dp"
         app:layout_constraintStart_toStartOf="@+id/shortlisted"
-        app:layout_constraintTop_toBottomOf="@+id/shortlisted" />
+        app:layout_constraintTop_toBottomOf="@+id/shortlisted" >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="👁 Last Viewed Properties ☞ "
+            />
+    </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

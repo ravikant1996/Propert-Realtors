@@ -1,6 +1,7 @@
 package com.example.propertyrealtors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +22,18 @@ public class Start11 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start11);
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.bac);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(Start11.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         Individual = findViewById(R.id.individual);
         Agent = findViewById(R.id.agent);
         skip = findViewById(R.id.skip);
@@ -76,10 +88,19 @@ public class Start11 extends AppCompatActivity {
     }
 
     public void back(View view) {
-        startActivity(new Intent(Start11.this, StartActivty.class));
+        Intent intent= new Intent(Start11.this, StartActivty.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent= new Intent(Start11.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
 
+    }
     public void skip(View view) {
         startActivity(new Intent(Start11.this, MainActivity.class));
         finish();

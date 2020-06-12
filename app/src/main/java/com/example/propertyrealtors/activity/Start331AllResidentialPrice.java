@@ -1,8 +1,10 @@
 package com.example.propertyrealtors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -35,6 +37,7 @@ public class Start331AllResidentialPrice extends AppCompatActivity {
     String  open_Sides, construction_done, boundary_wall, gated_colony, plotAreaParameter, cafateria, washroom, personal_washroom, cornerShop, main_road_facing;
     TextView Watcher, Watcher2;
     String Rupees = null, paise;
+    Toolbar toolbar;
 
 
     @Override
@@ -50,6 +53,17 @@ public class Start331AllResidentialPrice extends AppCompatActivity {
        // next.setVisibility(View.INVISIBLE);
         price= ExpectedPrice.getText().toString();
         token_amount= Token_amount.getText().toString();
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Price You Expected");
+        toolbar.setNavigationIcon(R.drawable.bac);
+       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         ExpectedPrice.addTextChangedListener(new TextWatcher() {
             @Override
@@ -127,6 +141,7 @@ public class Start331AllResidentialPrice extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+
     }
     private void convert(String num) {
         try {
@@ -193,6 +208,7 @@ public class Start331AllResidentialPrice extends AppCompatActivity {
         }
     }
 
+/*
     public void back(View view) {
         try {
             Intent intent = null;
@@ -204,7 +220,6 @@ public class Start331AllResidentialPrice extends AppCompatActivity {
 
             if (propertySubType.equals("Flat/Apartment") || propertySubType.equals("Builder_Floor")
                     || propertySubType.equals("Pentahouse") || propertySubType.equals("Studio_Apartment")) {
-
                 intent = new Intent(Start331AllResidentialPrice.this, Start331AllResidential.class);
             } else if (propertySubType.equals("House") || propertySubType.equals("Farm_House") || propertySubType.equals("Villa")) {
                 intent = new Intent(Start331AllResidentialPrice.this, Start331AllResidential2.class);
@@ -232,13 +247,18 @@ public class Start331AllResidentialPrice extends AppCompatActivity {
                 intent = new Intent(Start331AllResidentialPrice.this, Start331AllCommercial6.class);
 
             }
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtras(bundle);
             startActivity(intent);
             finish();
         }catch (IllegalStateException e){
             e.printStackTrace();
+        }finally {
+            Log.e("331", "error");
         }
     }
+*/
+
     public void intenter(){
         Intent intent;
         Bundle bundle = new Bundle();
@@ -277,7 +297,11 @@ public class Start331AllResidentialPrice extends AppCompatActivity {
         bundle.putString("gated_colony", gated_colony);
 
         bundle.putString("PRICE", _price);
-        bundle.putString("TOKEN_AMOUNT", _token_amount);
+        if(propertySubType.equals("Plot")){
+            bundle.putString("SECURITY_AMOUNT", _token_amount);
+        }else {
+            bundle.putString("TOKEN_AMOUNT", _token_amount);
+        }
 
         intent= new Intent(Start331AllResidentialPrice.this, Start331AllPropertyStatus.class);
         intent.putExtras(bundle);
@@ -306,5 +330,9 @@ public class Start331AllResidentialPrice extends AppCompatActivity {
             intenter();
         }
 
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

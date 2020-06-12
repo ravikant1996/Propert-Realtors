@@ -18,16 +18,23 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:id="@+id/errorFurnish"/>
-    <ImageView
-        android:id="@+id/Back"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:onClick="back"
-        android:src="@drawable/bac"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:title="More details to get relevent buyers"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -61,16 +68,6 @@
             android:layout_marginEnd="20dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:freezesText="true"
-                android:textSize="16dp"
-                android:text="More details to get relevent buyers"
-                android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="20dp" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -508,7 +505,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:padding="2dp"
-                android:text="Total Number of Floors in House"
+                android:text="Total Floors"
                 app:layout_constraintEnd_toEndOf="@+id/textView7"
                 app:layout_constraintStart_toStartOf="@+id/textView7"
                 app:layout_constraintTop_toBottomOf="@+id/textView7"/>
@@ -568,7 +565,6 @@
                 android:id="@+id/radiogroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="@+id/textView8"
                 app:layout_constraintStart_toStartOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/textView8">
@@ -623,6 +619,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
+                    android:maxLength="7"
                     android:hint="Carpet Area" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -658,6 +655,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
+                    android:maxLength="7"
                     android:padding="5dp"
                     android:hint="Super Area" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -708,6 +706,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:padding="5dp"
+                    android:maxLength="7"
                     android:hint="Road Width" />
             </com.google.android.material.textfield.TextInputLayout>
 

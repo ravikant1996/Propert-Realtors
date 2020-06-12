@@ -32,6 +32,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.tuyenmonkey.mkloader.MKLoader
+        android:id="@+id/loader"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:mk_type="TwinFishesSpinner"
+        app:mk_color="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintEnd_toStartOf="@+id/login"
+        app:layout_constraintHorizontal_bias="0.642"
+        app:layout_constraintStart_toEndOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:layout_constraintVertical_bias="1.0" />
+
     <EditText
         android:id="@+id/name"
         android:layout_width="match_parent"
@@ -57,7 +70,7 @@
         android:layout_marginTop="16dp"
         android:background="@color/whilte"
         android:hint="Enter password"
-        android:imeOptions="actionNext"
+        android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:padding="15dp"
         android:visibility="gone"
@@ -104,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:onClick="Verify"
-        android:text="Verify"
+        android:text="Confirm"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/otp"
         app:layout_constraintStart_toStartOf="@+id/otp"

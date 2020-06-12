@@ -86,6 +86,15 @@ public class ImagesUpload extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_images_upload);
 
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread paramThread, Throwable paramThrowable) {
+                //Catch your exception
+                // Without System.exit() this will not work.
+                System.exit(2);
+            }
+        });
+
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Image Upload");
 

@@ -3,17 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/comm"
+        android:layout_marginTop="8dp"
         android:background="@drawable/boader"
+        android:src="@drawable/comm"
+        app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,30 +22,28 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
         android:text="Charge"
+        app:layout_constraintBottom_toTopOf="@+id/propertyType"
         app:layout_constraintEnd_toStartOf="@+id/maintenance"
         app:layout_constraintStart_toEndOf="@+id/image"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/image" />
 
     <TextView
         android:id="@+id/maintenance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
         android:text="Maintenance"
         app:layout_constraintBottom_toTopOf="@+id/maintenanceheading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/rupee"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/rupee" />
 
     <TextView
         android:id="@+id/maintenanceheading"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:text="Maintenance"
         app:layout_constraintEnd_toEndOf="@+id/maintenance"
         app:layout_constraintHorizontal_bias="1.0"
@@ -57,7 +55,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="Property Type"
         app:layout_constraintEnd_toStartOf="@+id/area"
         app:layout_constraintStart_toEndOf="@+id/image"
@@ -80,7 +78,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:text="Address"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,10 +89,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
         android:text="Furnishing"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/plotarea"
         app:layout_constraintStart_toEndOf="@+id/image"
         app:layout_constraintTop_toBottomOf="@+id/address" />
@@ -104,19 +98,17 @@
         android:id="@+id/plotarea"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="20dp"
         android:text="Plot Area"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/furnishing"
         app:layout_constraintTop_toBottomOf="@+id/address" />
 
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="#9FFFFFFF"
+        android:background="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

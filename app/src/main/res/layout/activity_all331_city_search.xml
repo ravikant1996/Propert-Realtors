@@ -303,7 +303,6 @@
         android:background="#DCD4D4"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="City"
         app:layout_constraintEnd_toEndOf="@+id/abc"
         app:layout_constraintStart_toStartOf="@+id/abc"
         app:layout_constraintTop_toBottomOf="@+id/abc" />
@@ -312,7 +311,7 @@
         android:id="@+id/recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
         android:scrollbarSize="0dp"
         android:scrollbars="vertical"

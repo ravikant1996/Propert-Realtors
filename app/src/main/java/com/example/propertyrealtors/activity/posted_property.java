@@ -86,6 +86,7 @@ public class posted_property extends AppCompatActivity {
 
     public void back(View view) {
         Intent intent= new Intent(posted_property.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         Bundle bundle= new Bundle();
         bundle.putString("UID", UID);
         intent.putExtras(bundle);

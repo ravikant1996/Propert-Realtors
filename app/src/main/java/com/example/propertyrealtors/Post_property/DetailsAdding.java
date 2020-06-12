@@ -36,12 +36,14 @@ public class DetailsAdding extends AppCompatActivity {
     SessionManager session;
     String propertyId;
     String [] getData;
-    String UID, propertyFor, propertyType, price, bedroom, address,
-            covered_areaParameter, covered_areaParameter2, carpet, propertyStatus, configuration,
+    String UID, propertyFor, propertyType, price, bedroom, locality,
+            covered_areaParameter, covered_areaParameter2, carpet, propertyStatus, bathroom,
             floor, furnish, PropertySubType;
+    String carpetAreaParameter, superAreaParameter, plotAreaParameter, maintenance_parameter, roadWidthParameter;
+
     String totalfloor, superArea, roadWidth, open_Sides, construction_done, boundary_wall,
             gated_colony, plotArea, plot_bredth, plot_length, cafateria, washroom, cornerShop, main_road_facing, personal_washroom,
-            lock_in_periodString, token_amount, ageOfconstruction, availableFrom, security, maintenance;
+            lock_in_periodString, token_amount, ageOfconstruction, availableFrom, security, maintenance, balcony;
 
     TextView Bedroom, Address, ConfigMode, Floor;
     EditText Money, CarpetArea, Status, Facing, Furnishing, Society, Location, CoverdArea, Flooring, OverLooking, Landmark,
@@ -91,10 +93,10 @@ public class DetailsAdding extends AppCompatActivity {
                 propertyType = getData[2];
                 price = getData[3];
                 bedroom = getData[4];
-                address = getData[5];
+                locality = getData[5];
                 carpet = getData[6];
                 propertyStatus = getData[7];
-                configuration = getData[8];
+                bathroom = getData[8];
                 floor = getData[9];
                 furnish = getData[10];
                 PropertySubType = getData[11];
@@ -119,13 +121,19 @@ public class DetailsAdding extends AppCompatActivity {
                 token_amount = getData[30];
                 washroom = getData[31];
                 maintenance= getData[32];
+                balcony= getData[33];
+                carpetAreaParameter=  getData[34];
+                superAreaParameter =  getData[35];
+                plotAreaParameter = getData[36];
+                maintenance_parameter=  getData[37];
+                roadWidthParameter= getData[38];
 
                 Money.setText(price);
                 Bedroom.setText(bedroom);
-                Address.setText(address);
+                Address.setText(locality);
                 CarpetArea.setText(carpet);
                 Status.setText(propertyStatus);
-                ConfigMode.setText(configuration);
+                ConfigMode.setText(bathroom);
                 Floor.setText(floor);
                 Furnishing.setText(furnish);
 
@@ -146,7 +154,6 @@ public class DetailsAdding extends AppCompatActivity {
             e.printStackTrace();
         }
 
-     //   Next.setEnabled();
 
         reference = FirebaseDatabase.getInstance().getReference().child("PropertyTable");
         DatabaseReference refer= reference.child("additionalInfo");
@@ -191,6 +198,8 @@ public class DetailsAdding extends AppCompatActivity {
                 return false;
             }
         });
+        StatusSpinner.setSelection(getIndex(StatusSpinner, carpet));
+
         StatusSpinner.setPrompt("Property Status");
         StatusSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -212,6 +221,9 @@ public class DetailsAdding extends AppCompatActivity {
                 return false;
             }
         });
+
+        FurnishSpinner.setSelection(getIndex(FurnishSpinner, carpet));
+
         FurnishSpinner.setPrompt("Furnishing");
         FurnishSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -260,6 +272,17 @@ public class DetailsAdding extends AppCompatActivity {
           //  Submit.setEnabled(false);
 
     }
+
+    private int getIndex(Spinner furnishSpinner, String carpet) {
+        int index = 0;
+        for (int i=0;i<furnishSpinner.getCount();i++){
+            if (furnishSpinner.getItemAtPosition(i).equals(carpet)){
+                index = i;
+            }
+        }
+        return index;
+    }
+
 
     private void updateAdditionalDetails() {
         DatabaseReference db = reference.child("additionalInfo").child(additionalId);

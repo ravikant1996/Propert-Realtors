@@ -5,37 +5,31 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".A_EndUser.dashboard_EndUser">
-
-    <View
-        android:id="@+id/view"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout3"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="#DF032D"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-
-    <TextView
-        android:id="@+id/searchBar"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_margin="15dp"
-        android:clickable="false"
-        android:background="@drawable/custom_search_bar"
-        app:layout_constraintBottom_toTopOf="@+id/view"
-        app:layout_constraintEnd_toStartOf="@+id/view"
-        app:layout_constraintStart_toEndOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        android:hint="\u2315 Search by Location and Project" />
+        <TextView
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_margin="5dp"
+            android:clickable="false"
+            android:textSize="12sp"
+            android:hint="\u2315 Search by Location and Project"
+            android:background="@drawable/custom_search_bar"/>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.09" />
+        app:layout_constraintGuide_percent="0.1" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView2"
@@ -53,10 +47,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
+            android:paddingTop="15dp"
             android:orientation="vertical">
 
             <include
+                android:layout_marginTop="10dp"
                 android:id="@+id/include2"
                 layout="@layout/layout_recent_search"
                 android:layout_width="0dp"

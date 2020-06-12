@@ -1,6 +1,7 @@
 package com.example.propertyrealtors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,12 +22,24 @@ public class Start31 extends AppCompatActivity {
     static final String TAG= "Start31";
     Boolean Signal;
     SessionManager sessionManager;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start31);
-
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.bac);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(Start31.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         try {
@@ -94,13 +107,16 @@ public class Start31 extends AppCompatActivity {
 
     }
 
-    public void back(View view) {
-/*        if(!Signal) {
+   /* public void back(View view) {
+*//*        if(!Signal) {
             startActivity(new Intent(Start31.this, StartActivty.class));
         }else {
             startActivity(new Intent(Start31.this, MainActivity.class));
-        }*/
-        startActivity(new Intent(Start31.this, StartActivty.class));
+        }*//*
+
+        Intent intent = new Intent(Start31.this, Start31.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
-    }
+    }*/
 }

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class Start331AllPropertyStatus extends AppCompatActivity {
 
@@ -35,13 +36,22 @@ public class Start331AllPropertyStatus extends AppCompatActivity {
     String  open_Sides, construction_done, boundary_wall, gated_colony, plotAreaParameter, cafateria, washroom, personal_washroom, cornerShop, main_road_facing;
 
     static final String TAG= "331AllPropertyStatus";
-
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start311_all_property_status);
-
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.bac);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         try {
@@ -131,10 +141,10 @@ public class Start331AllPropertyStatus extends AppCompatActivity {
         String string, str2;
         int x=year;
         int y=0;
+        monthList.add("Select Month");
         for(int i=x;i<x+15;i++){
             for(int j=y ,z=month-1; j<12; j++, z++){
                 try{
-                    monthList.add("Select Month");
                     if(!(i==year)){
                         string = monthName[j];
                      //   System.out.println("Current month: "+string +"/"+i);
@@ -208,6 +218,7 @@ public class Start331AllPropertyStatus extends AppCompatActivity {
 
     public void back(View view) {
         Intent intent= new Intent(Start331AllPropertyStatus.this, Start331AllResidentialPrice.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         Bundle bundle = new Bundle();
         bundle.putString("UID", UID);
         bundle.putString("R/C_TYPE", propertySubType);

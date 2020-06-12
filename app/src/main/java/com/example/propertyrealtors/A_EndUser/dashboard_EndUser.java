@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.propertyrealtors.R;
+import com.example.propertyrealtors.activity.MainActivity;
+import com.example.propertyrealtors.activity.Start31;
 import com.example.propertyrealtors.activity.searchFilter_1;
 import com.example.propertyrealtors.model.Image;
 import com.example.propertyrealtors.model.PropertyModel;
@@ -71,14 +74,6 @@ public class dashboard_EndUser extends Fragment {
         getActivity().setTitle("Home");
 
         SearchTextView = view.findViewById(R.id.searchBar);
-
-        propertyFor = "RENT or LEASE";
-        propertyType = "residential";
-
-         bindViews(view);
-
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("PropertyTable");
-
         SearchTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +82,14 @@ public class dashboard_EndUser extends Fragment {
                 startActivity(intent);
             }
         });
+        propertyFor = "RENT or LEASE";
+        propertyType = "residential";
+
+         bindViews(view);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("PropertyTable");
+
+
         recycler1();
         recycler2();
         recycler3();
@@ -144,52 +147,6 @@ public class dashboard_EndUser extends Fragment {
         loader2.setVisibility(View.VISIBLE);
         loader3.setVisibility(View.VISIBLE);
     }
-/*
-    public void recycler2() {
-        RecyclerViewLayoutManager = new LinearLayoutManager(getActivity());
-
-        // Set LayoutManager on Recycler View
-        recyclerView2.setLayoutManager(RecyclerViewLayoutManager);
-        reference = databaseReference.child("residential").child("SELL").child("Pi6mjA1DkYX6xUDLtTGFhM0fuFv1");
-
-        // Adding items to RecyclerView.
-        FirebaseRecyclerOptions<PropertyModel> options =
-                new FirebaseRecyclerOptions.Builder<PropertyModel>()
-                        .setQuery(reference, PropertyModel.class)
-                        .build();
-
-        datadapter = new ShowPropAdapter(options);
-        horizontalLayout = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView2.setLayoutManager(horizontalLayout);
-        //       recyclerView1.setItemAnimator(new DefaultItemAnimator());
-        recyclerView2.setAdapter(adapter);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        datadapter.startListening();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        datadapter.stopListening();
-    }
-*/
-
-    /*@Override
-    public void onStart() {
-        super.onStart();
-        if(databaseReference != null){
-            recycler1();
-            recycler2();
-            recycler3();
-            recycler4();
-            recycler5();
-        }
-    }
-    */
     public void recycler1() {
         RecyclerViewLayoutManager = new LinearLayoutManager(getActivity());
         // Set LayoutManager on Recycler View

@@ -6,18 +6,10 @@
     android:background="@color/whilte"
     tools:context=".Post_property.sell_residential">
 
-<!--    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:gravity="center"
-        android:background="@drawable/custom_edit_text"
-        android:textStyle="bold"
-        android:text="Sell Residential"/>-->
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="2dp"
-        android:id="@+id/recyclerView"/>
+        android:layout_marginTop="2dp" />
 
 </FrameLayout>

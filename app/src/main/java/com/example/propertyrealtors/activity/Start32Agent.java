@@ -21,9 +21,10 @@ public class Start32Agent extends AppCompatActivity {
     }
 
     public void back(View view) {
-        startActivity(new Intent(Start32Agent.this, Start31.class));
+        Intent intent = new Intent(Start32Agent.this, Start31.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
-
     }
 
     public void next(View view) {

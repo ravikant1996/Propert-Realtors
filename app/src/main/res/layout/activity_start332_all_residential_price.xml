@@ -5,53 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.Start332AllResidentialPrice">
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:onClick="back"
-        android:src="@drawable/bac"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView4"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="20dp"
-        android:padding="10dp"
-        android:text="Price You Expected"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:title="Price You Expected"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/custom_edit_text_32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout3">
 
         <EditText
             android:id="@+id/expected_price"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="₹ Enter Monthly Rent"
             android:imeOptions="actionNext"
             android:inputType="number"
             android:maxLength="16"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:hint="₹ Enter Monthly Rent" />
+            android:padding="10dp" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <TextView
         android:id="@+id/watcher"
         android:layout_width="0dp"
@@ -62,24 +56,23 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/abc"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/text1"
-        app:layout_constraintStart_toStartOf="@+id/text1"
-        app:layout_constraintTop_toBottomOf="@+id/text1">
+        android:layout_marginTop="16dp"
+        android:background="@drawable/custom_edit_text_32"
+        app:layout_constraintEnd_toEndOf="@+id/watcher"
+        app:layout_constraintStart_toStartOf="@+id/watcher"
+        app:layout_constraintTop_toBottomOf="@+id/watcher">
 
         <EditText
             android:id="@+id/token_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="₹ Enter Security Amount (optional)"
             android:imeOptions="actionNext"
-            android:maxLength="16"
             android:inputType="number"
-            android:padding="10dp"
-            android:hint="₹ Enter Security Amount (optional)" />
+            android:maxLength="16"
+            android:padding="10dp" />
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:id="@+id/watcher2"
@@ -93,31 +86,32 @@
         android:id="@+id/bcd"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_edit_text_32"
         app:layout_constraintEnd_toStartOf="@+id/charge"
-        app:layout_constraintStart_toStartOf="@+id/abc"
-        app:layout_constraintTop_toBottomOf="@+id/abc">
+        app:layout_constraintStart_toStartOf="@+id/watcher2"
+        app:layout_constraintTop_toBottomOf="@+id/watcher2">
 
         <EditText
             android:id="@+id/security_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Maintenance (optional)"
-            android:maxLength="16"
             android:inputType="phone"
+            android:maxLength="16"
             android:padding="10dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Spinner
         android:id="@+id/charge"
-        android:entries="@array/maintenance"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/height"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="60dp"
-        app:layout_constraintEnd_toEndOf="@+id/abc"
+        android:layout_marginTop="16dp"
+        android:entries="@array/maintenance"
+        app:layout_constraintEnd_toEndOf="@+id/watcher2"
         app:layout_constraintStart_toEndOf="@+id/bcd"
-        app:layout_constraintTop_toBottomOf="@+id/abc" />
+        app:layout_constraintTop_toBottomOf="@+id/watcher2" />
     <Button
         android:id="@+id/next"
         android:layout_width="wrap_content"

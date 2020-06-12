@@ -1,6 +1,7 @@
 package com.example.propertyrealtors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -28,7 +29,7 @@ public class Start332AllPropertyStatus extends AppCompatActivity {
     Spinner ageOfConst, MonthSpinner;
     String property_status, date, ageOfconstruction, availablefrom ,maintenance_parameter, maintenance;
     ArrayList<String> arrayList, monthList, yearList;
-
+    Toolbar toolbar;
 
     String price, security;
     String UID, YearString;
@@ -41,7 +42,16 @@ public class Start332AllPropertyStatus extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start332_all_property_status);
-
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.bac);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         try {
@@ -130,10 +140,10 @@ public class Start332AllPropertyStatus extends AppCompatActivity {
 
         int x=year;
         int y=0;
+        monthList.add("Select Month");
         for(int i=x;i<x+15;i++){
             for(int j=y ,z=month-1; j<12; j++, z++){
                 try{
-                    monthList.add("Select Month");
                     if(!(i==year)){
                         string = monthName[j];
                         //   System.out.println("Current month: "+string +"/"+i);
@@ -235,6 +245,7 @@ public class Start332AllPropertyStatus extends AppCompatActivity {
     }
     public void back(View view) {
         Intent intent= new Intent(Start332AllPropertyStatus.this, Start332AllResidentialPrice.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         Bundle bundle = new Bundle();
         bundle.putString("UID", UID);
         bundle.putString("R/C_TYPE", propertySubType);

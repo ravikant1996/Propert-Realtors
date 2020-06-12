@@ -1,6 +1,7 @@
 package com.example.propertyrealtors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -15,7 +16,6 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.propertyrealtors.R;
 
@@ -33,10 +33,21 @@ public class Start331AllResidential extends AppCompatActivity {
     String  propertyType, city, project, CarpetArea, SuperArea;
     static String propertyFor;
     static String propertySubType;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start331_all_residential);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.bac);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         try {
@@ -150,7 +161,9 @@ public class Start331AllResidential extends AppCompatActivity {
     }
 
     public void back(View view) {
-        startActivity(new Intent(Start331AllResidential.this, Start331All.class));
+        Intent intent = new Intent(Start331AllResidential.this, Start331All.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
     }
 

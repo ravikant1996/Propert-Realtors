@@ -1,6 +1,7 @@
 package com.example.propertyrealtors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,12 +26,22 @@ public class Start331 extends AppCompatActivity {
     static final String TAG= "Start331";
     public static String  PROPERTY_STATIC;
     int flag =0;
-
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start331);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.bac);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         Residential = findViewById(R.id.residential);
         commercial = findViewById(R.id.commercial);
@@ -96,7 +107,9 @@ public class Start331 extends AppCompatActivity {
     }
 
     public void back(View view) {
-        startActivity(new Intent(Start331.this, Start33.class));
+        Intent intent =new Intent(Start331.this, Start33.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
     }
 

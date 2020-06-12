@@ -3,6 +3,7 @@ package com.example.propertyrealtors.A_EndUser;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -15,7 +16,7 @@ import com.example.propertyrealtors.activity.posted_property;
 
 public class dashboard extends Fragment {
 
-    TextView show, contacted, lastview, shortlisted;
+    CardView show, contacted, lastview, shortlisted;
     public dashboard() {
         // Required empty public constructor
     }

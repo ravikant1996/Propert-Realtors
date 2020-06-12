@@ -56,9 +56,10 @@ public class StartActivty extends AppCompatActivity {
                     Intent intent = new Intent(StartActivty.this, Start11.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("PURPOSE_OF_USER", type);
-                    savePrefsData();
                     intent.putExtras(bundle);
                     startActivity(intent);
+                    savePrefsData();
+                    finish();
                 }
                 break;
             case R.id.radioButton1:

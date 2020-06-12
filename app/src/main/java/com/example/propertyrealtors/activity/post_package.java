@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class post_package extends AppCompatActivity {
     String propertyFor, propertyType, propertySubType;
@@ -30,7 +31,7 @@ public class post_package extends AppCompatActivity {
     String  city, project, carpetArea, superArea,  plotArea, plot_length, plot_bredth;
     String  open_Sides, construction_done, boundary_wall, gated_colony, plotAreaParameter,
             cafateria, washroom, personal_washroom, cornerShop, main_road_facing;
-    String security, roadWidth, maintenance, maintenance_parameter;
+    String security, roadWidth, roadWidthParameter, maintenance, maintenance_parameter;
 
     ResidentialModel residentialModel;
     CommercialModel commercialModel;
@@ -44,18 +45,22 @@ public class post_package extends AppCompatActivity {
     Intent intent;
     SessionManager session;
     String keyId;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_package);
-        try {
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.bac);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
-        }catch (IllegalStateException e){
-            e.printStackTrace();
-        }
+        });
         session= new SessionManager(getApplicationContext());
 
      /*   try {
@@ -64,7 +69,8 @@ public class post_package extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
-       */ try {
+       */
+     try {
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();
             UID = bundle.getString("UID", "");
@@ -81,41 +87,44 @@ public class post_package extends AppCompatActivity {
             floorNo = bundle.getString("FLOORNO", "");
             furnished = bundle.getString("FURNISHED", "");
             carpetArea = bundle.getString("CARPETAREA", "");
-                carpetAreaParameter = bundle.getString("CARPETAREA_PARAMETER", "");
-                carpetArea= carpetArea.concat(" "+carpetAreaParameter);
+            carpetAreaParameter = bundle.getString("CARPETAREA_PARAMETER", "");
+//                carpetArea= carpetArea.concat(" "+carpetAreaParameter);
 
        //     Log.e("post_package_carpetArea", carpetArea);
 
             superArea = bundle.getString("SUPERAREA", "");
-                superAreaParameter = bundle.getString("SUPERAREA_PARAMETER", "");
-                superArea= superArea.concat(" "+superAreaParameter);
+            superAreaParameter = bundle.getString("SUPERAREA_PARAMETER", "");
+//                superArea= superArea.concat(" "+superAreaParameter);
 
             Log.e("post_package_ superArea", superArea);
 
             roadWidth = bundle.getString("ROAD_WIDTH", "");
-                 roadWidth= roadWidth.concat(" Meters");
+            roadWidthParameter= "Meters";
 
-            Log.e("post_package_roadwidth", roadWidth);
+//                 roadWidth= roadWidth.concat(" Meters");
+
+//            Log.e("post_package_roadwidth", roadWidth);
 
             open_Sides = bundle.getString("Open_SIDES", "");
             construction_done = bundle.getString("construction_done", "");
             boundary_wall = bundle.getString("boundary_wall", "");
             gated_colony = bundle.getString("gated_colony", "");
             plotArea = bundle.getString("PLOT_AREA", "");
-                plotAreaParameter = bundle.getString("PLOT_AREA_PARAMETER", "");
-                plotArea= plotArea.concat(" "+plotAreaParameter);
+            plotAreaParameter = bundle.getString("PLOT_AREA_PARAMETER", "");
+//                plotArea= plotArea.concat(" "+plotAreaParameter);
 
-            Log.e("post_package_plotarea", plotArea);
+//            Log.e("post_package_plotarea", plotArea);
 
             plot_bredth = bundle.getString("plot_bredth", "");
-                plot_bredth= plot_bredth.concat(" yard");
+//                plot_bredth= plot_bredth.concat(" yard");
 
-            Log.e("post_package_breadth", plot_bredth);
+
+//            Log.e("post_package_breadth", plot_bredth);
 
             plot_length = bundle.getString("plot_length", "");
-                plot_length= plot_length.concat(" yard");
+//                plot_length= plot_length.concat(" yard");
 
-            Log.e("post_package_plotlength", plot_length);
+//            Log.e("post_package_plotlength", plot_length);
 
             cafateria = bundle.getString("CAFETERIA", "");
             washroom = bundle.getString("WashROOM", "");
@@ -126,19 +135,19 @@ public class post_package extends AppCompatActivity {
 
             price = bundle.getString("PRICE", "");
               //  price= price.concat(" ₹");
-                price = "₹"+ price;
+//                price = "₹"+ price;
             token_amount = bundle.getString("TOKEN_AMOUNT", "");
-            token_amount = "₹"+ token_amount;
+//            token_amount = "₹"+ token_amount;
 
             property_status = bundle.getString("PROPERTY_STATUS", "");
             ageOfconstruction = bundle.getString("AGE_OF_CONSTRUCTION", "");
             availablefrom = bundle.getString("AVAILABLEFROM", "");
             security = bundle.getString("SECURITY_AMOUNT", "");
-            security = "₹"+security;
+//            security = "₹"+security;
             maintenance = bundle.getString("MAINTENANCE_AMOUNT", null);
             maintenance_parameter = bundle.getString("MAINTENANCE_Parameter", "");
               //   security = security.concat("₹ "+maintenance_parameter);
-                 maintenance = "₹"+maintenance+" "+ maintenance_parameter;
+//                 maintenance = "₹"+maintenance+" "+ maintenance_parameter;
 
         }
         catch (Exception e) {
@@ -155,7 +164,8 @@ public class post_package extends AppCompatActivity {
         propertyModel= new PropertyModel(keyId, propertyFor, UID, propertySubType,  city, project, bathroom,  bedroom,  balcony,  totalfloor,
                 floorNo,  furnished,  carpetArea,  superArea, roadWidth,  open_Sides,  construction_done,  boundary_wall,
                 gated_colony,  plotArea, plot_bredth, plot_length, cafateria, washroom, cornerShop, main_road_facing, personal_washroom,
-                lock_in_periodString, price, token_amount, property_status, ageOfconstruction,  availablefrom, security, maintenance);
+                lock_in_periodString, price, token_amount, property_status, ageOfconstruction,  availablefrom, security, maintenance,
+                carpetAreaParameter, superAreaParameter, plotAreaParameter, maintenance_parameter, roadWidthParameter);
 
         reference=databaseReference.child(propertyType);
         keyId = reference.push().getKey();
@@ -197,7 +207,7 @@ public class post_package extends AppCompatActivity {
         postmethod();
     }
 
-    @Override
+ /*   @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -205,5 +215,5 @@ public class post_package extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

@@ -328,6 +328,7 @@
     <string-array name="PropertyStatus">
         <item>Ready to Move</item>
         <item>Under Construction</item>
+        <item>Immediately</item>
     </string-array>
 
 </resources>

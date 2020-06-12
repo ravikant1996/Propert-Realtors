@@ -1,6 +1,7 @@
 package com.example.propertyrealtors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class Start332AllResidentialPrice extends AppCompatActivity {
     String Rupees = null, paise;
     String _price, _secuityAmount, _maintenance;
     TextView Watcher, Watcher2;
+    Toolbar toolbar;
 
 
     @Override
@@ -47,7 +49,17 @@ public class Start332AllResidentialPrice extends AppCompatActivity {
         Watcher = findViewById(R.id.watcher);
         Watcher2 = findViewById(R.id.watcher2);
 
-
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Price You Expected");
+        toolbar.setNavigationIcon(R.drawable.bac);
+      //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         ExpectedPrice.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -124,6 +136,7 @@ public class Start332AllResidentialPrice extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+
         ChargesSpinner.setPrompt("Select Mode of Payment");
         ChargesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -200,7 +213,7 @@ public class Start332AllResidentialPrice extends AppCompatActivity {
         }
     }
 
-    public void back(View view) {
+ /*   public void back(View view) {
         try {
 
             Intent intent = null;
@@ -218,10 +231,10 @@ public class Start332AllResidentialPrice extends AppCompatActivity {
                 intent = new Intent(Start332AllResidentialPrice.this, Start331AllResidential2.class);
 
             }
-       /* else if(propertySubType.equals("Plot")){
+       *//* else if(propertySubType.equals("Plot")){
             intent = new Intent(Start332AllResidentialPrice.this, Start331AllResidential3.class);
 
-        }*/
+        }*//*
             else if (propertySubType.equals("office") || propertySubType.equals("IT_Park")) {
                 intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial.class);
 
@@ -242,13 +255,16 @@ public class Start332AllResidentialPrice extends AppCompatActivity {
                 intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial6.class);
 
             }
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtras(bundle);
             startActivity(intent);
             finish();
         }catch (IllegalStateException e){
             e.printStackTrace();
+        }finally {
+            Log.e("331", "error");
         }
-    }
+    }*/
     public void intenter(){
         Intent intent;
         Bundle bundle = new Bundle();
@@ -326,5 +342,10 @@ public class Start332AllResidentialPrice extends AppCompatActivity {
             intenter();
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

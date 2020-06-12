@@ -6,18 +6,21 @@ public class PropertyModel {
     String keyId, propertyFor, UID, propertySubType, city, project, bathroom, bedroom, balcony, totalfloor,
             floorNo, furnished, carpetArea, superArea, roadWidth, open_Sides, construction_done, boundary_wall,
             gated_colony, plotArea, plot_bredth, plot_length, cafateria, washroom, cornerShop, main_road_facing, personal_washroom,
-            lock_in_periodString, price, token_amount, property_status, ageOfconstruction, availablefrom, security, maintenance;
+            lock_in_periodString, price, token_amount, property_status, ageOfconstruction, availablefrom, security, maintenance
+            ,carpetAreaParameter, superAreaParameter, plotAreaParameter, maintenance_parameter, roadWidthParameter;
 
     public PropertyModel() {
     }
 
     public PropertyModel(String keyId, String propertyFor, String UID, String propertySubType, String city, String project,
-                         String bathroom, String bedroom, String balcony, String totalfloor,
-                         String floorNo, String furnished, String carpetArea, String superArea, String roadWidth, String open_Sides, String construction_done,
-                         String boundary_wall, String gated_colony, String plotArea, String plot_bredth, String plot_length, String cafateria, String washroom,
-                         String cornerShop, String main_road_facing, String personal_washroom, String lock_in_periodString,
-                         String price, String token_amount, String property_status, String ageOfconstruction, String availablefrom,
-                         String security, String maintenance) {
+                         String bathroom, String bedroom, String balcony, String totalfloor, String floorNo, String furnished,
+                         String carpetArea, String superArea, String roadWidth, String open_Sides, String construction_done,
+                         String boundary_wall, String gated_colony, String plotArea, String plot_bredth, String plot_length,
+                         String cafateria, String washroom, String cornerShop, String main_road_facing, String personal_washroom,
+                         String lock_in_periodString, String price, String token_amount, String property_status, String ageOfconstruction,
+                         String availablefrom, String security, String maintenance,
+                         String carpetAreaParameter, String superAreaParameter, String plotAreaParameter, String maintenance_parameter,
+                         String roadWidthParameter) {
         this.keyId = keyId;
         this.propertyFor = propertyFor;
         this.UID = UID;
@@ -53,6 +56,51 @@ public class PropertyModel {
         this.availablefrom = availablefrom;
         this.security = security;
         this.maintenance = maintenance;
+        this.carpetAreaParameter = carpetAreaParameter;
+        this.superAreaParameter = superAreaParameter;
+        this.plotAreaParameter = plotAreaParameter;
+        this.maintenance_parameter = maintenance_parameter;
+        this.roadWidthParameter = roadWidthParameter;
+    }
+
+    public String getCarpetAreaParameter() {
+        return carpetAreaParameter;
+    }
+
+    public void setCarpetAreaParameter(String carpetAreaParameter) {
+        this.carpetAreaParameter = carpetAreaParameter;
+    }
+
+    public String getSuperAreaParameter() {
+        return superAreaParameter;
+    }
+
+    public void setSuperAreaParameter(String superAreaParameter) {
+        this.superAreaParameter = superAreaParameter;
+    }
+
+    public String getPlotAreaParameter() {
+        return plotAreaParameter;
+    }
+
+    public void setPlotAreaParameter(String plotAreaParameter) {
+        this.plotAreaParameter = plotAreaParameter;
+    }
+
+    public String getMaintenance_parameter() {
+        return maintenance_parameter;
+    }
+
+    public void setMaintenance_parameter(String maintenance_parameter) {
+        this.maintenance_parameter = maintenance_parameter;
+    }
+
+    public String getRoadWidthParameter() {
+        return roadWidthParameter;
+    }
+
+    public void setRoadWidthParameter(String roadWidthParameter) {
+        this.roadWidthParameter = roadWidthParameter;
     }
 
     public String getMaintenance() {

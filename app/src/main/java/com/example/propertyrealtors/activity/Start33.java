@@ -1,9 +1,11 @@
 package com.example.propertyrealtors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
@@ -14,20 +16,32 @@ import com.example.propertyrealtors.SessionManager;
 public class Start33 extends AppCompatActivity {
     String usertype, UID;
     static final String TAG= "Start33";
+    Toolbar toolbar;
     SessionManager session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start33);
-
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.bac);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(Start33.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         session= new SessionManager(getApplicationContext());
         session.isLoggedIn();
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         try {
-            UID = bundle.getString("UID","defValue");
-            Log.e(TAG, usertype);
-            Log.e(TAG, UID);
+            UID = bundle.getString("UID",null);
+       //     Log.e(TAG, usertype);
+       //     Log.e(TAG, UID);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -76,7 +90,19 @@ public class Start33 extends AppCompatActivity {
     }
 
     public void back(View view) {
-        startActivity(new Intent(Start33.this, MainActivity.class));
+        Intent intent =new Intent(Start33.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
     }
+    @Override
+    public void onBackPressed() {
+        if (!TextUtils.isEmpty(UID)) {
+            startActivity(new Intent(Start33.this, MainActivity.class));
+            finish();
+            return;
+        }
+        super.onBackPressed();
+    }
+
 }
