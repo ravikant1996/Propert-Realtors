@@ -1,25 +1,22 @@
 package com.example.propertyrealtors.A_EndUser;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.propertyrealtors.R;
-import com.example.propertyrealtors.activity.MainActivity;
-import com.example.propertyrealtors.activity.Start31;
+import com.example.propertyrealtors.SessionManager;
 import com.example.propertyrealtors.activity.searchFilter_1;
 import com.example.propertyrealtors.model.Image;
 import com.example.propertyrealtors.model.PropertyModel;
@@ -29,19 +26,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.tuyenmonkey.mkloader.MKLoader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class dashboard_EndUser extends Fragment {
     private TextView SearchTextView;
-    TextView textView33, textView34, textView35, textView36, textView37;
-    Button addcity;
+    TextView HistoryTextView, textView33, textView34, textView35, textView36, textView37;
     ArrayList<PropertyModel> propertyModelArrayList;
     ArrayList<PropertyModel> list;
-    RecyclerView recyclerView1, recyclerView2, recyclerView3, recyclerView4, recyclerView5;
+    RecyclerView recyclerView1, recyclerView2, recyclerView3, recyclerView4, recyclerView5, recyclerView6;
     MKLoader loader, loader2, loader3;
     TextView show1, show2, show3, show4, show5;
     View view8, view9, view10, view11, view12;
@@ -55,7 +56,7 @@ public class dashboard_EndUser extends Fragment {
     ShowPropertyAdapterR5 adapterR5;
     DatabaseReference reference, databaseReference;
     String propertyType, propertyFor;
-
+    ImageView imageView;
 
     public dashboard_EndUser() {
         // Required empty public constructor
@@ -73,6 +74,24 @@ public class dashboard_EndUser extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dashboard__end_user, container, false);
         getActivity().setTitle("Home");
 
+
+        SessionManager session= new SessionManager(getActivity());
+        HashMap<String, String> userID = session.getPropertySearchSession();
+        propertyType = userID.get(SessionManager.PROPERTYTYPE_KEY);
+        propertyFor = userID.get(SessionManager.PROPERTYFOR_KEY);
+
+        try {
+            if (propertyFor == null || propertyFor.isEmpty()) {
+                propertyFor = "SELL";
+            }
+            if ( propertyType == null || propertyType.isEmpty()) {
+                propertyType = "residential";
+            }
+            Log.e("EndUser propertyFor", propertyFor);
+            Log.e("EndUser propertyType", propertyType);
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
         SearchTextView = view.findViewById(R.id.searchBar);
         SearchTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,15 +99,14 @@ public class dashboard_EndUser extends Fragment {
                 //   startActivity(new Intent(getActivity(), searchFilter_1.class));
                 Intent intent = new Intent(getActivity(), searchFilter_1.class);
                 startActivity(intent);
-            }
-        });
-        propertyFor = "RENT or LEASE";
-        propertyType = "residential";
 
-         bindViews(view);
+               /* Intent i = new Intent(getActivity(), searchFilter_1.class);
+                startActivityForResult(i, 1);
+           */ }
+        });
+        bindViews(view);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("PropertyTable");
-
 
         recycler1();
         recycler2();
@@ -98,12 +116,16 @@ public class dashboard_EndUser extends Fragment {
         return view;
     }
     private void bindViews(View view) {
+        imageView = view.findViewById(R.id.gif);
+        /* from internet*/
+
         show1 = view.findViewById(R.id.show1);
         show2 = view.findViewById(R.id.show2);
         show3 = view.findViewById(R.id.show3);
         show4 = view.findViewById(R.id.show4);
         show5 = view.findViewById(R.id.show5);
 
+        HistoryTextView= view.findViewById(R.id.top);
         textView33= view.findViewById(R.id.textView33);
         textView34= view.findViewById(R.id.textView34);
         textView35= view.findViewById(R.id.textView35);
@@ -139,6 +161,7 @@ public class dashboard_EndUser extends Fragment {
         recyclerView3 = view.findViewById(R.id.recyclerView3);
         recyclerView4 = view.findViewById(R.id.recyclerView4);
         recyclerView5 = view.findViewById(R.id.recyclerView5);
+        recyclerView6 = view.findViewById(R.id.recyclerView6);
 
         loader = view.findViewById(R.id.loader);
         loader2 = view.findViewById(R.id.loader2);
@@ -199,6 +222,8 @@ public class dashboard_EndUser extends Fragment {
                             });
                         }
                         // }
+                    }else {
+                        recyclerView1.setVisibility(View.GONE);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -269,6 +294,8 @@ public class dashboard_EndUser extends Fragment {
                                 }
                             });
                         }
+                    }else {
+                        recyclerView2.setVisibility(View.GONE);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -297,7 +324,7 @@ public class dashboard_EndUser extends Fragment {
         final ArrayList<PropertyModel> propertyModelArrayList3 = new ArrayList<PropertyModel>();
         final ArrayList<Image> imageArrayList3 = new ArrayList<Image>();
         reference = databaseReference.child(propertyType);
-        Query query = reference.orderByChild("propertyFor").equalTo("SELL").limitToFirst(5);
+        Query query = reference.orderByChild("propertyFor").equalTo(propertyFor).limitToFirst(5);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -338,6 +365,8 @@ public class dashboard_EndUser extends Fragment {
                                 }
                             });
                         }
+                    }else {
+                        recyclerView3.setVisibility(View.GONE);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -411,6 +440,8 @@ public class dashboard_EndUser extends Fragment {
                                 }
                             });
                         }
+                    }else {
+                        recyclerView4.setVisibility(View.GONE);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -440,7 +471,7 @@ public class dashboard_EndUser extends Fragment {
 
         // Adding items to RecyclerView.
         reference = databaseReference.child(propertyType);
-        Query query = reference.orderByChild("propertyFor").equalTo("SELL").limitToFirst(5);
+        Query query = reference.orderByChild("propertyFor").equalTo(propertyFor).limitToFirst(5);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -482,6 +513,8 @@ public class dashboard_EndUser extends Fragment {
                                 }
                             });
                         }
+                    }else {
+                        recyclerView5.setVisibility(View.GONE);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -537,7 +570,26 @@ public class dashboard_EndUser extends Fragment {
             }
         }
 */
+/*
 
+@Override
+public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+    if (requestCode == 1) {
+        Log.e("FragmentA.java","onActivityResult called");
+        if (resultCode == Activity.RESULT_OK) {
+            propertyFor = data.getStringExtra("PROPERTY_FOR");
+            propertyType = data.getStringExtra("PROPERTY_TYPE");
+        }else {
+            propertyFor = "SELL";
+            propertyType = "residential";
+        }
+        if (resultCode == Activity.RESULT_CANCELED) {
+            //Write your code if there's no result
+        }
+    }
+}
+*/
 
 }
 

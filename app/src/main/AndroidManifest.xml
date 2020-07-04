@@ -10,6 +10,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -18,38 +22,37 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Post_property.Start331AllResidential3_Edit" />
-        <activity android:name=".Post_property.Start331AllResidential2_Edit" />
-        <activity android:name=".Post_property.Start331AllResidential_Edit" />
-        <activity android:name=".Post_property.Start331AllCommercial6_Edit" />
-        <activity android:name=".Post_property.Start331AllCommercial5_Edit" />
-        <activity android:name=".Post_property.Start331AllCommercial4_Edit" />
-        <activity android:name=".Post_property.Start331AllCommercial3_Edit" />
-        <activity android:name=".Post_property.Start331AllCommercial2_Edit" />
-        <activity android:name=".Post_property.Start331AllCommercial_Edit" />
-        <activity android:name=".A_EndUser.Start331AllCommercial6_View"
+        <activity android:name=".A_EndUser.lastview_property"></activity>
+        <activity android:name=".A_EndUser.contacted_property" />
+        <activity android:name=".A_EndUser.shortlisted_property" />
+        <activity android:name=".AdminPushNotifi" />
+        <activity
+            android:name=".A_EndUser.ViewProperty"
             android:theme="@style/AppTheme.start" />
-        <activity android:name=".A_EndUser.Start331AllCommercial5_View"
+        <activity
+            android:name=".A_EndUser.view_images"
             android:theme="@style/AppTheme.start" />
-        <activity android:name=".A_EndUser.Start331AllCommercial4_View"
+        <activity
+            android:name=".Post_property.edit_image"
             android:theme="@style/AppTheme.start" />
-        <activity android:name=".A_EndUser.Start331AllCommercial3_View"
+        <activity
+            android:name=".Post_property.Start331AllResidential_Edit"
             android:theme="@style/AppTheme.start" />
-        <activity android:name=".A_EndUser.Start331AllCommercial2_View"
-            android:theme="@style/AppTheme.start" />
-        <activity android:name=".A_EndUser.Start331AllCommercial_View"
-            android:theme="@style/AppTheme.start" />
-        <activity android:name=".A_EndUser.Start331AllResidential3_View"
-            android:theme="@style/AppTheme.start" />
-        <activity android:name=".A_EndUser.Start331AllResidential2_View"
-            android:theme="@style/AppTheme.start" />
-        <activity android:name=".A_EndUser.Start331AllResidential_View"
-            android:theme="@style/AppTheme.start" />
+        <activity
+            android:name=".A_EndUser.Start331AllCommercial_View"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".A_EndUser.Start331AllResidential2_View"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".A_EndUser.Start331AllResidential_View"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".Post_property.ImagesUpload"
+        <activity
+            android:name=".Post_property.ImagesUpload"
             android:theme="@style/AppTheme.start" />
         <activity android:name=".Post_property.DetailsAdding" />
         <activity android:name=".Post_property.DetailAdding" />
@@ -203,6 +206,31 @@
             </intent-filter>
             -->
         </activity>
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <!--
+ <service android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimaryDark" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

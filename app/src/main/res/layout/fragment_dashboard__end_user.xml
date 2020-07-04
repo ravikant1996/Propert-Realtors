@@ -19,8 +19,9 @@
             android:layout_height="35dp"
             android:layout_margin="5dp"
             android:clickable="false"
+            android:textColor="@color/black"
             android:textSize="12sp"
-            android:hint="\u2315 Search by Location and Project"
+            android:hint=" 🔍 Search by Location and Project"
             android:background="@drawable/custom_search_bar"/>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -50,29 +51,46 @@
             android:paddingTop="15dp"
             android:orientation="vertical">
 
-            <include
-                android:layout_marginTop="10dp"
-                android:id="@+id/include2"
-                layout="@layout/layout_recent_search"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/top"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#C0C0C6"
+                android:padding="5dp"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/textView33"
+                android:text="Continue with your Recent Searches"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:scrollbarSize="0dp"
+                android:scrollbars="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/top" />
 
             <TextView
                 android:id="@+id/textView33"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#C0C0C6"
+                android:textColor="@color/black"
                 android:padding="5dp"
                 android:text="Owner Properties"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/include2"
-                app:layout_constraintStart_toStartOf="@+id/include2"
-                app:layout_constraintTop_toBottomOf="@+id/include2" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView6" />
 
             <TextView
                 android:id="@+id/show1"
@@ -118,6 +136,7 @@
                 android:layout_marginTop="5dp"
                 android:background="#C0C0C6"
                 android:padding="5dp"
+                android:textColor="@color/black"
                 android:text="Fresh Properties for You"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/view8"
@@ -157,6 +176,7 @@
                 android:layout_height="5dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/colorAccent"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toTopOf="@+id/textView35"
                 app:layout_constraintEnd_toEndOf="@+id/recyclerView2"
                 app:layout_constraintStart_toStartOf="@+id/recyclerView2"
@@ -169,6 +189,7 @@
                 android:layout_marginTop="5dp"
                 android:background="#C0C0C6"
                 android:padding="5dp"
+                android:textColor="@color/black"
                 android:text="Hot Deals for You"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/view9"
@@ -215,6 +236,7 @@
             <TextView
                 android:id="@+id/textView36"
                 android:layout_width="match_parent"
+                android:textColor="@color/black"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="#C0C0C6"
@@ -255,6 +277,7 @@
                 android:id="@+id/view11"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
+                android:textColor="@color/black"
                 android:layout_marginTop="5dp"
                 android:background="@color/colorAccent"
                 app:layout_constraintBottom_toTopOf="@+id/textView37"
@@ -269,6 +292,7 @@
                 android:layout_marginTop="5dp"
                 android:background="#C0C0C6"
                 android:padding="5dp"
+                android:textColor="@color/black"
                 android:text="Newly Launched Projects"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/view11"
@@ -351,6 +375,19 @@
         app:layout_constraintTop_toBottomOf="@+id/loader3"
         app:mk_color="@color/colorPrimary" />
 
+
+    <ImageView
+        android:id="@+id/gif"
+        android:padding="50dp"
+        android:visibility="gone"
+        android:src="@drawable/loading"
+        android:layout_width="match_parent"
+        android:background="@color/whilte"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        android:layout_height="0dp"/>
 
 
   <!--  <androidx.constraintlayout.widget.Guideline

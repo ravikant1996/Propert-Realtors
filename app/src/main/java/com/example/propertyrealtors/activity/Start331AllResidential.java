@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -126,12 +127,6 @@ public class Start331AllResidential extends AppCompatActivity {
     }
     public void getTotalFloor() {
 
-        for(int i=1; i<=100; i++){
-            arrayList.add(""+i);
-        }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinTotal.setAdapter(arrayAdapter);
         spinTotal.setPrompt("Number of Floor");
         spinTotal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -160,12 +155,12 @@ public class Start331AllResidential extends AppCompatActivity {
         });
     }
 
-    public void back(View view) {
+/*    public void back(View view) {
         Intent intent = new Intent(Start331AllResidential.this, Start331All.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
-    }
+    }*/
 
     public void onRadioButtonClicked(View v) {
         boolean checked = ((RadioButton) v).isChecked();
@@ -460,6 +455,14 @@ public class Start331AllResidential extends AppCompatActivity {
 
         }else if(t2.getText().toString().length()==0){
             Toast.makeText(Start331AllResidential.this, "Please Select Floor No of your Property", Toast.LENGTH_SHORT).show();
+
+        } else if (TextUtils.isEmpty(totalfloor) || totalfloor.equals("Select")) {
+            Toast.makeText(Start331AllResidential.this, "Please Select Total Floors", Toast.LENGTH_LONG).show();
+            return;
+        }
+        else if(TextUtils.isEmpty(floorNo)  || floorNo.equals("Select")){
+            Toast.makeText(Start331AllResidential.this, "Please Select Floor No of your Property", Toast.LENGTH_SHORT).show();
+            return;
 
         }else if(errorFurnish.getText().toString().length()==0){
             errorFurnish.setError("Please Select Furnishing");

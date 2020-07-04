@@ -1,11 +1,11 @@
 package com.example.propertyrealtors.activity;
 
+import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.AndroidRuntimeException;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +17,7 @@ import com.example.propertyrealtors.A_EndUser.Notification;
 import com.example.propertyrealtors.A_EndUser.dashboard;
 import com.example.propertyrealtors.A_EndUser.dashboard_EndUser;
 import com.example.propertyrealtors.A_EndUser.enduser_profile;
+import com.example.propertyrealtors.A_EndUser.shortlisted_property;
 import com.example.propertyrealtors.HideBottomViewOnScrollBehavior;
 import com.example.propertyrealtors.R;
 import com.example.propertyrealtors.SessionManager;
@@ -29,8 +30,6 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.HashMap;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -45,55 +44,49 @@ public class MainActivity extends AppCompatActivity {
 
     View view;
     String name, email, phone;
-     DrawerLayout drawerLayout;
-     ActionBarDrawerToggle actionBarDrawerToggle;
-     NavigationView navigationView;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    NavigationView navigationView;
     BottomNavigationView navigationbottom;
     CircleImageView drawerHeaderImage;
     TextView endUserName, EmailId;
     FirebaseAuth auth;
     FirebaseUser getuser;
-    private ActionBar toolbar;
-    Toolbar toolbar1;
+    Toolbar toolbar;
     DatabaseReference reference;
-    String UID;
+    String UID, propertyFor, propertyType;
     SessionManager session;
+    Menu menu;
+    private boolean mToolBarNavigationListenerIsRegistered = false;
 
     //double tap of exit
     private static final int TIME_INTERVAL = 4000;
     private long mBackPressed;
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-            @Override
-            public void uncaughtException(Thread paramThread, Throwable paramThrowable) {
-                //Catch your exception
-                // Without System.exit() this will not work.
-                System.exit(2);
-            }
-        });
-
         session = new SessionManager(getApplicationContext());
         drawerLayout = (DrawerLayout) findViewById(R.id.enduser_drawer);
         navigationbottom = findViewById(R.id.navigation);
-        toolbar1 = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-//        navigationView.bringToFront();
-        //  drawerLayout.requestLayout();
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar1, R.string.Open, R.string.Close);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setHomeButtonEnabled(true);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.Open, R.string.Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-        if (getSupportActionBar() != null) {
-            setSupportActionBar(toolbar1);
-        }
-      //  toolbar = getSupportActionBar();
+
+
         try {
+
             HashMap<String, String> userID = session.getUserIDs();
             UID = userID.get(SessionManager.KEY_ID);
             //  getDetails();
@@ -101,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         //  dashboardEndUser();
-        toolbar1.setTitle("Home");
+        toolbar.setTitle("Home");
         loadFragment(new dashboard_EndUser());
 
         //getting bottom navigation view and attaching the listener
@@ -109,6 +102,16 @@ public class MainActivity extends AppCompatActivity {
 
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) navigationbottom.getLayoutParams();
         layoutParams.setBehavior(new HideBottomViewOnScrollBehavior());
+
+        boolean connected = false;
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            //we are connected to a network
+            connected = true;
+        }
+        else
+            connected = false;
 
 
         navigationView = findViewById(R.id.enduser_navigation);
@@ -119,20 +122,24 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                SessionManager session = new SessionManager(getApplicationContext());
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager()
                         .beginTransaction();
                 switch (item.getItemId()) {
                     case R.id.buy_property:
-                        Toast.makeText(MainActivity.this, "buy", Toast.LENGTH_SHORT).show();
-
+                        session.createSearchSession("residential", "SELL");
+                        Fragment fragment = new dashboard_EndUser();
+                        loadFragment(fragment);
                         break;
                     case R.id.rent_property:
-                        Toast.makeText(MainActivity.this, "rent", Toast.LENGTH_SHORT).show();
-
+                        session.createSearchSession("residential", "RENT or LEASE");
+                        Fragment fragment1 = new dashboard_EndUser();
+                        loadFragment(fragment1);
                         break;
-                    case R.id.new_project:
+                   /* case R.id.new_project:
                         Toast.makeText(MainActivity.this, "new", Toast.LENGTH_SHORT).show();
 
+                        break;*/
                     case R.id.share:
                         Toast.makeText(MainActivity.this, "share", Toast.LENGTH_SHORT).show();
 
@@ -141,9 +148,9 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "rates", Toast.LENGTH_SHORT).show();
 
                         break;
-                    case R.id.localities:
+                   /* case R.id.localities:
                         Toast.makeText(MainActivity.this, "local", Toast.LENGTH_SHORT).show();
-                        break;
+                        break;*/
                     case R.id.post_property:
                         try {
                             if (TextUtils.isEmpty(UID)) {
@@ -152,19 +159,18 @@ public class MainActivity extends AppCompatActivity {
                                 Boolean Signal = true;
                                 bundle.putBoolean("SiGNAL", Signal);
                                 intent.putExtras(bundle);
-                                getApplicationContext().startActivity(intent);
+                                startActivity(intent);
+                                finish();
                             } else {
-                                Intent intent = new Intent(MainActivity.this, Start33.class);
-                                Bundle bundle = new Bundle();
-                                bundle.putString("UID", UID);
-                                intent.putExtras(bundle);
-                                getApplicationContext().startActivity(intent);
+                                Intent intent1 = new Intent(MainActivity.this, Start33.class);
+                                Bundle bundle1 = new Bundle();
+                                bundle1.putString("UID", UID);
+                                intent1.putExtras(bundle1);
+                                startActivity(intent1);
+                                finish();
                             }
-                            Toast.makeText(MainActivity.this, "post", Toast.LENGTH_SHORT).show();
-                        }catch (AndroidRuntimeException e){
+                        } catch (Exception e) {
                             e.printStackTrace();
-                        }finally {
-                            Log.e("MainActivity", "caught error");
                         }
                         break;
                     case R.id.logout:
@@ -172,9 +178,10 @@ public class MainActivity extends AppCompatActivity {
                         session.logoutUser();
                         break;
                     case R.id.login:
-                        Toast.makeText(MainActivity.this, "login", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "login", Toast.LENGTH_SHORT).show();
                         Intent intent1 = new Intent(MainActivity.this, Login.class);
                         startActivity(intent1);
+                        finish();
                         break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -218,46 +225,61 @@ public class MainActivity extends AppCompatActivity {
 
    /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(actionBarDrawerToggle.onOptionsItemSelected(item)){
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
-        return super.onOptionsItemSelected(item);
-
-    }*/
-   @Override
-   public boolean onCreateOptionsMenu(Menu menu) {
-       MenuInflater inflater = getMenuInflater();
-       inflater.inflate(R.menu.post_menu, menu);
-       return true;
-   }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.app_bar_post:
-                Toast.makeText(MainActivity.this, "Toolbar Button Clicked!", Toast.LENGTH_SHORT).show();
-                Bundle bundle = new Bundle();
-                if (TextUtils.isEmpty(UID)) {
-                    Intent intent = new Intent(MainActivity.this, Start31.class);
-                    Boolean Signal = true;
-                    bundle.putBoolean("SiGNAL", Signal);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Intent intent = new Intent(MainActivity.this, Start33.class);
-                    bundle.putString("UID", UID);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                    finish();
-                }
-                return true;
-            case R.id.favourite:
-                Toast.makeText(MainActivity.this, "Empty", Toast.LENGTH_SHORT).show();
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        actionBarDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        actionBarDrawerToggle.onConfigurationChanged(newConfig);
+    }*/
+
+     @Override
+     public boolean onCreateOptionsMenu(Menu menu) {
+         MenuInflater inflater = getMenuInflater();
+         inflater.inflate(R.menu.post_menu, menu);
+         return true;
+
+     }
+
+     public boolean onOptionsItemSelected(MenuItem item) {
+         int id = item.getItemId();
+
+         if (id == R.id.app_bar_post) {
+             Bundle bundle = new Bundle();
+             if (TextUtils.isEmpty(UID)) {
+                 Intent intent = new Intent(MainActivity.this, Start31.class);
+                 Boolean Signal = true;
+                 bundle.putBoolean("SiGNAL", Signal);
+                 intent.putExtras(bundle);
+                 startActivity(intent);
+                 finish();
+             } else {
+                 Intent intent = new Intent(MainActivity.this, Start33.class);
+                 bundle.putString("UID", UID);
+                 intent.putExtras(bundle);
+                 startActivity(intent);
+                 finish();
+             }
+             return true;
+         } else if (id == R.id.favourite) {
+             Intent intent = new Intent(MainActivity.this, shortlisted_property.class);
+             startActivity(intent);
+             return true;
+         }
+         return super.onOptionsItemSelected(item);
+
+     }
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
@@ -266,63 +288,28 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    Toast.makeText(getApplicationContext(), "clicked1", Toast.LENGTH_SHORT).show();
-                    fragment = new dashboard_EndUser();
-                    toolbar1.setTitle("Home");
+                    toolbar.setTitle("Home");
+                        fragment = new dashboard_EndUser();
                     break;
 
                 case R.id.navigation_dashboard:
-                    Toast.makeText(getApplicationContext(), "clicked2", Toast.LENGTH_SHORT).show();
-                    //  startActivity(new Intent(MainActivity.this, posted_property.class));
                     fragment = new dashboard();
-                    toolbar1.setTitle("Dashboard");
+                    toolbar.setTitle("Dashboard");
                     break;
 
                 case R.id.navigation_notifications:
-                    Toast.makeText(getApplicationContext(), "clicked3", Toast.LENGTH_SHORT).show();
                     fragment = new Notification();
-                    toolbar1.setTitle("Notification");
+                    toolbar.setTitle("Notification");
                     break;
 
                 case R.id.navigation_profile:
-                    Toast.makeText(getApplicationContext(), "clicked4", Toast.LENGTH_SHORT).show();
                     fragment = new enduser_profile();
-                    toolbar1.setTitle("Profile");
+                    toolbar.setTitle("Profile");
                     break;
             }
             return loadFragment(fragment);
         }
     };
-
- /* @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.post_menu, menu);
-        MenuItem item = menu.findItem(R.id.app_bar_post);
-        Button btn = item.getActionView().findViewById(R.id.button);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Toolbar Button Clicked!", Toast.LENGTH_SHORT).show();
-                Bundle bundle=new Bundle();
-                if(TextUtils.isEmpty(UID)) {
-                    Intent intent= new Intent(MainActivity.this, Start31.class);
-                    Boolean Signal = true;
-                    bundle.putBoolean("SiGNAL", Signal);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                    finish();
-                }else {
-                    Intent intent= new Intent(MainActivity.this, Start33.class);
-                    bundle.putString("UID", UID);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        });
-        return true;
-    }*/
-
     private boolean loadFragment(Fragment fragment) {
         //switching fragment
         if (fragment != null) {
@@ -334,6 +321,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -343,8 +331,9 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
             return;
         } else {
-            Toast.makeText(getBaseContext(), "Press back if you want to exit",    Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), "Press back if you want to exit", Toast.LENGTH_SHORT).show();
         }
         mBackPressed = System.currentTimeMillis();
     }
+
 }

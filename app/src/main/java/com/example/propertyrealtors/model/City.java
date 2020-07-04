@@ -1,7 +1,5 @@
 package com.example.propertyrealtors.model;
 
-import com.google.gson.annotations.SerializedName;
-
 public class City {
     String city;
 

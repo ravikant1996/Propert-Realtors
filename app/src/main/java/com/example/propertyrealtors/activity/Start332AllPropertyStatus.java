@@ -317,8 +317,8 @@ public class Start332AllPropertyStatus extends AppCompatActivity {
                     Toast.makeText(Start332AllPropertyStatus.this, "Select Month", Toast.LENGTH_SHORT).show();
                     return;
                 }
-            }else {
-                if(TextUtils.isEmpty(ageOfconstruction) || ageOfconstruction.equals("----------")){
+            }else if(!propertySubType.equals("Plot")) {
+                if(TextUtils.isEmpty(ageOfconstruction) || ageOfconstruction.equals("Select")){
                     Toast.makeText(Start332AllPropertyStatus.this, "Select Age of Construction", Toast.LENGTH_SHORT).show();
                     return;
                 }

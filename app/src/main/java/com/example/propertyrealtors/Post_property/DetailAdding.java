@@ -29,7 +29,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.protobuf.Any;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -171,7 +170,7 @@ public class DetailAdding extends AppCompatActivity {
                 if (propertySubType.equals("Flat/Apartment") || propertySubType.equals("Builder_Floor") ||
                         propertySubType.equals("Pentahouse") || propertySubType.equals("Studio_Apartment")) {
                     if (propertySubType.equals("Studio_Apartment")) {
-                        Bedroom.setVisibility(View.VISIBLE);
+                        Bedroom.setVisibility(View.INVISIBLE);
                     }
 
                     Open_Sides.setVisibility(View.GONE);textInputLayout22.setVisibility(View.INVISIBLE);
@@ -756,7 +755,6 @@ public class DetailAdding extends AppCompatActivity {
             updates.put("property_status", propertyStatus);
             updates.put("maintenance_parameter", maintenance_parameter);
             updates.put("roadWidthParameter", roadWidthParameter);
-
             db.updateChildren(updates);
         } catch (NullPointerException e) {
             e.printStackTrace();

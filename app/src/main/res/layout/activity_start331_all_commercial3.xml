@@ -79,6 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/spinnerHeight"
                 android:spinnerMode="dialog"
+                android:entries="@array/TotalFloors"
                 app:layout_constraintEnd_toEndOf="@+id/textv1"
                 app:layout_constraintStart_toStartOf="@+id/textv1"
                 app:layout_constraintTop_toBottomOf="@+id/textv1" />

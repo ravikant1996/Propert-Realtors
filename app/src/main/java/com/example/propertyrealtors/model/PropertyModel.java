@@ -1,18 +1,19 @@
 package com.example.propertyrealtors.model;
 
-import java.util.ArrayList;
-
 public class PropertyModel {
-    String keyId, propertyFor, UID, propertySubType, city, project, bathroom, bedroom, balcony, totalfloor,
+
+    String keyId, propertyFor, propertyType, UID, propertySubType, city, project, bathroom, bedroom, balcony, totalfloor,
             floorNo, furnished, carpetArea, superArea, roadWidth, open_Sides, construction_done, boundary_wall,
             gated_colony, plotArea, plot_bredth, plot_length, cafateria, washroom, cornerShop, main_road_facing, personal_washroom,
             lock_in_periodString, price, token_amount, property_status, ageOfconstruction, availablefrom, security, maintenance
             ,carpetAreaParameter, superAreaParameter, plotAreaParameter, maintenance_parameter, roadWidthParameter;
+    String dateofposting, timeofposting;
+    int imageCount;
 
     public PropertyModel() {
     }
 
-    public PropertyModel(String keyId, String propertyFor, String UID, String propertySubType, String city, String project,
+    public PropertyModel(String keyId, String propertyFor, String propertyType, String UID, String propertySubType, String city, String project,
                          String bathroom, String bedroom, String balcony, String totalfloor, String floorNo, String furnished,
                          String carpetArea, String superArea, String roadWidth, String open_Sides, String construction_done,
                          String boundary_wall, String gated_colony, String plotArea, String plot_bredth, String plot_length,
@@ -20,9 +21,10 @@ public class PropertyModel {
                          String lock_in_periodString, String price, String token_amount, String property_status, String ageOfconstruction,
                          String availablefrom, String security, String maintenance,
                          String carpetAreaParameter, String superAreaParameter, String plotAreaParameter, String maintenance_parameter,
-                         String roadWidthParameter) {
+                         String roadWidthParameter, int imageCount, String dateofposting, String timeofposting) {
         this.keyId = keyId;
         this.propertyFor = propertyFor;
+        this.propertyType = propertyType;
         this.UID = UID;
         this.propertySubType = propertySubType;
         this.city = city;
@@ -61,6 +63,41 @@ public class PropertyModel {
         this.plotAreaParameter = plotAreaParameter;
         this.maintenance_parameter = maintenance_parameter;
         this.roadWidthParameter = roadWidthParameter;
+        this.imageCount = imageCount;
+        this.dateofposting = dateofposting;
+        this.timeofposting = timeofposting;
+    }
+
+    public String getTimeofposting() {
+        return timeofposting;
+    }
+
+    public void setTimeofposting(String timeofposting) {
+        this.timeofposting = timeofposting;
+    }
+
+    public String getDateofposting() {
+        return dateofposting;
+    }
+
+    public void setDateofposting(String dateofposting) {
+        this.dateofposting = dateofposting;
+    }
+
+    public int getImageCount() {
+        return imageCount;
+    }
+
+    public void setImageCount(int imageCount) {
+        this.imageCount = imageCount;
+    }
+
+    public String getPropertyType() {
+        return propertyType;
+    }
+
+    public void setPropertyType(String propertyType) {
+        this.propertyType = propertyType;
     }
 
     public String getCarpetAreaParameter() {

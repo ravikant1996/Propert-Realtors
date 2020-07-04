@@ -29,9 +29,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:textColor="@color/black"
         android:padding="10dp"
         android:text="Tell us where you are in your home buying journey"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -44,33 +45,38 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:padding="20dp"
+        android:padding="15dp"
         app:layout_constraintEnd_toEndOf="@+id/textView13"
         app:layout_constraintStart_toStartOf="@+id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/textView13">
 
         <RadioButton
             android:id="@+id/radio1"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
+            android:textColor="@color/black"
             android:onClick="onRadioButtonClicked"
             android:text="Are you still unsure about the locality" />
 
         <RadioButton
             android:id="@+id/radio2"
+            android:paddingBottom="15dp"
             android:layout_width="match_parent"
+            android:paddingTop="15dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:onClick="onRadioButtonClicked"
-            android:padding="20dp"
             android:text="Have Shortlisted a locality" />
 
         <RadioButton
             android:id="@+id/radio3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:textColor="@color/black"
             android:onClick="onRadioButtonClicked"
-            android:padding="20dp"
             android:text="Have Shortlisted a Project/Socity" />
 
     </RadioGroup>

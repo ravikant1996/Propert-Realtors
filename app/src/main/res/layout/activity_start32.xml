@@ -18,6 +18,7 @@
             app:title="Enter your contact details"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:textColor="@color/black"
             app:titleTextAppearance="@style/Toolbar.TitleText"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
@@ -29,9 +30,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/whilte"
         android:text="Confirm"
         android:onClick="next"
-        android:visibility="gone"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

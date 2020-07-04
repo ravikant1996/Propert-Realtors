@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="AGENT"
+        app:layout_constraintEnd_toStartOf="@+id/dateofposting"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dateofposting"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:text="Date Of posting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/heading"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/heading"
+        app:layout_constraintTop_toBottomOf="@+id/heading" />
+
+    <TextView
+        android:id="@+id/operating_since"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Operating since: "
+        app:layout_constraintEnd_toStartOf="@+id/commercial"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <TextView
+        android:id="@+id/commercial"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Commercial Propertyies"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/operating_since"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <TextView
+        android:id="@+id/callnow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:text="✆ Call Now"
+        android:textColor="#EA0505"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/viewPhoneNo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/operating_since" />
+
+    <Button
+        android:id="@+id/viewPhoneNo"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/spinnerHeight"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:text="View Phone No"
+        android:textColor="@color/whilte"
+        app:layout_constraintEnd_toEndOf="@+id/name"
+        app:layout_constraintStart_toEndOf="@+id/callnow"
+        app:layout_constraintTop_toBottomOf="@+id/commercial" />
+</androidx.constraintlayout.widget.ConstraintLayout>

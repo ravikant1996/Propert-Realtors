@@ -47,6 +47,25 @@ public class dashboard extends Fragment {
                 startActivity(new Intent(getActivity(), posted_property.class));
             }
         });
+        shortlisted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), shortlisted_property.class));
+            }
+        });
+        contacted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), contacted_property.class));
+            }
+        });
+        lastview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), lastview_property.class));
+            }
+        });
+
 
 
 

@@ -45,7 +45,6 @@ public class Start331 extends AppCompatActivity {
 
         Residential = findViewById(R.id.residential);
         commercial = findViewById(R.id.commercial);
-        skip = findViewById(R.id.skip);
         seterror = findViewById(R.id.propertytype);
         next = findViewById(R.id.next);
         Name = findViewById(R.id.name);

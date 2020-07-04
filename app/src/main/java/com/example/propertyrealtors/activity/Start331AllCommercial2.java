@@ -22,9 +22,9 @@ import java.util.ArrayList;
 
 public class Start331AllCommercial2 extends AppCompatActivity {
 
-    Spinner spinTotal, spinFloor, areaSpin1, areaSpin2;
+    Spinner spinTotal, spinFloor, areaSpin1, areaSpin2, lock_in_period;
     ArrayList<String> arrayList;
-    String totalfloor, floorNo, furnished, carpetAreaParameter, superAreaParameter;
+    String lock_in_periodString, totalfloor, floorNo, furnished, carpetAreaParameter, superAreaParameter;
     EditText superArea, carpetArea;
     String  propertyType, city, project;
     static String propertyFor;
@@ -66,7 +66,26 @@ public class Start331AllCommercial2 extends AppCompatActivity {
         areaSpin2 = findViewById(R.id.areaSpin2);
         superArea = findViewById(R.id.areaEdit2);
         carpetArea = findViewById(R.id.areaEdit1);
+        lock_in_period = findViewById(R.id.floorSpin3);
+        TextView textView5= findViewById(R.id.textView5);
+        lock_in_period.setVisibility(View.GONE);
+        textView5.setVisibility(View.GONE);
+        if(!propertyFor.equals("SELL")){
+            lock_in_period.setVisibility(View.VISIBLE);
+            textView5.setVisibility(View.VISIBLE);
+            lock_in_period.setPrompt("Lock In Period");
+            lock_in_period.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    lock_in_periodString = parent.getItemAtPosition(position).toString();
+                }
 
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
+
+        }
 
         arrayList = new ArrayList<>();
 
@@ -237,6 +256,7 @@ public class Start331AllCommercial2 extends AppCompatActivity {
             bundle.putString("MaIN_ROADFACING", main_road_facing);
             bundle.putString("PERSONAL_WASHROOM", personal_washroom);
             bundle.putString("TOTALFLOOR", totalfloor);
+            bundle.putString("LOCK_IN_PERIOD", lock_in_periodString);
             bundle.putString("FLOORNO", floorNo);
             bundle.putString("FURNISHED", furnished);
             bundle.putString("CARPETAREA", CarpetArea);

@@ -149,10 +149,10 @@ public class All331ProjectSearch extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         lid = (dataSnapshot.getChildrenCount());
-                        locality = new Locality(addlocal);
+                        locality = new Locality(addlocal+" ("+city+")");
                         reference.child(city).child(String.valueOf(lid + 1)).setValue(locality);
                         Toast.makeText(getApplicationContext(), "added", Toast.LENGTH_SHORT).show();
-                        String project = addlocal;
+                        String project = addlocal+" ("+city+")";
                         Intent intent = new Intent(All331ProjectSearch.this, Start331All.class);
                      //   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

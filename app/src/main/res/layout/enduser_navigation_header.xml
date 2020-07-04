@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="20dp"
-    android:background="@color/common_google_signin_btn_text_light_disabled"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:padding="10dp">
 
@@ -13,17 +13,19 @@
         android:id="@+id/id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/whilte"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="Hello" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="25dp"
-        android:src="@drawable/newdelhi" />
+        android:src="@drawable/user1" />
 
 
     <TextView
@@ -38,6 +40,7 @@
         android:fontFamily="sans-serif"
         android:gravity="center"
         android:text="Guest"
+        android:textColor="@color/whilte"
         android:textSize="18sp"
         android:textStyle="normal" />
 

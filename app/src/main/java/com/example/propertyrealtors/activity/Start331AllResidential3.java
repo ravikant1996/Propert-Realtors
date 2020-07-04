@@ -25,10 +25,11 @@ public class Start331AllResidential3 extends AppCompatActivity {
     EditText plot_Area, road_Width, bredth, length;
     ArrayList<String> arrayList;
     String totalfloor, open_Sides, construction_done, boundary_wall, gated_colony, plotAreaParameter;
-    String  propertyType, city, project, PlotArea, Plot_length, Plot_bredth, RoadWidth;
+    String propertyType, city, project, PlotArea, Plot_length, Plot_bredth, RoadWidth;
     String UID;
     static String propertyFor;
     static String propertySubType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +47,7 @@ public class Start331AllResidential3 extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         try {
-            UID = bundle.getString("UID","defValue");
+            UID = bundle.getString("UID", "defValue");
             propertyFor = bundle.getString("PROPERTY_FOR", null);
             propertyType = bundle.getString("PROPERTY_TYPE", null);
             propertySubType = bundle.getString("R/C_TYPE", null);
@@ -72,17 +73,14 @@ public class Start331AllResidential3 extends AppCompatActivity {
 
 
         areaSpin1.setPrompt("Parameter");
-        areaSpin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
+        areaSpin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 plotAreaParameter = parent.getItemAtPosition(position).toString();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {
+            public void onNothingSelected(AdapterView<?> parent) {
                 // can leave this empty
             }
         });
@@ -92,12 +90,6 @@ public class Start331AllResidential3 extends AppCompatActivity {
 
     public void getTotalFloor() {
 
-        for (int i = 1; i <= 100; i++) {
-            arrayList.add("" + i);
-        }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinTotal.setAdapter(arrayAdapter);
         spinTotal.setPrompt("Total Floors");
         spinTotal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -173,36 +165,40 @@ public class Start331AllResidential3 extends AppCompatActivity {
                 break;
         }
     }
-    public void validate(){
-            RoadWidth = road_Width.getText().toString().trim();
-            PlotArea = plot_Area.getText().toString().trim();
-            Plot_length = length.getText().toString().trim();
-            Plot_bredth = bredth.getText().toString().trim();
 
-        if (TextUtils.isEmpty(construction_done)) {
-            Toast.makeText(Start331AllResidential3.this, "Select Construction option", Toast.LENGTH_SHORT).show();
+    public void validate() {
+        RoadWidth = road_Width.getText().toString().trim();
+        PlotArea = plot_Area.getText().toString().trim();
+        Plot_length = length.getText().toString().trim();
+        Plot_bredth = bredth.getText().toString().trim();
+
+        if (totalfloor.equals("Select")) {
+            Toast.makeText(Start331AllResidential3.this, "Select Total Floors", Toast.LENGTH_LONG).show();
             return;
-        }else if (TextUtils.isEmpty(boundary_wall)){
-                Toast.makeText(Start331AllResidential3.this, "Select Boundary wall option", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(construction_done)) {
+            Toast.makeText(Start331AllResidential3.this, "Select Construction option", Toast.LENGTH_LONG).show();
+            return;
+        } else if (TextUtils.isEmpty(boundary_wall)) {
+            Toast.makeText(Start331AllResidential3.this, "Select Boundary wall option", Toast.LENGTH_LONG).show();
             return;
 
-        }else if(TextUtils.isEmpty(gated_colony)){
-            Toast.makeText(Start331AllResidential3.this, "Select Gated Colony option", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(gated_colony)) {
+            Toast.makeText(Start331AllResidential3.this, "Select Gated Colony option", Toast.LENGTH_LONG).show();
             return;
 
-        }else if(plot_Area.getText().toString().length()== 0){
+        } else if (plot_Area.getText().toString().length() == 0) {
             plot_Area.setError("Please Enter Area");
-            Toast.makeText(Start331AllResidential3.this, "Please Enter Area", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Start331AllResidential3.this, "Please Enter Area", Toast.LENGTH_LONG).show();
 
         }/*else if(length.getText().toString().length()==0){
             length.setError("Please Enter length");
-            Toast.makeText(Start331AllResidential3.this, "Please Enter length", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Start331AllResidential3.this, "Please Enter length", Toast.LENGTH_LONG).show();
 
         }else if(bredth.getText().toString().length()==0){
             bredth.setError("Please Enter breadth");
-            Toast.makeText(Start331AllResidential3.this, "Please Enter breadth", Toast.LENGTH_SHORT).show();
-        }*/
-        else{
+            Toast.makeText(Start331AllResidential3.this, "Please Enter breadth", Toast.LENGTH_LONG).show();
+        }*/ else {
             Intent intent;
             Bundle bundle = new Bundle();
             bundle.putString("UID", UID);
@@ -236,6 +232,7 @@ public class Start331AllResidential3 extends AppCompatActivity {
             }*/
         }
     }
+
     public void next(View view) {
 
         validate();

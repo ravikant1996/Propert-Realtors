@@ -118,12 +118,6 @@ public class Start331AllResidential2 extends AppCompatActivity {
     }
     public void getTotalFloor() {
 
-        for(int i=1; i<=100; i++){
-            arrayList.add(""+i);
-        }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinTotal.setAdapter(arrayAdapter);
         spinTotal.setPrompt("Number of Floor");
         spinTotal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -446,6 +440,7 @@ public class Start331AllResidential2 extends AppCompatActivity {
         Log.e("Start331AllResidential2", CarpetArea);
         Log.e("Start331AllResidential2", SuperArea);
 
+
         if(errorBed.getText().toString().length()==0){
             errorBed.setError("Select Bedroom");
             Toast.makeText(Start331AllResidential2.this, "Select Bedroom", Toast.LENGTH_SHORT).show();
@@ -454,11 +449,10 @@ public class Start331AllResidential2 extends AppCompatActivity {
             errorBath.setError("Please Select Bathroom");
             Toast.makeText(Start331AllResidential2.this, "Please Select Bathroom", Toast.LENGTH_SHORT).show();
 
-        }else if(TextUtils.isEmpty(totalfloor)){
-            Toast.makeText(Start331AllResidential2.this, "Please Select Total Floor", Toast.LENGTH_SHORT).show();
+        }else if (TextUtils.isEmpty(totalfloor) || totalfloor.equals("Select")) {
+            Toast.makeText(Start331AllResidential2.this, "Please Select Total Floors", Toast.LENGTH_LONG).show();
             return;
-
-        }else if(errorFurnish.getText().toString().length()==0){
+        } else if(errorFurnish.getText().toString().length()==0){
             errorFurnish.setError("Please Select Furnishing");
             Toast.makeText(Start331AllResidential2.this, "Please Select Furnishing", Toast.LENGTH_SHORT).show();
 

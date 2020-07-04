@@ -75,7 +75,7 @@ public class Start331AllResidentialPrice extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String ss = String.valueOf(s);
                 convert(ss);
-                Watcher.setText("" + Rupees + paise );
+                Watcher.setText("" + Rupees);
             }
 
             @Override
@@ -93,7 +93,7 @@ public class Start331AllResidentialPrice extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String ss = String.valueOf(s);
                 convert(ss);
-                Watcher2.setText("" + Rupees + paise);
+                Watcher2.setText("" + Rupees);
             }
 
             @Override
@@ -303,9 +303,16 @@ public class Start331AllResidentialPrice extends AppCompatActivity {
             bundle.putString("TOKEN_AMOUNT", _token_amount);
         }
 
-        intent= new Intent(Start331AllResidentialPrice.this, Start331AllPropertyStatus.class);
-        intent.putExtras(bundle);
-        startActivity(intent);
+        if ("Commercial_Land".equals(propertySubType) || "Agriculture_Land".equals(propertySubType)
+                || "Industrial_Land".equals(propertySubType)) {
+            intent = new Intent(Start331AllResidentialPrice.this, post_package.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        } else {
+            intent = new Intent(Start331AllResidentialPrice.this, Start331AllPropertyStatus.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
 
     @SuppressLint("DefaultLocale")

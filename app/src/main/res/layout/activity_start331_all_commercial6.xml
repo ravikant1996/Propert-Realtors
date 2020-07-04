@@ -70,7 +70,7 @@
                 android:id="@+id/floorSpin3"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/spinnerHeight"
-                android:entries="@array/openSides"
+                android:entries="@array/lockperiod"
                 android:spinnerMode="dialog"
                 app:layout_constraintEnd_toEndOf="@+id/textView5"
                 app:layout_constraintStart_toStartOf="@+id/textView5"
@@ -87,22 +87,23 @@
                 app:layout_constraintEnd_toEndOf="@+id/floorSpin3"
                 app:layout_constraintStart_toStartOf="@+id/floorSpin3"
                 app:layout_constraintTop_toBottomOf="@+id/floorSpin3" />
+
             <TextView
                 android:id="@+id/textv1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:padding="2dp"
                 android:text="Total Floors"
                 app:layout_constraintEnd_toEndOf="@+id/textView7"
                 app:layout_constraintStart_toStartOf="@+id/textView7"
-                app:layout_constraintTop_toBottomOf="@+id/textView7"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <Spinner
                 android:id="@+id/floorSpin1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/spinnerHeight"
                 android:spinnerMode="dialog"
+                android:entries="@array/TotalFloors"
                 app:layout_constraintEnd_toEndOf="@+id/textv1"
                 app:layout_constraintStart_toStartOf="@+id/textv1"
                 app:layout_constraintTop_toBottomOf="@+id/textv1" />

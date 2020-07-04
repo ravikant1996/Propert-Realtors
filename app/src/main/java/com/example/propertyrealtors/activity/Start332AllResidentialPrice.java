@@ -70,7 +70,7 @@ public class Start332AllResidentialPrice extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String ss = String.valueOf(s);
                 convert(ss);
-                Watcher.setText("" + Rupees + paise );
+                Watcher.setText("" + Rupees);
             }
 
             @Override
@@ -88,7 +88,7 @@ public class Start332AllResidentialPrice extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String ss = String.valueOf(s);
                 convert(ss);
-                Watcher2.setText("" + Rupees + paise);
+                Watcher2.setText("" + Rupees);
             }
 
             @Override
@@ -265,7 +265,7 @@ public class Start332AllResidentialPrice extends AppCompatActivity {
             Log.e("331", "error");
         }
     }*/
-    public void intenter(){
+    public void intenter() {
         Intent intent;
         Bundle bundle = new Bundle();
         bundle.putString("UID", UID);
@@ -307,11 +307,17 @@ public class Start332AllResidentialPrice extends AppCompatActivity {
         bundle.putString("SECURITY_AMOUNT", _secuityAmount);
         bundle.putString("MAINTENANCE_Parameter", maintenance_parameter);
 
-        intent= new Intent(Start332AllResidentialPrice.this, Start332AllPropertyStatus.class);
-        intent.putExtras(bundle);
-        startActivity(intent);
+        if ("Commercial_Land".equals(propertySubType) || "Agriculture_Land".equals(propertySubType)
+                || "Industrial_Land".equals(propertySubType)) {
+            intent = new Intent(Start332AllResidentialPrice.this, post_package.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        } else {
+            intent = new Intent(Start332AllResidentialPrice.this, Start332AllPropertyStatus.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
-
     public void next(View view) {
 
         price= ExpectedPrice.getText().toString();

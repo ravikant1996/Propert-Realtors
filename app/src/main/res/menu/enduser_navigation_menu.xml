@@ -9,12 +9,9 @@
         <item
             android:id="@+id/rent_property"
             android:title="Properties for Rent" />
-        <item
-            android:id="@+id/new_project"
-            android:title="New Project" />
-        <item
+      <!--  <item
             android:id="@+id/localities"
-            android:title="Explore Localities" />
+            android:title="Explore Localities" />-->
     </group>
     <group android:checkableBehavior="single">
         <item android:title="Sell/Rent your Property">

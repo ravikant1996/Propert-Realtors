@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,17 +44,20 @@ import androidx.appcompat.widget.Toolbar;
 public class Start12Login extends AppCompatActivity {
     String email, name, usertype, phone, password, PURPOSE;
     EditText Email, Phone, Password;
-    EditText editTextCode;
+    EditText otpcode;
     User user;
     City city;
+    Button Next;
+    private String verificationCode;
     EditText mcity;
     FirebaseAuth auth;
     DatabaseReference reference;
     SessionManager session;
     String code;
-    long id=0;
-
-    private static final String TAG= "VerifyPhoneActivity";
+    long id = 0;
+    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
+    Menu menu;
+    private static final String TAG = "VerifyPhoneActivity";
     String mVerificationId;
 
     @Override
@@ -72,40 +78,36 @@ public class Start12Login extends AppCompatActivity {
         Email = findViewById(R.id.email);
         Password = findViewById(R.id.password);
         Phone = findViewById(R.id.mobile);
-        editTextCode = findViewById(R.id.otp);
+        otpcode = findViewById(R.id.otp);
+        Next = findViewById(R.id.next);
 
-        session= new SessionManager(getApplicationContext());
-        editTextCode.setVisibility(View.INVISIBLE);
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        PURPOSE = bundle.getString("PURPOSE", null);
-        name = bundle.getString("USER_NAME", null);
-        usertype = bundle.getString("USER_TYPE", null);
+        session = new SessionManager(getApplicationContext());
+        try {
+            Intent intent = getIntent();
+            Bundle bundle = intent.getExtras();
+            PURPOSE = bundle.getString("PURPOSE");
+            name = bundle.getString("USER_NAME");
+            usertype = bundle.getString("USER_TYPE");
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        StartFirebaseLogin();
 
-        Log.e("Test 1", PURPOSE  + name  + usertype);
+        Log.e("Test 1", PURPOSE+" " + name +" " + usertype);
 
     }
-    public void back(View view) {
-        startActivity(new Intent(Start12Login.this, Start11.class));
-        finish();
-    }
 
-    public void skip(View view) {
-        startActivity(new Intent(Start12Login.this, MainActivity.class));
-        finish();
-    }
 
-    public void next(View view) {
-        email= Email.getText().toString();
-        phone= Phone.getText().toString();
-        password= Password.getText().toString();
+    public void send(View view) {
+        email = Email.getText().toString();
+        phone = Phone.getText().toString();
+        password = Password.getText().toString();
 
-        if (name.isEmpty()){
+        if (name.isEmpty() || name == null) {
             Toast.makeText(getApplicationContext(),
                     "Name?", Toast.LENGTH_LONG).show();
-            Password.setError( "Name?");
             return;
-        }else if (Email.getText().toString().length() == 0) {
+        } else if (Email.getText().toString().length() == 0) {
 
             Toast.makeText(getApplicationContext(),
                     "Email cannot be Blank", Toast.LENGTH_LONG).show();
@@ -124,89 +126,138 @@ public class Start12Login extends AppCompatActivity {
                     "Phone No?", Toast.LENGTH_LONG).show();
             Phone.setError("Phone No?");
             return;
-        } else if (Password.getText().toString().length() == 0){
+        } else if (Phone.getText().toString().length() < 10) {
+            int no = Phone.getText().toString().length();
             Toast.makeText(getApplicationContext(),
-                    "Password?", Toast.LENGTH_LONG).show();
-            Password.setError( "Password?");
+                    "You have enter only " + no + " digits in Phone Number", Toast.LENGTH_LONG).show();
+        } else if (Password.getText().toString().length() == 0 || Password.getText().toString().length() < 6) {
+            Toast.makeText(getApplicationContext(),
+                    "Password is not empty or less than 6 digit", Toast.LENGTH_LONG).show();
+            //  Password.setError( "Password is not empty or less than 6 digit");
             return;
-        }else {
-            editTextCode.setVisibility(View.VISIBLE);
+        } else {
             sendVerificationCode(phone);
         }
     }
 
-    public void verify(View view) {
-     /*   if(editTextCode.getText().toString().length()==0){
-            editTextCode.setError("error");
-        }else {
-            verifyVerificationCode(code);
-        }*/
+    public void next(View view) {
+        code = otpcode.getText().toString().trim();
+        try {
+            //creating the credential
+            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, code);
+            signInWithPhoneAuthCredential(credential);
+        } catch (Exception e) {
+            Toast toast = Toast.makeText(this, "Verification Code is wrong", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+        }
     }
 
     private void sendVerificationCode(String phone) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+91" + phone,
-            //    "+1" + phone,
+                "+1" + phone,
+                //    "+1" + phone,
                 60,
                 TimeUnit.SECONDS,
                 TaskExecutors.MAIN_THREAD,
-                mCallbacks);
+                mCallback);
     }
-    private final PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks =
-            new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                @Override
-                public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
 
-                    //Getting the code sent by SMS
-                    code = phoneAuthCredential.getSmsCode();
-                    //sometime the code is not detected automatically
-                    //in this case the code will be null
-                    //so user has to manually enter the code
-                    if (code != null) {
-                        editTextCode.setText(code);
-                        //verifying the code
-                        verifyVerificationCode(code);
-                    }
+    private void StartFirebaseLogin() {
+
+        auth = FirebaseAuth.getInstance();
+        mCallback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            @Override
+            public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+                String code = phoneAuthCredential.getSmsCode();
+                if (code != null) {
+                    otpcode.setText(code);
+                    //verifying the code
+                    //  verifyVerificationCode(code);
                 }
+                Toast.makeText(Start12Login.this, "verification completed", Toast.LENGTH_LONG).show();
+            }
 
-
-                @Override
-                public void onVerificationFailed(FirebaseException e) {
-                    Log.w(TAG, "onVerificationFailed", e);
-                    if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                        editTextCode.setError("Invalid phone number.");
-                    } else if (e instanceof FirebaseTooManyRequestsException) {
-                        Snackbar.make(findViewById(R.id.content), "Quota exceeded.",
-                                Snackbar.LENGTH_SHORT).show();
-                        Toast.makeText(Start12Login.this, "unlimited attempted !", Toast.LENGTH_SHORT).show();
-                    }
+            @Override
+            public void onVerificationFailed(FirebaseException e) {
+                Log.w(TAG, "onVerificationFailed", e);
+                if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                    //   otpcode.setError("Enter One Time Password");
+                    Toast.makeText(Start12Login.this, "Enter One Time Password", Toast.LENGTH_SHORT).show();
+                } else if (e instanceof FirebaseTooManyRequestsException) {
+                    Snackbar.make(findViewById(R.id.content), "Quota exceeded.",
+                            Snackbar.LENGTH_LONG).show();
+                    Toast.makeText(Start12Login.this, "unlimited attempted !", Toast.LENGTH_LONG).show();
                 }
+            }
 
-                @Override
-                public void onCodeSent(String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                    super.onCodeSent(s, forceResendingToken);
-
-                    //storing the verification id that is sent to the user
-                    mVerificationId = s;
-                }
-            };
-
-    private void verifyVerificationCode(String code) {
-        try {
-            //creating the credential
-            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
-            //signing the user
-            signInWithPhoneAuthCredential(credential);
-        }catch (Exception e){
-            Toast toast = Toast.makeText(this, "Verification Code is wrong", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER,0,0);
-            toast.show();
-        }
+            @Override
+            public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                super.onCodeSent(s, forceResendingToken);
+                verificationCode = s;
+                Toast.makeText(Start12Login.this, "Code sent", Toast.LENGTH_LONG).show();
+                otpcode.setVisibility(View.VISIBLE);
+                Next.setVisibility(View.VISIBLE);
+            }
+        };
     }
+
+    /*   private final PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks =
+               new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                   @Override
+                   public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+
+                       //Getting the code sent by SMS
+                       code = phoneAuthCredential.getSmsCode();
+                       //sometime the code is not detected automatically
+                       //in this case the code will be null
+                       //so user has to manually enter the code
+                       if (code != null) {
+                           otpcode.setText(code);
+                           //verifying the code
+                           verifyVerificationCode(code);
+                       }
+                   }
+
+
+                   @Override
+                   public void onVerificationFailed(FirebaseException e) {
+                       Log.w(TAG, "onVerificationFailed", e);
+                       if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                           otpcode.setError("Invalid phone number.");
+                       } else if (e instanceof FirebaseTooManyRequestsException) {
+                           Snackbar.make(findViewById(R.id.content), "Quota exceeded.",
+                                   Snackbar.LENGTH_SHORT).show();
+                           Toast.makeText(Start12Login.this, "unlimited attempted !", Toast.LENGTH_SHORT).show();
+                       }
+                   }
+
+                   @Override
+                   public void onCodeSent(String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                       super.onCodeSent(s, forceResendingToken);
+
+                       //storing the verification id that is sent to the user
+                       mVerificationId = s;
+                   }
+               };
+
+       private void verifyVerificationCode(String code) {
+           try {
+               //creating the credential
+               PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
+               //signing the user
+               signInWithPhoneAuthCredential(credential);
+           } catch (Exception e) {
+               Toast toast = Toast.makeText(this, "Verification Code is wrong", Toast.LENGTH_SHORT);
+               toast.setGravity(Gravity.CENTER, 0, 0);
+               toast.show();
+           }
+       }
+   */
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(Start12Login.this, new OnCompleteListener<AuthResult>() {
-                    @SuppressWarnings("unused")
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -229,42 +280,42 @@ public class Start12Login extends AppCompatActivity {
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             Bundle bundle = new Bundle();
                             bundle.putString("PURPOSE_OF_USER", PURPOSE);
+                            Log.e(" ", PURPOSE);
+                            intent.putExtras(bundle);
                             startActivity(intent);
-                            //  finish();
                         } else {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                editTextCode.setError("Invalid code.");
+                                otpcode.setError("Invalid code.");
                             }
                         }
                     }
                 });
     }
 
-
-    public void submit(View view) {
-     //   mcity= findViewById(R.id.city);
-        String Mcity= mcity.getText().toString();
-        reference= FirebaseDatabase.getInstance().getReference().child("City");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    id=(dataSnapshot.getChildrenCount());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        city = new City(Mcity);
-        reference.child(String.valueOf(id+1)).setValue(city);
-     //   reference.child("City").setValue(city);
-        mcity.setText("");
-        Toast.makeText(Start12Login.this, "added", Toast.LENGTH_SHORT).show();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        this.menu = menu;
+        getMenuInflater().inflate(R.menu.menu_skip, menu);
+        return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_skip) {
+            Intent intent = new Intent(Start12Login.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

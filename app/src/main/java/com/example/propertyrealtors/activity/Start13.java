@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 
@@ -32,8 +33,9 @@ public class Start13 extends AppCompatActivity {
             }
         });
         try {
-            PURPOSE = bundle.getString("PURPOSE_OF_USER", null);
-        }catch (Exception e){
+            PURPOSE = bundle.getString("PURPOSE_OF_USER");
+            Log.e(" ", PURPOSE);
+        }catch (NullPointerException e){
             e.printStackTrace();
         }
     }
@@ -48,35 +50,36 @@ public class Start13 extends AppCompatActivity {
     public void onRadioButtonClicked(View v) {
         boolean checked = ((RadioButton) v).isChecked();
         String type;
+        Intent intent= null;
+        Bundle bundle, bundle1, bundle2;
         switch (v.getId()) {
 
             case R.id.radio1:
                 if (checked) {
-                    type = "BUY_A_PROPERTY";
-                    Intent intent = new Intent(Start13.this, Start131.class);
-                    Bundle bundle = new Bundle();
+                    intent = new Intent(Start13.this, Start131.class);
+                    bundle = new Bundle();
                     bundle.putString("PURPOSE_OF_USER", PURPOSE);
                     intent.putExtras(bundle);
                     startActivity(intent);
+                    finish();
                 }
                 break;
             case R.id.radio2:
                 if (checked) {
-                    type = "RENT_A_PROPERTY";
-                    Intent intent = new Intent(Start13.this, Start132.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("PURPOSE_OF_USER", PURPOSE);
-                    intent.putExtras(bundle);
+                    intent = new Intent(Start13.this, Start131.class);
+                    bundle1 = new Bundle();
+                    bundle1.putString("PURPOSE_OF_USER", PURPOSE);
+                    intent.putExtras(bundle1);
                     startActivity(intent);
+                    finish();
                 }
                 break;
             case R.id.radio3:
                 if (checked) {
-                    type = "SELL/RENT_USER";
-                    Intent intent = new Intent(Start13.this, Start133.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("PURPOSE_OF_USER", PURPOSE);
-                    intent.putExtras(bundle);
+                    intent = new Intent(Start13.this, Start133.class);
+                    bundle2 = new Bundle();
+                    bundle2.putString("PURPOSE_OF_USER", PURPOSE);
+                    intent.putExtras(bundle2);
                     startActivity(intent);
                 }
                 break;

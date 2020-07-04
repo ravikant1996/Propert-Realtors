@@ -87,7 +87,7 @@ public class Start31 extends AppCompatActivity {
             case R.id.radioButton1:
                 if (checked) {
                     userType= "Agent";
-                    Intent intent = new Intent(Start31.this, Start32Agent.class);
+                    Intent intent = new Intent(Start31.this, Start32.class);
                     Bundle bundle = new Bundle();
                  //   bundle.putString("PURPOSE", purpose);
                     bundle.putString("USER_TYPE", userType);

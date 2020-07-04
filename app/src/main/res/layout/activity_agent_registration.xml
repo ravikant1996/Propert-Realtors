@@ -6,28 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".activity.AgentRegistration">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.02" />
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:textColor="@color/black"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="Enter your contact details"
+            app:titleTextAppearance="@style/Toolbar.TitleText" />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.93" />
 
     <ScrollView
+        android:id="@+id/scrollView4"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline">
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout3">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -37,13 +53,16 @@
             android:orientation="vertical">
 
 
-
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:freezesText="true"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:text="Office Address"
+                android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
@@ -53,7 +72,8 @@
                 android:id="@+id/localityView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="12dp"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="@+id/textView2"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textView2"
@@ -63,16 +83,17 @@
                     android:id="@+id/locality"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Locality"
                     android:inputType="textPostalAddress"
-                    android:maxLength="150"
-                    android:hint="Locality" />
+                    android:maxLength="150" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/addressView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="@+id/localityView"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/localityView"
@@ -83,9 +104,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
+                    android:hint="Address"
                     android:inputType="textPostalAddress"
-                    android:maxLength="150"
-                    android:hint="Address" />
+                    android:maxLength="150" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,7 +114,8 @@
                 android:id="@+id/contactView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="@+id/addressView"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/addressView"
@@ -103,27 +125,28 @@
                     android:id="@+id/contact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLength="50"
-                    android:hint="Contact Person" />
+                    android:hint="Contact Person"
+                    android:inputType="textPersonName"
+                    android:maxLength="50" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/agencyNmeView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="@+id/contactView"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/contactView"
                 app:layout_constraintTop_toBottomOf="@+id/contactView">
 
-
                 <EditText
                     android:id="@+id/agency_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLength="100"
-                    android:hint="Agency/Company Name" />
+                    android:hint="Agency/Company Name"
+                    android:maxLength="100" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -132,7 +155,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:freezesText="true"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:text="Company Details"
+                android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/agencyNmeView"
@@ -144,7 +170,8 @@
                 android:id="@+id/descripView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="16dp"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="@+id/textView3"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/textView3"
@@ -155,128 +182,183 @@
                     android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Breif Description of your Business"
+                    android:inputType="textMultiLine"
                     android:maxLength="255"
-                    android:hint="Breif Description of your Business" />
+                    android:maxLines="4" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Since"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+            <Spinner
+                android:id="@+id/operating_since"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spinnerHeight"
+                android:layout_marginTop="16dp"
+                android:hint="Operating Since"
                 app:layout_constraintEnd_toEndOf="@+id/descripView"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/descripView"
-                app:layout_constraintTop_toBottomOf="@+id/descripView">
-
-                <Spinner
-                    android:id="@+id/operating_since"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/spinnerHeight"
-                    android:hint="Operating Since" />
-            </com.google.android.material.textfield.TextInputLayout>
+                app:layout_constraintTop_toBottomOf="@+id/descripView" />
 
             <TextView
                 android:id="@+id/head"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:text="Transaction Type"
-                app:layout_constraintEnd_toEndOf="@+id/Since"
-                app:layout_constraintStart_toStartOf="@+id/Since"
-                app:layout_constraintTop_toBottomOf="@+id/Since" />
+                app:layout_constraintEnd_toEndOf="@+id/operating_since"
+                app:layout_constraintStart_toStartOf="@+id/operating_since"
+                app:layout_constraintTop_toBottomOf="@+id/operating_since" />
 
-            <TextView
-                android:id="@+id/rent"
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/boader"
-                android:padding="10dp"
-                android:onClick="rent"
-                android:text="Rent/\nLease"
-                android:gravity="center"
-                app:layout_constraintEnd_toStartOf="@+id/booking"
-                app:layout_constraintStart_toStartOf="@+id/head"
-                app:layout_constraintTop_toBottomOf="@+id/head" />
+                android:layout_height="wrap_content"
+                android:scrollbarSize="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/head">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
 
-            <TextView
-                android:id="@+id/booking"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/boader"
-                android:padding="10dp"
-                android:onClick="booking"
-                android:text="Original\nBooking"
-                android:gravity="center"
-                app:layout_constraintEnd_toStartOf="@+id/launch"
-                app:layout_constraintStart_toEndOf="@+id/rent"
-                app:layout_constraintTop_toBottomOf="@+id/head" />
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/rent"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:elevation="25dp"
+                        android:onClick="transtionType"
+                        app:layout_constraintEnd_toStartOf="@+id/booking"
+                        app:layout_constraintStart_toStartOf="@+id/head"
+                        app:layout_constraintTop_toBottomOf="@+id/head">
 
-            <TextView
-                android:id="@+id/launch"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/boader"
-                android:padding="10dp"
-                android:onClick="prelaunch"
-                android:text="Pre-\nLaunch"
-                android:gravity="center"
-                app:layout_constraintEnd_toStartOf="@+id/resale"
-                app:layout_constraintStart_toEndOf="@+id/booking"
-                app:layout_constraintTop_toBottomOf="@+id/head" />
+                        <TextView
+                            android:id="@+id/rentt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="Rent/\nLease"
+                            android:textColor="@color/black" />
+                    </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/resale"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/boader"
-                android:padding="10dp"
-                android:text="Resale"
-                android:onClick="resale"
-                android:gravity="center"
-                app:layout_constraintEnd_toStartOf="@+id/other"
-                app:layout_constraintStart_toEndOf="@+id/launch"
-                app:layout_constraintTop_toBottomOf="@+id/head" />
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/booking"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:elevation="25dp"
 
-            <TextView
-                android:id="@+id/other"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/boader"
-                android:padding="10dp"
-                android:onClick="other"
-                android:text="Others"
-                android:gravity="center"
-                app:layout_constraintEnd_toEndOf="@+id/head"
-                app:layout_constraintStart_toEndOf="@+id/resale"
-                app:layout_constraintTop_toBottomOf="@+id/head" />
+                        android:onClick="transtionType"
+                        app:layout_constraintEnd_toStartOf="@+id/launch"
+                        app:layout_constraintStart_toEndOf="@+id/rent"
+                        app:layout_constraintTop_toBottomOf="@+id/head">
+
+                        <TextView
+                            android:id="@+id/book"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="Original\nBooking"
+                            android:textColor="@color/black" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/launch"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:elevation="25dp"
+                        android:onClick="transtionType"
+                        app:layout_constraintEnd_toStartOf="@+id/resale"
+                        app:layout_constraintStart_toEndOf="@+id/booking"
+                        app:layout_constraintTop_toBottomOf="@+id/head">
+
+                        <TextView
+                            android:id="@+id/launching"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="Pre-\nLaunch"
+                            android:textColor="@color/black" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/resale"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:elevation="25dp"
+                        android:onClick="transtionType"
+                        app:layout_constraintEnd_toStartOf="@+id/other"
+                        app:layout_constraintStart_toEndOf="@+id/launch"
+                        app:layout_constraintTop_toBottomOf="@+id/head">
+
+                        <TextView
+                            android:id="@+id/resaling"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="Resale"
+                            android:textColor="@color/black" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/other"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:elevation="25dp"
+                        android:onClick="transtionType"
+                        app:layout_constraintEnd_toEndOf="@+id/head"
+                        app:layout_constraintStart_toEndOf="@+id/resale"
+                        app:layout_constraintTop_toBottomOf="@+id/head">
+
+                        <TextView
+                            android:id="@+id/others"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="Others"
+                            android:textColor="@color/black" />
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <TextView
                 android:id="@+id/typeshead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:text="Types of Property"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rent" />
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
             <TextView
                 android:id="@+id/multistory"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
-                android:onClick="multistory"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
                 android:text="Multistory\nApartment"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@+id/builderfloor"
                 app:layout_constraintStart_toStartOf="@+id/typeshead"
                 app:layout_constraintTop_toBottomOf="@+id/typeshead" />
@@ -286,11 +368,13 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
-                android:onClick="BuilderFloor"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
                 android:text="Builder Floor\nApartment"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@+id/residentialhouse"
                 app:layout_constraintStart_toEndOf="@+id/multistory"
                 app:layout_constraintTop_toBottomOf="@+id/typeshead" />
@@ -300,11 +384,13 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
-                android:onClick="Residentialhouse"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
                 android:text="Residential\nHouse"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/typeshead"
                 app:layout_constraintStart_toEndOf="@+id/builderfloor"
                 app:layout_constraintTop_toBottomOf="@+id/typeshead" />
@@ -313,11 +399,12 @@
                 android:id="@+id/villa"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
-                android:padding="10dp"
-                android:onClick="villa"
+                android:onClick="propertyTypes"
                 android:text="Villa"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@+id/residentialplot"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/multistory" />
@@ -326,11 +413,13 @@
                 android:id="@+id/residentialplot"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
-                android:onClick="Residentialplot"
                 android:text="Residential\nPlot"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@+id/pentahouse"
                 app:layout_constraintStart_toEndOf="@+id/villa"
                 app:layout_constraintTop_toBottomOf="@+id/builderfloor" />
@@ -339,11 +428,13 @@
                 android:id="@+id/pentahouse"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
-                android:onClick="pentahouse"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
                 android:text="Pentahouse"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/residentialhouse"
                 app:layout_constraintStart_toEndOf="@+id/residentialplot"
                 app:layout_constraintTop_toBottomOf="@+id/residentialhouse" />
@@ -352,12 +443,14 @@
                 android:id="@+id/villa2"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
-                android:onClick="Commercialshop"
                 android:text="Commercial\nShop"
-                app:layout_constraintEnd_toStartOf="@+id/residentialplot"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toStartOf="@+id/residentialplot2"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/villa3"
                 app:layout_constraintTop_toBottomOf="@+id/villa3" />
@@ -366,11 +459,13 @@
                 android:id="@+id/residentialplot2"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
-                android:onClick="Commercial"
                 android:text="Commercial\nOffice Space"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@+id/pentahouse"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/villa"
@@ -380,11 +475,13 @@
                 android:id="@+id/pentahouse2"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
-                android:onClick="Office"
                 android:text="Office in IT\nPark/SEZ"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/pentahouse"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/residentialplot"
@@ -394,11 +491,13 @@
                 android:id="@+id/villa3"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
-                android:onClick="Studio"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
                 android:text="Studio\nApartment"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@+id/residentialplot"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/villa"
@@ -408,39 +507,46 @@
                 android:id="@+id/residentialplot3"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
-                android:onClick="showroom"
                 android:text="Commercial\nShowroom"
-                app:layout_constraintEnd_toStartOf="@+id/pentahouse"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/residentialplot2"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/villa"
+                app:layout_constraintStart_toStartOf="@+id/residentialplot2"
                 app:layout_constraintTop_toBottomOf="@+id/residentialplot2" />
 
             <TextView
                 android:id="@+id/pentahouse3"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
-                android:onClick="Commercialland"
                 android:text="Commercial\nLand"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/pentahouse2"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/residentialplot"
+                app:layout_constraintStart_toStartOf="@+id/pentahouse2"
                 app:layout_constraintTop_toBottomOf="@+id/pentahouse2" />
 
             <TextView
                 android:id="@+id/villa4"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
-                android:onClick="warehouse"
                 android:text="Warehouse\nGodown"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@+id/residentialplot"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/villa2"
@@ -450,39 +556,48 @@
                 android:id="@+id/residentialplot4"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
-                android:onClick="industrialland"
                 android:text="Industrial\nLand"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/residentialplot3"
                 app:layout_constraintEnd_toStartOf="@+id/pentahouse"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/villa"
+                app:layout_constraintStart_toEndOf="@+id/villa2"
                 app:layout_constraintTop_toBottomOf="@+id/residentialplot3" />
 
             <TextView
                 android:id="@+id/pentahouse4"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
                 android:text="Industrial\nBuilding"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/pentahouse3"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/residentialplot"
+                app:layout_constraintStart_toStartOf="@+id/pentahouse3"
                 app:layout_constraintTop_toBottomOf="@+id/pentahouse3" />
 
             <TextView
                 android:id="@+id/villa5"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
-                android:onClick="Industrialshed"
                 android:text="Industrial\nShed"
-                app:layout_constraintEnd_toStartOf="@+id/residentialplot"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/villa4"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/villa4"
                 app:layout_constraintTop_toBottomOf="@+id/villa4" />
@@ -491,28 +606,31 @@
                 android:id="@+id/residentialplot5"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
-                android:onClick="Agriculture"
                 android:text="Agriculture\nLand"
-                app:layout_constraintEnd_toStartOf="@+id/pentahouse"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/villa"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/residentialplot4"
+                app:layout_constraintStart_toStartOf="@+id/residentialplot4"
                 app:layout_constraintTop_toBottomOf="@+id/residentialplot4" />
 
             <TextView
                 android:id="@+id/pentahouse5"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:background="@drawable/boader"
+                android:background="@color/whilte"
+                android:elevation="25dp"
                 android:gravity="center"
+                android:onClick="propertyTypes"
                 android:padding="10dp"
-                android:onClick="Farmhouse"
                 android:text="Farm\nHouse"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/pentahouse4"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/residentialplot"
+                app:layout_constraintStart_toEndOf="@+id/residentialplot4"
                 app:layout_constraintTop_toBottomOf="@+id/pentahouse4" />
 
 
@@ -523,9 +641,11 @@
         android:id="@+id/next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         android:onClick="next"
         android:text="Done"
         android:textAllCaps="false"
+        android:textColor="@color/whilte"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

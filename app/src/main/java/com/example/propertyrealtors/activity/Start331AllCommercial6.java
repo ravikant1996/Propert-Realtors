@@ -121,12 +121,6 @@ public class Start331AllCommercial6 extends AppCompatActivity {
     }
     public void getTotalFloor() {
 
-        for (int i = 1; i <= 100; i++) {
-            arrayList.add("" + i);
-        }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinTotal.setAdapter(arrayAdapter);
         spinTotal.setPrompt("Total floors");
         spinTotal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -166,11 +160,11 @@ public class Start331AllCommercial6 extends AppCompatActivity {
         CarpetArea= carpetArea.getText().toString().trim();
         Log.e("area", CarpetArea);
         SuperArea= superArea.getText().toString().trim();
-        if(TextUtils.isEmpty(totalfloor)){
+        if(TextUtils.isEmpty(totalfloor) || totalfloor.equals("Select")){
             Toast.makeText(Start331AllCommercial6.this, "Please Select Total Floor", Toast.LENGTH_SHORT).show();
             return;
 
-        }else if(TextUtils.isEmpty(floorNo)){
+        }else if(TextUtils.isEmpty(floorNo)  || floorNo.equals("Select")){
             Toast.makeText(Start331AllCommercial6.this, "Please Select Floor No of your Property", Toast.LENGTH_SHORT).show();
             return;
 

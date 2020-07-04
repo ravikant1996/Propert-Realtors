@@ -3,15 +3,17 @@ package com.example.propertyrealtors;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.example.propertyrealtors.activity.MainActivity;
 import com.example.propertyrealtors.activity.Start33;
 import com.example.propertyrealtors.model.PropertyModel;
-import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class SessionManager {
     SharedPreferences.Editor editor;
 
     // Context
-    Context _context;
+    Context context;
 
     // Shared pref mode
     int PRIVATE_MODE = 0;
@@ -38,7 +40,7 @@ public class SessionManager {
     // User name (make variable public to access from outside)
     public static final String KEY_ID = "id";
     public static final String KEY_PID_ID = "pid";
-    public static final String KEY_AID ="aid" ;
+    public static final String KEY_AID = "aid";
 
     // User name (make variable public to access from outside)
     public static final String KEY_NAME = "name";
@@ -47,53 +49,146 @@ public class SessionManager {
     // Email address (make variable public to access from outside)
     public static final String KEY_EMAIL = "email";
     public static final String KEY_PHONE = "phone";
+    public static final String PROPERTY_KEY = "propertyId";
+    public static final String PROPERTYTYPE_KEY = "propertytype";
+    public static final String PROPERTYFOR_KEY = "propertyfor";
+    public static final String PROPERTYSUBTYPE_KEY = "propertysubtype";
+
+    public static final String FAVORITES = "Product_Favorite";
+    public static final String FAVORITES_LIST = "favorite";
+
+    public static final String BEDROOM_KEY = "bedroom";
+    public static final String S_PROPERTYKEY = "s_keyId";
+    public static final String S_PROPERTYTYPE = "s_type";
+    public static final String S_ADDRESS = "s_address";
+    public static final String S_BEDROOM = "s_bedroom";
+    public static final String S_PRICE = "s_price";
+    public static final String S_TIME = "s_time";
 
 
     // Constructor
     public SessionManager(Context context) {
-        this._context = context;
-        pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        this.context = context;
+        pref = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
 
     }
-    public void createRENT_RESI(ArrayList<PropertyModel> list1) {
-        this.list1 = list1;
-    }
+
+
+
     public ArrayList<PropertyModel> getcreateRENT_RESI() {
         return list1;
     }
 
-   /* public void createRENT_RESI(ArrayList<PropertyModel> arrayList){
+   /*  public void createRENT_RESI(ArrayList<PropertyModel> arrayList){
+         Gson gson = new Gson();
+         String json = gson.toJson(arrayList);
+         editor.putString("Set1", json);
+         editor.commit();
+     }
+     public void createSELL_RESI(ArrayList<PropertyModel> arrayList){
+         Gson gson = new Gson();
+         String json = gson.toJson(arrayList);
+         editor.putString("Set2", json);
+         editor.commit();
+     }*/
+
+    //session of property
+    public void saveArrayList(ArrayList<PropertyModel> list, String key){
         Gson gson = new Gson();
-        String json = gson.toJson(arrayList);
-        editor.putString("Set1", json);
+        String json = gson.toJson(list);
+        editor.putString(key, json);
+        editor.commit();     // This line is IMPORTANT !!!
+    }
+//    public void removeList(String key){
+//        Gson gson = new Gson();
+//        String json = gson.toJson(list);
+//        editor.putString(key, json);
+//        editor.commit();     // This line is IMPORTANT !!!
+//    }
+
+    public ArrayList<PropertyModel> getArrayList(String key){
+        Gson gson = new Gson();
+        String json = pref.getString(key, null);
+        Type type = new TypeToken<ArrayList<PropertyModel>>() {}.getType();
+        return gson.fromJson(json, type);
+    }
+
+   public void saveFavorites(List<PropertyModel> favorites) {
+       Gson gson = new Gson();
+       String jsonFavorites = gson.toJson(favorites);
+       editor.putString(FAVORITES, jsonFavorites);
+       editor.commit();
+   }
+    public void addFavorite(PropertyModel propertyDetails) {
+        ArrayList<PropertyModel> favorites  = getFavorites();
+        if (favorites == null)
+            favorites = new ArrayList<PropertyModel>();
+        favorites.add(propertyDetails);
+        saveFavorites(favorites);
+    }
+
+
+    public void removeFavorite(PropertyModel propertyDetails) {
+        ArrayList<PropertyModel> favorites = getFavorites();
+        if (favorites != null) {
+            favorites.remove(propertyDetails);
+            saveFavorites(favorites);
+        }
+    }
+
+    public ArrayList<PropertyModel> getFavorites() {
+        List<PropertyModel> favorites = new ArrayList<PropertyModel>();
+
+        if (pref.contains(FAVORITES)) {
+            String jsonFavorites = pref.getString(FAVORITES, null);
+            Gson gson = new Gson();
+            Type type = new TypeToken<List<PropertyModel>>() {
+            }.getType();
+//            PropertyModel[] favoriteItems = gson.fromJson(jsonFavorites, PropertyModel[].class);
+            List<PropertyModel> favoriteItems = gson.fromJson(jsonFavorites, type);
+            for (PropertyModel data : favoriteItems) {
+                favorites.add(data);
+            }
+        } else
+            return null;
+
+        return (ArrayList<PropertyModel>) favorites;
+    }
+    //Search session
+    public void createSearchSession(String propertyType, String propertyfor) {
+        editor.putString(PROPERTYTYPE_KEY, propertyType);
+        editor.putString(PROPERTYFOR_KEY, propertyfor);
         editor.commit();
     }
-    public void createSELL_RESI(ArrayList<PropertyModel> arrayList){
-        Gson gson = new Gson();
-        String json = gson.toJson(arrayList);
-        editor.putString("Set2", json);
-        editor.commit();
+
+    public HashMap<String, String> getPropertySearchSession() {
+        HashMap<String, String> data = new HashMap<String, String>();
+        data.put(PROPERTYTYPE_KEY, pref.getString(PROPERTYTYPE_KEY, null));
+        data.put(PROPERTYFOR_KEY, pref.getString(PROPERTYFOR_KEY, null));
+        return data;
     }
-*/
-// login id passing
-    public void createIdSession(String id){
+
+    // login id passing
+    public void createIdSession(String id) {
         editor.putString(KEY_ID, id);
         editor.commit();
     }
-    public HashMap<String, String> getUserIDs(){
+
+    public HashMap<String, String> getUserIDs() {
         HashMap<String, String> data = new HashMap<String, String>();
         data.put(KEY_ID, pref.getString(KEY_ID, null));
         return data;
     }
 
-    public void createDetailsSession(String name, String email, String phone){
+    public void createDetailsSession(String name, String email, String phone) {
         editor.putString(KEY_NAME, name);
         editor.putString(KEY_EMAIL, email);
         editor.putString(KEY_PHONE, phone);
         editor.commit();
     }
-    public HashMap<String, String> getUserDetails(){
+
+    public HashMap<String, String> getUserDetails() {
         HashMap<String, String> data = new HashMap<>();
         // user name
         data.put(KEY_NAME, pref.getString(KEY_NAME, null));
@@ -123,52 +218,53 @@ public class SessionManager {
         editor.commit();
     }
    */
-   /**
+
+    /**
      * Check login method wil check user login status
      * If false it will redirect user to login page
      * Else won't do anything
-     * */
-    public void checkLogin(){
+     */
+    public void checkLogin() {
         // Check login status
-        if(!this.isLoggedIn()){
+        if (!this.isLoggedIn()) {
             // user is not logged in redirect him to Login Activity
-            Intent i = new Intent(_context, Start33.class);
+            Intent i = new Intent(context, Start33.class);
             // Closing all the Activities
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             // Add new Flag to start new Activity
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             // Staring Login Activity
-            _context.startActivity(i);
+            context.startActivity(i);
         }
     }
 
     /**
      * Clear session details
-     * */
-    public void logoutUser(){
+     */
+    public void logoutUser() {
         // Clearing all data from Shared Preferences
         editor.clear();
         editor.commit();
 
         // After logout redirect user to Loing Activity
-        Intent i = new Intent(_context, MainActivity.class);
+        Intent i = new Intent(context, MainActivity.class);
         // Closing all the Activities
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         // Add new Flag to start new Activity
-     //   i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //   i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         // Staring Login Activity
-        _context.startActivity(i);
+        context.startActivity(i);
 
     }
 
     /**
      * Quick check for login
-     * **/
+     **/
     // Get Login State
-    public boolean isLoggedIn(){
+    public boolean isLoggedIn() {
         return pref.getBoolean(IS_LOGIN, false);
 
     }

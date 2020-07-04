@@ -95,12 +95,6 @@ public class Start331AllCommercial3 extends AppCompatActivity {
 
     public void getTotalFloor() {
 
-        for (int i = 0; i <= 100; i++) {
-            arrayList.add("" + i);
-        }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinTotal.setAdapter(arrayAdapter);
         spinTotal.setPrompt("Total floors");
         spinTotal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -135,22 +129,25 @@ public class Start331AllCommercial3 extends AppCompatActivity {
         plotArea = Plot_Area.getText().toString().trim();
         Log.e("c2", plotArea);
         Log.e("c2", plot_length);
-       if(TextUtils.isEmpty(boundary_wall)){
-            Toast.makeText(Start331AllCommercial3.this, "Please Enter Area", Toast.LENGTH_SHORT).show();
+        if(totalfloor.equals("Select")){
+            Toast.makeText(Start331AllCommercial3.this, "if no floor select please select blank option", Toast.LENGTH_LONG).show();
+            return;
+        }else if(TextUtils.isEmpty(boundary_wall)){
+            Toast.makeText(Start331AllCommercial3.this, "Please Select Boundary wall", Toast.LENGTH_LONG).show();
             return;
         }else if(TextUtils.isEmpty(plotArea)){
-            Toast.makeText(Start331AllCommercial3.this, "Please Enter Area", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Start331AllCommercial3.this, "Please Enter Area", Toast.LENGTH_LONG).show();
            return;
 
-        }else if(TextUtils.isEmpty(plot_length)){
-            Toast.makeText(Start331AllCommercial3.this, "Please Enter length", Toast.LENGTH_SHORT).show();
+        }/*else if(TextUtils.isEmpty(plot_length)){
+            Toast.makeText(Start331AllCommercial3.this, "Please Enter length", Toast.LENGTH_LONG).show();
            return;
 
        }else if(TextUtils.isEmpty(plot_bredth)){
-            Toast.makeText(Start331AllCommercial3.this, "Please Enter breadth", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Start331AllCommercial3.this, "Please Enter breadth", Toast.LENGTH_LONG).show();
            return;
 
-       }
+       }*/
         else{
             Intent intent;
             Bundle bundle = new Bundle();

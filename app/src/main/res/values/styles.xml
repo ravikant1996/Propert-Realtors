@@ -6,13 +6,18 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:statusBarColor">#00000000</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
         <item name="android:textSize">14sp</item>
         <item name="actionBarSize">45dp</item>
+        <!--<item name="android:statusBarColor">@color/colorPrimary</item>-->
        <!-- <item name="fontFamily">casual</item>
         <item name="android:textStyle">bold</item>
   -->  </style>
     <style name="AppTheme.start" parent="Theme.AppCompat.DayNight.NoActionBar">
+    </style>
+    <style name="Theme.HomeScreen" parent="android:Theme.Holo.NoActionBar.TranslucentDecor">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -29,10 +34,19 @@
 
     </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="actionMenuTextColor">@color/whilte</item>
+
+    </style>
     // toolbar text size
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">15sp</item>
+
+    </style>
+
+    <style name="ucrop_TextViewWidgetText." parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">11dp</item>
+
     </style>
 
     <style name="NavigationTheme" parent="AppTheme">

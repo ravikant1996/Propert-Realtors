@@ -18,6 +18,12 @@ import com.example.propertyrealtors.Post_property.DetailAdding;
 import com.example.propertyrealtors.R;
 import com.example.propertyrealtors.SessionManager;
 import com.example.propertyrealtors.activity.Start331All;
+import com.example.propertyrealtors.activity.Start331AllCommercial;
+import com.example.propertyrealtors.activity.Start331AllCommercial2;
+import com.example.propertyrealtors.activity.Start331AllCommercial3;
+import com.example.propertyrealtors.activity.Start331AllCommercial4;
+import com.example.propertyrealtors.activity.Start331AllCommercial5;
+import com.example.propertyrealtors.activity.Start331AllCommercial6;
 import com.example.propertyrealtors.activity.Start331AllResidential;
 import com.example.propertyrealtors.activity.Start331AllResidential3;
 import com.example.propertyrealtors.model.Image;
@@ -30,35 +36,31 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ShowPropertyAdapterR1 extends RecyclerView.Adapter<ShowPropertyAdapterR1.ShowPropertyAdapterViewHolder> {
     Context context;
-    ArrayList<PropertyModel> arrayList= new ArrayList<>();
-    ArrayList<Image> imageArrayList =new ArrayList<>();
-  //  private static SharedPreferences prefs;
-
+    ArrayList<PropertyModel> arrayList = new ArrayList<>();
+    ArrayList<Image> imageArrayList = new ArrayList<>();
 
     public ShowPropertyAdapterR1(Context context, ArrayList<PropertyModel> propertyModelArrayList, ArrayList<Image> images) {
         this.context = context;
         this.arrayList = propertyModelArrayList;
         this.imageArrayList = images;
-  //      prefs= context.getSharedPreferences("MYPREFS", 0);
-
     }
 
     @NonNull
     @Override
     public ShowPropertyAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    //    prefs = context.getSharedPreferences("MYPREFS", 0);
+        //    prefs = context.getSharedPreferences("MYPREFS", 0);
 
         View itemView;
-        if(viewType == R.layout.layout_show_property){
+        if (viewType == R.layout.layout_show_property) {
             itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_show_property, parent, false);
-        }
-        else {
+        } else {
             itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_show_all, parent, false);
         }
 
@@ -72,11 +74,14 @@ public class ShowPropertyAdapterR1 extends RecyclerView.Adapter<ShowPropertyAdap
     @Override
     public void onBindViewHolder(ShowPropertyAdapterViewHolder holder, final int position) {
         try {
-            if(position != (arrayList.size() + imageArrayList.size()- imageArrayList.size())) {
+            if (position != (arrayList.size() + imageArrayList.size() - imageArrayList.size())) {
                 if (position < arrayList.size()) {
-                    holder.rupee.setText(arrayList.get(position).getPrice());
-                    holder.bedroomORSubtype.setText(arrayList.get(position).getBedroom() + " BHK " + arrayList.get(position).getPropertySubType());
-                    holder.localityORCity.setText(arrayList.get(position).getProject() + " " + arrayList.get(position).getCity());
+                    holder.rupee.setText("₹"+arrayList.get(position).getPrice());
+                    if (arrayList.get(position).getBedroom().isEmpty()){
+                        holder.bedroomORSubtype.setText(arrayList.get(position).getPropertySubType());
+                    }else {
+                        holder.bedroomORSubtype.setText(arrayList.get(position).getBedroom() + " BHK " + arrayList.get(position).getPropertySubType());
+                    }                       holder.localityORCity.setText(arrayList.get(position).getProject());
                     holder.status.setText(arrayList.get(position).getProperty_status());
                     String urls = imageArrayList.get(position).getImageAddress();
                     Picasso.get()
@@ -86,121 +91,151 @@ public class ShowPropertyAdapterR1 extends RecyclerView.Adapter<ShowPropertyAdap
                             .error(R.drawable.property_logo)
                             .into(holder.imageView);
                     Log.e("ShowPropertyAdapterR1", urls);
-                }
-    holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String propertyFor=arrayList.get(position).getPropertyFor();
-                String propertyType= "residential";
-                String PropertySubType= arrayList.get(position).getPropertySubType();
-                String propertyId = arrayList.get(position).getKeyId();
-                String price=arrayList.get(position).getPrice();
-                String bedroom = arrayList.get(position).getBedroom();
-                String locality = arrayList.get(position).getProject();
-                String carpet = arrayList.get(position).getCarpetArea();
-                String propertyStatus = arrayList.get(position).getProperty_status();
-                String bathroom = arrayList.get(position).getBathroom();
-                String floorNo = arrayList.get(position).getFloorNo();
-                String furnishing = arrayList.get(position).getFurnished();
-                String availableFrom = arrayList.get(position).getAvailablefrom();
-                String ageOfconstruction = arrayList.get(position).getAgeOfconstruction();
-                String boundaryWall = arrayList.get(position).getBoundary_wall();
-                String cafateria = arrayList.get(position).getCafateria();
-                String construction_done = arrayList.get(position).getConstruction_done();
-                String cornerShop = arrayList.get(position).getCornerShop();
-                String TotalFloor = arrayList.get(position).getTotalfloor();
-                String gated_colony = arrayList.get(position).getGated_colony();
-                String lock_in_periodString = arrayList.get(position).getLock_in_periodString();
-                String main_road_facing = arrayList.get(position).getMain_road_facing();
-                String open_Sides = arrayList.get(position).getOpen_Sides();
-                String personal_washroom = arrayList.get(position).getPersonal_washroom();
-                String plotArea = arrayList.get(position).getPlotArea();
-                String plot_bredth = arrayList.get(position).getPlot_bredth();
-                String plot_length = arrayList.get(position).getPlot_length();
-                String roadWidth = arrayList.get(position).getRoadWidth();
-                String security = arrayList.get(position).getSecurity();
-                String superArea = arrayList.get(position).getSuperArea();
-                String token_amount = arrayList.get(position).getToken_amount();
-                String washroom = arrayList.get(position).getWashroom();
-                String maintenance = arrayList.get(position).getMaintenance();
-                String balcony = arrayList.get(position).getBalcony();
-                String city = arrayList.get(position).getCity();
-                String carpetAreaParameter, superAreaParameter, plotAreaParameter, maintenance_parameter, roadWidthParameter;
-                carpetAreaParameter = arrayList.get(position).getCarpetAreaParameter();
-                superAreaParameter = arrayList.get(position).getSuperAreaParameter();
-                plotAreaParameter = arrayList.get(position).getPlotAreaParameter();
-                maintenance_parameter = arrayList.get(position).getMaintenance_parameter();
-                roadWidthParameter = arrayList.get(position).getRoadWidthParameter();
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String propertyFor = arrayList.get(position).getPropertyFor();
+                            String propertyType = arrayList.get(position).getPropertyType();
+                            String PropertySubType = arrayList.get(position).getPropertySubType();
+                            String propertyId = arrayList.get(position).getKeyId();
+                            String price = arrayList.get(position).getPrice();
+                            String bedroom = arrayList.get(position).getBedroom();
+                            String locality = arrayList.get(position).getProject();
+                            String carpet = arrayList.get(position).getCarpetArea();
+                            String propertyStatus = arrayList.get(position).getProperty_status();
+                            String bathroom = arrayList.get(position).getBathroom();
+                            String floorNo = arrayList.get(position).getFloorNo();
+                            String furnishing = arrayList.get(position).getFurnished();
+                            String availableFrom = arrayList.get(position).getAvailablefrom();
+                            String ageOfconstruction = arrayList.get(position).getAgeOfconstruction();
+                            String boundaryWall = arrayList.get(position).getBoundary_wall();
+                            String cafateria = arrayList.get(position).getCafateria();
+                            String construction_done = arrayList.get(position).getConstruction_done();
+                            String cornerShop = arrayList.get(position).getCornerShop();
+                            String TotalFloor = arrayList.get(position).getTotalfloor();
+                            String gated_colony = arrayList.get(position).getGated_colony();
+                            String lock_in_periodString = arrayList.get(position).getLock_in_periodString();
+                            String main_road_facing = arrayList.get(position).getMain_road_facing();
+                            String open_Sides = arrayList.get(position).getOpen_Sides();
+                            String personal_washroom = arrayList.get(position).getPersonal_washroom();
+                            String plotArea = arrayList.get(position).getPlotArea();
+                            String plot_bredth = arrayList.get(position).getPlot_bredth();
+                            String plot_length = arrayList.get(position).getPlot_length();
+                            String roadWidth = arrayList.get(position).getRoadWidth();
+                            String security = arrayList.get(position).getSecurity();
+                            String superArea = arrayList.get(position).getSuperArea();
+                            String token_amount = arrayList.get(position).getToken_amount();
+                            String washroom = arrayList.get(position).getWashroom();
+                            String maintenance = arrayList.get(position).getMaintenance();
+                            String balcony = arrayList.get(position).getBalcony();
+                            String city = arrayList.get(position).getCity();
+                            String carpetAreaParameter, superAreaParameter, plotAreaParameter, maintenance_parameter, roadWidthParameter;
+                            carpetAreaParameter = arrayList.get(position).getCarpetAreaParameter();
+                            superAreaParameter = arrayList.get(position).getSuperAreaParameter();
+                            plotAreaParameter = arrayList.get(position).getPlotAreaParameter();
+                            maintenance_parameter = arrayList.get(position).getMaintenance_parameter();
+                            roadWidthParameter = arrayList.get(position).getRoadWidthParameter();
+                            String imageAddress = imageArrayList.get(position).getImageAddress();
+                            String refId= arrayList.get(position).getUID();
+                            String dateofposting= arrayList.get(position).getDateofposting();
+                            String timeofposting= arrayList.get(position).getTimeofposting();
 
 
-                String [] strings={propertyId, propertyFor, propertyType, price, bedroom, locality, carpet, propertyStatus, bathroom,
-                        floorNo, furnishing, PropertySubType, availableFrom, ageOfconstruction, boundaryWall, cafateria, construction_done,
-                        cornerShop, TotalFloor, gated_colony, lock_in_periodString, main_road_facing, open_Sides, personal_washroom, plotArea, plot_bredth,
-                        plot_length, roadWidth, security, superArea, token_amount, washroom, maintenance, balcony, carpetAreaParameter, superAreaParameter,
-                        plotAreaParameter, maintenance_parameter, roadWidthParameter, city};
+                            String[] strings = {propertyId, propertyFor, propertyType, price, bedroom, locality, carpet, propertyStatus, bathroom,
+                                    floorNo, furnishing, PropertySubType, availableFrom, ageOfconstruction, boundaryWall, cafateria, construction_done,
+                                    cornerShop, TotalFloor, gated_colony, lock_in_periodString, main_road_facing, open_Sides, personal_washroom, plotArea, plot_bredth,
+                                    plot_length, roadWidth, security, superArea, token_amount, washroom, maintenance, balcony, carpetAreaParameter, superAreaParameter,
+                                    plotAreaParameter, maintenance_parameter, roadWidthParameter, city, imageAddress, refId, dateofposting, timeofposting};
+                            Intent intent = null;
+                            Bundle bundle = new Bundle();
+                            bundle.putStringArray("DATAARRAY", strings);
 
-                switch (PropertySubType) {
-                    case "Flat/Apartment":
-                    case "Builder_Floor":
-                    case "Pentahouse":
-                    case "Studio_Apartment":
-                    case "House":
-                    case "Farm_House":
-                    case "Villa":
-                        Intent intent = new Intent(context, Start331AllResidential_View.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putStringArray("DATAARRAY", strings);
-                        intent.putExtras(bundle);
-                        context.startActivity(intent);
-                        break;
-                    case "Plot":
-                        intent = new Intent(context, Start331AllResidential2_View.class);
-                        Bundle bundle1 = new Bundle();
-                        bundle1.putStringArray("DATAARRAY", strings);
-                        intent.putExtras(bundle1);
-                        context.startActivity(intent);
-                        break;
-                }
-           }
-        });
-                holder.likeButton.setOnLikeListener(new OnLikeListener() {
-                    @Override
-                    public void liked(LikeButton likeButton) {
-                        Toast.makeText(context, "Added in Favourite", Toast.LENGTH_SHORT).show();
+                            switch (PropertySubType) {
+                                case "Flat/Apartment":
+                                case "Builder_Floor":
+                                case "Pentahouse":
+                                case "Studio_Apartment":
+                                case "House":
+                                case "Farm_House":
+                                case "Villa":
+                                    intent = new Intent(context, Start331AllResidential_View.class);
+                                    intent.putExtras(bundle);
+                                    context.startActivity(intent);
+                                    break;
+                                case "Plot":
+                                case "Commercial_Land":
+                                case "Agriculture_Land":
+                                case "Industrial_Land":
+                                    intent = new Intent(context, Start331AllResidential2_View.class);
+                                    intent.putExtras(bundle);
+                                    context.startActivity(intent);
+                                    break;
+
+                                case "office":
+                                case "IT_Park":
+                                case "Shop":
+                                case "Showroom":
+                                case "Warehouse":
+                                case "Industrial_Building":
+                                case "Industrial_Shed":
+                                case "Coworking_Space":
+                                    intent = new Intent(context, Start331AllCommercial_View.class);
+                                    intent.putExtras(bundle);
+                                    context.startActivity(intent);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    });
+                    holder.likeButton.setOnLikeListener(new OnLikeListener() {
+                        @Override
+                        public void liked(LikeButton likeButton) {
+                            Toast.makeText(context, "Added in Favourite", Toast.LENGTH_SHORT).show();
              /*   String propertyId= arrayList.get(position).getKeyId();
                 SessionManager session = new SessionManager(context);
                 HashMap<String, String> userID = session.getUserIDs();
                 String id = userID.get(SessionManager.KEY_ID);
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User");
           */
-                    }
-                    @Override
-                    public void unLiked(LikeButton likeButton) {
-                        Toast.makeText(context, "Remove from Favourite", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }else {
+                        }
+
+                        @Override
+                        public void unLiked(LikeButton likeButton) {
+                            Toast.makeText(context, "Remove from Favourite", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    holder.call.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
+            } else {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(context, "Under Construction", Toast.LENGTH_SHORT).show();
+                        Intent intent= new Intent(context, ViewProperty.class);
+
+                        context.startActivity(intent);
                     }
                 });
             }
-        }catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
     public int getItemCount() {
-        return arrayList.size() + imageArrayList.size()- imageArrayList.size() + 1 ;
+        return arrayList.size() + imageArrayList.size() - imageArrayList.size() + 1;
     }
 
     @Override
@@ -222,17 +257,9 @@ public class ShowPropertyAdapterR1 extends RecyclerView.Adapter<ShowPropertyAdap
             bedroomORSubtype = (TextView) itemView.findViewById(R.id.bedroom_subtype);
             localityORCity = (TextView) itemView.findViewById(R.id.locality_city);
             status = (TextView) itemView.findViewById(R.id.status);
-            imageView =  itemView.findViewById(R.id.image);
-            likeButton =  itemView.findViewById(R.id.star_button);
-            call =  itemView.findViewById(R.id.calling);
-
-
-          /*  call.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(context, "Calling", Toast.LENGTH_SHORT).show();
-                }
-            });*/
+            imageView = itemView.findViewById(R.id.image);
+            likeButton = itemView.findViewById(R.id.star_button);
+            call = itemView.findViewById(R.id.calling);
         }
     }
 

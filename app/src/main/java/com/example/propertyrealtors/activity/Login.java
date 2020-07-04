@@ -116,6 +116,8 @@ public class Login extends AppCompatActivity {
 
             Toast.makeText(getApplicationContext(),
                     "UserName cannot be Blank", Toast.LENGTH_LONG).show();
+            Snackbar.make(view, "UserName cannot be Blank", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
             //   UserName.setError("UserName cannot be Blank");
             return;
         } else if (!TextUtils.isDigitsOnly(UserName.getText().toString())) {
@@ -124,6 +126,8 @@ public class Login extends AppCompatActivity {
                 if (Password.getText().toString().length() == 0) {
                     Toast.makeText(getApplicationContext(),
                             "Enter Password", Toast.LENGTH_LONG).show();
+                    Snackbar.make(view, "Enter Password", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
                     //  Password.setError("Password?");
                     return;
                 } else {
@@ -195,6 +199,7 @@ public class Login extends AppCompatActivity {
                     sendVerificationCode(unameORphone);
                 } else {
                     UserName.setError("First registered the number");
+
                     Toast.makeText(Login.this, "First registered the number", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -347,5 +352,12 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Login.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
 
+    }
 }

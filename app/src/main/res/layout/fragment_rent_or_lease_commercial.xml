@@ -14,9 +14,16 @@
        android:background="@drawable/custom_edit_text"
        android:textStyle="bold"
       android:text="Rent or lease Commercial"/>
-  --> <androidx.recyclerview.widget.RecyclerView
+
+  -->
+  <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+      android:id="@+id/swipeToRefresh"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+  <androidx.recyclerview.widget.RecyclerView
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:layout_marginTop="2dp"
        android:id="@+id/recyclerView"/>
+  </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </FrameLayout>

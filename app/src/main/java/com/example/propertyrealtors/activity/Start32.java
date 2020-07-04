@@ -82,6 +82,9 @@ public class Start32 extends AppCompatActivity {
             //    purpose = bundle.getString("PURPOSE", null);
             //   name = bundle.getString("USER_NAME", null);
             usertype = bundle.getString("USER_TYPE", null);
+            if (usertype.equals("Agent")){
+                toolbar.setTitle("Help property seekers contact with you");
+            }
             Log.e(TAG, usertype);
         } catch (Exception e) {
             e.printStackTrace();
@@ -153,7 +156,7 @@ public class Start32 extends AppCompatActivity {
     }
 
     public void next(View view) {
-        otp = otpcode.getText().toString();
+        otp = otpcode.getText().toString().trim();
         try {
             //creating the credential
             PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, otp);

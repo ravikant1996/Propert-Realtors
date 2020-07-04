@@ -6,113 +6,75 @@
     android:layout_height="match_parent"
     tools:context=".activity.searchFilter_1">
 
-    <Button
-        android:id="@+id/clear_search2"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginEnd="10dp"
-        android:gravity="right|center_vertical"
-        android:onClick="reset"
-        android:text="Reset"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/back4"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/bac"
-        android:onClick="back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/filter"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        android:padding="20dp"
-        android:text="Filters (selected filters)"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/back4"
-        app:layout_constraintEnd_toStartOf="@+id/clear_search2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/back4"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextAppearance="@style/Toolbar.TitleText" />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <Button
         android:id="@+id/buy"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
+        android:onClick="onClickPropertyFor"
         android:padding="10dp"
         android:text="BUY"
         app:layout_constraintEnd_toStartOf="@+id/rent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout3" />
 
     <Button
         android:id="@+id/rent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
+        android:onClick="onClickPropertyFor"
         android:padding="10dp"
         android:text="RENT"
-        app:layout_constraintEnd_toStartOf="@+id/pg"
-        app:layout_constraintStart_toEndOf="@+id/buy"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/pg"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="PG"
         app:layout_constraintEnd_toStartOf="@+id/commercial"
-        app:layout_constraintStart_toEndOf="@+id/rent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/buy"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout3" />
 
     <Button
         android:id="@+id/commercial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
         android:gravity="center"
+        android:onClick="onClickPropertyFor"
         android:padding="10dp"
         android:text="COMMERCIAL"
-        app:layout_constraintEnd_toStartOf="@+id/project"
-        app:layout_constraintStart_toEndOf="@+id/pg"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/project"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="10dp"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="PROJECT"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/commercial"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/rent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout3" />
+
 
     <TextView
         android:id="@+id/next2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="10dp"
-        android:background="#EA0404"
+        android:background="@color/colorPrimary"
+        android:elevation="30dp"
         android:gravity="center"
         android:onClick="next"
-        android:text="See No of Properties"
+        android:text="Search"
         android:textAllCaps="false"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -124,12 +86,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.16" />
+        app:layout_constraintGuide_begin="116dp" />
 
     <ScrollView
+        android:id="@+id/myScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:id="@+id/myScrollView"
         app:layout_constraintBottom_toTopOf="@id/guideline2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -137,69 +99,117 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="Looking to"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/buyComm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                android:layout_marginEnd="8dp"
+                android:text="Buy"
+                android:onClick="btnCommercial"
+                app:layout_constraintEnd_toStartOf="@+id/leaseComm"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <Button
+                android:id="@+id/leaseComm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:onClick="btnCommercial"
+                android:text="Lease"
+                app:layout_constraintEnd_toEndOf="@+id/textView"
+                app:layout_constraintStart_toEndOf="@+id/buyComm"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <TextView
                 android:id="@+id/textView15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/black"
+                android:paddingBottom="10dp"
                 android:text="Locality/Project/Landmark"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/buyComm" />
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/search"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                android:cursorVisible="false"
+                android:dropDownVerticalOffset="5dp"
                 android:hint="Search in a CIty, locality"
                 app:layout_constraintEnd_toEndOf="@+id/textView15"
                 app:layout_constraintStart_toStartOf="@+id/textView15"
                 app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
-            <TextView
-                android:id="@+id/loc1"
+            <HorizontalScrollView
+                android:id="@+id/horizontalScroll"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_edit_text"
-                android:text="Location"
-                android:visibility="gone"
-                app:layout_constraintEnd_toStartOf="@+id/loc2"
-                app:layout_constraintStart_toStartOf="@+id/textView15"
-                tools:layout_editor_absoluteY="165dp" />
+                android:scrollbarSize="0dp"
+                app:layout_constraintEnd_toEndOf="@+id/search"
+                app:layout_constraintStart_toStartOf="@+id/search"
+                app:layout_constraintTop_toBottomOf="@+id/search">
 
-            <TextView
-                android:id="@+id/loc2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/custom_edit_text"
-                android:text="Location"
-                android:visibility="gone"
-                app:layout_constraintEnd_toStartOf="@+id/search"
-                app:layout_constraintStart_toStartOf="@+id/loc1"
-                tools:layout_editor_absoluteY="165dp" />
+                <LinearLayout
+                    android:id="@+id/linearlayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
 
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/black"
+                android:paddingBottom="10dp"
                 android:text="Property Type"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/search"
-                app:layout_constraintStart_toStartOf="@+id/search"
-                app:layout_constraintTop_toBottomOf="@+id/search" />
+                app:layout_constraintEnd_toEndOf="@+id/horizontalScroll"
+                app:layout_constraintStart_toStartOf="@+id/horizontalScroll"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScroll" />
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="10dp"
                 android:scrollbarSize="0dp"
                 app:layout_constraintEnd_toEndOf="@+id/textView1"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -209,99 +219,167 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/flat"
-                        android:layout_width="@dimen/width"
-                        android:layout_height="@dimen/height">
+                        android:layout_width="80dp"
+                        android:layout_height="@dimen/height"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="cardClickgp1">
 
                         <ImageView
                             android:layout_width="@dimen/widthimage"
                             android:layout_height="@dimen/heightimage"
-                            android:layout_gravity="top|center_horizontal"
+                            android:layout_gravity="center"
+                            android:padding="15dp"
                             android:src="@drawable/flat" />
 
                         <TextView
+                            android:id="@+id/flatText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_gravity="bottom|center_horizontal"
                             android:layout_marginBottom="10dp"
-                            android:layout_gravity="center|bottom"
+                            android:gravity="center"
                             android:text="Flat" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/house"
                         android:layout_width="@dimen/width"
-                        android:layout_height="@dimen/height">
+                        android:layout_height="@dimen/height"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="cardClickgp1"
+                        android:padding="10dp">
 
                         <ImageView
                             android:layout_width="@dimen/widthimage"
                             android:layout_height="@dimen/heightimage"
-                            android:layout_gravity="top|center_horizontal"
+                            android:layout_gravity="center"
+                            android:padding="15dp"
                             android:src="@drawable/house" />
 
                         <TextView
+                            android:id="@+id/houseText"
                             android:layout_width="wrap_content"
+                            android:textColor="@color/black"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
                             android:layout_gravity="bottom|center_horizontal"
+                            android:gravity="center"
                             android:text="House/\nVilla" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/plot"
                         android:layout_width="@dimen/width"
-                        android:layout_height="@dimen/height">
+                        android:layout_height="@dimen/height"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="cardClickgp1">
 
                         <ImageView
                             android:layout_width="@dimen/widthimage"
                             android:layout_height="@dimen/heightimage"
-                            android:layout_gravity="top|center_horizontal"
+                            android:layout_gravity="center"
+                            android:padding="15dp"
                             android:src="@drawable/plot" />
 
                         <TextView
+                            android:id="@+id/plotText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_gravity="bottom|center_horizontal"
                             android:layout_marginBottom="10dp"
-                            android:layout_gravity="center|bottom"
                             android:text="Plot" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/office"
                         android:layout_width="@dimen/width"
-                        android:layout_height="@dimen/height">
+                        android:layout_height="@dimen/height"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="cardClickgp2">
 
                         <ImageView
                             android:layout_width="@dimen/widthimage"
                             android:layout_height="@dimen/heightimage"
-                            android:layout_gravity="top|center_horizontal"
-                            android:layout_marginBottom="5dp"
+                            android:layout_gravity="center"
+                            android:padding="15dp"
                             android:src="@drawable/office" />
 
                         <TextView
+                            android:id="@+id/officeText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:textColor="@color/black"
                             android:gravity="center"
-                            android:layout_gravity="center_horizontal|bottom"
                             android:text="Office\nSpace" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/coworking"
+                        android:layout_width="@dimen/width"
+                        android:layout_height="@dimen/height"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="cardClickgp2"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="@dimen/widthimage"
+                            android:layout_height="@dimen/heightimage"
+                            android:layout_gravity="center"
+                            android:padding="15dp"
+                            android:src="@drawable/filter" />
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:id="@+id/coworkingText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:gravity="center"
+                            android:text="Co-Working\nSpace" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/shop"
                         android:layout_width="@dimen/width"
-                        android:layout_height="@dimen/height">
+                        android:layout_height="@dimen/height"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="cardClickgp2">
 
                         <ImageView
                             android:layout_width="@dimen/widthimage"
                             android:layout_height="@dimen/heightimage"
-                            android:layout_gravity="top|center_horizontal"
-                            android:layout_marginBottom="5dp"
+                            android:layout_gravity="center"
+                            android:padding="15dp"
                             android:src="@drawable/shop" />
 
                         <TextView
+                            android:id="@+id/shopText"
+                            android:textColor="@color/black"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|center_horizontal"
@@ -309,22 +387,31 @@
                             android:text="Shop/\nShowroom" />
                     </androidx.cardview.widget.CardView>
 
+
                     <androidx.cardview.widget.CardView
                         android:id="@+id/other"
                         android:layout_width="@dimen/width"
-                        android:layout_height="@dimen/height">
+                        android:layout_height="@dimen/height"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="cardClickgp2">
 
                         <ImageView
                             android:layout_width="@dimen/widthimage"
                             android:layout_height="@dimen/heightimage"
-                            android:layout_gravity="top|center_horizontal"
-                            android:layout_marginBottom="5dp"
+                            android:layout_gravity="center"
+                            android:padding="15dp"
                             android:src="@drawable/comm" />
 
                         <TextView
+                            android:id="@+id/otherText"
                             android:layout_width="wrap_content"
+                            android:textColor="@color/black"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|center_horizontal"
+                            android:gravity="center"
                             android:text="Other\nCommercial" />
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -334,7 +421,8 @@
                 android:id="@+id/textView7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="16dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="Budget"
@@ -346,56 +434,311 @@
             <Spinner
                 android:id="@+id/minRupee"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_height="@dimen/spinnerHeight"
                 android:entries="@array/budget_min"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toStartOf="@+id/maxRupee"
-                app:layout_constraintStart_toStartOf="@+id/textView7"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+            <Spinner
+                android:id="@+id/minRupeeRent"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spinnerHeight"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:entries="@array/budget_min_rent"
+                app:layout_constraintEnd_toStartOf="@+id/maxRupeeRent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/minRupee" />
 
             <Spinner
                 android:id="@+id/maxRupee"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="@dimen/spinnerHeight"
+                android:layout_marginStart="8dp"
                 android:entries="@array/budget_max"
-                app:layout_constraintEnd_toEndOf="@+id/textView7"
-                app:layout_constraintHorizontal_bias="1.0"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/minRupee"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
+            <Spinner
+                android:id="@+id/maxRupeeRent"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spinnerHeight"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:entries="@array/budget_max_rent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/minRupeeRent"
+                app:layout_constraintTop_toBottomOf="@+id/maxRupee" />
+
+
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/more"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:freezesText="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center_horizontal"
+                android:onClick="Visibilities"
+                android:padding="15dp"
+                android:text="More Filters"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/minRupeeRent" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:visibility="gone"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="Bedroom"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/maxRupee"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/minRupee"
-                app:layout_constraintTop_toBottomOf="@+id/minRupee" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/more" />
 
-            <include
+            <HorizontalScrollView
                 android:id="@+id/bedroom"
-                layout="@layout/layout_bedroom"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:scrollbarSize="0dp"
+                android:scrollbars="horizontal"
                 app:layout_constraintEnd_toEndOf="@+id/textView4"
                 app:layout_constraintStart_toStartOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/bhk1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBHK">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="1 BHK" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/bhk2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBHK">
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="2 BHK" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/bhk3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBHK">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="3 BHK" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/bhk4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBHK">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="4 BHK" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/bhk5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBHK">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="5 BHK" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/bhk6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBHK">
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="6 BHK" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/bhk7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBHK">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="7 BHK" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/bhk8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBHK">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="8 BHK" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/bhk9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBHK">
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="9 BHK" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/bhk10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBHK">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="10 BHK" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/bhk11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBHK">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text=">10 BHK" />
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="Area"
@@ -407,10 +750,11 @@
 
             <Spinner
                 android:id="@+id/area_parameter"
+                android:visibility="gone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
+                android:background="@android:drawable/editbox_dropdown_light_frame"
                 android:entries="@array/area_parameter"
                 app:layout_constraintEnd_toStartOf="@+id/area_min"
                 app:layout_constraintStart_toStartOf="@+id/textView8"
@@ -418,97 +762,53 @@
 
             <Spinner
                 android:id="@+id/area_min"
+                android:visibility="gone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
+                android:background="@android:drawable/editbox_dropdown_light_frame"
                 android:entries="@array/area_min"
                 app:layout_constraintEnd_toStartOf="@+id/area_max"
                 app:layout_constraintStart_toEndOf="@+id/area_parameter"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
             <Spinner
+                android:visibility="gone"
                 android:id="@+id/area_max"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
+                android:background="@android:drawable/editbox_dropdown_light_frame"
                 android:entries="@array/area_max"
                 app:layout_constraintEnd_toEndOf="@+id/textView8"
                 app:layout_constraintStart_toEndOf="@+id/area_min"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
             <TextView
-                android:id="@+id/textView9"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="Posted By"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/area_max"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/area_parameter"
-                app:layout_constraintTop_toBottomOf="@+id/area_max" />
-
-            <Button
-                android:id="@+id/agent"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:gravity="center"
-                android:text="Agent"
-                app:layout_constraintEnd_toStartOf="@+id/owner"
-                app:layout_constraintStart_toStartOf="@+id/textView9"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-            <Button
-                android:id="@+id/owner"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="10dp"
-                android:gravity="center"
-                android:text="Owner"
-                app:layout_constraintEnd_toStartOf="@+id/builder"
-                app:layout_constraintStart_toEndOf="@+id/agent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-            <Button
-                android:id="@+id/builder"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:text="Builder"
-                app:layout_constraintEnd_toEndOf="@+id/textView9"
-                app:layout_constraintStart_toEndOf="@+id/owner"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-            <TextView
                 android:id="@+id/textView3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:paddingTop="10dp"
+                android:visibility="gone"
                 android:paddingBottom="10dp"
+                android:textColor="@color/black"
                 android:text="Possession Status"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/builder"
-                app:layout_constraintStart_toStartOf="@+id/agent"
-                app:layout_constraintTop_toBottomOf="@+id/owner" />
+                app:layout_constraintEnd_toEndOf="@+id/area_max"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/area_parameter"
+                app:layout_constraintTop_toBottomOf="@+id/area_max" />
 
             <Button
                 android:id="@+id/under"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="15dp"
+                android:visibility="gone"
+                android:layout_marginEnd="5dp"
+                android:background="@color/whilte"
+                android:onClick="status"
                 android:text="Under Construction"
                 android:textAllCaps="false"
                 app:layout_constraintEnd_toStartOf="@+id/ready"
@@ -517,10 +817,12 @@
 
             <Button
                 android:id="@+id/ready"
+                android:visibility="gone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="5dp"
+                android:background="@color/whilte"
+                android:onClick="status"
                 android:text="Ready to Move"
                 android:textAllCaps="false"
                 app:layout_constraintEnd_toEndOf="@+id/textView3"
@@ -528,219 +830,116 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <TextView
-                android:id="@+id/textView0"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="Posted since"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/ready"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/under"
-                app:layout_constraintTop_toBottomOf="@+id/under" />
-
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollView2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:scrollbarSize="0dp"
-                app:layout_constraintEnd_toEndOf="@+id/textView0"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textView0"
-                app:layout_constraintTop_toBottomOf="@+id/textView0">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/anytime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Anytime" />
-
-                    <TextView
-                        android:id="@+id/yesterday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Yesterday" />
-
-                    <TextView
-                        android:id="@+id/lastweek"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Last Week" />
-
-                    <TextView
-                        android:id="@+id/last2week"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Last 2 Weeks" />
-
-                    <TextView
-                        android:id="@+id/last3week"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Last 3 Weeks" />
-
-                    <TextView
-                        android:id="@+id/lastmonth"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Last Month" />
-
-                    <TextView
-                        android:id="@+id/last2moth"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Last Month" />
-
-                    <TextView
-                        android:id="@+id/last4month"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Last 4 Month" />
-                </LinearLayout>
-            </HorizontalScrollView>
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="Sale type"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView2"
-                app:layout_constraintStart_toStartOf="@+id/horizontalScrollView2"
-                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
-
-            <Button
-                android:id="@+id/newsale"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="15dp"
-                android:text="New"
-                android:textAllCaps="false"
-                app:layout_constraintEnd_toStartOf="@+id/resale"
-                app:layout_constraintStart_toStartOf="@+id/textView13"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-            <Button
-                android:id="@+id/resale"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:text="Resale"
-                android:textAllCaps="false"
-                app:layout_constraintEnd_toEndOf="@+id/textView13"
-                app:layout_constraintStart_toEndOf="@+id/newsale"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-            <TextView
                 android:id="@+id/textView81"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:visibility="gone"
+                android:layout_marginTop="16dp"
                 android:freezesText="true"
+                android:paddingTop="10dp"
+                android:textColor="@color/black"
+                android:paddingBottom="10dp"
                 android:text="Furnishing"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/resale"
-                app:layout_constraintStart_toStartOf="@+id/newsale"
-                app:layout_constraintTop_toBottomOf="@+id/resale" />
+                app:layout_constraintEnd_toEndOf="@+id/ready"
+                app:layout_constraintStart_toStartOf="@+id/under"
+                app:layout_constraintTop_toBottomOf="@+id/ready" />
 
-            <ImageView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/furnished"
+                android:visibility="gone"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
-                android:padding="10dp"
-                android:src="@drawable/flat"
+                android:layout_height="80dp"
+                android:layout_marginEnd="8dp"
+                android:elevation="30dp"
+                android:onClick="furnishing"
                 app:layout_constraintEnd_toStartOf="@+id/semifurnished"
                 app:layout_constraintStart_toStartOf="@+id/textView81"
-                app:layout_constraintTop_toBottomOf="@+id/textView81" />
+                app:layout_constraintTop_toBottomOf="@+id/textView81">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="  Furnished  "
-                app:layout_constraintBottom_toBottomOf="@+id/furnished"
-                app:layout_constraintEnd_toEndOf="@+id/furnished"
-                app:layout_constraintHorizontal_bias="0.472"
-                app:layout_constraintStart_toStartOf="@+id/furnished"
-                app:layout_constraintTop_toTopOf="@+id/furnished"
-                app:layout_constraintVertical_bias="1.0" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:src="@drawable/furnished" />
 
-            <ImageView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:text="Furnished" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/semifurnished"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
-                android:padding="10dp"
-                android:src="@drawable/house"
+                android:layout_height="80dp"
+                android:layout_marginStart="8dp"
+                android:visibility="gone"
+                android:layout_marginEnd="8dp"
+                android:elevation="30dp"
+                android:onClick="furnishing"
                 app:layout_constraintEnd_toStartOf="@+id/unfurnished"
                 app:layout_constraintStart_toEndOf="@+id/furnished"
-                app:layout_constraintTop_toBottomOf="@+id/textView81" />
-
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Semi-Furnished"
-                app:layout_constraintBottom_toBottomOf="@+id/semifurnished"
-                app:layout_constraintEnd_toEndOf="@+id/semifurnished"
-                app:layout_constraintHorizontal_bias="0.472"
-                app:layout_constraintStart_toStartOf="@+id/semifurnished"
-                app:layout_constraintTop_toTopOf="@+id/semifurnished"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toBottomOf="@+id/textView81">
 
 
-            <ImageView
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:src="@drawable/semifurnished" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:text="Semi-Furnished" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/unfurnished"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="20dp"
-                android:padding="10dp"
-                android:src="@drawable/plot"
+                android:layout_height="80dp"
+                android:visibility="gone"
+                android:layout_marginStart="8dp"
+                android:elevation="30dp"
+                android:onClick="furnishing"
                 app:layout_constraintEnd_toEndOf="@+id/textView81"
                 app:layout_constraintStart_toEndOf="@+id/semifurnished"
-                app:layout_constraintTop_toBottomOf="@+id/textView81" />
+                app:layout_constraintTop_toBottomOf="@+id/textView81">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Unfurnished"
-                app:layout_constraintBottom_toBottomOf="@+id/unfurnished"
-                app:layout_constraintEnd_toEndOf="@+id/unfurnished"
-                app:layout_constraintHorizontal_bias="0.472"
-                app:layout_constraintStart_toStartOf="@+id/unfurnished"
-                app:layout_constraintTop_toTopOf="@+id/unfurnished"
-                app:layout_constraintVertical_bias="1.0" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:src="@drawable/unfurnished" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:text="Unfurnished" />
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:layout_marginTop="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
                 android:text="Amenities"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/unfurnished"
@@ -748,9 +947,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/semifurnished" />
 
             <HorizontalScrollView
+                android:visibility="gone"
                 android:id="@+id/horizontalScrollView3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:scrollbarSize="0dp"
                 app:layout_constraintEnd_toEndOf="@+id/textView11"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textView11"
@@ -763,257 +964,241 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/parking"
-                        android:layout_width="@dimen/width"
-                        android:layout_height="@dimen/height">
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="amenities">
 
                         <ImageView
                             android:layout_width="@dimen/widthimage"
                             android:layout_height="@dimen/heightimage"
-                            android:layout_gravity="top|center_horizontal"
+                            android:layout_gravity="center"
+                            android:padding="15dp"
                             android:src="@drawable/parking" />
 
                         <TextView
-                            android:gravity="center"
-                            android:layout_marginBottom="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center|bottom"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
                             android:text="Parking" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/lift"
-                        android:layout_width="@dimen/width"
-                        android:layout_height="@dimen/height">
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="amenities">
 
                         <ImageView
                             android:layout_width="@dimen/widthimage"
                             android:layout_height="@dimen/heightimage"
-                            android:layout_gravity="top|center_horizontal"
-                            android:src="@drawable/house" />
+                            android:layout_gravity="center"
+                            android:padding="15dp"
+                            android:src="@drawable/lift" />
 
                         <TextView
-                            android:gravity="center"
-                            android:layout_marginBottom="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center|bottom"
+                            android:textColor="@color/black"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
                             android:text="Lift" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/gymnasium"
-                        android:layout_width="@dimen/width"
-                        android:layout_height="@dimen/height">
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="amenities">
 
                         <ImageView
                             android:layout_width="@dimen/widthimage"
                             android:layout_height="@dimen/heightimage"
-                            android:layout_gravity="top|center_horizontal"
-                            android:src="@drawable/plot" />
+                            android:layout_gravity="center"
+                            android:padding="15dp"
+                            android:src="@drawable/gym" />
 
                         <TextView
-                            android:gravity="center"
-                            android:layout_marginBottom="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center|bottom"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_marginBottom="10dp"
+                            android:textColor="@color/black"
+                            android:gravity="center"
                             android:text="Gymnasium" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/powerBackup"
-                        android:layout_width="@dimen/width"
-                        android:layout_height="@dimen/height">
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="amenities">
 
                         <ImageView
                             android:layout_width="@dimen/widthimage"
                             android:layout_height="@dimen/heightimage"
-                            android:layout_gravity="top|center_horizontal"
-
-                            android:src="@drawable/office" />
+                            android:layout_gravity="center"
+                            android:padding="15dp"
+                            android:src="@drawable/powerbackup" />
 
                         <TextView
-                            android:gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center|bottom"
-                            android:text="Power Backup" />
+                            android:textColor="@color/black"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:gravity="center"
+                            android:text="Power\nBackup" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/gaspipeline"
-                        android:layout_width="@dimen/width"
-                        android:layout_height="@dimen/height">
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="amenities">
 
                         <ImageView
                             android:layout_width="@dimen/widthimage"
                             android:layout_height="@dimen/heightimage"
-                            android:layout_gravity="top|center_horizontal"
-                            android:src="@drawable/flat" />
+                            android:layout_gravity="center"
+                            android:padding="15dp"
+                            android:src="@drawable/gaspipeline" />
 
                         <TextView
-                            android:gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center|bottom"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:gravity="center"
+                            android:textColor="@color/black"
                             android:text="Gas\nPipeline" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/park"
-                        android:layout_width="@dimen/width"
-                        android:layout_height="@dimen/height">
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="amenities">
 
                         <ImageView
                             android:layout_width="@dimen/widthimage"
                             android:layout_height="@dimen/heightimage"
-                            android:layout_gravity="top|center_horizontal"
-                            android:src="@drawable/flat" />
+                            android:layout_gravity="center"
+                            android:padding="15dp"
+                            android:src="@drawable/park" />
 
                         <TextView
-                            android:gravity="center"
-                            android:layout_marginBottom="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center|bottom"
+                            android:textColor="@color/black"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
                             android:text="Park" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/swimmingpool"
-                        android:layout_width="@dimen/width"
-                        android:layout_height="@dimen/height">
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="amenities">
 
                         <ImageView
                             android:layout_width="@dimen/widthimage"
                             android:layout_height="@dimen/heightimage"
-                            android:layout_gravity="top|center_horizontal"
-                            android:src="@drawable/flat" />
+                            android:layout_gravity="center"
+                            android:padding="15dp"
+                            android:src="@drawable/swimmingpool" />
 
                         <TextView
-                            android:gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center|bottom"
+                            android:textColor="@color/black"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:gravity="center"
                             android:text="Swimming\nPool" />
 
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/clubhouse"
-                            android:layout_width="@dimen/width"
-                            android:layout_height="@dimen/height">
+                    </androidx.cardview.widget.CardView>
 
-                            <ImageView
-                                android:layout_width="@dimen/widthimage"
-                                android:layout_height="@dimen/heightimage"
-                                android:layout_gravity="top|center_horizontal"
-                                android:src="@drawable/flat" />
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/clubhouse"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="amenities">
 
-                            <TextView
-                                android:gravity="center"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center|bottom"
-                                android:text="Club\nHouse" />
-                        </androidx.cardview.widget.CardView>
+
+                        <ImageView
+                            android:layout_width="@dimen/widthimage"
+                            android:layout_height="@dimen/heightimage"
+                            android:layout_gravity="center"
+                            android:padding="15dp"
+                            android:src="@drawable/club" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:gravity="center"
+                            android:text="Club\nHouse" />
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
             </HorizontalScrollView>
 
             <TextView
-                android:id="@+id/textView001"
+                android:id="@+id/textView004"
+                android:visibility="gone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Verified Properties"
+                android:layout_marginTop="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Facing"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView3"
                 app:layout_constraintStart_toStartOf="@+id/horizontalScrollView3"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView3" />
 
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:padding="10dp"
-                android:text="Show only Verified properties"
-                app:layout_constraintEnd_toEndOf="@+id/textView001"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textView001"
-                app:layout_constraintTop_toBottomOf="@+id/textView001" />
-
-            <TextView
-                android:id="@+id/textView002"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Photos/videos"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/checkBox"
-                app:layout_constraintStart_toStartOf="@+id/checkBox"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox" />
-
-            <Button
-                android:id="@+id/photo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:text="Photos"
-                app:layout_constraintEnd_toStartOf="@+id/videos"
-                app:layout_constraintStart_toStartOf="@+id/textView002"
-                app:layout_constraintTop_toBottomOf="@+id/textView002" />
-
-            <Button
-                android:id="@+id/videos"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text="Videos"
-                app:layout_constraintEnd_toEndOf="@+id/textView002"
-                app:layout_constraintStart_toEndOf="@+id/photo"
-                app:layout_constraintTop_toBottomOf="@+id/textView002" />
-
-            <TextView
-                android:id="@+id/textView003"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Society"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/videos"
-                app:layout_constraintStart_toStartOf="@+id/photo"
-                app:layout_constraintTop_toBottomOf="@+id/photo" />
-
-            <EditText
-                android:id="@+id/society"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="Select a society"
-                app:layout_constraintEnd_toEndOf="@+id/textView003"
-                app:layout_constraintStart_toStartOf="@+id/textView003"
-                app:layout_constraintTop_toBottomOf="@+id/textView003" />
-
-            <TextView
-                android:id="@+id/textView004"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Facing"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/society"
-                app:layout_constraintStart_toStartOf="@+id/society"
-                app:layout_constraintTop_toBottomOf="@+id/society" />
-
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView5"
+                android:visibility="gone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:scrollbarSize="5dp"
+                android:scrollbarSize="0dp"
                 android:scrollbars="horizontal"
                 app:layout_constraintEnd_toEndOf="@+id/textView004"
                 app:layout_constraintStart_toStartOf="@+id/textView004"
@@ -1024,99 +1209,401 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/east"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:padding="10dp"
-                        android:text="East" />
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="facing">
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="East" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/north"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:padding="10dp"
-                        android:text="North" />
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="facing">
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="North" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/northeast"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:padding="10dp"
-                        android:text="North-East" />
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="facing">
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="North-East" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/northwest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:padding="10dp"
-                        android:text="North-west" />
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="facing">
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="North-west" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/south"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:padding="10dp"
-                        android:text="South" />
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="facing">
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="South" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/southeast"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:padding="10dp"
-                        android:text="South-East" />
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="facing">
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="South-East" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/southwest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:padding="10dp"
-                        android:text="South-west" />
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="facing">
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="South-west" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/west"
+                        android:layout_marginEnd="2dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="West" />
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="facing">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="West" />
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
             </HorizontalScrollView>
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/textView5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:freezesText="true"
+                android:textColor="@color/black"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:text="Bathroom"
                 app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView5"
                 app:layout_constraintStart_toStartOf="@+id/horizontalScrollView5"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView5" />
 
-
-            <include
+            <HorizontalScrollView
                 android:id="@+id/bathroom"
-                layout="@layout/layout_bathroom"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:scrollbarSize="0dp"
+                android:visibility="gone"
+                android:scrollbars="horizontal"
                 app:layout_constraintEnd_toEndOf="@+id/textView5"
                 app:layout_constraintStart_toStartOf="@+id/textView5"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/room1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBATHROOM">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="  1  " />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/room2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBATHROOM">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="  2  " />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/room3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBATHROOM">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="  3  " />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/room4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBATHROOM">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="  4  " />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/room5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBATHROOM">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="  5  " />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/room6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBATHROOM">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="  6  " />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/room7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBATHROOM">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="  7  " />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/room8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBATHROOM">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="  8  " />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/room9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBATHROOM">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="  9  " />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/room10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBATHROOM">
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="  10  " />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/room11"
+                        android:layout_marginEnd="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:elevation="30dp"
+                        android:onClick="selectBATHROOM">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="  >10  " />
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
 
             <TextView
                 android:id="@+id/textView500"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
                 android:freezesText="true"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
                 android:text="Floors"
                 app:layout_constraintEnd_toEndOf="@+id/bathroom"
                 app:layout_constraintStart_toStartOf="@+id/bathroom"
@@ -1126,20 +1613,22 @@
                 android:id="@+id/minimumFloor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:entries="@array/area_min"
+                android:background="@android:drawable/editbox_dropdown_light_frame"
+                android:entries="@array/floors_min"
+                android:visibility="gone"
                 app:layout_constraintEnd_toStartOf="@+id/maximumFloor"
                 app:layout_constraintStart_toStartOf="@+id/textView500"
                 app:layout_constraintTop_toBottomOf="@+id/textView500" />
 
             <Spinner
                 android:id="@+id/maximumFloor"
+                android:visibility="gone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:entries="@array/area_max"
+                android:background="@android:drawable/editbox_dropdown_light_frame"
+                android:entries="@array/floors_max"
                 app:layout_constraintEnd_toEndOf="@+id/textView500"
                 app:layout_constraintStart_toEndOf="@+id/minimumFloor"
                 app:layout_constraintTop_toBottomOf="@+id/textView500" />
@@ -1148,45 +1637,13 @@
                 android:id="@+id/textView600"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginTop="20dp"
                 android:freezesText="true"
-                android:text="Show only"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/maximumFloor"
                 app:layout_constraintStart_toStartOf="@+id/minimumFloor"
                 app:layout_constraintTop_toBottomOf="@+id/maximumFloor" />
-
-            <CheckBox
-                android:id="@+id/checkBox2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:padding="10dp"
-                android:text="Properties with Discount and Offers"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textView600"
-                app:layout_constraintTop_toBottomOf="@+id/textView600" />
-
-            <CheckBox
-                android:id="@+id/checkBox3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:padding="10dp"
-                android:text="Exclusive properties"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/checkBox2"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
-
-            <CheckBox
-                android:id="@+id/checkBox4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:padding="10dp"
-                android:text="Properties posted by Certified Agents"
-                app:layout_constraintEnd_toEndOf="@+id/checkBox3"
-                app:layout_constraintStart_toStartOf="@+id/checkBox3"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
@@ -1197,7 +1654,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_end="60dp" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

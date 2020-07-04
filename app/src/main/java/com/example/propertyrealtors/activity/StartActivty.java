@@ -52,7 +52,7 @@ public class StartActivty extends AppCompatActivity {
 
             case R.id.radioButton0:
                 if (checked) {
-                    type= "BUY_A_PROPERTY";
+                    type= "SELL";
                     Intent intent = new Intent(StartActivty.this, Start11.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("PURPOSE_OF_USER", type);
@@ -64,7 +64,7 @@ public class StartActivty extends AppCompatActivity {
                 break;
             case R.id.radioButton1:
                 if (checked) {
-                    type= "RENT_A_PROPERTY";
+                    type= "RENT or LEASE";
                     Intent intent = new Intent(StartActivty.this, Start11.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("PURPOSE_OF_USER", type);

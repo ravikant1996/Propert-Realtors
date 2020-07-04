@@ -21,9 +21,9 @@ import com.example.propertyrealtors.R;
 import java.util.ArrayList;
 
 public class Start331AllCommercial4 extends AppCompatActivity {
-    Spinner spinTotal, spinFloor, areaSpin1, areaSpin2;
+    Spinner spinTotal, spinFloor, areaSpin1, areaSpin2, lock_in_period;
     ArrayList<String> arrayList;
-    String bathroom, bedroom, washroom, totalfloor, floorNo, furnished, carpetAreaParameter, superAreaParameter;
+    String lock_in_periodString, bedroom, washroom, totalfloor, floorNo, furnished, carpetAreaParameter, superAreaParameter;
     String plotAreaParameter;
     EditText superArea, carpetArea;
     String  propertyType, city, project, plotArea, plot_length, plot_bredth, RoadWidth;
@@ -66,7 +66,26 @@ public class Start331AllCommercial4 extends AppCompatActivity {
         areaSpin2 = findViewById(R.id.areaSpin2);
         superArea = findViewById(R.id.areaEdit2);
         carpetArea = findViewById(R.id.areaEdit1);
+        lock_in_period = findViewById(R.id.floorSpin3);
+        TextView textView5= findViewById(R.id.textView5);
+        lock_in_period.setVisibility(View.GONE);
+        textView5.setVisibility(View.GONE);
+        if(!propertyFor.equals("SELL")){
+            lock_in_period.setVisibility(View.VISIBLE);
+            textView5.setVisibility(View.VISIBLE);
+            lock_in_period.setPrompt("Lock In Period");
+            lock_in_period.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    lock_in_periodString = parent.getItemAtPosition(position).toString();
+                }
 
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
+
+        }
         arrayList = new ArrayList<>();
 
         getTotalFloor();
@@ -109,12 +128,6 @@ public class Start331AllCommercial4 extends AppCompatActivity {
     }
     public void getTotalFloor() {
 
-        for (int i = 1; i <= 100; i++) {
-            arrayList.add("" + i);
-        }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinTotal.setAdapter(arrayAdapter);
         spinTotal.setPrompt("Total floors");
         spinTotal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -176,11 +189,11 @@ public class Start331AllCommercial4 extends AppCompatActivity {
         Log.e("c2", CarpetArea);
         SuperArea= superArea.getText().toString().trim();
         Log.e("c2", SuperArea);
-        if(TextUtils.isEmpty(totalfloor)){
+        if(TextUtils.isEmpty(totalfloor) || totalfloor.equals("Select")){
             Toast.makeText(Start331AllCommercial4.this, "Please Select Total Floor", Toast.LENGTH_SHORT).show();
             return;
 
-        }else if(TextUtils.isEmpty(floorNo)){
+        }else if(TextUtils.isEmpty(floorNo)  || floorNo.equals("Select")){
             Toast.makeText(Start331AllCommercial4.this, "Please Select Floor No of your Property", Toast.LENGTH_SHORT).show();
             return;
 
@@ -210,6 +223,7 @@ public class Start331AllCommercial4 extends AppCompatActivity {
             bundle.putString("TOTALFLOOR", totalfloor);
             bundle.putString("FLOORNO", floorNo);
             bundle.putString("FURNISHED", furnished);
+            bundle.putString("LOCK_IN_PERIOD", lock_in_periodString);
             bundle.putString("CARPETAREA", CarpetArea);
             bundle.putString("SUPERAREA", SuperArea);
             bundle.putString("CARPETAREA_PARAMETER", carpetAreaParameter);

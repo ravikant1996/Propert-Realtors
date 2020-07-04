@@ -514,6 +514,7 @@
                 android:id="@+id/floorSpin1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/spinnerHeight"
+                android:entries="@array/TotalFloors"
                 android:spinnerMode="dialog"
                 app:layout_constraintEnd_toEndOf="@+id/textv1"
                 app:layout_constraintStart_toStartOf="@+id/textv1"

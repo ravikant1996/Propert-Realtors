@@ -315,7 +315,7 @@ public class Start331AllPropertyStatus extends AppCompatActivity {
                     return;
                 }
             }else if(!propertySubType.equals("Plot")) {
-                if(TextUtils.isEmpty(ageOfconstruction) || ageOfconstruction.equals("----------")){
+                if(TextUtils.isEmpty(ageOfconstruction) || ageOfconstruction.equals("Select")){
                     Toast.makeText(Start331AllPropertyStatus.this, "Select Age of Construction", Toast.LENGTH_SHORT).show();
                     return;
                 }

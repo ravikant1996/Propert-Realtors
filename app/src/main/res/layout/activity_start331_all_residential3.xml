@@ -80,6 +80,7 @@
             <Spinner
                 android:id="@+id/floorSpin1"
                 android:layout_width="match_parent"
+                android:entries="@array/TotalFloors"
                 android:layout_height="@dimen/spinnerHeight"
                 app:layout_constraintEnd_toEndOf="@+id/textv1"
                 app:layout_constraintStart_toStartOf="@+id/textv1"
@@ -281,7 +282,6 @@
                     android:maxLength="7"
                     android:hint="Plot Area" />
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <Spinner
                 android:id="@+id/areaSpin1"

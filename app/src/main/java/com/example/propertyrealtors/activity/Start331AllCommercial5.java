@@ -93,12 +93,6 @@ public class Start331AllCommercial5 extends AppCompatActivity {
 
     public void getTotalFloor() {
 
-        for (int i = 1; i <= 100; i++) {
-            arrayList.add("" + i);
-        }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinTotal.setAdapter(arrayAdapter);
         spinTotal.setPrompt("Total floors");
         spinTotal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -167,8 +161,11 @@ public class Start331AllCommercial5 extends AppCompatActivity {
         plotArea = Plot_Area.getText().toString().trim();
         Log.e("c2", plotArea);
         Log.e("c2", plot_length);
+        if(TextUtils.isEmpty(totalfloor) || totalfloor.equals("Select")){
+            Toast.makeText(Start331AllCommercial5.this, "Please Select Total Floor", Toast.LENGTH_SHORT).show();
+            return;
 
-        if (TextUtils.isEmpty(construction_done)) {
+        }else if (TextUtils.isEmpty(construction_done)) {
             Toast.makeText(Start331AllCommercial5.this, "Select Construction option", Toast.LENGTH_SHORT).show();
             return;
         }else if (TextUtils.isEmpty(boundary_wall)){
