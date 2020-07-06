@@ -231,7 +231,7 @@ public class Start32 extends AppCompatActivity {
                             reference.child(uid).setValue(user);
                             Toast.makeText(Start32.this, "Registered", Toast.LENGTH_LONG).show();
                             session.createIdSession(uid);
-                            session.createDetailsSession(name, email, phone);
+                            session.createDetailsSession(name, email, phone, usertype);
                             Intent intent = new Intent(Start32.this, Start33.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             Bundle bundle = new Bundle();

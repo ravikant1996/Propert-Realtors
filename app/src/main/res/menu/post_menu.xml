@@ -6,6 +6,7 @@
         android:id="@+id/app_bar_post"
         android:orderInCategory="100"
         android:title="POST PROPERTY"
+        android:icon="@mipmap/ic_post_property1"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/favourite"

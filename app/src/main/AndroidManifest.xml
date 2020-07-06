@@ -22,7 +22,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".A_EndUser.lastview_property"></activity>
+        <activity android:name=".A_EndUser.lastview_property"/>
         <activity android:name=".A_EndUser.contacted_property" />
         <activity android:name=".A_EndUser.shortlisted_property" />
         <activity android:name=".AdminPushNotifi" />
@@ -54,8 +54,6 @@
         <activity
             android:name=".Post_property.ImagesUpload"
             android:theme="@style/AppTheme.start" />
-        <activity android:name=".Post_property.DetailsAdding" />
-        <activity android:name=".Post_property.DetailAdding" />
         <activity
             android:name=".activity.posted_property"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -4,14 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,13 +22,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.propertyrealtors.Post_property.DetailsAdding;
 import com.example.propertyrealtors.Post_property.UploadSliderAdapter;
-import com.example.propertyrealtors.Post_property.edit_image;
 import com.example.propertyrealtors.R;
+import com.example.propertyrealtors.SessionManager;
 import com.example.propertyrealtors.model.AdditioanlDetailsModel;
 import com.example.propertyrealtors.model.Image;
-import com.example.propertyrealtors.model.ResidentialModel;
+import com.example.propertyrealtors.model.PropertyModel;
 import com.example.propertyrealtors.model.User;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -36,16 +37,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.smarteist.autoimageslider.IndicatorAnimations;
-import com.smarteist.autoimageslider.SliderAnimations;
-import com.smarteist.autoimageslider.SliderView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class Start331AllCommercial_View extends AppCompatActivity {
+    RecyclerView.LayoutManager RecyclerViewLayoutManager;
+    RecyclerView recyclerView;
+    simillarAdapter simiAdapter;
+    // Linear Layout Manager
+    LinearLayoutManager horizontalLayout;
     ImageView imageSlider;
     View OwnerLayout, AgentLayout;
+    List<String> propertySubTypes = new ArrayList<>();
+    List<String > cityList= new ArrayList<>();
     String phoneNo;
     TextView Price, CarpetArea, PropertSubType, Address, CoveredArea, PricePer, Location, AgeofConst, AvailableFrom,
             Configuration, Status, Carparking, FloorNo, Furnishing, Facing, Overlooking, Security, SuperArea, Lockinperiod,
@@ -74,6 +81,7 @@ public class Start331AllCommercial_View extends AppCompatActivity {
     Toolbar toolbar;
     Menu menu;
     TextView imageCount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,7 +112,7 @@ public class Start331AllCommercial_View extends AppCompatActivity {
 
                 if (scrollRange + verticalOffset == 0) {
 //                    TitleHead.setText("₹ "+price +" "+propertySubType);
-                    collapsingToolbarLayout.setTitle("₹ "+price +"* "+ propertySubType);
+                    collapsingToolbarLayout.setTitle("₹ " + price + "* " + propertySubType);
                     HideImageCount();
                     isShow = true;
                     showOption(R.id.action_share);
@@ -184,12 +192,12 @@ public class Start331AllCommercial_View extends AppCompatActivity {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-        if(propertyFor.equals("SELL")){
+        if (propertyFor.equals("SELL")) {
             Maintenance.setVisibility(View.GONE);
             SecurityHead.setVisibility(View.GONE);
             MaintenanceHead.setVisibility(View.GONE);
             Security.setVisibility(View.GONE);
-        }else {
+        } else {
             BookingAmount.setVisibility(View.GONE);
             BookingAmountHead.setVisibility(View.GONE);
         }
@@ -197,70 +205,179 @@ public class Start331AllCommercial_View extends AppCompatActivity {
         Visibilities();
         setTextData();
         imageSliderMethod();
+        recycler();
+    }
+
+    public void recycler() {
+        View similarproperty = findViewById(R.id.similarproperty);
+
+        TextView showAll = similarproperty.findViewById(R.id.showall);
+        recyclerView = similarproperty.findViewById(R.id.recyclerView);
+        RecyclerViewLayoutManager = new LinearLayoutManager(getApplicationContext());
+        // Set LayoutManager on Recycler View
+        recyclerView.setLayoutManager(RecyclerViewLayoutManager);
+        final ArrayList<PropertyModel> propertyModelArrayList1 = new ArrayList<PropertyModel>();
+        final ArrayList<Image> imageArrayList1 = new ArrayList<Image>();
+        // layout visibility
+        // Adding items to RecyclerView.
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("PropertyTable");
+        DatabaseReference reference = databaseReference.child(propertyType);
+        Query query = reference.orderByChild("propertyFor").equalTo(propertyFor).limitToFirst(5);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try {
+                    if (dataSnapshot.exists()) {
+                        similarproperty.setVisibility(View.VISIBLE);
+
+                        for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                            PropertyModel details = areaSnapshot.getValue(PropertyModel.class);
+                            if (!propertyId.equals(details.getKeyId())) {
+                                propertyModelArrayList1.add(details);
+                                cityList.add(details.getCity());
+
+                                String id1 = details.getKeyId();
+                                Query query = reference.child(id1).child("images").orderByValue().limitToFirst(1);
+                                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        Image image = new Image("null");
+                                        if (dataSnapshot.exists()) {
+                                            for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                                                image = areaSnapshot.getValue(Image.class);
+                                                imageArrayList1.add(image);
+                                                simiAdapter.notifyDataSetChanged();
+
+                                            }
+                                        } else {
+                                            imageArrayList1.add(image);
+                                            simiAdapter.notifyDataSetChanged();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                recyclerView.setHasFixedSize(true);
+                simiAdapter = new simillarAdapter(getApplicationContext(), propertyModelArrayList1, imageArrayList1);
+                horizontalLayout = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+                recyclerView.setLayoutManager(horizontalLayout);
+                //       recyclerView.setItemAnimator(new DefaultItemAnimator());
+                recyclerView.setAdapter(simiAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "Opsss......", Toast.LENGTH_SHORT).show();
+            }
+        });
+        showAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    cityList.add(city);
+                    cityList.add(locality);
+                    if (propertySubType.equals("office") || propertySubType.equals("IT_Park") || propertySubType.equals("Coworking_Space")) {
+                        propertySubTypes.add("office");
+                        propertySubTypes.add("IT_Park");
+                        propertySubTypes.add("Coworking_Space");
+                    } else if (propertySubType.equals("Shop") || propertySubType.equals("Showroom")) {
+                        propertySubTypes.add("Shop");
+                        propertySubTypes.add("Showroom");
+
+                    } else if (propertySubType.equals("Warehouse") || propertySubType.equals("Industrial_Building") || propertySubType.equals("Industrial_Shed")) {
+                        propertySubTypes.add("Warehouse");
+                        propertySubTypes.add("Industrial_Building");
+                        propertySubTypes.add("Industrial_Shed");
+                    }
+
+                    Intent intent = new Intent(Start331AllCommercial_View.this, ViewProperty.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("propertyType", propertyType);
+                    bundle.putString("propertyFor", propertyFor);
+                    bundle.putStringArrayList("PROPERTYSUBTYPES", (ArrayList<String>) propertySubTypes);
+                    bundle.putStringArrayList("CITYLIST", (ArrayList<String>) cityList);
+                    intent.putExtras(bundle);
+
+                    startActivity(intent);
+
+                }catch (NullPointerException e){
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void Visibilities() {
 
-            Lockinperiod.setVisibility(View.GONE);
-            LockinperiodHead.setVisibility(View.GONE);
-            CoveredArea.setVisibility(View.INVISIBLE);
-            CoveredAreaHead.setVisibility(View.INVISIBLE);
-            PricePer.setVisibility(View.GONE);
-            CarpetArea.setVisibility(View.GONE);
-            Configuration.setVisibility(View.GONE);
-            ConfigurationHead.setVisibility(View.GONE);
-            CarpetAreaHead.setVisibility(View.GONE);
-            FloorNo.setVisibility(View.GONE);
-            FloorNoHead.setVisibility(View.GONE);
-            AvailableFrom.setVisibility(View.GONE);
-            AvailableFromHead.setVisibility(View.GONE);
-            FurnishingHead.setVisibility(View.GONE);
-            Furnishing.setVisibility(View.GONE);
-            AgeofConst.setVisibility(View.GONE);
-            AgeofConstHead.setVisibility(View.GONE);
-            Security.setVisibility(View.GONE);
-            SecurityHead.setVisibility(View.GONE);
-            SuperArea.setVisibility(View.GONE);
-            SuperAreaHead.setVisibility(View.GONE);
-            Status.setVisibility(View.GONE);
-            StatusHead.setVisibility(View.GONE);
-            BookingAmount.setVisibility(View.GONE);
-            BookingAmountHead.setVisibility(View.GONE);
-            Maintenance.setVisibility(View.GONE);
-            MaintenanceHead.setVisibility(View.GONE);
-            RoadWidthHead.setVisibility(View.GONE);
-            RoadWidth.setVisibility(View.GONE);
-            Location.setVisibility(View.GONE);
-            LocationHead.setVisibility(View.GONE);
-            Landmark.setVisibility(View.GONE);
-            LandmarkHead.setVisibility(View.GONE);
-            Overlooking.setVisibility(View.GONE);
-            OverlookingHead.setVisibility(View.GONE);
-            Facing.setVisibility(View.GONE);
-            Flooring.setVisibility(View.GONE);
-            FlooringHead.setVisibility(View.GONE);
-            FacingHead.setVisibility(View.GONE);
-            PersonalWashroom.setVisibility(View.GONE);
-            PersonalWashroomHead.setVisibility(View.GONE);
-            CornerShop.setVisibility(View.GONE);
-            CornerShopHead.setVisibility(View.GONE);
-            SuitableFor.setVisibility(View.GONE);
-            SuitableForHead.setVisibility(View.GONE);
-            ElectricityAvailability.setVisibility(View.GONE);
-            ElectricHead.setVisibility(View.GONE);
-            Carparking.setVisibility(View.GONE);
-            CarparkingHead.setVisibility(View.GONE);
+        Lockinperiod.setVisibility(View.GONE);
+        LockinperiodHead.setVisibility(View.GONE);
+        CoveredArea.setVisibility(View.INVISIBLE);
+        CoveredAreaHead.setVisibility(View.INVISIBLE);
+        PricePer.setVisibility(View.GONE);
+        CarpetArea.setVisibility(View.GONE);
+        Configuration.setVisibility(View.GONE);
+        ConfigurationHead.setVisibility(View.GONE);
+        CarpetAreaHead.setVisibility(View.GONE);
+        FloorNo.setVisibility(View.GONE);
+        FloorNoHead.setVisibility(View.GONE);
+        AvailableFrom.setVisibility(View.GONE);
+        AvailableFromHead.setVisibility(View.GONE);
+        FurnishingHead.setVisibility(View.GONE);
+        Furnishing.setVisibility(View.GONE);
+        AgeofConst.setVisibility(View.GONE);
+        AgeofConstHead.setVisibility(View.GONE);
+        Security.setVisibility(View.GONE);
+        SecurityHead.setVisibility(View.GONE);
+        SuperArea.setVisibility(View.GONE);
+        SuperAreaHead.setVisibility(View.GONE);
+        Status.setVisibility(View.GONE);
+        StatusHead.setVisibility(View.GONE);
+        BookingAmount.setVisibility(View.GONE);
+        BookingAmountHead.setVisibility(View.GONE);
+        Maintenance.setVisibility(View.GONE);
+        MaintenanceHead.setVisibility(View.GONE);
+        RoadWidthHead.setVisibility(View.GONE);
+        RoadWidth.setVisibility(View.GONE);
+        Location.setVisibility(View.GONE);
+        LocationHead.setVisibility(View.GONE);
+        Landmark.setVisibility(View.GONE);
+        LandmarkHead.setVisibility(View.GONE);
+        Overlooking.setVisibility(View.GONE);
+        OverlookingHead.setVisibility(View.GONE);
+        Facing.setVisibility(View.GONE);
+        Flooring.setVisibility(View.GONE);
+        FlooringHead.setVisibility(View.GONE);
+        FacingHead.setVisibility(View.GONE);
+        PersonalWashroom.setVisibility(View.GONE);
+        PersonalWashroomHead.setVisibility(View.GONE);
+        CornerShop.setVisibility(View.GONE);
+        CornerShopHead.setVisibility(View.GONE);
+        SuitableFor.setVisibility(View.GONE);
+        SuitableForHead.setVisibility(View.GONE);
+        ElectricityAvailability.setVisibility(View.GONE);
+        ElectricHead.setVisibility(View.GONE);
+        Carparking.setVisibility(View.GONE);
+        CarparkingHead.setVisibility(View.GONE);
 
     }
 
     private void getAditionanData() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("PropertyTable");
-        DatabaseReference refer= reference.child("additionalInfo");
+        DatabaseReference refer = reference.child("additionalInfo");
         Query query = refer.orderByChild("refId").equalTo(propertyId);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()) {
+                if (dataSnapshot.exists()) {
 
                     try {
                         for (DataSnapshot child : dataSnapshot.getChildren()) {
@@ -297,7 +414,7 @@ public class Start331AllCommercial_View extends AppCompatActivity {
                                     CoveredAreaHead.setVisibility(View.VISIBLE);
                                     PricePer.setVisibility(View.VISIBLE);
                                     CoveredArea.setText(covered_area + " " + covered_areaParameter);
-                                    PricePer.setText("₹"+pricePer+"/"+covered_areaParameter);
+                                    PricePer.setText("₹" + pricePer + "/" + covered_areaParameter);
                                 }
                             }
                             if (!location.isEmpty()) {
@@ -353,7 +470,7 @@ public class Start331AllCommercial_View extends AppCompatActivity {
                             }
 
                         }
-                    }catch (NullPointerException e){
+                    } catch (NullPointerException e) {
                         e.printStackTrace();
                     }
                 }
@@ -361,72 +478,72 @@ public class Start331AllCommercial_View extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(Start331AllCommercial_View.this, "database error "+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Start331AllCommercial_View.this, "database error " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void setTextData() {
         try {
-            Price.setText("₹ "+price);
+            Price.setText("₹ " + price);
             Address.setText(locality);
-            if (bedroom.isEmpty()){
+            if (bedroom.isEmpty()) {
                 PropertSubType.setText(propertySubType);
-            }else {
-                PropertSubType.setText(bedroom+" BHK "+ propertySubType);
+            } else {
+                PropertSubType.setText(bedroom + " BHK " + propertySubType);
             }
             if (!washroom.isEmpty()) {
                 Configuration.setVisibility(View.VISIBLE);
                 ConfigurationHead.setVisibility(View.VISIBLE);
-                Configuration.setText(washroom+" Washroom");
+                Configuration.setText(washroom + " Washroom");
             }
             if (!carpet.isEmpty()) {
                 CarpetArea.setVisibility(View.VISIBLE);
                 CarpetAreaHead.setVisibility(View.VISIBLE);
-                CarpetArea.setText(carpet+" "+carpetAreaParameter);
+                CarpetArea.setText(carpet + " " + carpetAreaParameter);
             }
             if (!floor.isEmpty()) {
                 FloorNo.setVisibility(View.VISIBLE);
                 FloorNoHead.setVisibility(View.VISIBLE);
-                FloorNo.setText(floor+" of the "+totalfloor+ " Floors");
+                FloorNo.setText(floor + " of the " + totalfloor + " Floors");
             }
-            if(!availableFrom.isEmpty()){
+            if (!availableFrom.isEmpty()) {
                 AvailableFrom.setVisibility(View.VISIBLE);
                 AvailableFromHead.setVisibility(View.VISIBLE);
                 AvailableFrom.setText(availableFrom);
             }
-            if(!furnish.isEmpty()){
+            if (!furnish.isEmpty()) {
                 FurnishingHead.setVisibility(View.VISIBLE);
                 Furnishing.setVisibility(View.VISIBLE);
                 Furnishing.setText(furnish);
             }
-            if(!ageOfconstruction.isEmpty()){
+            if (!ageOfconstruction.isEmpty()) {
                 AgeofConst.setVisibility(View.VISIBLE);
                 AgeofConstHead.setVisibility(View.VISIBLE);
                 AgeofConst.setText(ageOfconstruction);
             }
-            if(!propertyStatus.isEmpty()){
+            if (!propertyStatus.isEmpty()) {
                 Status.setVisibility(View.VISIBLE);
                 StatusHead.setVisibility(View.VISIBLE);
                 Status.setText(propertyStatus);
             }
 
-            if(!token_amount.isEmpty()){
+            if (!token_amount.isEmpty()) {
                 BookingAmount.setVisibility(View.VISIBLE);
                 BookingAmountHead.setVisibility(View.VISIBLE);
                 BookingAmount.setText(token_amount);
             }
-            if(!maintenance.isEmpty()){
+            if (!maintenance.isEmpty()) {
                 Maintenance.setVisibility(View.VISIBLE);
                 MaintenanceHead.setVisibility(View.VISIBLE);
                 Maintenance.setText(maintenance);
             }
-            if(!roadWidth.isEmpty()){
+            if (!roadWidth.isEmpty()) {
                 RoadWidthHead.setVisibility(View.VISIBLE);
                 RoadWidth.setVisibility(View.VISIBLE);
                 RoadWidth.setText(roadWidth);
             }
-            if(!open_Sides.isEmpty()){
+            if (!open_Sides.isEmpty()) {
                 OpenSides.setVisibility(View.VISIBLE);
                 OpenSidesHead.setVisibility(View.VISIBLE);
                 OpenSides.setText(open_Sides);
@@ -436,38 +553,38 @@ public class Start331AllCommercial_View extends AppCompatActivity {
                 LockinperiodHead.setVisibility(View.VISIBLE);
                 Lockinperiod.setText(lock_in_periodString);
             }
-            if(!superArea.isEmpty()){
+            if (!superArea.isEmpty()) {
                 SuperArea.setVisibility(View.VISIBLE);
                 SuperAreaHead.setVisibility(View.VISIBLE);
-                SuperArea.setText(superArea+" "+superAreaParameter);
+                SuperArea.setText(superArea + " " + superAreaParameter);
             }
-            if(!propertyStatus.isEmpty()){
+            if (!propertyStatus.isEmpty()) {
                 Status.setVisibility(View.VISIBLE);
                 StatusHead.setVisibility(View.VISIBLE);
                 Status.setText(propertyStatus);
             }
 
-            if(!maintenance.isEmpty()){
+            if (!maintenance.isEmpty()) {
                 Maintenance.setVisibility(View.VISIBLE);
                 MaintenanceHead.setVisibility(View.VISIBLE);
                 Maintenance.setText(maintenance);
             }
-            if(!roadWidth.isEmpty()){
+            if (!roadWidth.isEmpty()) {
                 RoadWidthHead.setVisibility(View.VISIBLE);
                 RoadWidth.setVisibility(View.VISIBLE);
                 RoadWidth.setText(roadWidth);
             }
-            if(!open_Sides.isEmpty()){
+            if (!open_Sides.isEmpty()) {
                 OpenSides.setVisibility(View.VISIBLE);
                 OpenSidesHead.setVisibility(View.VISIBLE);
                 OpenSides.setText(open_Sides);
             }
-            if(!personal_washroom.isEmpty()){
+            if (!personal_washroom.isEmpty()) {
                 PersonalWashroom.setVisibility(View.VISIBLE);
                 PersonalWashroomHead.setVisibility(View.VISIBLE);
                 PersonalWashroom.setText(personal_washroom);
             }
-            if(!cornerShop.isEmpty()){
+            if (!cornerShop.isEmpty()) {
                 CornerShop.setVisibility(View.VISIBLE);
                 CornerShopHead.setVisibility(View.VISIBLE);
                 CornerShop.setText(cornerShop);
@@ -505,19 +622,22 @@ public class Start331AllCommercial_View extends AppCompatActivity {
 
                 }
             });
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     private void propertyPosterDetails() {
         OwnerLayout.setVisibility(View.GONE);
         AgentLayout.setVisibility(View.GONE);
+        View divider9 = findViewById(R.id.divider9);
+        divider9.setVisibility(View.GONE);
 
         TextView OName = OwnerLayout.findViewById(R.id.name);
-        TextView ObooksiteVisit = OwnerLayout.findViewById(R.id.booksiteVisit);
+        TextView Ocallnow = OwnerLayout.findViewById(R.id.booksiteVisit);
         Button OviewPhoneNo = OwnerLayout.findViewById(R.id.viewPhoneNo);
         TextView Odateofposting = OwnerLayout.findViewById(R.id.dateofposting);
-        Odateofposting.setText(dateofposting);
+        Odateofposting.setText("Posted on: " + dateofposting);
 
         TextView AName = AgentLayout.findViewById(R.id.name);
         TextView AbooksiteVisit = AgentLayout.findViewById(R.id.booksiteVisit);
@@ -526,7 +646,7 @@ public class Start331AllCommercial_View extends AppCompatActivity {
         TextView Acallnow = AgentLayout.findViewById(R.id.callnow);
         Button AviewPhoneNo = AgentLayout.findViewById(R.id.viewPhoneNo);
         TextView Adateofposting = AgentLayout.findViewById(R.id.dateofposting);
-        Adateofposting.setText(dateofposting);
+        Adateofposting.setText("Posted on: " + dateofposting);
 
         DatabaseReference def = FirebaseDatabase.getInstance().getReference().child("User");
         Query query = def.orderByChild("id").equalTo(refId);
@@ -539,10 +659,12 @@ public class Start331AllCommercial_View extends AppCompatActivity {
                         AgentLayout.setVisibility(View.VISIBLE);
                         AName.setText(data.getName());
                         phoneNo = data.getPhone();
+                        divider9.setVisibility(View.VISIBLE);
                     } else if (data.getUsertype().equals("Owner")) {
                         OwnerLayout.setVisibility(View.VISIBLE);
                         phoneNo = data.getPhone();
                         OName.setText(data.getName());
+                        divider9.setVisibility(View.VISIBLE);
                     }
                 }
             }
@@ -555,27 +677,94 @@ public class Start331AllCommercial_View extends AppCompatActivity {
         Acallnow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "call"+phoneNo, Toast.LENGTH_SHORT).show();
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:" + phoneNo));
-                if (ActivityCompat.checkSelfPermission(Start331AllCommercial_View.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
+                if (isPermissionGranted()) {
+                    SessionManager session = new SessionManager(getApplicationContext());
+                    HashMap<String, String> userID = session.getUserIDs();
+                    String userId = userID.get(SessionManager.KEY_ID);
+                    if (userId == null) {
+                        Toast.makeText(Start331AllCommercial_View.this, "First register", Toast.LENGTH_SHORT).show();
+                    } else {
+                        call_action();
+                    }
                 }
-                startActivity(callIntent);
+            }
+        });
+        Ocallnow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isPermissionGranted()) {
+                    SessionManager session = new SessionManager(getApplicationContext());
+                    HashMap<String, String> userID = session.getUserIDs();
+                    String userId = userID.get(SessionManager.KEY_ID);
+                    if (userId == null) {
+                        Toast.makeText(Start331AllCommercial_View.this, "First register", Toast.LENGTH_SHORT).show();
+                    } else {
+                        call_action();
+                    }
+                }
             }
         });
     }
 
+    public boolean isPermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.CALL_PHONE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v("TAG", "Permission is granted");
+                return true;
+            } else {
+
+                Log.v("TAG", "Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+                return false;
+            }
+        } else { //permission is automatically granted on sdk<23 upon installation
+            Log.v("TAG", "Permission is granted");
+            return true;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+
+            case 1: {
+
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(getApplicationContext(), "Permission granted", Toast.LENGTH_SHORT).show();
+                    call_action();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Permission denied", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
+    public void call_action() {
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:" + phoneNo));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        startActivity(callIntent);
+    }
+
     private void bindView() {
-        OwnerLayout= findViewById(R.id.ownerDetails);
-        AgentLayout= findViewById(R.id.agentDetails);
+        OwnerLayout = findViewById(R.id.ownerDetails);
+        AgentLayout = findViewById(R.id.agentDetails);
 
         imageSlider = findViewById(R.id.imageSlider);
         Price = findViewById(R.id.price);
@@ -609,12 +798,12 @@ public class Start331AllCommercial_View extends AppCompatActivity {
         imageCount.setText("0");
         SuitableFor = findViewById(R.id.suitableFor);
         // labels
-        SuitableForHead =findViewById(R.id.suitableForHead);
-        PersonalWashroomHead =findViewById(R.id.personalWashroomHead);
-        CornerShopHead =findViewById(R.id.cornerShopHead);
-        LockinperiodHead =findViewById(R.id.LockinperiodHead);
-        ElectricHead =findViewById(R.id.electricHead);
-        LocationHead =findViewById(R.id.locationHead);
+        SuitableForHead = findViewById(R.id.suitableForHead);
+        PersonalWashroomHead = findViewById(R.id.personalWashroomHead);
+        CornerShopHead = findViewById(R.id.cornerShopHead);
+        LockinperiodHead = findViewById(R.id.LockinperiodHead);
+        ElectricHead = findViewById(R.id.electricHead);
+        LocationHead = findViewById(R.id.locationHead);
         CarparkingHead = findViewById(R.id.carparkingHead);
         CarpetAreaHead = findViewById(R.id.carpetArea);
         CoveredAreaHead = findViewById(R.id.coveredAreaHeading);
@@ -636,6 +825,7 @@ public class Start331AllCommercial_View extends AppCompatActivity {
         RoadWidth = findViewById(R.id.road_width);
         RoadWidthHead = findViewById(R.id.road_widthHead);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -656,7 +846,8 @@ public class Start331AllCommercial_View extends AppCompatActivity {
         if (id == R.id.action_favourite) {
           /*  Menu item1= findViewById(R.id.action_favourite);
             item1.setIcon(R.drawable.heart_on);
-         */   Toast.makeText(Start331AllCommercial_View.this, "Added", Toast.LENGTH_SHORT).show();
+         */
+            Toast.makeText(Start331AllCommercial_View.this, "Added", Toast.LENGTH_SHORT).show();
             return true;
         } else if (id == R.id.action_share) {
             Toast.makeText(Start331AllCommercial_View.this, "Share", Toast.LENGTH_SHORT).show();
@@ -678,17 +869,19 @@ public class Start331AllCommercial_View extends AppCompatActivity {
 
     public void ShowImages(View view) {
         Intent intent = new Intent(Start331AllCommercial_View.this, view_images.class);
-        Bundle bundle= new Bundle();
+        Bundle bundle = new Bundle();
         bundle.putString("PropertyId", propertyId);
         bundle.putString("propertyType", propertyType);
         intent.putExtras(bundle);
         startActivity(intent);
 
     }
+
     private void ShowImageCount() {
         imageCount.setVisibility(View.VISIBLE);
     }
-    private void HideImageCount(){
+
+    private void HideImageCount() {
         imageCount.setVisibility(View.GONE);
 
     }

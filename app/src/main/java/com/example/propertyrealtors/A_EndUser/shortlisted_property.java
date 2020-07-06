@@ -39,8 +39,7 @@ import java.util.List;
 public class shortlisted_property extends AppCompatActivity {
     SwipeRefreshLayout mSwipeRefreshLayout;
     RecyclerView recyclerView;
-    PropertyModel propertyModel;
-    List<PropertyModel> propertyModelArrayList;
+    ArrayList<PropertyModel> propertyModelArrayList;
     LinearLayoutManager layoutManager;
     DatabaseReference reference;
     favouriteAdapter dataAdapter;
@@ -63,12 +62,13 @@ public class shortlisted_property extends AppCompatActivity {
         mSwipeRefreshLayout = findViewById(R.id.swipeToRefresh);
 
         SessionManager session= new SessionManager(getApplicationContext());
+//        propertyModelArrayList = session.getArrayList("-MALxVxdkQwJyEBA64oh");
         propertyModelArrayList = session.getFavorites();
        /* for (PropertyModel data : arrPackageData) {
             propertyModelArrayList.add(data);
         }*/
 
-       if (propertyModelArrayList != null) {
+       if (propertyModelArrayList != null ) {
            Toast.makeText(this, "exists "+ propertyModelArrayList, Toast.LENGTH_SHORT).show();
 
            recyclerView.setHasFixedSize(true);

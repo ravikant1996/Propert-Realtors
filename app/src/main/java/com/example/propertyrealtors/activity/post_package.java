@@ -3,17 +3,13 @@ package com.example.propertyrealtors.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.propertyrealtors.Post_property.Start331AllResidential_Edit;
 import com.example.propertyrealtors.R;
 import com.example.propertyrealtors.SessionManager;
 import com.example.propertyrealtors.model.AdditioanlDetailsModel;
-import com.example.propertyrealtors.model.CommercialModel;
 import com.example.propertyrealtors.model.PropertyModel;
-import com.example.propertyrealtors.model.ResidentialModel;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -22,7 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -43,8 +38,6 @@ public class post_package extends AppCompatActivity {
     int imageCount=0;
     String dateofposting, timeofposting;
 
-    ResidentialModel residentialModel;
-    CommercialModel commercialModel;
     PropertyModel propertyModel;
     AdditioanlDetailsModel detailsModel;
 

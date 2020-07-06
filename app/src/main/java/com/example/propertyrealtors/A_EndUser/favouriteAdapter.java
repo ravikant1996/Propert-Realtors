@@ -1,16 +1,21 @@
 package com.example.propertyrealtors.A_EndUser;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.propertyrealtors.R;
+import com.example.propertyrealtors.SessionManager;
 import com.example.propertyrealtors.model.PropertyModel;
 import com.squareup.picasso.Picasso;
 
@@ -23,9 +28,12 @@ import androidx.recyclerview.widget.RecyclerView;
 public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.ViewHolder> {
     Context context;
     public List<PropertyModel> arrayList;
-    public favouriteAdapter(Context context, List<PropertyModel> propertyModelArrayList) {
+    favouriteAdapter adapter;
+
+    public favouriteAdapter(Context context, ArrayList<PropertyModel> propertyModelArrayList) {
         this.context = context;
         this.arrayList = propertyModelArrayList;
+        this.adapter = this;
     }
 
     @Override
@@ -47,14 +55,7 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.View
                 holder.propertyType.setText(arrayList.get(position).getBedroom() + " BHK " + arrayList.get(position).getPropertySubType());
             }
             holder.address.setText(arrayList.get(position).getProject());
-            String urls = "";
-            Picasso.get()
-                    .load(urls)
-                    .fit()
-                    .placeholder(R.drawable.property_logo)
-                    .error(R.drawable.property_logo)
-                    .into(holder.imageView);
-            Log.e("favourite", urls);
+
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -151,31 +152,31 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.View
                     }
                 }
             });
-           /* holder.likeButton.setOnLikeListener(new OnLikeListener() {
+            holder.itemView.setOnLongClickListener(new AdapterView.OnLongClickListener() {
                 @Override
-                public void liked(LikeButton likeButton) {
-                    Toast.makeText(context, "Added in Favourite", Toast.LENGTH_SHORT).show();
-             *//*   String propertyId= arrayList.get(position).getKeyId();
-                SessionManager session = new SessionManager(context);
-                HashMap<String, String> userID = session.getUserIDs();
-                String id = userID.get(SessionManager.KEY_ID);
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User");
-          *//*
-                }
-
-                @Override
-                public void unLiked(LikeButton likeButton) {
-                    Toast.makeText(context, "Remove from Favourite", Toast.LENGTH_SHORT).show();
+                public boolean onLongClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getRootView().getContext())
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setTitle("Delete Favourite")
+                            .setMessage("Do you want to delete this List?")
+                            .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    SessionManager sessionManager = new SessionManager(context);
+                                    sessionManager.removeFavorite(arrayList.remove(position));
+                                    arrayList.remove(position);
+//                                    adapter.arrayList.clear();
+                                    adapter.notifyDataSetChanged();
+                                    Toast.makeText(context, "clear", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                    return true;
                 }
             });
-            holder.call.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show();
-                }
-            });*/
-//        }
-        }catch (NullPointerException e){
+
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }

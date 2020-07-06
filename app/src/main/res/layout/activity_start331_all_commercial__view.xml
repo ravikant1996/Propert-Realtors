@@ -5,24 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".A_EndUser.Start331AllCommercial_View">
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout3"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        >
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
-            app:collapsedTitleTextAppearance="@style/Toolbar.TitleText"
             android:layout_width="match_parent"
-            app:expandedTitleTextAppearance="@android:color/transparent"
             android:layout_height="match_parent"
-            app:collapsedTitleGravity="left"
-            app:expandedTitleGravity="left"
             android:fitsSystemWindows="true"
+            app:collapsedTitleGravity="left"
+            app:collapsedTitleTextAppearance="@style/Toolbar.TitleText"
             app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleGravity="left"
+            app:expandedTitleTextAppearance="@android:color/transparent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
@@ -30,18 +30,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:background="@drawable/property_logo"
+                android:onClick="ShowImages"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.7"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:onClick="ShowImages" />
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/imageCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="8dp"
+                android:background="@color/black"
+                android:padding="5dp"
+                android:text="📷" />
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -89,6 +100,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline6"
                 app:layout_constraintTop_toBottomOf="@+id/price" />
+
             <View
                 android:id="@+id/divider9"
                 android:layout_width="match_parent"
@@ -100,11 +112,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/address" />
 
             <include
-                android:layout_margin="16dp"
                 android:id="@+id/ownerDetails"
                 layout="@layout/layout_owner_details"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline6"
                 app:layout_constraintTop_toBottomOf="@+id/divider9" />
@@ -112,9 +124,9 @@
             <include
                 android:id="@+id/agentDetails"
                 layout="@layout/layout_agent_details"
-                android:layout_margin="16dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ownerDetails" />
@@ -152,13 +164,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/coveredAreaHeading" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/price_per"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="4dp"
                 android:hint="price/"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/coveredArea"
                 app:layout_constraintStart_toStartOf="@+id/guideline6"
                 app:layout_constraintTop_toBottomOf="@+id/coveredArea" />
@@ -737,19 +749,18 @@
                 app:layout_constraintGuide_begin="15dp"
                 app:layout_constraintStart_toStartOf="parent" />
 
-
+            <include
+                android:id="@+id/similarproperty"
+                layout="@layout/layout_similar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/road_width" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <TextView
-        android:id="@+id/imageCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/boader"
-        android:padding="10dp"
-        android:layout_margin="16dp"
-        app:layout_anchor="@id/appBarLayout3"
-        app:layout_anchorGravity="bottom|end"
-        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

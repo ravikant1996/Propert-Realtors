@@ -273,7 +273,7 @@ public class Start12Login extends AppCompatActivity {
                             user = new User(usertype, name, email, phone, password, uid);
                             reference.child(uid).setValue(user);
                             session.createIdSession(uid);
-                            session.createDetailsSession(name, email, phone);
+                            session.createDetailsSession(name, email, phone, usertype);
                             Toast.makeText(Start12Login.this, "Registered", Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(Start12Login.this, Start13.class);

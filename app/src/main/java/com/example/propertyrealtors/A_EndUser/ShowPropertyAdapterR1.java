@@ -2,41 +2,24 @@ package com.example.propertyrealtors.A_EndUser;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.propertyrealtors.Post_property.DetailAdding;
 import com.example.propertyrealtors.R;
-import com.example.propertyrealtors.SessionManager;
-import com.example.propertyrealtors.activity.Start331All;
-import com.example.propertyrealtors.activity.Start331AllCommercial;
-import com.example.propertyrealtors.activity.Start331AllCommercial2;
-import com.example.propertyrealtors.activity.Start331AllCommercial3;
-import com.example.propertyrealtors.activity.Start331AllCommercial4;
-import com.example.propertyrealtors.activity.Start331AllCommercial5;
-import com.example.propertyrealtors.activity.Start331AllCommercial6;
-import com.example.propertyrealtors.activity.Start331AllResidential;
-import com.example.propertyrealtors.activity.Start331AllResidential3;
 import com.example.propertyrealtors.model.Image;
 import com.example.propertyrealtors.model.PropertyModel;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,8 +38,6 @@ public class ShowPropertyAdapterR1 extends RecyclerView.Adapter<ShowPropertyAdap
     @NonNull
     @Override
     public ShowPropertyAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //    prefs = context.getSharedPreferences("MYPREFS", 0);
-
         View itemView;
         if (viewType == R.layout.layout_show_property) {
             itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_show_property, parent, false);
@@ -76,12 +57,13 @@ public class ShowPropertyAdapterR1 extends RecyclerView.Adapter<ShowPropertyAdap
         try {
             if (position != (arrayList.size() + imageArrayList.size() - imageArrayList.size())) {
                 if (position < arrayList.size()) {
-                    holder.rupee.setText("₹"+arrayList.get(position).getPrice());
-                    if (arrayList.get(position).getBedroom().isEmpty()){
+                    holder.rupee.setText("₹" + arrayList.get(position).getPrice());
+                    if (arrayList.get(position).getBedroom().isEmpty()) {
                         holder.bedroomORSubtype.setText(arrayList.get(position).getPropertySubType());
-                    }else {
+                    } else {
                         holder.bedroomORSubtype.setText(arrayList.get(position).getBedroom() + " BHK " + arrayList.get(position).getPropertySubType());
-                    }                       holder.localityORCity.setText(arrayList.get(position).getProject());
+                    }
+                    holder.localityORCity.setText(arrayList.get(position).getProject());
                     holder.status.setText(arrayList.get(position).getProperty_status());
                     String urls = imageArrayList.get(position).getImageAddress();
                     Picasso.get()
@@ -136,10 +118,9 @@ public class ShowPropertyAdapterR1 extends RecyclerView.Adapter<ShowPropertyAdap
                             maintenance_parameter = arrayList.get(position).getMaintenance_parameter();
                             roadWidthParameter = arrayList.get(position).getRoadWidthParameter();
                             String imageAddress = imageArrayList.get(position).getImageAddress();
-                            String refId= arrayList.get(position).getUID();
-                            String dateofposting= arrayList.get(position).getDateofposting();
-                            String timeofposting= arrayList.get(position).getTimeofposting();
-
+                            String refId = arrayList.get(position).getUID();
+                            String dateofposting = arrayList.get(position).getDateofposting();
+                            String timeofposting = arrayList.get(position).getTimeofposting();
 
                             String[] strings = {propertyId, propertyFor, propertyType, price, bedroom, locality, carpet, propertyStatus, bathroom,
                                     floorNo, furnishing, PropertySubType, availableFrom, ageOfconstruction, boundaryWall, cafateria, construction_done,
@@ -218,7 +199,7 @@ public class ShowPropertyAdapterR1 extends RecyclerView.Adapter<ShowPropertyAdap
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(context, "Under Construction", Toast.LENGTH_SHORT).show();
-                        Intent intent= new Intent(context, ViewProperty.class);
+                        Intent intent = new Intent(context, ViewProperty.class);
 
                         context.startActivity(intent);
                     }

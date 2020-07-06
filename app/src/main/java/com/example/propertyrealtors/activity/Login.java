@@ -334,7 +334,8 @@ public class Login extends AppCompatActivity {
                     String name = dataSnapshot.child("name").getValue().toString();
                     String email = dataSnapshot.child("email").getValue().toString();
                     String phone = dataSnapshot.child("phone").getValue().toString();
-                    session.createDetailsSession(name, email, phone);
+                    String usertype = dataSnapshot.child("usertype").getValue().toString();
+                    session.createDetailsSession(name, email, phone, usertype);
                     Intent intent = new Intent(Login.this, MainActivity.class);
                   /*  Bundle bundle = new Bundle();
                     bundle.putString("NAME", name);

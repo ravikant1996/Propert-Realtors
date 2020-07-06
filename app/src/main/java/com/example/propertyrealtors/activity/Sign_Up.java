@@ -204,7 +204,7 @@ public class Sign_Up extends AppCompatActivity {
                             reference.child(uid).setValue(user);
                             Toast.makeText(Sign_Up.this, "Registered", Toast.LENGTH_SHORT).show();
                             session.createIdSession(uid);
-                            session.createDetailsSession(name, email, phone);
+                            session.createDetailsSession(name, email, phone, usertype);
                             Intent intent = new Intent(Sign_Up.this, MainActivity.class);
                             startActivity(intent);
                             finish();

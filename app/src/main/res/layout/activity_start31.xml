@@ -42,6 +42,7 @@
             android:clickable="true"
             android:onClick="onRadioButtonClicked"
             android:padding="20dp"
+            android:background="@drawable/boader"
             android:text="I am an Owner"
             tools:layout_editor_absoluteX="97dp"
             tools:layout_editor_absoluteY="327dp" />
@@ -53,6 +54,7 @@
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
             android:padding="20dp"
+            android:background="@drawable/boader"
             android:text="I am an Agent"
             tools:layout_editor_absoluteX="97dp"
             tools:layout_editor_absoluteY="327dp" />

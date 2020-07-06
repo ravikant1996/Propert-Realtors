@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import com.example.propertyrealtors.activity.MainActivity;
 import com.example.propertyrealtors.activity.Start33;
@@ -44,7 +45,7 @@ public class SessionManager {
 
     // User name (make variable public to access from outside)
     public static final String KEY_NAME = "name";
-    public static final String KEY_LOGINTYPE = "logintype";
+    public static final String KEY_USERTYPE = "usertype";
 
     // Email address (make variable public to access from outside)
     public static final String KEY_EMAIL = "email";
@@ -54,8 +55,7 @@ public class SessionManager {
     public static final String PROPERTYFOR_KEY = "propertyfor";
     public static final String PROPERTYSUBTYPE_KEY = "propertysubtype";
 
-    public static final String FAVORITES = "Product_Favorite";
-    public static final String FAVORITES_LIST = "favorite";
+    public static final String FAVORITES = "favorite";
 
     public static final String BEDROOM_KEY = "bedroom";
     public static final String S_PROPERTYKEY = "s_keyId";
@@ -74,25 +74,6 @@ public class SessionManager {
 
     }
 
-
-
-    public ArrayList<PropertyModel> getcreateRENT_RESI() {
-        return list1;
-    }
-
-   /*  public void createRENT_RESI(ArrayList<PropertyModel> arrayList){
-         Gson gson = new Gson();
-         String json = gson.toJson(arrayList);
-         editor.putString("Set1", json);
-         editor.commit();
-     }
-     public void createSELL_RESI(ArrayList<PropertyModel> arrayList){
-         Gson gson = new Gson();
-         String json = gson.toJson(arrayList);
-         editor.putString("Set2", json);
-         editor.commit();
-     }*/
-
     //session of property
     public void saveArrayList(ArrayList<PropertyModel> list, String key){
         Gson gson = new Gson();
@@ -100,13 +81,6 @@ public class SessionManager {
         editor.putString(key, json);
         editor.commit();     // This line is IMPORTANT !!!
     }
-//    public void removeList(String key){
-//        Gson gson = new Gson();
-//        String json = gson.toJson(list);
-//        editor.putString(key, json);
-//        editor.commit();     // This line is IMPORTANT !!!
-//    }
-
     public ArrayList<PropertyModel> getArrayList(String key){
         Gson gson = new Gson();
         String json = pref.getString(key, null);
@@ -114,46 +88,47 @@ public class SessionManager {
         return gson.fromJson(json, type);
     }
 
-   public void saveFavorites(List<PropertyModel> favorites) {
-       Gson gson = new Gson();
-       String jsonFavorites = gson.toJson(favorites);
-       editor.putString(FAVORITES, jsonFavorites);
-       editor.commit();
-   }
-    public void addFavorite(PropertyModel propertyDetails) {
-        ArrayList<PropertyModel> favorites  = getFavorites();
-        if (favorites == null)
+    public void saveFavorites(List<PropertyModel> favorites){
+        Gson gson = new Gson();
+        String jsonFavorites = gson.toJson(favorites);
+        editor.putString(FAVORITES, jsonFavorites);
+        editor.commit();
+    }
+
+    public void addFavorite(PropertyModel code){
+        List<PropertyModel> favorites = getFavorites();
+
+        if(favorites == null)
             favorites = new ArrayList<PropertyModel>();
-        favorites.add(propertyDetails);
+        favorites.add(code);
         saveFavorites(favorites);
     }
 
-
-    public void removeFavorite(PropertyModel propertyDetails) {
+    public void removeFavorite(PropertyModel details) {
         ArrayList<PropertyModel> favorites = getFavorites();
         if (favorites != null) {
-            favorites.remove(propertyDetails);
-            saveFavorites(favorites);
+            if (favorites.equals(details)) {
+                favorites.remove(details);
+                saveFavorites(favorites);
+            }
         }
     }
 
     public ArrayList<PropertyModel> getFavorites() {
-        List<PropertyModel> favorites = new ArrayList<PropertyModel>();
+        ArrayList<PropertyModel> favorites;
 
         if (pref.contains(FAVORITES)) {
             String jsonFavorites = pref.getString(FAVORITES, null);
             Gson gson = new Gson();
-            Type type = new TypeToken<List<PropertyModel>>() {
-            }.getType();
-//            PropertyModel[] favoriteItems = gson.fromJson(jsonFavorites, PropertyModel[].class);
-            List<PropertyModel> favoriteItems = gson.fromJson(jsonFavorites, type);
-            for (PropertyModel data : favoriteItems) {
-                favorites.add(data);
-            }
+            PropertyModel[] favoriteItems = gson.fromJson(jsonFavorites,
+                    PropertyModel[].class);
+
+            favorites  = new ArrayList<PropertyModel>();
+            favorites.addAll(Arrays.asList(favoriteItems));
         } else
             return null;
 
-        return (ArrayList<PropertyModel>) favorites;
+        return favorites;
     }
     //Search session
     public void createSearchSession(String propertyType, String propertyfor) {
@@ -181,10 +156,11 @@ public class SessionManager {
         return data;
     }
 
-    public void createDetailsSession(String name, String email, String phone) {
+    public void createDetailsSession(String name, String email, String phone, String usertype) {
         editor.putString(KEY_NAME, name);
         editor.putString(KEY_EMAIL, email);
         editor.putString(KEY_PHONE, phone);
+        editor.putString(KEY_USERTYPE, usertype);
         editor.commit();
     }
 
@@ -196,6 +172,8 @@ public class SessionManager {
         data.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
 
         data.put(KEY_PHONE, pref.getString(KEY_PHONE, null));
+        //
+        data.put(KEY_USERTYPE, pref.getString(KEY_USERTYPE, null));
         // return user
         return data;
     }
