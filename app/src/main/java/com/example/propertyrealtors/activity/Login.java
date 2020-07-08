@@ -3,7 +3,6 @@ package com.example.propertyrealtors.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 
 import com.example.propertyrealtors.R;
 import com.example.propertyrealtors.SessionManager;
-import com.example.propertyrealtors.model.ResidentialModel;
 import com.example.propertyrealtors.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -214,7 +212,7 @@ public class Login extends AppCompatActivity {
 
     private void sendVerificationCode(String phone) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+1" + phone,
+                "+91" + phone,
                 60,
                 TimeUnit.SECONDS,
                 TaskExecutors.MAIN_THREAD,

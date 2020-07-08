@@ -7,9 +7,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.Dialog;
-import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -27,8 +25,6 @@ import android.widget.Toast;
 import com.example.propertyrealtors.R;
 import com.example.propertyrealtors.activity.MainActivity;
 import com.example.propertyrealtors.model.Image;
-import com.example.propertyrealtors.model.Locality;
-import com.example.propertyrealtors.model.ResidentialModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -51,8 +47,6 @@ import com.tuyenmonkey.mkloader.MKLoader;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -68,7 +62,6 @@ public class ImagesUpload extends AppCompatActivity {
     String Id;
     private final int PERMISSION_ALL= 12;
     private ImagePicker imagePicker;
-    ResidentialModel residentialModel;
     CardView Image_card;
     SliderView sliderView;
     UploadSliderAdapter adapter;
@@ -124,7 +117,6 @@ public class ImagesUpload extends AppCompatActivity {
             e.getMessage();
         }
 */
-        residentialModel = new ResidentialModel();
         final String[] PERMISSIONS = {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,

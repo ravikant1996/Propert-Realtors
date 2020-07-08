@@ -70,7 +70,6 @@ public class ViewPropertyAdapter extends RecyclerView.Adapter<ViewPropertyAdapte
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, "testing"+arrayList.get(position).getKeyId() , Toast.LENGTH_SHORT).show();
                     String propertyFor = arrayList.get(position).getPropertyFor();
                     String propertyType = arrayList.get(position).getPropertyType();
                     String PropertySubType = arrayList.get(position).getPropertySubType();
@@ -113,15 +112,15 @@ public class ViewPropertyAdapter extends RecyclerView.Adapter<ViewPropertyAdapte
                     maintenance_parameter = arrayList.get(position).getMaintenance_parameter();
                     roadWidthParameter = arrayList.get(position).getRoadWidthParameter();
                     String imageAddress = imageArrayList.get(position).getImageAddress();
-
+                    String refId = arrayList.get(position).getUID();
+                    String dateofposting = arrayList.get(position).getDateofposting();
+                    String timeofposting = arrayList.get(position).getTimeofposting();
 
                     String[] strings = {propertyId, propertyFor, propertyType, price, bedroom, locality, carpet, propertyStatus, bathroom,
                             floorNo, furnishing, PropertySubType, availableFrom, ageOfconstruction, boundaryWall, cafateria, construction_done,
-                            cornerShop, TotalFloor, gated_colony, lock_in_periodString, main_road_facing, open_Sides, personal_washroom, plotArea,
-                            plot_bredth,
-                            plot_length, roadWidth, security, superArea, token_amount, washroom, maintenance, balcony, carpetAreaParameter,
-                            superAreaParameter,
-                            plotAreaParameter, maintenance_parameter, roadWidthParameter, city, imageAddress};
+                            cornerShop, TotalFloor, gated_colony, lock_in_periodString, main_road_facing, open_Sides, personal_washroom, plotArea, plot_bredth,
+                            plot_length, roadWidth, security, superArea, token_amount, washroom, maintenance, balcony, carpetAreaParameter, superAreaParameter,
+                            plotAreaParameter, maintenance_parameter, roadWidthParameter, city, imageAddress, refId, dateofposting, timeofposting};
                     Intent intent = null;
                     Bundle bundle = new Bundle();
                     bundle.putStringArray("DATAARRAY", strings);
@@ -135,6 +134,7 @@ public class ViewPropertyAdapter extends RecyclerView.Adapter<ViewPropertyAdapte
                         case "Farm_House":
                         case "Villa":
                             intent = new Intent(context, Start331AllResidential_View.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtras(bundle);
                             context.startActivity(intent);
                             break;
@@ -143,6 +143,7 @@ public class ViewPropertyAdapter extends RecyclerView.Adapter<ViewPropertyAdapte
                         case "Agriculture_Land":
                         case "Industrial_Land":
                             intent = new Intent(context, Start331AllResidential2_View.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtras(bundle);
                             context.startActivity(intent);
                             break;
@@ -156,6 +157,7 @@ public class ViewPropertyAdapter extends RecyclerView.Adapter<ViewPropertyAdapte
                         case "Industrial_Shed":
                         case "Coworking_Space":
                             intent = new Intent(context, Start331AllCommercial_View.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtras(bundle);
                             context.startActivity(intent);
                             break;

@@ -105,12 +105,6 @@ public class Start331 extends AppCompatActivity {
         }
     }
 
-    public void back(View view) {
-        Intent intent =new Intent(Start331.this, Start33.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        finish();
-    }
 
     public void onRadioButtonClicked(View v) {
         boolean checked = ((RadioButton) v).isChecked();

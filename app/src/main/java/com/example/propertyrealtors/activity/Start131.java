@@ -1,9 +1,6 @@
 package com.example.propertyrealtors.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,14 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.propertyrealtors.City_Adapter.PlaceAutoSuggestAdapter;
-import com.example.propertyrealtors.City_Adapter.SearchPlaceAdapter;
 import com.example.propertyrealtors.R;
 import com.example.propertyrealtors.SessionManager;
 import com.example.propertyrealtors.model.City;
@@ -30,13 +22,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.security.AccessController.getContext;
 
 public class Start131 extends AppCompatActivity {
 

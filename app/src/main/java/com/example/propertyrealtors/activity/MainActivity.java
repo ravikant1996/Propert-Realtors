@@ -17,6 +17,7 @@ import com.example.propertyrealtors.A_EndUser.Notification;
 import com.example.propertyrealtors.A_EndUser.dashboard;
 import com.example.propertyrealtors.A_EndUser.dashboard_EndUser;
 import com.example.propertyrealtors.A_EndUser.enduser_profile;
+import com.example.propertyrealtors.A_EndUser.notificationClass;
 import com.example.propertyrealtors.A_EndUser.shortlisted_property;
 import com.example.propertyrealtors.HideBottomViewOnScrollBehavior;
 import com.example.propertyrealtors.R;
@@ -116,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView = findViewById(R.id.enduser_navigation);
         View headerView = navigationView.inflateHeaderView(R.layout.enduser_navigation_header);
-        drawerHeaderImage = (CircleImageView) headerView.findViewById(R.id.profile_image);
+//        drawerHeaderImage = (CircleImageView) headerView.findViewById(R.id.profile_image);
         endUserName = (TextView) headerView.findViewById(R.id.loginTextId);
         EmailId = (TextView) headerView.findViewById(R.id.id);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -303,6 +304,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.navigation_profile:
+               /*     Intent intent = new Intent(MainActivity.this, notificationClass.class);
+                    startActivity(intent);*/
                     fragment = new enduser_profile();
                     toolbar.setTitle("Profile");
                     break;

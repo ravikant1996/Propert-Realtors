@@ -213,58 +213,6 @@ public class Start332AllResidentialPrice extends AppCompatActivity {
         }
     }
 
- /*   public void back(View view) {
-        try {
-
-            Intent intent = null;
-            Bundle bundle = new Bundle();
-            bundle.putString("UID", UID);
-            bundle.putString("R/C_TYPE", propertySubType);
-            bundle.putString("PROPERTY_FOR", propertyFor);
-            bundle.putString("PROPERTY_TYPE", propertyType);
-
-            if (propertySubType.equals("Flat/Apartment") || propertySubType.equals("Builder_Floor")
-                    || propertySubType.equals("Pentahouse") || propertySubType.equals("Studio_Apartment")) {
-
-                intent = new Intent(Start332AllResidentialPrice.this, Start331AllResidential.class);
-            } else if (propertySubType.equals("House") || propertySubType.equals("Farm_House") || propertySubType.equals("Villa")) {
-                intent = new Intent(Start332AllResidentialPrice.this, Start331AllResidential2.class);
-
-            }
-       *//* else if(propertySubType.equals("Plot")){
-            intent = new Intent(Start332AllResidentialPrice.this, Start331AllResidential3.class);
-
-        }*//*
-            else if (propertySubType.equals("office") || propertySubType.equals("IT_Park")) {
-                intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial.class);
-
-            } else if (propertySubType.equals("Shop") || propertySubType.equals("Showroom")) {
-                intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial2.class);
-
-            } else if (propertySubType.equals("Commercial_Land") || propertySubType.equals("Agriculture_Land")) {
-                intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial3.class);
-
-            } else if (propertySubType.equals("Warehouse") || propertySubType.equals("Industrial_Building")
-                    || propertySubType.equals("Industrial_Shed")) {
-                intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial4.class);
-
-            } else if (propertySubType.equals("Industrial_Land")) {
-                intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial5.class);
-
-            } else if (propertySubType.equals("Coworking_Space")) {
-                intent = new Intent(Start332AllResidentialPrice.this, Start331AllCommercial6.class);
-
-            }
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.putExtras(bundle);
-            startActivity(intent);
-            finish();
-        }catch (IllegalStateException e){
-            e.printStackTrace();
-        }finally {
-            Log.e("331", "error");
-        }
-    }*/
     public void intenter() {
         Intent intent;
         Bundle bundle = new Bundle();

@@ -72,14 +72,5 @@
             android:onClick="onRadioButtonClicked"
             android:text="Have Shortlisted a locality" />
 
-        <RadioButton
-            android:id="@+id/radio3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:textColor="@color/black"
-            android:onClick="onRadioButtonClicked"
-            android:text="Have Shortlisted a Project/Socity" />
-
     </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

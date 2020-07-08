@@ -135,7 +135,7 @@ public class Sign_Up extends AppCompatActivity {
 
     private void sendVerificationCode(String phone) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+1" + phone,
+                "+91" + phone,
                 60,
                 TimeUnit.SECONDS,
                 TaskExecutors.MAIN_THREAD,

@@ -14,6 +14,7 @@ import com.example.propertyrealtors.R;
 public class Start13 extends AppCompatActivity {
 
     String PURPOSE;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,7 @@ public class Start13 extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(Start13.this, MainActivity.class);
+                Intent intent = new Intent(Start13.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -35,22 +36,16 @@ public class Start13 extends AppCompatActivity {
         try {
             PURPOSE = bundle.getString("PURPOSE_OF_USER");
             Log.e(" ", PURPOSE);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }
 
-    public void back(View view) {
-        Intent intent =new Intent(Start13.this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        finish();
-    }
 
     public void onRadioButtonClicked(View v) {
         boolean checked = ((RadioButton) v).isChecked();
         String type;
-        Intent intent= null;
+        Intent intent = null;
         Bundle bundle, bundle1, bundle2;
         switch (v.getId()) {
 
@@ -74,15 +69,7 @@ public class Start13 extends AppCompatActivity {
                     finish();
                 }
                 break;
-            case R.id.radio3:
-                if (checked) {
-                    intent = new Intent(Start13.this, Start133.class);
-                    bundle2 = new Bundle();
-                    bundle2.putString("PURPOSE_OF_USER", PURPOSE);
-                    intent.putExtras(bundle2);
-                    startActivity(intent);
-                }
-                break;
+
         }
     }
 }

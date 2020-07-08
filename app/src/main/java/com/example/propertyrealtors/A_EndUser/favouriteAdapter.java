@@ -16,7 +16,15 @@ import android.widget.Toast;
 
 import com.example.propertyrealtors.R;
 import com.example.propertyrealtors.SessionManager;
+import com.example.propertyrealtors.SharedPreference;
+import com.example.propertyrealtors.model.Image;
 import com.example.propertyrealtors.model.PropertyModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -29,6 +37,7 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.View
     Context context;
     public List<PropertyModel> arrayList;
     favouriteAdapter adapter;
+    String imageAddress;
 
     public favouriteAdapter(Context context, ArrayList<PropertyModel> propertyModelArrayList) {
         this.context = context;
@@ -56,6 +65,28 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.View
             }
             holder.address.setText(arrayList.get(position).getProject());
 
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("PropertyTable");
+            Query query = databaseReference.child(arrayList.get(position).getPropertyType())
+                    .child(arrayList.get(position).getKeyId()).child("images").orderByValue().limitToFirst(1);
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Image image = new Image("null");
+                    if (dataSnapshot.exists()) {
+                        for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                            image = areaSnapshot.getValue(Image.class);
+                            imageAddress =image.getImageAddress();
+                        }
+                    } else {
+                        imageAddress =image.getImageAddress();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -100,16 +131,15 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.View
                     plotAreaParameter = arrayList.get(position).getPlotAreaParameter();
                     maintenance_parameter = arrayList.get(position).getMaintenance_parameter();
                     roadWidthParameter = arrayList.get(position).getRoadWidthParameter();
-                    String imageAddress = "";
-
+                    String refId = arrayList.get(position).getUID();
+                    String dateofposting = arrayList.get(position).getDateofposting();
+                    String timeofposting = arrayList.get(position).getTimeofposting();
 
                     String[] strings = {propertyId, propertyFor, propertyType, price, bedroom, locality, carpet, propertyStatus, bathroom,
                             floorNo, furnishing, PropertySubType, availableFrom, ageOfconstruction, boundaryWall, cafateria, construction_done,
-                            cornerShop, TotalFloor, gated_colony, lock_in_periodString, main_road_facing, open_Sides, personal_washroom, plotArea,
-                            plot_bredth,
-                            plot_length, roadWidth, security, superArea, token_amount, washroom, maintenance, balcony, carpetAreaParameter,
-                            superAreaParameter,
-                            plotAreaParameter, maintenance_parameter, roadWidthParameter, city, imageAddress};
+                            cornerShop, TotalFloor, gated_colony, lock_in_periodString, main_road_facing, open_Sides, personal_washroom, plotArea, plot_bredth,
+                            plot_length, roadWidth, security, superArea, token_amount, washroom, maintenance, balcony, carpetAreaParameter, superAreaParameter,
+                            plotAreaParameter, maintenance_parameter, roadWidthParameter, city, imageAddress, refId, dateofposting, timeofposting};
                     Intent intent = null;
                     Bundle bundle = new Bundle();
                     bundle.putStringArray("DATAARRAY", strings);
@@ -123,6 +153,7 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.View
                         case "Farm_House":
                         case "Villa":
                             intent = new Intent(context, Start331AllResidential_View.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtras(bundle);
                             context.startActivity(intent);
                             break;
@@ -131,6 +162,7 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.View
                         case "Agriculture_Land":
                         case "Industrial_Land":
                             intent = new Intent(context, Start331AllResidential2_View.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtras(bundle);
                             context.startActivity(intent);
                             break;
@@ -144,6 +176,7 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.View
                         case "Industrial_Shed":
                         case "Coworking_Space":
                             intent = new Intent(context, Start331AllCommercial_View.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtras(bundle);
                             context.startActivity(intent);
                             break;
@@ -155,27 +188,30 @@ public class favouriteAdapter extends RecyclerView.Adapter<favouriteAdapter.View
             holder.itemView.setOnLongClickListener(new AdapterView.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getRootView().getContext())
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .setTitle("Delete Favourite")
-                            .setMessage("Do you want to delete this List?")
-                            .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    SessionManager sessionManager = new SessionManager(context);
-                                    sessionManager.removeFavorite(arrayList.remove(position));
-                                    arrayList.remove(position);
-//                                    adapter.arrayList.clear();
-                                    adapter.notifyDataSetChanged();
-                                    Toast.makeText(context, "clear", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                    AlertDialog alert = builder.create();
-                    alert.show();
+                    try {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(v.getRootView().getContext())
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .setTitle("Delete Favourite")
+                                .setMessage("Do you want to delete this List?")
+                                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        SharedPreference sessionManager = new SharedPreference();
+                                        String propertyId = arrayList.get(position).getKeyId();
+                                        sessionManager.removeFavorite(context, propertyId);
+                                        arrayList.remove(position);
+                                        adapter.notifyDataSetChanged();
+                                        Toast.makeText(context, "clear", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    } catch (NullPointerException e) {
+                        e.printStackTrace();
+                    }
                     return true;
                 }
             });
-
         } catch (NullPointerException e) {
             e.printStackTrace();
         }

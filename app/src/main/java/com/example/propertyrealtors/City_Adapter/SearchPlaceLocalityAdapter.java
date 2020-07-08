@@ -1,38 +1,24 @@
 package com.example.propertyrealtors.City_Adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.AndroidRuntimeException;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.propertyrealtors.R;
-import com.example.propertyrealtors.activity.Adding_City;
-import com.example.propertyrealtors.activity.All331ProjectSearch;
-import com.example.propertyrealtors.activity.Login;
 import com.example.propertyrealtors.activity.Start331All;
-import com.example.propertyrealtors.model.City;
 import com.example.propertyrealtors.model.Locality;
-import com.google.android.material.badge.BadgeUtils;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class SearchPlaceLocalityAdapter extends RecyclerView.Adapter<SearchPlaceLocalityAdapter.SearchPlaceAdapterViewHolder> implements Filterable {

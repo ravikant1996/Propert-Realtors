@@ -66,8 +66,8 @@ public class sell_commercial extends Fragment {
         HashMap<String, String> userID = session.getUserIDs();
         UID = userID.get(SessionManager.KEY_ID);
 
-        String propertyFor="SELL";
-        String propertyType= "commercial";
+        propertyFor="SELL";
+        propertyType= "commercial";
         final ArrayList<Image> imageArrayList1 = new ArrayList<Image>();
 
         propertyModelArrayList = new ArrayList<PropertyModel>();

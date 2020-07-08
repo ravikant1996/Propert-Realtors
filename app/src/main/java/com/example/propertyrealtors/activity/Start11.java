@@ -87,9 +87,11 @@ public class Start11 extends AppCompatActivity {
             Individual.setBackgroundColor(Color.LTGRAY);
             Individual.setTextColor(Color.WHITE);
             Agent.setBackgroundColor(Color.WHITE);
+            Agent.setTextColor(Color.BLACK);
         } else if (v.getId() == R.id.agent) {
             type = "agent";
             textInputLayout7.setVisibility(View.VISIBLE);
+            Individual.setTextColor(Color.BLACK);
             Individual.setBackgroundColor(Color.WHITE);
             Agent.setBackgroundColor(Color.LTGRAY);
             Agent.setTextColor(Color.WHITE);

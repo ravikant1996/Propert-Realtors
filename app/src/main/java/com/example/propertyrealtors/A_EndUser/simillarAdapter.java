@@ -3,6 +3,7 @@ package com.example.propertyrealtors.A_EndUser;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.AndroidRuntimeException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,6 +125,7 @@ public class simillarAdapter extends RecyclerView.Adapter<simillarAdapter.ViewHo
                             case "Farm_House":
                             case "Villa":
                                 intent = new Intent(context, Start331AllResidential_View.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.putExtras(bundle);
                                 context.startActivity(intent);
                                 break;
@@ -132,6 +134,7 @@ public class simillarAdapter extends RecyclerView.Adapter<simillarAdapter.ViewHo
                             case "Agriculture_Land":
                             case "Industrial_Land":
                                 intent = new Intent(context, Start331AllResidential2_View.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.putExtras(bundle);
                                 context.startActivity(intent);
                                 break;
@@ -145,6 +148,7 @@ public class simillarAdapter extends RecyclerView.Adapter<simillarAdapter.ViewHo
                             case "Industrial_Shed":
                             case "Coworking_Space":
                                 intent = new Intent(context, Start331AllCommercial_View.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.putExtras(bundle);
                                 context.startActivity(intent);
                                 break;
@@ -154,11 +158,7 @@ public class simillarAdapter extends RecyclerView.Adapter<simillarAdapter.ViewHo
                 });
             }
 
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
+        } catch (IndexOutOfBoundsException | IllegalArgumentException | AndroidRuntimeException | NullPointerException e) {
             e.printStackTrace();
         }
     }
@@ -183,7 +183,6 @@ public class simillarAdapter extends RecyclerView.Adapter<simillarAdapter.ViewHo
             localityORCity = (TextView) itemView.findViewById(R.id.locality_city);
             status = (TextView) itemView.findViewById(R.id.status);
             imageView = itemView.findViewById(R.id.image);
-            likeButton = itemView.findViewById(R.id.star_button);
             call = itemView.findViewById(R.id.calling);
         }
     }

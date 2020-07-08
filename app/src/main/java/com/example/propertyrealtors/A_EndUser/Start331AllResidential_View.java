@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.example.propertyrealtors.Post_property.UploadSliderAdapter;
 import com.example.propertyrealtors.R;
 import com.example.propertyrealtors.SessionManager;
+import com.example.propertyrealtors.SharedPreference;
 import com.example.propertyrealtors.activity.Start331AllResidential;
 import com.example.propertyrealtors.model.AdditioanlDetailsModel;
 import com.example.propertyrealtors.model.Image;
@@ -47,6 +48,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class Start331AllResidential_View extends AppCompatActivity {
@@ -64,7 +66,7 @@ public class Start331AllResidential_View extends AppCompatActivity {
     RecyclerView recyclerView;
     final ArrayList<Image> imageList = new ArrayList<Image>();
     List<String> propertySubTypes = new ArrayList<>();
-    List<String > cityList= new ArrayList<>();
+    List<String> cityList = new ArrayList<>();
     simillarAdapter simiAdapter;
     // Linear Layout Manager
     LinearLayoutManager horizontalLayout;
@@ -73,7 +75,7 @@ public class Start331AllResidential_View extends AppCompatActivity {
     String propertyType, propertyId;
     String[] getData;
     PropertyModel list;
-    ArrayList<PropertyModel> propertyModelArrayList = new ArrayList<>();
+    List<PropertyModel> propertyModelArrayList = new ArrayList<>();
     String gym, clubHouse, park, parking, lift, powerBackup, gasPipeline, swimPool;
     String location, overlooking, facing, landmark, flooring, water, covered_area, pricePer, electricity,
             carparking, society, suitableFor, construction,
@@ -91,7 +93,7 @@ public class Start331AllResidential_View extends AppCompatActivity {
     Menu menu;
     boolean mIsSaved = true;
     SessionManager session;
-    boolean checkfavouriteList = false;
+    SharedPreference sharedPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +111,7 @@ public class Start331AllResidential_View extends AppCompatActivity {
             }
         });
 
+        sharedPreference = new SharedPreference();
         session = new SessionManager(getApplicationContext());
 
         final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
@@ -206,6 +209,8 @@ public class Start331AllResidential_View extends AppCompatActivity {
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
@@ -227,7 +232,7 @@ public class Start331AllResidential_View extends AppCompatActivity {
     }
 
     public void recycler() {
-        View similarproperty= findViewById(R.id.similarproperty);
+        View similarproperty = findViewById(R.id.similarproperty);
 
         TextView showAll = similarproperty.findViewById(R.id.showall);
         recyclerView = similarproperty.findViewById(R.id.recyclerView);
@@ -281,21 +286,21 @@ public class Start331AllResidential_View extends AppCompatActivity {
                 cityList.add(locality);
 
                 if (propertySubType.equals("Flat/Apartment") || propertySubType.equals("Builder_Floor") ||
-                        propertySubType.equals("Pentahouse")){
+                        propertySubType.equals("Pentahouse")) {
                     propertySubTypes.add("Flat/Apartment");
                     propertySubTypes.add("Builder_Floor");
                     propertySubTypes.add("Pentahouse");
-                }else if (propertySubType.equals("House") || propertySubType.equals("Farm_House") ||
-                propertySubType.equals("Villa")){
+                } else if (propertySubType.equals("House") || propertySubType.equals("Farm_House") ||
+                        propertySubType.equals("Villa")) {
                     propertySubTypes.add("House");
                     propertySubTypes.add("Farm_House");
                     propertySubTypes.add("Villa");
-                }else if (propertySubType.equals("Studio_Apartment")){
+                } else if (propertySubType.equals("Studio_Apartment")) {
                     propertySubTypes.add("Studio_Apartment");
                 }
 
-                Intent intent= new Intent(Start331AllResidential_View.this, ViewProperty.class);
-                Bundle bundle= new Bundle();
+                Intent intent = new Intent(Start331AllResidential_View.this, ViewProperty.class);
+                Bundle bundle = new Bundle();
                 bundle.putString("propertyType", propertyType);
                 bundle.putString("propertyFor", propertyFor);
                 bundle.putStringArrayList("PROPERTYSUBTYPES", (ArrayList<String>) propertySubTypes);
@@ -336,8 +341,7 @@ public class Start331AllResidential_View extends AppCompatActivity {
     }
 
     private void propertyPosterDetails() {
-        OwnerLayout.setVisibility(View.GONE);
-        AgentLayout.setVisibility(View.GONE);
+
         View divider9 = findViewById(R.id.divider9);
         divider9.setVisibility(View.GONE);
 
@@ -351,6 +355,7 @@ public class Start331AllResidential_View extends AppCompatActivity {
         TextView AbooksiteVisit = AgentLayout.findViewById(R.id.booksiteVisit);
         TextView Aoperating_since = AgentLayout.findViewById(R.id.operating_since);
         TextView Acommercial = AgentLayout.findViewById(R.id.commercial);
+
         TextView Acallnow = AgentLayout.findViewById(R.id.callnow);
         Button AviewPhoneNo = AgentLayout.findViewById(R.id.viewPhoneNo);
         TextView Adateofposting = AgentLayout.findViewById(R.id.dateofposting);
@@ -389,9 +394,9 @@ public class Start331AllResidential_View extends AppCompatActivity {
                     SessionManager session = new SessionManager(getApplicationContext());
                     HashMap<String, String> userID = session.getUserIDs();
                     String userId = userID.get(SessionManager.KEY_ID);
-                    if (userId==null){
+                    if (userId == null) {
                         Toast.makeText(Start331AllResidential_View.this, "First register", Toast.LENGTH_SHORT).show();
-                    }else {
+                    } else {
                         call_action();
                     }
                 }
@@ -404,9 +409,9 @@ public class Start331AllResidential_View extends AppCompatActivity {
                     SessionManager session = new SessionManager(getApplicationContext());
                     HashMap<String, String> userID = session.getUserIDs();
                     String userId = userID.get(SessionManager.KEY_ID);
-                    if (userId==null){
+                    if (userId == null) {
                         Toast.makeText(Start331AllResidential_View.this, "First register", Toast.LENGTH_SHORT).show();
-                    }else {
+                    } else {
                         call_action();
                     }
                 }
@@ -870,6 +875,22 @@ public class Start331AllResidential_View extends AppCompatActivity {
         this.menu = menu;
         getMenuInflater().inflate(R.menu.menu_scrolling, menu);
         hideOption(R.id.action_share);
+        List<PropertyModel> list= sharedPreference.getFavorites(getApplicationContext());
+        if (list != null) {
+            Iterator<PropertyModel> iterator = list.iterator();
+            while(iterator.hasNext()) {
+                PropertyModel next = iterator.next();
+                if(next.getKeyId().equals(propertyId)) {
+                    menu.findItem(R.id.action_favourite).setIcon(R.drawable.heart_on);
+                    mIsSaved=false;
+                }
+            }
+        }
+      /*  if (!mIsSaved){
+            menu.findItem(R.id.action_favourite).setIcon(R.drawable.heart_on);
+        } else {
+            menu.findItem(R.id.action_favourite).setIcon(R.drawable.heart_off);
+        }*/
         return true;
     }
 
@@ -884,44 +905,24 @@ public class Start331AllResidential_View extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_favourite:
                 if (mIsSaved) {
-                    mIsSaved = false;
-                    menu.findItem(R.id.action_favourite)
-                            .setIcon(R.drawable.heart_on);
-                    getDataForSharedPrefercnce();
-                    ArrayList<PropertyModel> favorites = session.getFavorites();
                     try {
-                        if (favorites != null) {
-                            for (PropertyModel product : favorites) {
-                                if (product.equals(list)) {
-                                    checkfavouriteList = true;
-                                    Toast.makeText(this, "already existed", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    session.addFavorite(list);
-                                    Toast.makeText(this, "Added", Toast.LENGTH_SHORT).show();
-                                }
-                            }
+                        if (list!=null) {
+                            mIsSaved = false;
+                            menu.findItem(R.id.action_favourite)
+                                    .setIcon(R.drawable.heart_on);
+                            sharedPreference.addFavorite(getApplicationContext(), list);
+                            Toast.makeText(this, "Added in the favourite", Toast.LENGTH_SHORT).show();
                         }
                     } catch (NullPointerException e) {
                         Toast.makeText(this, "empty String" + list, Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    mIsSaved = true;
-                    menu.findItem(R.id.action_favourite)
-                            .setIcon(R.drawable.heart_off);
-                    getDataForSharedPrefercnce();
-                    ArrayList<PropertyModel> favorites = session.getFavorites();
                     try {
-                        if (favorites != null) {
-                            for (PropertyModel product : favorites) {
-                                if (product.getKeyId().equals(list.getKeyId())) {
-                                    checkfavouriteList = true;
-                                    session.removeFavorite(list);
-                                    Toast.makeText(this, "removed", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(this, "not exist", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        }
+                        mIsSaved = true;
+                        menu.findItem(R.id.action_favourite)
+                                .setIcon(R.drawable.heart_off);
+                        sharedPreference.removeFavorite(getApplicationContext(), propertyId);
+                        Toast.makeText(this, "removed", Toast.LENGTH_SHORT).show();
                     } catch (NullPointerException e) {
                         Toast.makeText(this, "empty String" + list, Toast.LENGTH_SHORT).show();
                     }

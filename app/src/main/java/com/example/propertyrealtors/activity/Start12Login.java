@@ -155,7 +155,7 @@ public class Start12Login extends AppCompatActivity {
 
     private void sendVerificationCode(String phone) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+1" + phone,
+                "+91" + phone,
                 //    "+1" + phone,
                 60,
                 TimeUnit.SECONDS,
@@ -203,58 +203,6 @@ public class Start12Login extends AppCompatActivity {
         };
     }
 
-    /*   private final PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks =
-               new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                   @Override
-                   public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-
-                       //Getting the code sent by SMS
-                       code = phoneAuthCredential.getSmsCode();
-                       //sometime the code is not detected automatically
-                       //in this case the code will be null
-                       //so user has to manually enter the code
-                       if (code != null) {
-                           otpcode.setText(code);
-                           //verifying the code
-                           verifyVerificationCode(code);
-                       }
-                   }
-
-
-                   @Override
-                   public void onVerificationFailed(FirebaseException e) {
-                       Log.w(TAG, "onVerificationFailed", e);
-                       if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                           otpcode.setError("Invalid phone number.");
-                       } else if (e instanceof FirebaseTooManyRequestsException) {
-                           Snackbar.make(findViewById(R.id.content), "Quota exceeded.",
-                                   Snackbar.LENGTH_SHORT).show();
-                           Toast.makeText(Start12Login.this, "unlimited attempted !", Toast.LENGTH_SHORT).show();
-                       }
-                   }
-
-                   @Override
-                   public void onCodeSent(String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                       super.onCodeSent(s, forceResendingToken);
-
-                       //storing the verification id that is sent to the user
-                       mVerificationId = s;
-                   }
-               };
-
-       private void verifyVerificationCode(String code) {
-           try {
-               //creating the credential
-               PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
-               //signing the user
-               signInWithPhoneAuthCredential(credential);
-           } catch (Exception e) {
-               Toast toast = Toast.makeText(this, "Verification Code is wrong", Toast.LENGTH_SHORT);
-               toast.setGravity(Gravity.CENTER, 0, 0);
-               toast.show();
-           }
-       }
-   */
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(Start12Login.this, new OnCompleteListener<AuthResult>() {

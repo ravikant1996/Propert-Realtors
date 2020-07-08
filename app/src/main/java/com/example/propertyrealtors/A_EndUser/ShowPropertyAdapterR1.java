@@ -13,13 +13,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.propertyrealtors.R;
+import com.example.propertyrealtors.SharedPreference;
 import com.example.propertyrealtors.model.Image;
 import com.example.propertyrealtors.model.PropertyModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -73,6 +82,18 @@ public class ShowPropertyAdapterR1 extends RecyclerView.Adapter<ShowPropertyAdap
                             .error(R.drawable.property_logo)
                             .into(holder.imageView);
                     Log.e("ShowPropertyAdapterR1", urls);
+
+                    SharedPreference sharedPreference= new SharedPreference();
+                    List<PropertyModel> list= sharedPreference.getFavorites(context);
+                    if (list != null) {
+                        Iterator<PropertyModel> iterator = list.iterator();
+                        while(iterator.hasNext()) {
+                            PropertyModel next = iterator.next();
+                            if(next.getKeyId().equals(arrayList.get(position).getKeyId())) {
+                               holder.likeButton.setLiked(true);
+                            }
+                        }
+                    }
                     holder.itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -172,18 +193,34 @@ public class ShowPropertyAdapterR1 extends RecyclerView.Adapter<ShowPropertyAdap
                     holder.likeButton.setOnLikeListener(new OnLikeListener() {
                         @Override
                         public void liked(LikeButton likeButton) {
-                            Toast.makeText(context, "Added in Favourite", Toast.LENGTH_SHORT).show();
-             /*   String propertyId= arrayList.get(position).getKeyId();
-                SessionManager session = new SessionManager(context);
-                HashMap<String, String> userID = session.getUserIDs();
-                String id = userID.get(SessionManager.KEY_ID);
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("User");
-          */
+                            String propertyId = arrayList.get(position).getKeyId();
+                            String propertyType = arrayList.get(position).getPropertyType();
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("PropertyTable");
+                            Query query = reference.child(propertyType).orderByChild("keyId").equalTo(propertyId);
+                            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    for (DataSnapshot child : snapshot.getChildren()) {
+                                        PropertyModel list = child.getValue(PropertyModel.class);
+                                        SharedPreference sharedPreference = new SharedPreference();
+                                        sharedPreference.addFavorite(context, list);
+                                        Toast.makeText(context, "Added in Favourite", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
                         }
 
                         @Override
                         public void unLiked(LikeButton likeButton) {
-                            Toast.makeText(context, "Remove from Favourite", Toast.LENGTH_SHORT).show();
+                            String propertyId=arrayList.get(position).getKeyId();
+                            SharedPreference sharedPreference= new SharedPreference();
+                            sharedPreference.removeFavorite(context, propertyId);
+                            Toast.makeText(context, "Removed", Toast.LENGTH_SHORT).show();
                         }
                     });
                     holder.call.setOnClickListener(new View.OnClickListener() {
@@ -239,8 +276,8 @@ public class ShowPropertyAdapterR1 extends RecyclerView.Adapter<ShowPropertyAdap
             localityORCity = (TextView) itemView.findViewById(R.id.locality_city);
             status = (TextView) itemView.findViewById(R.id.status);
             imageView = itemView.findViewById(R.id.image);
-            likeButton = itemView.findViewById(R.id.star_button);
             call = itemView.findViewById(R.id.calling);
+            likeButton = itemView.findViewById(R.id.star_button);
         }
     }
 

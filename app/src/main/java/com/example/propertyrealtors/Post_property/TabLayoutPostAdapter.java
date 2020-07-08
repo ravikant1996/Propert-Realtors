@@ -1,5 +1,6 @@
 package com.example.propertyrealtors.Post_property;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -7,9 +8,11 @@ import com.example.propertyrealtors.SessionManager;
 
 import java.util.HashMap;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 
 public class TabLayoutPostAdapter extends FragmentPagerAdapter {
     Context myContext;

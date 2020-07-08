@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.example.propertyrealtors.Post_property.UploadSliderAdapter;
 import com.example.propertyrealtors.R;
 import com.example.propertyrealtors.SessionManager;
+import com.example.propertyrealtors.SharedPreference;
 import com.example.propertyrealtors.model.AdditioanlDetailsModel;
 import com.example.propertyrealtors.model.Image;
 import com.example.propertyrealtors.model.PropertyModel;
@@ -41,6 +42,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class Start331AllResidential2_View extends AppCompatActivity {
@@ -64,6 +66,7 @@ public class Start331AllResidential2_View extends AppCompatActivity {
     List<String> propertySubTypes = new ArrayList<>();
     List<String > cityList= new ArrayList<>();
     String propertyType, propertyId;
+    PropertyModel list;
     String[] getData;
     String gym, clubHouse, park, parking, lift, powerBackup, gasPipeline, swimPool;
     String refId, dateofposting, timeofposting, propertyFor, price, bedroom, locality, city, location, covered_area, pricePer, carparking, society,
@@ -77,7 +80,10 @@ public class Start331AllResidential2_View extends AppCompatActivity {
             lock_in_periodString, token_amount, ageOfconstruction, availableFrom, security, maintenance, balcony;
     Toolbar toolbar;
     Menu menu;
+    boolean mIsSaved = true;
     TextView imageCount;
+    SharedPreference sharedPreference;
+    SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +100,8 @@ public class Start331AllResidential2_View extends AppCompatActivity {
                 finish();
             }
         });
+        sharedPreference = new SharedPreference();
+        session = new SessionManager(getApplicationContext());
 
         final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         AppBarLayout mAppBarLayout = (AppBarLayout) findViewById(R.id.appBarLayout3);
@@ -184,9 +192,13 @@ public class Start331AllResidential2_View extends AppCompatActivity {
                         .noFade()
                         .into(imageSlider);
 
+                getDataForSharedPrefercnce();
+
                 propertyPosterDetails();
             }
         } catch (NullPointerException e) {
+            e.printStackTrace();
+        }catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
         visibilities();
@@ -195,6 +207,24 @@ public class Start331AllResidential2_View extends AppCompatActivity {
         setTextData();
         recycler();
 
+    }
+    private void getDataForSharedPrefercnce() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("PropertyTable");
+        Query query = reference.child(propertyType).orderByChild("keyId").equalTo(propertyId);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    list = child.getValue(PropertyModel.class);
+//                    propertyModelArrayList.add(list);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void recycler() {
@@ -295,8 +325,7 @@ public class Start331AllResidential2_View extends AppCompatActivity {
     }
 
     private void propertyPosterDetails() {
-        OwnerLayout.setVisibility(View.GONE);
-        AgentLayout.setVisibility(View.GONE);
+
         View divider9= findViewById(R.id.divider9);
         divider9.setVisibility(View.GONE);
 
@@ -710,6 +739,17 @@ public class Start331AllResidential2_View extends AppCompatActivity {
         this.menu = menu;
         getMenuInflater().inflate(R.menu.menu_scrolling, menu);
         hideOption(R.id.action_share);
+        List<PropertyModel> list= sharedPreference.getFavorites(getApplicationContext());
+        if (list != null) {
+            Iterator<PropertyModel> iterator = list.iterator();
+            while(iterator.hasNext()) {
+                PropertyModel next = iterator.next();
+                if(next.getKeyId().equals(propertyId)) {
+                    menu.findItem(R.id.action_favourite).setIcon(R.drawable.heart_on);
+                    mIsSaved=false;
+                }
+            }
+        }
         return true;
     }
 
@@ -718,21 +758,42 @@ public class Start331AllResidential2_View extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
+        boolean result = true;
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_favourite) {
-          /*  Menu item1= findViewById(R.id.action_favourite);
-            item1.setIcon(R.drawable.heart_on);
-         */
-            Toast.makeText(Start331AllResidential2_View.this, "Added", Toast.LENGTH_SHORT).show();
-            return true;
-        } else if (id == R.id.action_share) {
-            Toast.makeText(Start331AllResidential2_View.this, "Share", Toast.LENGTH_SHORT).show();
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_favourite:
+                if (mIsSaved) {
+                    try {
+                        if (list!=null) {
+                            mIsSaved = false;
+                            menu.findItem(R.id.action_favourite)
+                                    .setIcon(R.drawable.heart_on);
+                            sharedPreference.addFavorite(getApplicationContext(), list);
+                            Toast.makeText(this, "Added in the favourite", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (NullPointerException e) {
+                        Toast.makeText(this, "empty String" + list, Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    try {
+                        mIsSaved = true;
+                        menu.findItem(R.id.action_favourite)
+                                .setIcon(R.drawable.heart_off);
+                        sharedPreference.removeFavorite(getApplicationContext(), propertyId);
+                        Toast.makeText(this, "removed", Toast.LENGTH_SHORT).show();
+                    } catch (NullPointerException e) {
+                        Toast.makeText(this, "empty String" + list, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+            case R.id.action_share:
+                Toast.makeText(Start331AllResidential2_View.this, "Share", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                result = super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
+        return result;
     }
 
     private void hideOption(int id) {

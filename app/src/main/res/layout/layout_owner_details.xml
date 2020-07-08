@@ -51,6 +51,7 @@
         android:id="@+id/viewPhoneNo"
         android:layout_width="0dp"
         android:layout_height="@dimen/spinnerHeight"
+        android:visibility="gone"
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
         android:text="View Phone No"

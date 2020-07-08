@@ -1,11 +1,6 @@
 package com.example.propertyrealtors.A_EndUser;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkCapabilities;
-import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,8 +25,10 @@ import com.tuyenmonkey.mkloader.MKLoader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,8 +37,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class dashboard_EndUser extends Fragment {
     private TextView SearchTextView;
     TextView HistoryTextView, textView33, textView34, textView35, textView36, textView37;
-    ArrayList<PropertyModel> propertyModelArrayList;
-    ArrayList<PropertyModel> list;
+    ArrayList<PropertyModel> propertyModelArrayList1 = new ArrayList<PropertyModel>();
+    ArrayList<Image> imageArrayList1 = new ArrayList<Image>();
     RecyclerView recyclerView1, recyclerView2, recyclerView3, recyclerView4, recyclerView5, recyclerView6;
     MKLoader loader, loader2, loader3;
     TextView show1, show2, show3, show4, show5;
@@ -55,7 +52,7 @@ public class dashboard_EndUser extends Fragment {
     ShowPropertyAdapterR4 adapterR4;
     ShowPropertyAdapterR5 adapterR5;
     DatabaseReference reference, databaseReference;
-    String propertyType, propertyFor;
+    String propertyType, UID, propertyFor;
     ImageView imageView;
 
     public dashboard_EndUser() {
@@ -75,21 +72,23 @@ public class dashboard_EndUser extends Fragment {
         getActivity().setTitle("Home");
 
 
-        SessionManager session= new SessionManager(getActivity());
+        SessionManager session = new SessionManager(getActivity());
         HashMap<String, String> userID = session.getPropertySearchSession();
         propertyType = userID.get(SessionManager.PROPERTYTYPE_KEY);
         propertyFor = userID.get(SessionManager.PROPERTYFOR_KEY);
+        HashMap<String, String> id = session.getUserIDs();
+        UID = id.get(SessionManager.KEY_ID);
 
         try {
             if (propertyFor == null || propertyFor.isEmpty()) {
                 propertyFor = "SELL";
             }
-            if ( propertyType == null || propertyType.isEmpty()) {
+            if (propertyType == null || propertyType.isEmpty()) {
                 propertyType = "residential";
             }
             Log.e("EndUser propertyFor", propertyFor);
             Log.e("EndUser propertyType", propertyType);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
         SearchTextView = view.findViewById(R.id.searchBar);
@@ -102,7 +101,8 @@ public class dashboard_EndUser extends Fragment {
 
                /* Intent i = new Intent(getActivity(), searchFilter_1.class);
                 startActivityForResult(i, 1);
-           */ }
+           */
+            }
         });
         bindViews(view);
 
@@ -115,6 +115,7 @@ public class dashboard_EndUser extends Fragment {
         recycler5();
         return view;
     }
+
     private void bindViews(View view) {
         imageView = view.findViewById(R.id.gif);
         /* from internet*/
@@ -125,15 +126,15 @@ public class dashboard_EndUser extends Fragment {
         show4 = view.findViewById(R.id.show4);
         show5 = view.findViewById(R.id.show5);
 
-        HistoryTextView= view.findViewById(R.id.top);
-        textView33= view.findViewById(R.id.textView33);
-        textView34= view.findViewById(R.id.textView34);
-        textView35= view.findViewById(R.id.textView35);
-        textView36= view.findViewById(R.id.textView36);
-        textView37= view.findViewById(R.id.textView37);
+        HistoryTextView = view.findViewById(R.id.top);
+        textView33 = view.findViewById(R.id.textView33);
+        textView34 = view.findViewById(R.id.textView34);
+        textView35 = view.findViewById(R.id.textView35);
+        textView36 = view.findViewById(R.id.textView36);
+        textView37 = view.findViewById(R.id.textView37);
 
-        view8  = view.findViewById(R.id.view8);
-        view9  = view.findViewById(R.id.view9);
+        view8 = view.findViewById(R.id.view8);
+        view9 = view.findViewById(R.id.view9);
         view10 = view.findViewById(R.id.view10);
         view11 = view.findViewById(R.id.view11);
         view12 = view.findViewById(R.id.view12);
@@ -170,16 +171,18 @@ public class dashboard_EndUser extends Fragment {
         loader2.setVisibility(View.VISIBLE);
         loader3.setVisibility(View.VISIBLE);
     }
+
     public void recycler1() {
         RecyclerViewLayoutManager = new LinearLayoutManager(getActivity());
         // Set LayoutManager on Recycler View
         recyclerView1.setLayoutManager(RecyclerViewLayoutManager);
-        final ArrayList<PropertyModel> propertyModelArrayList1 = new ArrayList<PropertyModel>();
-        final ArrayList<Image> imageArrayList1 = new ArrayList<Image>();
+
         // layout visibility
         // Adding items to RecyclerView.
         reference = databaseReference.child(propertyType);
-        Query query = reference.orderByChild("propertyFor").equalTo(propertyFor).limitToFirst(5);
+        Random random = new Random();
+        int x = random.nextInt();
+        Query query = reference.orderByChild("propertyFor").equalTo(propertyFor);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -194,43 +197,28 @@ public class dashboard_EndUser extends Fragment {
 
                         for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
                             PropertyModel details = areaSnapshot.getValue(PropertyModel.class);
-                            propertyModelArrayList1.add(details);
-                       //     adapter.addPropertyList(details);
-
-                            String id1 = details.getKeyId();
-                            Query query = reference.child(id1).child("images").orderByValue().limitToFirst(1);
-                            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    Image image = new Image("null");
-                                    if (dataSnapshot.exists()) {
-                                        for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                                            image = areaSnapshot.getValue(Image.class);
-                                            imageArrayList1.add(image);
-                                            adapterR1.notifyDataSetChanged();
-                                        }
-                                    }else {
-                                        imageArrayList1.add(image);
-                                        adapterR1.notifyDataSetChanged();
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
+                            if (propertyModelArrayList1.size() < 5) {
+                                propertyModelArrayList1.add(details);
+                                String id1 = details.getKeyId();
+                                getImage(id1);
+                            }
                         }
-                        // }
-                    }else {
+
+
+                    } else {
                         recyclerView1.setVisibility(View.GONE);
                     }
-                } catch (Exception e) {
+                } catch (
+                        Exception e) {
                     e.printStackTrace();
                 }
                 recyclerView1.setHasFixedSize(true);
-                adapterR1 = new ShowPropertyAdapterR1(getActivity(), propertyModelArrayList1, imageArrayList1);
-                horizontalLayout = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                adapterR1 = new
+
+                        ShowPropertyAdapterR1(getActivity(), propertyModelArrayList1, imageArrayList1);
+                horizontalLayout = new
+
+                        LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
                 recyclerView1.setLayoutManager(horizontalLayout);
                 //       recyclerView1.setItemAnimator(new DefaultItemAnimator());
                 recyclerView1.setAdapter(adapterR1);
@@ -244,6 +232,32 @@ public class dashboard_EndUser extends Fragment {
 
     }
 
+    private void getImage(String id1) {
+        reference = databaseReference.child(propertyType);
+        Query query = reference.child(id1).child("images").orderByValue().limitToFirst(1);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Image image = new Image("null");
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                        image = areaSnapshot.getValue(Image.class);
+                        imageArrayList1.add(image);
+                        adapterR1.notifyDataSetChanged();
+                    }
+                } else {
+                    imageArrayList1.add(image);
+                    adapterR1.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     public void recycler2() {
         RecyclerViewLayoutManager = new LinearLayoutManager(getActivity());
 
@@ -254,7 +268,7 @@ public class dashboard_EndUser extends Fragment {
 
         // Adding items to RecyclerView.
         reference = databaseReference.child(propertyType);
-        Query query = reference.orderByChild("propertyFor").equalTo(propertyFor).limitToFirst(5);
+        Query query = reference.orderByChild("propertyFor").equalTo(propertyFor);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -269,38 +283,41 @@ public class dashboard_EndUser extends Fragment {
 
                         for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
                             PropertyModel details = areaSnapshot.getValue(PropertyModel.class);
-                            propertyModelArrayList2.add(details);
-                            String id1 = details.getKeyId();
-                            Query query = reference.child(id1).child("images").orderByValue().limitToFirst(1);
-                            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    Image image = new Image("null");
-                                    if (dataSnapshot.exists()) {
-                                        for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                                            image = areaSnapshot.getValue(Image.class);
+                            if (propertyModelArrayList2.size() < 5) {
+                                propertyModelArrayList2.add(details);
+                                String id1 = details.getKeyId();
+
+                                Query query = reference.child(id1).child("images").orderByValue().limitToFirst(1);
+                                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        Image image = new Image("null");
+                                        if (dataSnapshot.exists()) {
+                                            for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                                                image = areaSnapshot.getValue(Image.class);
+                                                imageArrayList2.add(image);
+                                                adapterR2.notifyDataSetChanged();
+                                            }
+                                        } else {
                                             imageArrayList2.add(image);
                                             adapterR2.notifyDataSetChanged();
                                         }
-                                    } else {
-                                        imageArrayList2.add(image);
-                                        adapterR2.notifyDataSetChanged();
                                     }
-                                }
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                }
-                            });
+                                    }
+                                });
+                            }
                         }
-                    }else {
+                    } else {
                         recyclerView2.setVisibility(View.GONE);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                recyclerView1.setHasFixedSize(true);
+                recyclerView2.setHasFixedSize(true);
                 adapterR2 = new ShowPropertyAdapterR2(getActivity(), propertyModelArrayList2, imageArrayList2);
                 horizontalLayout = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
                 recyclerView2.setLayoutManager(horizontalLayout);
@@ -324,7 +341,7 @@ public class dashboard_EndUser extends Fragment {
         final ArrayList<PropertyModel> propertyModelArrayList3 = new ArrayList<PropertyModel>();
         final ArrayList<Image> imageArrayList3 = new ArrayList<Image>();
         reference = databaseReference.child(propertyType);
-        Query query = reference.orderByChild("propertyFor").equalTo(propertyFor).limitToFirst(5);
+        Query query = reference.orderByChild("propertyFor").equalTo(propertyFor).limitToLast(5);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -339,33 +356,34 @@ public class dashboard_EndUser extends Fragment {
 
                         for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
                             PropertyModel details = areaSnapshot.getValue(PropertyModel.class);
-                            propertyModelArrayList3.add(details);
-
-                            String id1 = details.getKeyId();
-                            Query query = reference.child(id1).child("images").orderByValue().limitToFirst(1);
-                            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    Image image = new Image("null");
-                                    if (dataSnapshot.exists()) {
-                                        for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                                            image = areaSnapshot.getValue(Image.class);
+                            if (propertyModelArrayList3.size() < 5) {
+                                propertyModelArrayList3.add(details);
+                                String id1 = details.getKeyId();
+                                Query query = reference.child(id1).child("images").orderByValue().limitToFirst(1);
+                                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        Image image = new Image("null");
+                                        if (dataSnapshot.exists()) {
+                                            for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                                                image = areaSnapshot.getValue(Image.class);
+                                                imageArrayList3.add(image);
+                                                adapterR3.notifyDataSetChanged();
+                                            }
+                                        } else {
                                             imageArrayList3.add(image);
                                             adapterR3.notifyDataSetChanged();
                                         }
-                                    } else {
-                                        imageArrayList3.add(image);
-                                        adapterR3.notifyDataSetChanged();
                                     }
-                                }
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                }
-                            });
+                                    }
+                                });
+                            }
                         }
-                    }else {
+                    } else {
                         recyclerView3.setVisibility(View.GONE);
                     }
                 } catch (Exception e) {
@@ -396,7 +414,7 @@ public class dashboard_EndUser extends Fragment {
         final ArrayList<Image> imageArrayList4 = new ArrayList<Image>();
 
         reference = databaseReference.child(propertyType);
-        Query query = reference.orderByChild("propertyFor").equalTo(propertyFor).limitToFirst(5);
+        Query query = reference.orderByChild("propertyFor").equalTo(propertyFor);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -411,37 +429,46 @@ public class dashboard_EndUser extends Fragment {
 
                         for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
                             PropertyModel details = areaSnapshot.getValue(PropertyModel.class);
-                            propertyModelArrayList4.add(details);
+                            if (details.getProperty_status().equals("Immediately") ||
+                                    details.getProperty_status().equals("Ready to Move")) {
+                                if (propertyModelArrayList4.size() < 5) {
+                                    propertyModelArrayList4.add(details);
 
-                            String id1 = details.getKeyId();
-                            Query query = reference.child(id1).child("images").orderByValue().limitToFirst(1);
-                            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    Image image = new Image("null");
-                                    if (dataSnapshot.exists()) {
-                                        for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                                            image = areaSnapshot.getValue(Image.class);
-                                            imageArrayList4.add(image);
-                                            adapterR4.notifyDataSetChanged();
+                                    String id1 = details.getKeyId();
+                                    Query query = reference.child(id1).child("images").orderByValue().limitToFirst(1);
+                                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            Image image = new Image("null");
+                                            if (dataSnapshot.exists()) {
+                                                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                                                    image = areaSnapshot.getValue(Image.class);
+                                                    imageArrayList4.add(image);
+                                                    adapterR4.notifyDataSetChanged();
+
+                                                }
+                                            } else {
+                                                imageArrayList4.add(image);
+                                                adapterR4.notifyDataSetChanged();
+
+
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
                                         }
-                                    } else {
-                                          imageArrayList4.add(image);
-                                        adapterR4.notifyDataSetChanged();
-
-
-                                    }
+                                    });
                                 }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
+                            }
                         }
-                    }else {
+
+                    } else {
                         recyclerView4.setVisibility(View.GONE);
+                        textView36.setVisibility(View.GONE);
+                        show4.setVisibility(View.GONE);
+                        view11.setVisibility(View.GONE);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -471,7 +498,7 @@ public class dashboard_EndUser extends Fragment {
 
         // Adding items to RecyclerView.
         reference = databaseReference.child(propertyType);
-        Query query = reference.orderByChild("propertyFor").equalTo(propertyFor).limitToFirst(5);
+        Query query = reference.orderByChild("propertyFor").equalTo(propertyFor);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -486,41 +513,43 @@ public class dashboard_EndUser extends Fragment {
 
                         for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
                             PropertyModel details = areaSnapshot.getValue(PropertyModel.class);
-                            propertyModelArrayList5.add(details);
+                            if (propertyModelArrayList5.size() < 5) {
+                                propertyModelArrayList5.add(details);
 
-                            String id1 = details.getKeyId();
-                            Query query = reference.child(id1).child("images").orderByValue().limitToFirst(1);
-                            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    Image image = new Image("null");
-                                    if (dataSnapshot.exists()) {
-                                        for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                                            image = areaSnapshot.getValue(Image.class);
+                                String id1 = details.getKeyId();
+                                Query query = reference.child(id1).child("images").orderByValue().limitToFirst(1);
+                                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        Image image = new Image("null");
+                                        if (dataSnapshot.exists()) {
+                                            for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                                                image = areaSnapshot.getValue(Image.class);
+                                                imageArrayList5.add(image);
+                                                adapterR5.notifyDataSetChanged();
+
+                                            }
+                                        } else {
                                             imageArrayList5.add(image);
                                             adapterR5.notifyDataSetChanged();
-
                                         }
-                                    } else {
-                                          imageArrayList5.add(image);
-                                        adapterR5.notifyDataSetChanged();
                                     }
-                                }
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                }
-                            });
+                                    }
+                                });
+                            }
                         }
-                    }else {
+                    } else {
                         recyclerView5.setVisibility(View.GONE);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 recyclerView5.setHasFixedSize(true);
-                adapterR5 = new ShowPropertyAdapterR5(getActivity(), propertyModelArrayList5 ,imageArrayList5);
+                adapterR5 = new ShowPropertyAdapterR5(getActivity(), propertyModelArrayList5, imageArrayList5);
                 horizontalLayout = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
                 recyclerView5.setLayoutManager(horizontalLayout);
                 recyclerView5.setItemAnimator(new DefaultItemAnimator());
@@ -570,26 +599,7 @@ public class dashboard_EndUser extends Fragment {
             }
         }
 */
-/*
 
-@Override
-public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-    if (requestCode == 1) {
-        Log.e("FragmentA.java","onActivityResult called");
-        if (resultCode == Activity.RESULT_OK) {
-            propertyFor = data.getStringExtra("PROPERTY_FOR");
-            propertyType = data.getStringExtra("PROPERTY_TYPE");
-        }else {
-            propertyFor = "SELL";
-            propertyType = "residential";
-        }
-        if (resultCode == Activity.RESULT_CANCELED) {
-            //Write your code if there's no result
-        }
-    }
-}
-*/
 
 }
 

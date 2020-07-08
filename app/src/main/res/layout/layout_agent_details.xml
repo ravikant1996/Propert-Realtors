@@ -38,6 +38,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Operating since: "
+        android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/commercial"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name" />
@@ -45,6 +46,7 @@
     <TextView
         android:id="@+id/commercial"
         android:layout_width="0dp"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:text="Commercial Propertyies"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,6 +69,7 @@
     <Button
         android:id="@+id/viewPhoneNo"
         android:layout_width="0dp"
+        android:visibility="gone"
         android:layout_height="@dimen/spinnerHeight"
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"

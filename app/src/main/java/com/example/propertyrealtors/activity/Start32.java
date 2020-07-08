@@ -170,7 +170,7 @@ public class Start32 extends AppCompatActivity {
 
     private void sendVerificationCode(String phone) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+1" + phone,
+                "+91" + phone,
                 60,
                 TimeUnit.SECONDS,
                 TaskExecutors.MAIN_THREAD,
@@ -245,86 +245,5 @@ public class Start32 extends AppCompatActivity {
                 });
     }
 
-  /*  private final PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks =
-            new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                @Override
-                public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-                    //Getting the code sent by SMS
-                    String code = phoneAuthCredential.getSmsCode();
-                    //sometime the code is not detected automatically
-                    //in this case the code will be null
-                    //so user has to manually enter the code
-                    if (code != null) {
-                        otpcode.setText(code);
-                        //verifying the code
-                        verifyVerificationCode(code);
-                    }
-                }
-                @Override
-                public void onVerificationFailed(FirebaseException e) {
-                    Log.w(TAG, "onVerificationFailed", e);
-                    if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                        otpcode.setError("Invalid phone number.");
-                    } else if (e instanceof FirebaseTooManyRequestsException) {
-                        Snackbar.make(findViewById(R.id.content), "Quota exceeded.",
-                                Snackbar.LENGTH_LONG).show();
-                        Toast.makeText(Start32.this, "unlimited attempted !", Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                @Override
-                public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                    super.onCodeSent(s, forceResendingToken);
-                    //storing the verification id that is sent to the user
-                    mVerificationId = s;
-                }
-            };
-    private void verifyVerificationCode(String code) {
-        try {
-            //creating the credential
-            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
-            //signing the user
-            signInWithPhoneAuthCredential(credential);
-        }catch (Exception e){
-            Toast toast = Toast.makeText(this, "Verification Code is wrong", Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.CENTER,0,0);
-            toast.show();
-        }
-    }
-
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
-        auth.signInWithCredential(credential)
-                .addOnCompleteListener(Start32.this, new OnCompleteListener<AuthResult>() {
-                    @SuppressWarnings("unused")
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithCredential:success");
-                            // FirebaseUser user = task.getResult().getUser();
-
-                            //Register User----------------------------------
-                            FirebaseUser getuser = auth.getCurrentUser();
-                            String uid = getuser.getUid();
-                            reference = FirebaseDatabase.getInstance().getReference().child("User");
-
-                            user = new User(usertype, name, email, phone, password);
-                            reference.child(uid).setValue(user);
-                            Toast.makeText(Start32.this, "Registered", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(Start32.this, Start33.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putString("USER_TYPE", usertype);
-                            startActivity(intent);
-                            finish();
-
-                        } else {
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                otpcode.setError("Invalid code.");
-                            }
-                        }
-                    }
-                });
-    }
-*/
 
 }

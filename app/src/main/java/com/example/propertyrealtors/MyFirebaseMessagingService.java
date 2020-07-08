@@ -1,5 +1,6 @@
 package com.example.propertyrealtors;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,95 +10,93 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.util.Log;
 
-import com.example.propertyrealtors.A_EndUser.Notification;
-import com.example.propertyrealtors.A_EndUser.ViewProperty;
+import com.example.propertyrealtors.A_EndUser.notificationClass;
 import com.example.propertyrealtors.activity.MainActivity;
-import com.example.propertyrealtors.activity.Start32;
-import com.example.propertyrealtors.activity.searchFilter_1;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-import java.util.Random;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Map;
 
-import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
-import static com.yalantis.ucrop.UCropFragment.TAG;
-
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
+	public static final String FCM_PARAM = "picture";
+	private static final String CHANNEL_NAME = "FCM";
+	private static final String CHANNEL_DESC = "Firebase Cloud Messaging";
+	private int numMessages = 0;
+	@Override
+	public void onMessageReceived(RemoteMessage remoteMessage) {
+		super.onMessageReceived(remoteMessage);
+		RemoteMessage.Notification notification = remoteMessage.getNotification();
+		Map<String, String> data = remoteMessage.getData();
+		Log.d("FROM", remoteMessage.getFrom());
+		sendNotification(notification, data);
+	}
 
-    private final String ADMIN_CHANNEL_ID ="admin_channel";
+	private void sendNotification(RemoteMessage.Notification notification, Map<String, String> data) {
+		Bundle bundle = new Bundle();
+		bundle.putString(FCM_PARAM, data.get(FCM_PARAM));
 
-    @Override
-    public void onMessageReceived(RemoteMessage remoteMessage) {
-        final Intent intent = new Intent(this, ViewProperty.class);
-        NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        int notificationID = new Random().nextInt(3000);
+		Intent intent = new Intent(this, MainActivity.class);
+		intent.putExtras(bundle);
+		Bitmap largeIcon = BitmapFactory.decodeResource(getResources(),
+				R.drawable.ic_notifications_none_black_24dp);
 
-      /*
-        Apps targeting SDK 26 or above (Android O) must implement notification channels and add its notifications
-        to at least one of them. Therefore, confirm if version is Oreo or higher, then setup notification channel
-      */
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            setupChannels(notificationManager);
-        }
+		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this , 0, intent,
-                PendingIntent.FLAG_ONE_SHOT);
+		NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
+				.setContentTitle(notification.getTitle())
+				.setContentText(notification.getBody())
+				.setAutoCancel(true)
+				.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+				//.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.win))
+				.setContentIntent(pendingIntent)
+				.setContentInfo("Hello")
+				.setLargeIcon(largeIcon)
+				.setColor(getColor(R.color.colorAccent))
+				.setLights(Color.RED, 1000, 300)
+				.setDefaults(Notification.DEFAULT_VIBRATE)
+				.setNumber(++numMessages)
+				.setSmallIcon(R.drawable.property_logo);
 
-        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(),
-                R.drawable.ic_notifications_none_black_24dp);
+		try {
+			String picture = data.get(FCM_PARAM);
+			if (picture != null && !"".equals(picture)) {
+				URL url = new URL(picture);
+				Bitmap bigPicture = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+				notificationBuilder.setStyle(
+						new NotificationCompat.BigPictureStyle().bigPicture(bigPicture).setSummaryText(notification.getBody())
+				);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-        Uri notificationSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, ADMIN_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_notifications_none_black_24dp)
-                .setLargeIcon(largeIcon)
-                .setContentTitle(remoteMessage.getData().get("title"))
-                .setContentText(remoteMessage.getData().get("message"))
-                .setAutoCancel(true)
-                .setSound(notificationSoundUri)
-                .setContentIntent(pendingIntent);
+		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        //Set notification color to match your app color template
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            notificationBuilder.setColor(getResources().getColor(R.color.colorPrimary));
-        }
-        notificationManager.notify(notificationID, notificationBuilder.build());
-    }
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void setupChannels(NotificationManager notificationManager){
-        CharSequence adminChannelName = "New notification";
-        String adminChannelDescription = "Device to device notification";
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			NotificationChannel channel = new NotificationChannel(
+					getString(R.string.notification_channel_id), CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT
+			);
+			channel.setDescription(CHANNEL_DESC);
+			channel.setShowBadge(true);
+			channel.canShowBadge();
+			channel.enableLights(true);
+			channel.setLightColor(Color.RED);
+			channel.enableVibration(true);
+			channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500});
 
-        NotificationChannel adminChannel;
-        adminChannel = new NotificationChannel(ADMIN_CHANNEL_ID, adminChannelName, NotificationManager.IMPORTANCE_HIGH);
-        adminChannel.setDescription(adminChannelDescription);
-        adminChannel.enableLights(true);
-        adminChannel.setLightColor(Color.RED);
-        adminChannel.enableVibration(true);
-        if (notificationManager != null) {
-            notificationManager.createNotificationChannel(adminChannel);
-        }
-    }
-   /* @Override
-    public void onNewToken(String token) {
-        Log.d(TAG, "Refreshed token: " + token);
+			assert notificationManager != null;
+			notificationManager.createNotificationChannel(channel);
+		}
 
-        // If you want to send messages to this application instance or
-        // manage this apps subscriptions on the server side, send the
-        // Instance ID token to your app server.
-        sendRegistrationToServer(token);
-    }
-
-    private void sendRegistrationToServer(String token) {
-        Log.e("new Token", token);
-
-        // TODO: Implement this method to send token to your app server.
-    }*/
-
+		assert notificationManager != null;
+		notificationManager.notify(0, notificationBuilder.build());
+	}
 }

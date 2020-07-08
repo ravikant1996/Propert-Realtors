@@ -161,7 +161,7 @@ public class Start331AllCommercial5 extends AppCompatActivity {
         plotArea = Plot_Area.getText().toString().trim();
         Log.e("c2", plotArea);
         Log.e("c2", plot_length);
-        if(TextUtils.isEmpty(totalfloor) || totalfloor.equals("Select")){
+        if(totalfloor.equals("Select")){
             Toast.makeText(Start331AllCommercial5.this, "Please Select Total Floor", Toast.LENGTH_SHORT).show();
             return;
 

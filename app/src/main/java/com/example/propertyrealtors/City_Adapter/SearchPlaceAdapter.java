@@ -1,6 +1,5 @@
 package com.example.propertyrealtors.City_Adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +12,6 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.propertyrealtors.R;
-import com.example.propertyrealtors.activity.All331ProjectSearch;
-import com.example.propertyrealtors.activity.CitySearch;
 import com.example.propertyrealtors.activity.Start331All;
 import com.example.propertyrealtors.model.City;
 

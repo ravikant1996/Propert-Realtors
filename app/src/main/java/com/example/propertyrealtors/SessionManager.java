@@ -75,61 +75,28 @@ public class SessionManager {
     }
 
     //session of property
-    public void saveArrayList(ArrayList<PropertyModel> list, String key){
+    public void saveArrayList(ArrayList<PropertyModel> list, String key) {
         Gson gson = new Gson();
         String json = gson.toJson(list);
         editor.putString(key, json);
         editor.commit();     // This line is IMPORTANT !!!
     }
-    public ArrayList<PropertyModel> getArrayList(String key){
+
+    public ArrayList<PropertyModel> getArrayList(String key) {
         Gson gson = new Gson();
         String json = pref.getString(key, null);
-        Type type = new TypeToken<ArrayList<PropertyModel>>() {}.getType();
+        Type type = new TypeToken<ArrayList<PropertyModel>>() {
+        }.getType();
         return gson.fromJson(json, type);
     }
 
-    public void saveFavorites(List<PropertyModel> favorites){
+    public void saveFavorites(List<PropertyModel> favorites) {
         Gson gson = new Gson();
         String jsonFavorites = gson.toJson(favorites);
         editor.putString(FAVORITES, jsonFavorites);
         editor.commit();
     }
 
-    public void addFavorite(PropertyModel code){
-        List<PropertyModel> favorites = getFavorites();
-
-        if(favorites == null)
-            favorites = new ArrayList<PropertyModel>();
-        favorites.add(code);
-        saveFavorites(favorites);
-    }
-
-    public void removeFavorite(PropertyModel details) {
-        ArrayList<PropertyModel> favorites = getFavorites();
-        if (favorites != null) {
-            if (favorites.equals(details)) {
-                favorites.remove(details);
-                saveFavorites(favorites);
-            }
-        }
-    }
-
-    public ArrayList<PropertyModel> getFavorites() {
-        ArrayList<PropertyModel> favorites;
-
-        if (pref.contains(FAVORITES)) {
-            String jsonFavorites = pref.getString(FAVORITES, null);
-            Gson gson = new Gson();
-            PropertyModel[] favoriteItems = gson.fromJson(jsonFavorites,
-                    PropertyModel[].class);
-
-            favorites  = new ArrayList<PropertyModel>();
-            favorites.addAll(Arrays.asList(favoriteItems));
-        } else
-            return null;
-
-        return favorites;
-    }
     //Search session
     public void createSearchSession(String propertyType, String propertyfor) {
         editor.putString(PROPERTYTYPE_KEY, propertyType);

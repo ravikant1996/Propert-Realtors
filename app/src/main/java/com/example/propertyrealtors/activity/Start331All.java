@@ -96,25 +96,7 @@ public class Start331All extends AppCompatActivity {
         }
     }
 
-    public void back(View view) {
-        Intent intent = new Intent(Start331All.this, Start331.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        Bundle bundle = new Bundle();
-        bundle.putString("R/C_TYPE", PROPERTY_SUBTYPE);
-        intent.putExtras(bundle);
-        startActivity(intent);
-        finish();
-    }
 
-  /*  @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(Start331All.this, Start331.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("R/C_TYPE", PROPERTY_SUBTYPE);
-        intent.putExtras(bundle);
-        startActivity(intent);
-        super.onBackPressed();
-    }*/
 
     public void next(View view) {
         if (City.getText().toString().length() == 0) {

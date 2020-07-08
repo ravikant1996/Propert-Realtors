@@ -15,16 +15,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.propertyrealtors.Post_property.DetailsAdapterResiRorL;
 import com.example.propertyrealtors.R;
 import com.example.propertyrealtors.SessionManager;
+import com.example.propertyrealtors.SharedPreference;
 import com.example.propertyrealtors.activity.MainActivity;
 import com.example.propertyrealtors.activity.Start11;
 import com.example.propertyrealtors.activity.Start13;
 import com.example.propertyrealtors.model.Image;
 import com.example.propertyrealtors.model.PropertyModel;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +40,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class shortlisted_property extends AppCompatActivity {
-    SwipeRefreshLayout mSwipeRefreshLayout;
     RecyclerView recyclerView;
     ArrayList<PropertyModel> propertyModelArrayList;
     LinearLayoutManager layoutManager;
@@ -45,9 +47,12 @@ public class shortlisted_property extends AppCompatActivity {
     favouriteAdapter dataAdapter;
     ArrayList<PropertyModel> arrPackage;
     SharedPreferences sharedPreferences;
+    SharedPreference sharedPreference;
+    List<PropertyModel> favorites;
     String propertyFor;
     String propertyType;
     ArrayList<Image> imageArrayList1 = new ArrayList<Image>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,36 +64,38 @@ public class shortlisted_property extends AppCompatActivity {
         propertyModelArrayList = new ArrayList<PropertyModel>();
 
         recyclerView = findViewById(R.id.recyclerView);
-        mSwipeRefreshLayout = findViewById(R.id.swipeToRefresh);
 
-        SessionManager session= new SessionManager(getApplicationContext());
-//        propertyModelArrayList = session.getArrayList("-MALxVxdkQwJyEBA64oh");
-        propertyModelArrayList = session.getFavorites();
-       /* for (PropertyModel data : arrPackageData) {
-            propertyModelArrayList.add(data);
-        }*/
+        sharedPreference = new SharedPreference();
+        favorites = sharedPreference.getFavorites(getApplicationContext());
+        propertyModelArrayList = sharedPreference.getFavorites(getApplicationContext());
 
-       if (propertyModelArrayList != null ) {
-           Toast.makeText(this, "exists "+ propertyModelArrayList, Toast.LENGTH_SHORT).show();
+        if (propertyModelArrayList == null) {
+            Snackbar.make(findViewById(R.id.favList_Layout), "No favourite - Null", Snackbar.LENGTH_LONG).show();
+        } else {
 
-           recyclerView.setHasFixedSize(true);
-           layoutManager = new LinearLayoutManager(getApplicationContext());
-           recyclerView.setLayoutManager(layoutManager);
-           recyclerView.setItemAnimator(new DefaultItemAnimator());
-           dataAdapter = new favouriteAdapter(getApplicationContext(), propertyModelArrayList);
-           recyclerView.setAdapter(dataAdapter);
-       }else {
-           Toast.makeText(this, "null "+ propertyModelArrayList, Toast.LENGTH_SHORT).show();
-       }
-    }
+            if (propertyModelArrayList.size() == 0) {
+                Snackbar.make(findViewById(R.id.favList_Layout), "No favourite - size 0", Snackbar.LENGTH_LONG).show();
+            }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
+            if (propertyModelArrayList != null) {
+                recyclerView.setHasFixedSize(true);
+                layoutManager = new LinearLayoutManager(getApplicationContext());
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                dataAdapter = new favouriteAdapter(getApplicationContext(), propertyModelArrayList);
+                recyclerView.setAdapter(dataAdapter);
+            }
         }
-        return super.onOptionsItemSelected(item);
+
     }
-}
+
+        @Override
+        public boolean onOptionsItemSelected (MenuItem item){
+            switch (item.getItemId()) {
+                case android.R.id.home:
+                    finish();
+                    return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
+    }

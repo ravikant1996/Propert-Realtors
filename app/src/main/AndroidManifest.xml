@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".A_EndUser.lastview_property"/>
+        <activity android:name=".A_EndUser.notificationClass"></activity>
+        <activity android:name=".A_EndUser.lastview_property" />
         <activity android:name=".A_EndUser.contacted_property" />
         <activity android:name=".A_EndUser.shortlisted_property" />
         <activity android:name=".AdminPushNotifi" />
@@ -61,35 +62,16 @@
             android:name=".activity.post_package"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Adding_City"
-            android:theme="@style/AppTheme.start" />
-        <activity
             android:name=".activity.Login"
             android:theme="@style/AppTheme.start" />
         <activity
             android:name=".activity.Sign_Up"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.ProjectSearch"
-            android:theme="@style/AppTheme.start" />
-        <activity
-            android:name=".activity.CitySearch"
-            android:theme="@style/AppTheme.start" />
-        <activity android:name=".activity.Search_Property" />
-        <activity
             android:name=".activity.searchFilter_1"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start23_1_2_3_all"
-            android:theme="@style/AppTheme.start" />
-        <activity
             android:name=".activity.Start13_1_2_3_all"
-            android:theme="@style/AppTheme.start" />
-        <activity
-            android:name=".activity.Start133"
-            android:theme="@style/AppTheme.start" />
-        <activity
-            android:name=".activity.Start132"
             android:theme="@style/AppTheme.start" />
         <activity
             android:name=".activity.Start131"
@@ -98,15 +80,6 @@
             android:name=".activity.Start13"
             android:theme="@style/AppTheme.start" />
         <activity android:name=".activity.AgentRegistration" />
-        <activity
-            android:name=".activity.Start33Agent"
-            android:theme="@style/AppTheme.start" />
-        <activity
-            android:name=".activity.Start32Agent"
-            android:theme="@style/AppTheme.start" />
-        <activity
-            android:name=".activity.Start332"
-            android:theme="@style/AppTheme.start" />
         <activity
             android:name=".activity.Start333_PG"
             android:theme="@style/AppTheme.start" />
@@ -204,31 +177,23 @@
             </intent-filter>
             -->
         </activity>
-
         <service
             android:name=".MyFirebaseMessagingService"
-            android:permission="com.google.android.c2dm.permission.SEND">
+            android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
-        <!--
- <service android:name=".MyFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
-        -->
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/notification_channel_id" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/ic_launcher" />
+            android:resource="@drawable/property_logo" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorPrimaryDark" />
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+            android:resource="@color/black" />
     </application>
 
 </manifest>
