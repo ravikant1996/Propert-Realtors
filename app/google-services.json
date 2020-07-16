@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "450705663532",
-    "firebase_url": "https://property-realtor.firebaseio.com",
-    "project_id": "property-realtor",
-    "storage_bucket": "property-realtor.appspot.com"
+    "project_number": "6991048634",
+    "firebase_url": "https://real-estate-app-35933.firebaseio.com",
+    "project_id": "real-estate-app-35933",
+    "storage_bucket": "real-estate-app-35933.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:450705663532:android:3ba6a1cf10a36b6bed9389",
+        "mobilesdk_app_id": "1:6991048634:android:82135ee8aa290b883cf783",
         "android_client_info": {
-          "package_name": "com.example.propertyrealtors"
+          "package_name": "com.example.real_estate_business"
         }
       },
       "oauth_client": [
         {
-          "client_id": "450705663532-fbs5e4is0a74kmjh9qpb3ta3faulqb8g.apps.googleusercontent.com",
+          "client_id": "6991048634-qkbelj8730pq6h4fljn23otcomi9m0ho.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.propertyrealtors",
+            "package_name": "com.example.real_estate_business",
             "certificate_hash": "dd5f696583797dbe9f1ca059b1f74b1a098ffefc"
           }
         },
         {
-          "client_id": "450705663532-q5m65a2rqf4ni46pgsk9vj9pekfvov1p.apps.googleusercontent.com",
+          "client_id": "6991048634-dl8l62dmbe5kpirbu870e11e0h6sn6g9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAY_c751uIbhVWAAeIZcCEQswYeq0w3kK0"
+          "current_key": "AIzaSyDbmhjyQIPv2kd91U4q7sjl0Lof-i_wt9I"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "450705663532-q5m65a2rqf4ni46pgsk9vj9pekfvov1p.apps.googleusercontent.com",
+              "client_id": "6991048634-dl8l62dmbe5kpirbu870e11e0h6sn6g9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

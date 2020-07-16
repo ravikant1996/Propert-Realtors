@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.propertyrealtors">
+    package="com.example.real_estate_business">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -22,114 +22,114 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".A_EndUser.notificationClass"></activity>
-        <activity android:name=".A_EndUser.lastview_property" />
-        <activity android:name=".A_EndUser.contacted_property" />
-        <activity android:name=".A_EndUser.shortlisted_property" />
-        <activity android:name=".AdminPushNotifi" />
+        <activity android:name="com.example.real_estate_business.A_EndUser.notificationClass"/>
+        <activity android:name="com.example.real_estate_business.A_EndUser.lastview_property" />
+        <activity android:name="com.example.real_estate_business.A_EndUser.contacted_property" />
+        <activity android:name="com.example.real_estate_business.A_EndUser.shortlisted_property" />
+        <activity android:name="com.example.real_estate_business.AdminPushNotifi" />
         <activity
-            android:name=".A_EndUser.ViewProperty"
+            android:name="com.example.real_estate_business.A_EndUser.ViewProperty"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".A_EndUser.view_images"
+            android:name="com.example.real_estate_business.A_EndUser.view_images"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".Post_property.edit_image"
+            android:name="com.example.real_estate_business.Post_property.edit_image"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".Post_property.Start331AllResidential_Edit"
+            android:name="com.example.real_estate_business.Post_property.Start331AllResidential_Edit"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".A_EndUser.Start331AllCommercial_View"
+            android:name="com.example.real_estate_business.A_EndUser.Start331AllCommercial_View"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".A_EndUser.Start331AllResidential2_View"
+            android:name="com.example.real_estate_business.A_EndUser.Start331AllResidential2_View"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".A_EndUser.Start331AllResidential_View"
+            android:name="com.example.real_estate_business.A_EndUser.Start331AllResidential_View"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".Post_property.ImagesUpload"
+            android:name="com.example.real_estate_business.Post_property.ImagesUpload"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.posted_property"
+            android:name="com.example.real_estate_business.activity.posted_property"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.post_package"
+            android:name="com.example.real_estate_business.activity.post_package"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Login"
+            android:name="com.example.real_estate_business.activity.Login"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Sign_Up"
+            android:name="com.example.real_estate_business.activity.Sign_Up"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.searchFilter_1"
+            android:name="com.example.real_estate_business.activity.searchFilter_1"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start13_1_2_3_all"
+            android:name="com.example.real_estate_business.activity.Start13_1_2_3_all"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start131"
+            android:name="com.example.real_estate_business.activity.Start131"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start13"
+            android:name="com.example.real_estate_business.activity.Start13"
             android:theme="@style/AppTheme.start" />
-        <activity android:name=".activity.AgentRegistration" />
+        <activity android:name="com.example.real_estate_business.activity.AgentRegistration" />
         <activity
-            android:name=".activity.Start333_PG"
-            android:theme="@style/AppTheme.start" />
-        <activity
-            android:name=".activity.Start332AllPropertyStatus"
+            android:name="com.example.real_estate_business.activity.Start333_PG"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start332AllResidentialPrice"
+            android:name="com.example.real_estate_business.activity.Start332AllPropertyStatus"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start331AllCommercial6"
+            android:name="com.example.real_estate_business.activity.Start332AllResidentialPrice"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start331AllCommercial5"
+            android:name="com.example.real_estate_business.activity.Start331AllCommercial6"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start331AllCommercial4"
+            android:name="com.example.real_estate_business.activity.Start331AllCommercial5"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start331AllCommercial3"
+            android:name="com.example.real_estate_business.activity.Start331AllCommercial4"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start331AllCommercial2"
+            android:name="com.example.real_estate_business.activity.Start331AllCommercial3"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start331AllCommercial"
+            android:name="com.example.real_estate_business.activity.Start331AllCommercial2"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start331AllResidential3"
+            android:name="com.example.real_estate_business.activity.Start331AllCommercial"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start331AllResidential2"
+            android:name="com.example.real_estate_business.activity.Start331AllResidential3"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start331AllPropertyStatus"
+            android:name="com.example.real_estate_business.activity.Start331AllResidential2"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start331AllResidentialPrice"
+            android:name="com.example.real_estate_business.activity.Start331AllPropertyStatus"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start331AllResidential"
+            android:name="com.example.real_estate_business.activity.Start331AllResidentialPrice"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.All331ProjectSearch"
+            android:name="com.example.real_estate_business.activity.Start331AllResidential"
+            android:theme="@style/AppTheme.start" />
+        <activity
+            android:name="com.example.real_estate_business.activity.All331ProjectSearch"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.All331CitySearch"
+            android:name="com.example.real_estate_business.activity.All331CitySearch"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.Start331All"
+            android:name="com.example.real_estate_business.activity.Start331All"
             android:theme="@style/AppTheme.start">
 
             <!--
@@ -141,25 +141,25 @@
             -->
         </activity>
         <activity
-            android:name=".activity.Start331"
+            android:name="com.example.real_estate_business.activity.Start331"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start32"
+            android:name="com.example.real_estate_business.activity.Start32"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start33"
+            android:name="com.example.real_estate_business.activity.Start33"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start31"
+            android:name="com.example.real_estate_business.activity.Start31"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start12Login"
+            android:name="com.example.real_estate_business.activity.Start12Login"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.Start11"
+            android:name="com.example.real_estate_business.activity.Start11"
             android:theme="@style/AppTheme.start" />
         <activity
-            android:name=".activity.StartActivty"
+            android:name="com.example.real_estate_business.activity.StartActivty"
             android:theme="@style/AppTheme.start">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -167,7 +167,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity">
+        <activity android:name="com.example.real_estate_business.activity.MainActivity">
 
             <!--
             <intent-filter>
@@ -178,7 +178,7 @@
             -->
         </activity>
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name="com.example.real_estate_business.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
