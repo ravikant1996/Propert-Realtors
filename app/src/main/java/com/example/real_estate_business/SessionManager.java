@@ -71,29 +71,6 @@ public class SessionManager {
 
     }
 
-    //session of property
-    public void saveArrayList(ArrayList<PropertyModel> list, String key) {
-        Gson gson = new Gson();
-        String json = gson.toJson(list);
-        editor.putString(key, json);
-        editor.commit();     // This line is IMPORTANT !!!
-    }
-
-    public ArrayList<PropertyModel> getArrayList(String key) {
-        Gson gson = new Gson();
-        String json = pref.getString(key, null);
-        Type type = new TypeToken<ArrayList<PropertyModel>>() {
-        }.getType();
-        return gson.fromJson(json, type);
-    }
-
-    public void saveFavorites(List<PropertyModel> favorites) {
-        Gson gson = new Gson();
-        String jsonFavorites = gson.toJson(favorites);
-        editor.putString(FAVORITES, jsonFavorites);
-        editor.commit();
-    }
-
     //Search session
     public void createSearchSession(String propertyType, String propertyfor) {
         editor.putString(PROPERTYTYPE_KEY, propertyType);

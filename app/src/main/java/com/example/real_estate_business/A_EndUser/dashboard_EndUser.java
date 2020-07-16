@@ -14,6 +14,7 @@ import com.example.real_estate_business.SessionManager;
 import com.example.real_estate_business.activity.searchFilter_1;
 import com.example.real_estate_business.model.Image;
 import com.example.real_estate_business.model.PropertyModel;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +36,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class dashboard_EndUser extends Fragment {
     private TextView SearchTextView;
+    ShimmerFrameLayout LoadingView;
     TextView HistoryTextView, textView33, textView34, textView35, textView36, textView37;
     ArrayList<PropertyModel> propertyModelArrayList1 = new ArrayList<PropertyModel>();
     ArrayList<Image> imageArrayList1 = new ArrayList<Image>();
@@ -48,7 +50,6 @@ public class dashboard_EndUser extends Fragment {
     ArrayList<Image> imageArrayList5 = new ArrayList<Image>();
 
     RecyclerView recyclerView1, recyclerView2, recyclerView3, recyclerView4, recyclerView5, recyclerView6;
-    MKLoader loader, loader2, loader3;
     TextView show1, show2, show3, show4, show5;
     View view8, view9, view10, view11, view12;
     RecyclerView.LayoutManager RecyclerViewLayoutManager;
@@ -125,8 +126,8 @@ public class dashboard_EndUser extends Fragment {
     }
 
     private void bindViews(View view) {
-        imageView = view.findViewById(R.id.gif);
-        /* from internet*/
+        LoadingView = view.findViewById(R.id.loadingView);
+        LoadingView.setVisibility(View.VISIBLE);
 
         show1 = view.findViewById(R.id.show1);
         show2 = view.findViewById(R.id.show2);
@@ -172,12 +173,7 @@ public class dashboard_EndUser extends Fragment {
         recyclerView5 = view.findViewById(R.id.recyclerView5);
         recyclerView6 = view.findViewById(R.id.recyclerView6);
 
-        loader = view.findViewById(R.id.loader);
-        loader2 = view.findViewById(R.id.loader2);
-        loader3 = view.findViewById(R.id.loader3);
-        loader.setVisibility(View.VISIBLE);
-        loader2.setVisibility(View.VISIBLE);
-        loader3.setVisibility(View.VISIBLE);
+
     }
 
     @Override
@@ -191,8 +187,17 @@ public class dashboard_EndUser extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        LoadingView.stopShimmer();
+
+    }
+
+
+    @Override
     public void onResume() {
         super.onResume();
+        LoadingView.startShimmer();
         //
         if (propertyModelArrayList1.size() != 0) {
             adapterR1 = new ShowPropertyAdapterR1(getActivity(), propertyModelArrayList1, imageArrayList1);
@@ -246,9 +251,8 @@ public class dashboard_EndUser extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 try {
                     if (dataSnapshot.exists()) {
-                        loader.setVisibility(View.INVISIBLE);
-                        loader2.setVisibility(View.INVISIBLE);
-                        loader3.setVisibility(View.INVISIBLE);
+                        LoadingView.stopShimmer();
+                        LoadingView.setVisibility(View.INVISIBLE);
                         textView33.setVisibility(View.VISIBLE);
                         show1.setVisibility(View.VISIBLE);
                         view8.setVisibility(View.VISIBLE);
@@ -345,9 +349,8 @@ public class dashboard_EndUser extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 try {
                     if (dataSnapshot.exists()) {
-                        loader.setVisibility(View.INVISIBLE);
-                        loader2.setVisibility(View.INVISIBLE);
-                        loader3.setVisibility(View.INVISIBLE);
+                        LoadingView.stopShimmer();
+                        LoadingView.setVisibility(View.INVISIBLE);
                         textView34.setVisibility(View.VISIBLE);
                         show2.setVisibility(View.VISIBLE);
                         view9.setVisibility(View.VISIBLE);
@@ -439,9 +442,8 @@ public class dashboard_EndUser extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 try {
                     if (dataSnapshot.exists()) {
-                        loader.setVisibility(View.INVISIBLE);
-                        loader2.setVisibility(View.INVISIBLE);
-                        loader3.setVisibility(View.INVISIBLE);
+                        LoadingView.stopShimmer();
+                        LoadingView.setVisibility(View.INVISIBLE);
                         textView35.setVisibility(View.VISIBLE);
                         show3.setVisibility(View.VISIBLE);
                         view10.setVisibility(View.VISIBLE);
@@ -463,8 +465,8 @@ public class dashboard_EndUser extends Fragment {
                                                 if (dataSnapshot.exists()) {
                                                     //          for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
                                                     image = dataSnapshot.getValue(Image.class);
-                                                        imageArrayList3.add(image);
-                                                        adapterR3.notifyDataSetChanged();
+                                                    imageArrayList3.add(image);
+                                                    adapterR3.notifyDataSetChanged();
 
                                                 } else {
                                                     imageArrayList3.add(image);
@@ -511,6 +513,7 @@ public class dashboard_EndUser extends Fragment {
                 adapterR3 = new ShowPropertyAdapterR3(getActivity(), propertyModelArrayList3, imageArrayList3);
                 recyclerView3.setAdapter(adapterR3);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -534,9 +537,8 @@ public class dashboard_EndUser extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 try {
                     if (dataSnapshot.exists()) {
-                        loader.setVisibility(View.INVISIBLE);
-                        loader2.setVisibility(View.INVISIBLE);
-                        loader3.setVisibility(View.INVISIBLE);
+                        LoadingView.stopShimmer();
+                        LoadingView.setVisibility(View.INVISIBLE);
                         textView36.setVisibility(View.VISIBLE);
                         show4.setVisibility(View.VISIBLE);
                         view11.setVisibility(View.VISIBLE);
@@ -561,8 +563,8 @@ public class dashboard_EndUser extends Fragment {
                                                     if (dataSnapshot.exists()) {
                                                         //          for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
                                                         image = dataSnapshot.getValue(Image.class);
-                                                            imageArrayList4.add(image);
-                                                            adapterR4.notifyDataSetChanged();
+                                                        imageArrayList4.add(image);
+                                                        adapterR4.notifyDataSetChanged();
 
                                                     } else {
                                                         imageArrayList4.add(image);
@@ -638,9 +640,8 @@ public class dashboard_EndUser extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 try {
                     if (dataSnapshot.exists()) {
-                        loader.setVisibility(View.INVISIBLE);
-                        loader2.setVisibility(View.INVISIBLE);
-                        loader3.setVisibility(View.INVISIBLE);
+                        LoadingView.stopShimmer();
+                        LoadingView.setVisibility(View.INVISIBLE);
                         textView37.setVisibility(View.VISIBLE);
                         show5.setVisibility(View.VISIBLE);
                         view12.setVisibility(View.VISIBLE);

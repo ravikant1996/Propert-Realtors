@@ -28,7 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminPushNotifi extends AppCompatActivity {
-    private static final String AUTH_KEY = "key=AAAAfvvPEO8:APA91bFQpFLLC_o9Y9I7hQfOmOVKNrJefzmI_l-1ZxHnSpJjdKaFacMurODRX_jN_2H6km1MLhjzH-YyB9RpsKP39Gd6KHB6i-7nBKCCIIugSiIbz_D1iSGm4cF7uVvZsyIBE4S2wRh6";
+    private static final String AUTH_KEY = "key=AAAAAaCy77o:APA91bEvp4FFt64gIqVRDGvZ8s4jWumd39sDvdfwteSVInV6qZt-3S3q2b0UQZg3UnmLrwaGh7yYLlHHebIWEwNHGn6b1uA8HwgnAGuxa16ZrjpBpDsszctftuo8LK1sl4NYWGKOIAxP";
     TextView mTextView;
     private String token;
     final private String FCM_API = "https://fcm.googleapis.com/fcm/send";

@@ -27,12 +27,69 @@
             android:textSize="12sp" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+    <!--
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+    -->
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/loadingView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout3"
+        app:shimmer_duration="800">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/loadingview" />
+
+                <include layout="@layout/loadingview" />
+
+                <include layout="@layout/loadingview" />
+
+                <include layout="@layout/loadingview" />
+
+                <include layout="@layout/loadingview" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/loadingview" />
+
+                <include layout="@layout/loadingview" />
+
+                <include layout="@layout/loadingview" />
+
+                <include layout="@layout/loadingview" />
+
+                <include layout="@layout/loadingview" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView2"
@@ -45,20 +102,22 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline2">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout3">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingTop="15dp">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#C0C0C6"
+                android:background="@color/dashboard_headings_color"
                 android:padding="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="5dp"
                 android:text="Continue with your Recent Searches"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -85,8 +144,11 @@
                 android:id="@+id/textView33"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#C0C0C6"
+                android:background="@color/dashboard_headings_color"
                 android:padding="5dp"
+                android:paddingTop="10dp"
+                android:layout_marginTop="5dp"
+                android:paddingBottom="10dp"
                 android:text="Owner Properties"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -136,8 +198,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:background="#C0C0C6"
+                android:background="@color/dashboard_headings_color"
                 android:padding="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:text="Fresh Properties for You"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -178,6 +242,8 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/background_color"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toTopOf="@+id/textView35"
                 app:layout_constraintEnd_toEndOf="@+id/recyclerView2"
@@ -189,8 +255,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:background="#C0C0C6"
+                android:background="@color/dashboard_headings_color"
                 android:padding="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:text="Hot Deals for You"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -240,8 +308,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:background="#C0C0C6"
+                android:background="@color/dashboard_headings_color"
                 android:padding="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:text="Ready to Move Projects"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -281,6 +351,8 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/background_color"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toTopOf="@+id/textView37"
                 app:layout_constraintEnd_toEndOf="@+id/recyclerView4"
@@ -292,8 +364,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:background="#C0C0C6"
+                android:background="@color/dashboard_headings_color"
                 android:padding="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:text="Newly Launched Projects"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -341,57 +415,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <com.tuyenmonkey.mkloader.MKLoader
-        android:id="@+id/loader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/loader3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:mk_color="@color/colorPrimary" />
-
-    <com.tuyenmonkey.mkloader.MKLoader
-        android:id="@+id/loader3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/loader2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loader"
-        app:mk_color="@color/colorPrimary" />
-
-    <com.tuyenmonkey.mkloader.MKLoader
-        android:id="@+id/loader2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loader3"
-        app:mk_color="@color/colorPrimary" />
-
-
-    <ImageView
-        android:id="@+id/gif"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/whilte"
-        android:padding="50dp"
-        android:src="@drawable/loading"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
-
 
     <!--  <androidx.constraintlayout.widget.Guideline
           android:id="@+id/guideline"

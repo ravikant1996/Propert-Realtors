@@ -6,7 +6,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.example.propertyrealtors"
+        applicationId "com.example.real_estate_business"
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
@@ -74,4 +74,8 @@ dependencies {
 
     //like button
     implementation 'com.github.jd-alexander:LikeButton:0.2.3'
+
+    // shimmer loading views
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
 }

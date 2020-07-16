@@ -8,5 +8,6 @@
     <color name="whilte">#ffffff</color>
     <color name="black">#0E0D0D</color>
     <color name="cardColor_forEdit">@android:color/holo_blue_light</color>
+    <color name="dashboard_headings_color">#DFCDCDCF</color>
 
 </resources>
