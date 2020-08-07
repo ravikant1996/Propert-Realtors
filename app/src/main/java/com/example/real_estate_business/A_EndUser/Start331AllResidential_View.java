@@ -880,11 +880,6 @@ public class Start331AllResidential_View extends AppCompatActivity {
                 }
             }
         }
-      /*  if (!mIsSaved){
-            menu.findItem(R.id.action_favourite).setIcon(R.drawable.heart_on);
-        } else {
-            menu.findItem(R.id.action_favourite).setIcon(R.drawable.heart_off);
-        }*/
         return true;
     }
 

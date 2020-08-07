@@ -66,6 +66,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 
 
+@SuppressWarnings("ALL")
 public class Start331AllResidential_Edit extends AppCompatActivity {
     int flag = 0;
     ConstraintLayout ExpandableView, ExpandableView2, ExpandableView3, ExpandableView4, ExpandableView5,

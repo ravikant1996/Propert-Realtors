@@ -5,19 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.Start331AllResidential2">
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:id="@+id/errorBed"/>
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:id="@+id/errorBath"/>
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:id="@+id/errorFurnish"/>
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout3"
         android:layout_width="match_parent"
@@ -28,12 +16,12 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            app:title="More details to get relevent buyers"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:titleTextAppearance="@style/Toolbar.TitleText"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="More details to get relevent buyers"
+            app:titleTextAppearance="@style/Toolbar.TitleText" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -63,9 +51,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
             android:orientation="vertical">
 
 
@@ -109,46 +97,46 @@
 
                     <TextView
                         android:id="@+id/bhk1"
-                        android:background="@drawable/boader"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boader"
                         android:onClick="selectBHK"
                         android:padding="10dp"
                         android:text="1 BHK" />
 
                     <TextView
                         android:id="@+id/bhk2"
-                        android:background="@drawable/boader"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boader"
                         android:onClick="selectBHK"
                         android:padding="10dp"
                         android:text="2 BHK" />
 
                     <TextView
                         android:id="@+id/bhk3"
-                        android:background="@drawable/boader"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boader"
                         android:onClick="selectBHK"
                         android:padding="10dp"
                         android:text="3 BHK" />
 
                     <TextView
                         android:id="@+id/bhk4"
-                        android:background="@drawable/boader"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boader"
                         android:onClick="selectBHK"
                         android:padding="10dp"
                         android:text="4 BHK" />
 
                     <TextView
                         android:id="@+id/bhk5"
-                        android:background="@drawable/boader"
-
                         android:layout_width="wrap_content"
+
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boader"
                         android:onClick="selectBHK"
                         android:padding="10dp"
                         android:text="5 BHK" />
@@ -156,17 +144,17 @@
                     <TextView
                         android:id="@+id/bhk6"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boader"
                         android:onClick="selectBHK"
                         android:padding="10dp"
                         android:text="6 BHK" />
 
                     <TextView
-                        android:background="@drawable/boader"
                         android:id="@+id/bhk7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boader"
                         android:onClick="selectBHK"
                         android:padding="10dp"
                         android:text="7 BHK" />
@@ -174,8 +162,8 @@
                     <TextView
                         android:id="@+id/bhk8"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boader"
                         android:onClick="selectBHK"
                         android:padding="10dp"
                         android:text="8 BHK" />
@@ -193,16 +181,16 @@
                         android:id="@+id/bhk10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="selectBHK"
                         android:background="@drawable/boader"
+                        android:onClick="selectBHK"
                         android:padding="10dp"
                         android:text="10 BHK" />
 
                     <TextView
                         android:id="@+id/bhk11"
-                        android:background="@drawable/boader"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boader"
                         android:onClick="selectBHK"
                         android:padding="10dp"
                         android:text=">10 BHK" />
@@ -239,9 +227,9 @@
 
                     <TextView
                         android:id="@+id/room1"
-                        android:background="@drawable/boader"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boader"
                         android:onClick="selectBATHROOM"
                         android:padding="10dp"
                         android:text="  1  " />
@@ -249,9 +237,9 @@
                     <TextView
                         android:id="@+id/room2"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBATHROOM"
                         android:padding="10dp"
                         android:text="  2  " />
@@ -259,9 +247,9 @@
                     <TextView
                         android:id="@+id/room3"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBATHROOM"
                         android:padding="10dp"
                         android:text="  3  " />
@@ -269,9 +257,9 @@
                     <TextView
                         android:id="@+id/room4"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBATHROOM"
                         android:padding="10dp"
                         android:text="  4  " />
@@ -279,9 +267,9 @@
                     <TextView
                         android:id="@+id/room5"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBATHROOM"
                         android:padding="10dp"
                         android:text="  5  " />
@@ -289,9 +277,9 @@
                     <TextView
                         android:id="@+id/room6"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBATHROOM"
                         android:padding="10dp"
                         android:text="  6  " />
@@ -299,9 +287,9 @@
                     <TextView
                         android:id="@+id/room7"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBATHROOM"
                         android:padding="10dp"
                         android:text="  7  " />
@@ -309,9 +297,9 @@
                     <TextView
                         android:id="@+id/room8"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBATHROOM"
                         android:padding="10dp"
                         android:text="  8  " />
@@ -319,9 +307,9 @@
                     <TextView
                         android:id="@+id/room9"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBATHROOM"
                         android:padding="10dp"
                         android:text="  9  " />
@@ -329,9 +317,9 @@
                     <TextView
                         android:id="@+id/room10"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBATHROOM"
                         android:padding="10dp"
                         android:text="  10  " />
@@ -339,9 +327,9 @@
                     <TextView
                         android:id="@+id/room11"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBATHROOM"
                         android:padding="10dp"
                         android:text="  >10  " />
@@ -378,10 +366,10 @@
 
                     <TextView
                         android:id="@+id/b1"
-                        android:background="@drawable/boader"
-
                         android:layout_width="wrap_content"
+
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boader"
                         android:onClick="selectBALCONY"
                         android:padding="10dp"
                         android:text="  1  " />
@@ -389,8 +377,8 @@
                     <TextView
                         android:id="@+id/b2"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/boader"
                         android:onClick="selectBALCONY"
                         android:padding="10dp"
                         android:text="  2  " />
@@ -398,9 +386,9 @@
                     <TextView
                         android:id="@+id/b3"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBALCONY"
                         android:padding="10dp"
                         android:text="  3  " />
@@ -408,9 +396,9 @@
                     <TextView
                         android:id="@+id/b4"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBALCONY"
                         android:padding="10dp"
                         android:text="  4  " />
@@ -418,9 +406,9 @@
                     <TextView
                         android:id="@+id/b5"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBALCONY"
                         android:padding="10dp"
                         android:text="  5  " />
@@ -428,9 +416,9 @@
                     <TextView
                         android:id="@+id/b6"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBALCONY"
                         android:padding="10dp"
                         android:text="  6  " />
@@ -438,9 +426,9 @@
                     <TextView
                         android:id="@+id/b7"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBALCONY"
                         android:padding="10dp"
                         android:text="  7  " />
@@ -448,9 +436,9 @@
                     <TextView
                         android:id="@+id/b8"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBALCONY"
                         android:padding="10dp"
                         android:text="  8  " />
@@ -458,9 +446,9 @@
                     <TextView
                         android:id="@+id/b9"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBALCONY"
                         android:padding="10dp"
                         android:text="  9  " />
@@ -468,9 +456,9 @@
                     <TextView
                         android:id="@+id/b10"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBALCONY"
                         android:padding="10dp"
                         android:text="  10  " />
@@ -478,9 +466,9 @@
                     <TextView
                         android:id="@+id/b11"
                         android:layout_width="wrap_content"
-                        android:background="@drawable/boader"
-
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/boader"
                         android:onClick="selectBALCONY"
                         android:padding="10dp"
                         android:text="  >10  " />
@@ -499,6 +487,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/third"
                 app:layout_constraintStart_toStartOf="@+id/third"
                 app:layout_constraintTop_toBottomOf="@+id/third" />
+
             <TextView
                 android:id="@+id/textv1"
                 android:layout_width="match_parent"
@@ -508,7 +497,7 @@
                 android:text="Total Floors"
                 app:layout_constraintEnd_toEndOf="@+id/textView7"
                 app:layout_constraintStart_toStartOf="@+id/textView7"
-                app:layout_constraintTop_toBottomOf="@+id/textView7"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <Spinner
                 android:id="@+id/floorSpin1"
@@ -520,10 +509,7 @@
                 app:layout_constraintStart_toStartOf="@+id/textv1"
                 app:layout_constraintTop_toBottomOf="@+id/textv1" />
 
-            <TextView
-                android:id="@+id/spinText1"
-                android:layout_width="0dp"
-                android:layout_height="0dp" />
+
             <TextView
                 android:id="@+id/textv2"
                 android:layout_width="match_parent"
@@ -533,22 +519,19 @@
                 android:text="No of open sides (optional)"
                 app:layout_constraintEnd_toEndOf="@+id/floorSpin1"
                 app:layout_constraintStart_toStartOf="@+id/floorSpin1"
-                app:layout_constraintTop_toBottomOf="@+id/floorSpin1"/>
+                app:layout_constraintTop_toBottomOf="@+id/floorSpin1" />
+
             <Spinner
                 android:id="@+id/floorSpin2"
-                android:spinnerMode="dialog"
-                android:entries="@array/openSides"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/spinnerHeight"
+                android:entries="@array/openSides"
+                android:spinnerMode="dialog"
                 android:text="Total Number of Floors in Building"
                 app:layout_constraintEnd_toEndOf="@+id/textv2"
                 app:layout_constraintStart_toStartOf="@+id/textv2"
                 app:layout_constraintTop_toBottomOf="@+id/textv2" />
 
-            <TextView
-                android:id="@+id/spinText2"
-                android:layout_width="0dp"
-                android:layout_height="0dp" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -616,30 +599,26 @@
 
                 <EditText
                     android:id="@+id/areaEdit1"
-                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    android:hint="Carpet Area"
+                    android:inputType="number"
                     android:maxLength="7"
-                    android:hint="Carpet Area" />
+                    android:padding="5dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <Spinner
                 android:id="@+id/areaSpin1"
-                android:entries="@array/area_parameter"
                 android:layout_width="0dp"
-                android:spinnerMode="dialog"
                 android:layout_height="@dimen/spinnerHeight"
                 android:layout_marginTop="20dp"
+                android:entries="@array/area_parameter"
+                android:spinnerMode="dialog"
                 app:layout_constraintEnd_toEndOf="@+id/textView9"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/area1"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:id="@+id/a1"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/area2"
@@ -655,27 +634,23 @@
                     android:id="@+id/areaEdit2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Super Area"
                     android:inputType="number"
                     android:maxLength="7"
-                    android:padding="5dp"
-                    android:hint="Super Area" />
+                    android:padding="5dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Spinner
                 android:id="@+id/areaSpin2"
                 android:layout_width="0dp"
-                android:entries="@array/area_parameter"
                 android:layout_height="@dimen/spinnerHeight"
                 android:layout_marginTop="20dp"
+                android:entries="@array/area_parameter"
                 android:spinnerMode="dialog"
                 app:layout_constraintEnd_toEndOf="@+id/areaSpin1"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/area2"
                 app:layout_constraintTop_toBottomOf="@+id/areaSpin1" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:id="@+id/a2"/>
 
             <TextView
                 android:id="@+id/textView10"
@@ -705,10 +680,10 @@
                     android:id="@+id/road_Width"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Road Width"
                     android:inputType="number"
-                    android:padding="5dp"
                     android:maxLength="7"
-                    android:hint="Road Width" />
+                    android:padding="5dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -729,17 +704,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
     <Button
         android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Next"
         android:onClick="next"
+        android:text="Next"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

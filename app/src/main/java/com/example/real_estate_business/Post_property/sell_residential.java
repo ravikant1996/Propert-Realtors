@@ -108,9 +108,11 @@ public class sell_residential extends Fragment {
         return view;
     }
     private void shuffle() {
-        Collections.shuffle(propertyModelArrayList, new Random(System.currentTimeMillis()));
+       /* Collections.shuffle(propertyModelArrayList, new Random(System.currentTimeMillis()));
         dataAdapter = new DetailsAdapterResiSELL(getActivity(), propertyModelArrayList, imageArrayList1);
-        recyclerView.setAdapter(dataAdapter);
+        recyclerView.setAdapter(dataAdapter);*/
+        findData();
+        dataAdapter.notifyDataSetChanged();
     }
     private void findData() {
         try {

@@ -20,6 +20,7 @@ import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+@SuppressWarnings("ALL")
 public class SearchPlaceAdapter extends RecyclerView.Adapter<SearchPlaceAdapter.SearchPlaceAdapterViewHolder> implements Filterable {
     Context context;
     public List<City> arrayList;

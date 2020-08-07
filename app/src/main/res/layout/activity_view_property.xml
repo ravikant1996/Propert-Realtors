@@ -44,7 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:drawable/arrow_down_float"
-                android:text="Filters" />
+                android:text="Filters"
+                android:contentDescription="TODO" />
 
 
         </LinearLayout>

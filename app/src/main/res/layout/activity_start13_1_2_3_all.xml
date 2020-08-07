@@ -110,7 +110,8 @@
                             android:layout_height="@dimen/heightimage"
                             android:layout_gravity="center"
                             android:padding="15dp"
-                            android:src="@drawable/flat" />
+                            android:src="@drawable/flat"
+                            android:contentDescription="TODO" />
 
                         <TextView
                             android:id="@+id/flatText"
@@ -139,7 +140,8 @@
                             android:layout_height="@dimen/heightimage"
                             android:layout_gravity="center"
                             android:padding="15dp"
-                            android:src="@drawable/house" />
+                            android:src="@drawable/house"
+                            android:contentDescription="TODO" />
 
                         <TextView
                             android:id="@+id/houseText"
@@ -166,7 +168,8 @@
                             android:layout_height="@dimen/heightimage"
                             android:layout_gravity="center"
                             android:padding="15dp"
-                            android:src="@drawable/plot" />
+                            android:src="@drawable/plot"
+                            android:contentDescription="TODO" />
 
                         <TextView
                             android:id="@+id/plotText"
@@ -193,7 +196,8 @@
                             android:layout_height="@dimen/heightimage"
                             android:layout_gravity="center"
                             android:padding="15dp"
-                            android:src="@drawable/office" />
+                            android:src="@drawable/office"
+                            android:contentDescription="TODO" />
 
                         <TextView
                             android:id="@+id/officeText"
@@ -221,7 +225,8 @@
                             android:layout_height="@dimen/heightimage"
                             android:layout_gravity="center"
                             android:padding="15dp"
-                            android:src="@drawable/filter" />
+                            android:src="@drawable/filter"
+                            android:contentDescription="TODO" />
 
                         <TextView
                             android:id="@+id/coworkingText"
@@ -248,7 +253,8 @@
                             android:layout_height="@dimen/heightimage"
                             android:layout_gravity="center"
                             android:padding="15dp"
-                            android:src="@drawable/shop" />
+                            android:src="@drawable/shop"
+                            android:contentDescription="TODO" />
 
                         <TextView
                             android:id="@+id/shopText"
@@ -276,7 +282,8 @@
                             android:layout_height="@dimen/heightimage"
                             android:layout_gravity="center"
                             android:padding="15dp"
-                            android:src="@drawable/comm" />
+                            android:src="@drawable/comm"
+                            android:contentDescription="TODO" />
 
                         <TextView
                             android:id="@+id/otherText"

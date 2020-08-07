@@ -121,6 +121,8 @@
             android:imeOptions="actionDone"
             android:inputType="textCapWords|textPersonName"
             android:textColor="@color/black"
+            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:drawablePadding="10dp"
             android:maxLength="30"
             android:layout_height="wrap_content"
             android:hint="Your Name" />

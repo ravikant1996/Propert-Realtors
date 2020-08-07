@@ -26,7 +26,8 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:layout_gravity="center"
-            android:src="@drawable/all" />
+            android:src="@drawable/all"
+            android:contentDescription="TODO" />
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

@@ -467,7 +467,7 @@ public class searchFilter_1 extends AppCompatActivity {
 
             }
 
-            Log.e("ListTectView", String.valueOf(textList) + "  " + textList.size());
+            Log.e("ListTectView", textList + "  " + textList.size());
 
         } catch (NullPointerException e) {
             e.printStackTrace();

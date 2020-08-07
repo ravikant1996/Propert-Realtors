@@ -23,16 +23,16 @@ import java.util.ArrayList;
 public class Start331AllResidential extends AppCompatActivity {
 
     Spinner spinTotal, spinFloor, areaSpin1, areaSpin2;
-    TextView t1, t2, a1, a2, errorBed, errorBath, errorFurnish;
 
     String UID;
     EditText superArea, carpetArea;
     ArrayList<String> arrayList;
     String bathroom, bedroom, balcony, totalfloor, floorNo, furnished, carpetAreaParameter, superAreaParameter;
-    String  propertyType, city, project, CarpetArea, SuperArea;
+    String propertyType, city, project, CarpetArea, SuperArea;
     static String propertyFor;
     static String propertySubType;
     Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,21 +50,21 @@ public class Start331AllResidential extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         try {
-            UID = bundle.getString("UID","defValue");
-            propertyFor= bundle.getString("PROPERTY_FOR", null);
-            propertyType= bundle.getString("PROPERTY_TYPE", null);
+            UID = bundle.getString("UID", "defValue");
+            propertyFor = bundle.getString("PROPERTY_FOR", null);
+            propertyType = bundle.getString("PROPERTY_TYPE", null);
 
-            propertySubType= bundle.getString("R/C_TYPE", null);
+            propertySubType = bundle.getString("R/C_TYPE", null);
             city = bundle.getString("CITY", null);
             project = bundle.getString("LOCALITY", null);
 
-            if(propertySubType.equals("Studio_Apartment")){
-                HorizontalScrollView firsthor= findViewById(R.id.firsthor);
+            if (propertySubType.equals("Studio_Apartment")) {
+                HorizontalScrollView firsthor = findViewById(R.id.firsthor);
                 firsthor.setVisibility(View.GONE);
                 TextView textView4 = findViewById(R.id.textView4);
                 textView4.setVisibility(View.GONE);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -74,13 +74,7 @@ public class Start331AllResidential extends AppCompatActivity {
         areaSpin2 = findViewById(R.id.areaSpin2);
         superArea = findViewById(R.id.areaEdit2);
         carpetArea = findViewById(R.id.areaEdit1);
-        a1 = findViewById(R.id.a1);
-        a2 = findViewById(R.id.a2);
-        errorBath = findViewById(R.id.errorBath);
-        errorBed = findViewById(R.id.errorBed);
-        errorFurnish = findViewById(R.id.errorFurnish);
-        t1 = findViewById(R.id.spinText1);
-        t2 = findViewById(R.id.spinText2);
+
         arrayList = new ArrayList<>();
 
         getTotalFloor();
@@ -89,33 +83,31 @@ public class Start331AllResidential extends AppCompatActivity {
         superarea();
 
     }
-    public void carpetarea(){
+
+    public void carpetarea() {
         areaSpin1.setPrompt("Select Parameter");
 
-        areaSpin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
+        areaSpin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 carpetAreaParameter = parent.getItemAtPosition(position).toString();
-              //  a1.setText(carpetAreaParameter);
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {
+            public void onNothingSelected(AdapterView<?> parent) {
                 // can leave this empty
             }
         });
     }
-    public void superarea(){
+
+    public void superarea() {
         areaSpin2.setPrompt("Select Parameter");
 
         areaSpin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 superAreaParameter = parent.getItemAtPosition(position).toString();
-             //   a2.setText(superAreaParameter);
+                //   a2.setText(superAreaParameter);
             }
 
             @Override
@@ -123,6 +115,7 @@ public class Start331AllResidential extends AppCompatActivity {
             }
         });
     }
+
     public void getTotalFloor() {
 
         spinTotal.setPrompt("Number of Floor");
@@ -130,7 +123,6 @@ public class Start331AllResidential extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 totalfloor = parent.getItemAtPosition(position).toString();
-                t1.setText(totalfloor);
             }
 
             @Override
@@ -138,13 +130,13 @@ public class Start331AllResidential extends AppCompatActivity {
             }
         });
     }
-    public void getFloor(){
+
+    public void getFloor() {
         spinFloor.setPrompt("Floor no");
         spinFloor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 floorNo = parent.getItemAtPosition(position).toString();
-                t2.setText(floorNo);
             }
 
             @Override
@@ -167,16 +159,13 @@ public class Start331AllResidential extends AppCompatActivity {
         switch (v.getId()) {
 
             case R.id.unfurnished:
-                furnished="Unfurnished";
-                errorFurnish.setText(furnished);
+                furnished = "Unfurnished";
                 break;
             case R.id.semifurnished:
-                furnished="Semi-furnished";
-                errorFurnish.setText(furnished);
+                furnished = "Semi-furnished";
                 break;
             case R.id.fullyfurnished:
-                furnished="Fully-furnished";
-                errorFurnish.setText(furnished);
+                furnished = "Fully-furnished";
                 break;
         }
     }
@@ -207,64 +196,63 @@ public class Start331AllResidential extends AppCompatActivity {
         bhk10.setText(" 10 BHK ");
         bhk11.setText(" >10 BHK4 ");
 
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.bhk1:
-                bedroom= "1";
+                bedroom = "1";
                 bhk1.setText("1 BHK ✔");
                 break;
             case R.id.bhk2:
-                bedroom= "2";
+                bedroom = "2";
                 bhk2.setText("2 BHK \u2714");
                 break;
 
             case R.id.bhk3:
-                bedroom= "3";
+                bedroom = "3";
                 bhk3.setText("3 BHK \u2714");
                 break;
 
             case R.id.bhk4:
-                bedroom= "4";
+                bedroom = "4";
                 bhk4.setText("4 BHK \u2714");
                 break;
 
             case R.id.bhk5:
-                bedroom= "5";
+                bedroom = "5";
                 bhk5.setText("5 BHK \u2714");
                 break;
 
             case R.id.bhk6:
-                bedroom= "6";
+                bedroom = "6";
 
                 bhk6.setText("6 BHK \u2714");
 
                 break;
 
             case R.id.bhk7:
-                bedroom= "7";
+                bedroom = "7";
                 bhk7.setText("7 BHK \u2714");
                 break;
 
             case R.id.bhk8:
-                bedroom= "8";
+                bedroom = "8";
                 bhk8.setText("8 BHK \u2714");
                 break;
 
             case R.id.bhk9:
-                bedroom= "9";
+                bedroom = "9";
                 bhk9.setText("9 BHK \u2714");
                 break;
 
             case R.id.bhk10:
-                bedroom= "10";
+                bedroom = "10";
                 bhk10.setText("10 BHK \u2714");
                 break;
 
             case R.id.bhk11:
-                bedroom= "10+";
+                bedroom = "10+";
                 bhk11.setText(">10 BHK \u2714");
                 break;
         }
-        errorBed.setText(bedroom);
     }
 
     @SuppressLint("SetTextI18n")
@@ -293,63 +281,62 @@ public class Start331AllResidential extends AppCompatActivity {
         bhk10.setText("  10  ");
         bhk11.setText("  >10  ");
 
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.room1:
-                bathroom= "1";
+                bathroom = "1";
                 bhk1.setText("1 \u2714");
                 break;
 
             case R.id.room2:
-                bathroom= "2";
+                bathroom = "2";
                 bhk2.setText("2 \u2714");
                 break;
 
             case R.id.room3:
-                bathroom= "3";
+                bathroom = "3";
                 bhk3.setText("3 \u2714");
                 break;
 
             case R.id.room4:
-                bathroom= "4";
+                bathroom = "4";
                 bhk4.setText("4 \u2714");
                 break;
 
             case R.id.room5:
-                bathroom= "5";
+                bathroom = "5";
                 bhk5.setText("5 \u2714");
                 break;
 
             case R.id.room6:
-                bathroom= "6";
+                bathroom = "6";
                 bhk6.setText("6 \u2714");
                 break;
 
             case R.id.room7:
-                bathroom= "7";
+                bathroom = "7";
                 bhk7.setText("7 \u2714");
                 break;
 
             case R.id.room8:
-                bathroom= "8";
+                bathroom = "8";
                 bhk8.setText("8 \u2714");
                 break;
 
             case R.id.room9:
-                bathroom= "9";
+                bathroom = "9";
                 bhk9.setText("9 \u2714");
                 break;
 
             case R.id.room10:
-                bathroom= "10";
+                bathroom = "10";
                 bhk10.setText("10 \u2714");
                 break;
 
             case R.id.room11:
-                bathroom= "10+";
+                bathroom = "10+";
                 bhk11.setText(">10 \u2714");
                 break;
         }
-        errorBath.setText(bathroom);
     }
 
     @SuppressLint("SetTextI18n")
@@ -380,98 +367,87 @@ public class Start331AllResidential extends AppCompatActivity {
         bhk11.setText("  >10  ");
 
 
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.b1:
-                balcony= "1";
+                balcony = "1";
                 bhk1.setText("1 \u2714");
                 break;
 
             case R.id.b2:
-                balcony= "2";
+                balcony = "2";
                 bhk2.setText("2 \u2714");
                 break;
 
             case R.id.b3:
-                balcony= "3";
+                balcony = "3";
                 bhk3.setText("3 \u2714");
                 break;
 
             case R.id.b4:
-                balcony= "4";
+                balcony = "4";
                 bhk4.setText("4 \u2714");
                 break;
 
             case R.id.b5:
-                balcony= "5";
+                balcony = "5";
                 bhk5.setText("5 \u2714");
                 break;
 
             case R.id.b6:
-                balcony= "6";
+                balcony = "6";
                 bhk6.setText("6 \u2714");
                 break;
 
             case R.id.b7:
-                balcony= "7";
+                balcony = "7";
                 bhk7.setText("7 \u2714");
                 break;
 
             case R.id.b8:
-                balcony= "8";
+                balcony = "8";
                 bhk8.setText("8 \u2714");
                 break;
 
             case R.id.b9:
-                balcony= "9";
+                balcony = "9";
                 bhk9.setText("9 \u2714");
                 break;
 
             case R.id.b10:
-                balcony= "10";
+                balcony = "10";
                 bhk10.setText("10 \u2714");
                 break;
 
             case R.id.b11:
-                balcony= "10+";
+                balcony = "10+";
                 bhk11.setText(">10 \u2714");
                 break;
 
         }
     }
 
-    public void validate(){
-        CarpetArea= carpetArea.getText().toString().trim();
-        SuperArea= superArea.getText().toString().trim();
+    public void validate() {
+        CarpetArea = carpetArea.getText().toString().trim();
+        SuperArea = superArea.getText().toString().trim();
 
-        if(errorBath.getText().toString().length()==0){
-            errorBath.setError("Please Select Bathroom");
+        if (TextUtils.isEmpty(bathroom)) {
             Toast.makeText(Start331AllResidential.this, "Please Select Bathroom", Toast.LENGTH_SHORT).show();
-
-        }else if(t1.getText().toString().length()==0){
-            t1.setError("Please Select Total Floor");
-            Toast.makeText(Start331AllResidential.this, "Please Select Total Floor", Toast.LENGTH_SHORT).show();
-
-        }else if(t2.getText().toString().length()==0){
-            Toast.makeText(Start331AllResidential.this, "Please Select Floor No of your Property", Toast.LENGTH_SHORT).show();
-
+            return;
         } else if (TextUtils.isEmpty(totalfloor) || totalfloor.equals("Select")) {
             Toast.makeText(Start331AllResidential.this, "Please Select Total Floors", Toast.LENGTH_LONG).show();
             return;
-        }
-        else if(TextUtils.isEmpty(floorNo)  || floorNo.equals("Select")){
+        } else if (TextUtils.isEmpty(floorNo) || floorNo.equals("Select")) {
             Toast.makeText(Start331AllResidential.this, "Please Select Floor No of your Property", Toast.LENGTH_SHORT).show();
             return;
 
-        }else if(errorFurnish.getText().toString().length()==0){
-            errorFurnish.setError("Please Select Furnishing");
+        } else if (TextUtils.isEmpty(furnished)) {
             Toast.makeText(Start331AllResidential.this, "Please Select Furnishing", Toast.LENGTH_SHORT).show();
-
-        }else if(carpetArea.getText().toString().length()==0){
+            return;
+        } else if (carpetArea.getText().toString().length() == 0) {
             carpetArea.setError("Please Enter Area");
             Toast.makeText(Start331AllResidential.this, "Please Enter Area", Toast.LENGTH_SHORT).show();
-
-        }
-        else{
+            return;
+        } else {
             Intent intent;
             Bundle bundle = new Bundle();
             bundle.putString("UID", UID);
@@ -492,11 +468,11 @@ public class Start331AllResidential extends AppCompatActivity {
             bundle.putString("CARPETAREA_PARAMETER", carpetAreaParameter);
             bundle.putString("SUPERAREA_PARAMETER", superAreaParameter);
 
-            if(propertyFor.equals("SELL")) {
+            if (propertyFor.equals("SELL")) {
                 intent = new Intent(Start331AllResidential.this, Start331AllResidentialPrice.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
-            }else if(propertyFor.equals("RENT or LEASE")){
+            } else if (propertyFor.equals("RENT or LEASE")) {
                 intent = new Intent(Start331AllResidential.this, Start332AllResidentialPrice.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -509,14 +485,14 @@ public class Start331AllResidential extends AppCompatActivity {
             if (propertySubType.equals("Studio_Apartment")) {
                 validate();
             } else {
-                if (errorBed.getText().toString().length() == 0) {
-                    errorBed.setError("Select Bedroom");
+                if (TextUtils.isEmpty(bedroom)) {
                     Toast.makeText(Start331AllResidential.this, "Please Select Bathroom", Toast.LENGTH_SHORT).show();
+                    return;
                 } else {
                     validate();
                 }
             }
-        }catch (IllegalStateException | NullPointerException e){
+        } catch (IllegalStateException | NullPointerException e) {
             e.printStackTrace();
         }
     }

@@ -35,19 +35,23 @@
             android:id="@+id/enduser_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-             />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/navigation"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="#F9F8FA"
             android:layout_gravity="bottom"
+            android:background="#F9F8FA"
+            android:clickable="true"
+            app:itemTextAppearanceActive="@android:color/white"
+            app:itemTextAppearanceInactive="@android:color/darker_gray"
+            android:scrollIndicators="top|bottom"
+            app:itemRippleColor="@android:color/darker_gray"
             app:labelVisibilityMode="labeled"
-            app:itemIconTint="@color/colorPrimary"
-            app:itemTextColor="@color/colorAccent"
             app:menu="@menu/bottom_navagation_menu" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/enduser_navigation"
         android:layout_width="wrap_content"

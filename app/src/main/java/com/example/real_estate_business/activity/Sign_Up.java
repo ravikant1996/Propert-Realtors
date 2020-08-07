@@ -2,6 +2,7 @@ package com.example.real_estate_business.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -221,4 +222,8 @@ public class Sign_Up extends AppCompatActivity {
     }
 
 
+    public void policy(View view) {
+        startActivity(new Intent(Intent.ACTION_VIEW,
+                Uri.parse("https://property-becho-n-kha.flycricket.io/privacy.html")));
+    }
 }

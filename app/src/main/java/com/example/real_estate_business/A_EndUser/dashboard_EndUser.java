@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.real_estate_business.R;
 import com.example.real_estate_business.SessionManager;
@@ -24,8 +25,14 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.tuyenmonkey.mkloader.MKLoader;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,7 +42,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class dashboard_EndUser extends Fragment {
-    private TextView SearchTextView;
     ShimmerFrameLayout LoadingView;
     TextView HistoryTextView, textView33, textView34, textView35, textView36, textView37;
     ArrayList<PropertyModel> propertyModelArrayList1 = new ArrayList<PropertyModel>();
@@ -63,6 +69,7 @@ public class dashboard_EndUser extends Fragment {
     DatabaseReference reference, databaseReference;
     String propertyType, UID, propertyFor;
     ImageView imageView;
+    Set<Integer> set = new LinkedHashSet<Integer>();
 
     public dashboard_EndUser() {
         // Required empty public constructor
@@ -100,8 +107,8 @@ public class dashboard_EndUser extends Fragment {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-        SearchTextView = view.findViewById(R.id.searchBar);
-        SearchTextView.setOnClickListener(new View.OnClickListener() {
+        TextView searchTextView = view.findViewById(R.id.searchBar);
+        searchTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //   startActivity(new Intent(getActivity(), searchFilter_1.class));
@@ -236,6 +243,7 @@ public class dashboard_EndUser extends Fragment {
         }
     }
 
+
     public void recycler1() {
         RecyclerViewLayoutManager = new LinearLayoutManager(getActivity());
         // Set LayoutManager on Recycler View
@@ -256,21 +264,37 @@ public class dashboard_EndUser extends Fragment {
                         textView33.setVisibility(View.VISIBLE);
                         show1.setVisibility(View.VISIBLE);
                         view8.setVisibility(View.VISIBLE);
+                        long childrenCount = dataSnapshot.getChildrenCount();
+                        int count = (int) childrenCount;
 
+                        String themeTune; //Your random themeTune will be stored here
                         for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                            PropertyModel details = areaSnapshot.getValue(PropertyModel.class);
-                            ArrayList<PropertyModel> list = new ArrayList<>();
-                            list.add(details);
-                            for (PropertyModel model : list) {
-                                if (!propertyModelArrayList1.contains(model)) {
-                                    if (propertyModelArrayList1.size() < 5) {
-                                        propertyModelArrayList1.add(details);
-                                        String id1 = details.getKeyId();
-                                        getImage(id1);
-                                    }
-                                }
+                            int randomNumber = new Random().nextInt(count);
+                            int i = 0;
+                            if (i == randomNumber) {
+                                PropertyModel details = areaSnapshot.getValue(PropertyModel.class);
+                                propertyModelArrayList1.add(details);
+                                String id1 = details.getKeyId();
+                                getImage(id1);
+//                                break;
                             }
+                            i++;
                         }
+
+//                        for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+//                            PropertyModel details = areaSnapshot.getValue(PropertyModel.class);
+//                            ArrayList<PropertyModel> list = new ArrayList<>();
+//                            list.add(details);
+//                            for (PropertyModel model : list) {
+//                                if (!propertyModelArrayList1.contains(model)) {
+//                                    if (propertyModelArrayList1.size() < 5) {
+//                                        propertyModelArrayList1.add(details);
+//                                        String id1 = details.getKeyId();
+//                                        getImage(id1);
+//                                    }
+//                                }
+//                            }
+//                        }
                     } else {
                         recyclerView1.setVisibility(View.GONE);
                     }
@@ -292,6 +316,15 @@ public class dashboard_EndUser extends Fragment {
             }
         });
 
+    }
+
+    private void generateRandomSet(int max) {
+        Random randNum = new Random();
+        if (set.size() < 6) {
+            set.add(randNum.nextInt(max) + 1);
+        }
+        Random random = new Random();
+        Log.e("dashboard_EndUser", "" + random.nextInt(max) + 1);
     }
 
     private void getImage(String id1) {

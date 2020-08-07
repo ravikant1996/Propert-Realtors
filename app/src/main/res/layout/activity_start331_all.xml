@@ -45,6 +45,8 @@
             android:layout_height="39dp"
             android:layout_gravity="center"
             android:hint="Select City"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/ic_baseline_search_24"
             android:onClick="searchCity"
             android:padding="10dp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -65,7 +67,8 @@
             android:layout_width="match_parent"
             android:layout_height="39dp"
             android:hint="Enter Project/ Society or Locality"
-            android:onClick="SearchProject"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/ic_baseline_search_24"         android:onClick="SearchProject"
             android:padding="10dp" />
     </com.google.android.material.textfield.TextInputLayout>
     <Button

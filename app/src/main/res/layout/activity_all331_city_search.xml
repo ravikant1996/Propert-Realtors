@@ -85,7 +85,8 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/newdelhi" />
+                        android:src="@drawable/newdelhi"
+                        android:contentDescription="TODO" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -122,7 +123,8 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/mumbai" />
+                        android:src="@drawable/mumbai"
+                        android:contentDescription="TODO" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -159,7 +161,8 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/flat" />
+                        android:src="@drawable/flat"
+                        android:contentDescription="TODO" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -196,7 +199,8 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/plot" />
+                        android:src="@drawable/plot"
+                        android:contentDescription="TODO" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -233,7 +237,8 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/shop" />
+                        android:src="@drawable/shop"
+                        android:contentDescription="TODO" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -270,7 +275,8 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/newdelhi" />
+                        android:src="@drawable/newdelhi"
+                        android:contentDescription="TODO" />
 
                 </androidx.cardview.widget.CardView>
 

@@ -23,7 +23,6 @@ import androidx.appcompat.widget.Toolbar;
 public class Start331AllResidential2 extends AppCompatActivity {
 
     Spinner spinTotal, spinFloor, areaSpin1, areaSpin2;
-    TextView t1, t2, a1, a2, errorBed, errorBath, errorFurnish;
     EditText superArea, carpetArea, road_Width;
     ArrayList<String> arrayList;
     String UID;
@@ -68,14 +67,6 @@ public class Start331AllResidential2 extends AppCompatActivity {
         superArea = findViewById(R.id.areaEdit2);
         carpetArea = findViewById(R.id.areaEdit1);
         road_Width = findViewById(R.id.road_Width);
-        a1 = findViewById(R.id.a1);
-        a2 = findViewById(R.id.a2);
-        errorBath = findViewById(R.id.errorBath);
-        errorBed = findViewById(R.id.errorBed);
-        errorFurnish = findViewById(R.id.errorFurnish);
-
-        t1 = findViewById(R.id.spinText1);
-        t2 = findViewById(R.id.spinText2);
         arrayList = new ArrayList<>();
 
         getTotalFloor();
@@ -159,15 +150,12 @@ public class Start331AllResidential2 extends AppCompatActivity {
 
             case R.id.unfurnished:
                 furnished="Unfurnished";
-                errorFurnish.setText(furnished);
                 break;
             case R.id.semifurnished:
                 furnished="Semi-furnished";
-                errorFurnish.setText(furnished);
                 break;
             case R.id.fullyfurnished:
                 furnished="Fully-furnished";
-                errorFurnish.setText(furnished);
                 break;
         }
     }
@@ -255,7 +243,6 @@ public class Start331AllResidential2 extends AppCompatActivity {
                 bhk11.setText(">10 BHK \u2714");
                 break;
         }
-        errorBed.setText(bedroom);
     }
 
     @SuppressLint("SetTextI18n")
@@ -341,7 +328,6 @@ public class Start331AllResidential2 extends AppCompatActivity {
                 break;
 
         }
-        errorBath.setText(bathroom);
     }
 
     @SuppressLint("SetTextI18n")
@@ -435,35 +421,18 @@ public class Start331AllResidential2 extends AppCompatActivity {
         CarpetArea= carpetArea.getText().toString().trim();
         SuperArea= superArea.getText().toString().trim();
 
-        Log.e("Start331AllResidential2", RoadWidth);
-        Log.e("Start331AllResidential2", CarpetArea);
-        Log.e("Start331AllResidential2", SuperArea);
-
-
-        if(errorBed.getText().toString().length()==0){
-            errorBed.setError("Select Bedroom");
+        if(TextUtils.isEmpty(bedroom)){
             Toast.makeText(Start331AllResidential2.this, "Select Bedroom", Toast.LENGTH_SHORT).show();
-
-        }else if(errorBath.getText().toString().length()==0){
-            errorBath.setError("Please Select Bathroom");
+        }else if(TextUtils.isEmpty(bathroom)){
             Toast.makeText(Start331AllResidential2.this, "Please Select Bathroom", Toast.LENGTH_SHORT).show();
-
         }else if (TextUtils.isEmpty(totalfloor) || totalfloor.equals("Select")) {
             Toast.makeText(Start331AllResidential2.this, "Please Select Total Floors", Toast.LENGTH_LONG).show();
-            return;
-        } else if(errorFurnish.getText().toString().length()==0){
-            errorFurnish.setError("Please Select Furnishing");
+        } else if(TextUtils.isEmpty(furnished)){
             Toast.makeText(Start331AllResidential2.this, "Please Select Furnishing", Toast.LENGTH_SHORT).show();
-
         }else if(carpetArea.getText().toString().length()==0){
             carpetArea.setError("Please Enter Area");
             Toast.makeText(Start331AllResidential2.this, "Please Enter Area", Toast.LENGTH_SHORT).show();
-
-        }/*else if(superArea.getText().toString().length()==0){
-            superArea.setError("Please Enter Area");
-            Toast.makeText(Start331AllResidential2.this, "Please Enter Area", Toast.LENGTH_SHORT).show();
-
-        }*/
+        }
         else{
             Intent intent;
             Bundle bundle = new Bundle();

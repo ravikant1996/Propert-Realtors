@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.real_estate_business.R;
 import com.example.real_estate_business.activity.posted_property;
+import com.google.android.material.card.MaterialCardView;
 
 public class dashboard extends Fragment {
 

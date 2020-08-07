@@ -22,7 +22,9 @@
             android:layout_margin="5dp"
             android:background="@drawable/custom_search_bar"
             android:clickable="false"
-            android:hint=" 🔍 Search by Location and Project"
+            android:drawableLeft="@drawable/ic_baseline_search_24"
+            android:drawablePadding="10dp"
+            android:hint="Search by Location and Project"
             android:textColor="@color/black"
             android:textSize="12sp" />
     </com.google.android.material.appbar.AppBarLayout>
@@ -120,8 +122,8 @@
                 android:layout_marginTop="5dp"
                 android:text="Continue with your Recent Searches"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 android:visibility="gone"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -134,8 +136,8 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:scrollbarSize="0dp"
-                android:scrollbars="horizontal"
                 android:visibility="gone"
+                android:scrollbars="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/top" />

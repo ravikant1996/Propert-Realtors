@@ -18,7 +18,8 @@
         android:background="@color/whilte"
         android:src="@drawable/bac"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/heading"
@@ -90,6 +91,8 @@
         android:layout_marginTop="8dp"
         android:background="@color/whilte"
         android:hint="Name"
+        android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:drawablePadding="10dp"
         android:imeOptions="actionNext"
         android:inputType="textPersonName|textCapWords"
         android:padding="15dp"
@@ -104,6 +107,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Email"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:drawablePadding="10dp"
         android:imeOptions="actionNext"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@+id/name"
@@ -119,6 +124,8 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:hint="Password"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_baseline_lock_24"
         android:imeOptions="actionNext"
         app:layout_constraintEnd_toEndOf="@+id/email"
         app:layout_constraintStart_toStartOf="@+id/email"
@@ -170,11 +177,12 @@
 
     <TextView
         android:id="@+id/textView38"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:gravity="center"
+        android:onClick="policy"
         android:text="By Clicking below, you agree to Property Realtors T &amp; C"
         android:textColor="@color/whilte"
         app:layout_constraintBottom_toBottomOf="parent"

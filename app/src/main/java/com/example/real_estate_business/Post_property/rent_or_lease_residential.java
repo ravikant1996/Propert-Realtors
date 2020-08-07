@@ -108,9 +108,11 @@ public class rent_or_lease_residential extends Fragment {
     }
 
     private void shuffle() {
-        Collections.shuffle(propertyModelArrayList, new Random(System.currentTimeMillis()));
+     /*   Collections.shuffle(propertyModelArrayList, new Random(System.currentTimeMillis()));
         dataAdapter = new DetailsAdapterResiRorL(getActivity(), propertyModelArrayList, imageArrayList1);
-        recyclerView.setAdapter(dataAdapter);
+        recyclerView.setAdapter(dataAdapter);*/
+        findData();
+        dataAdapter.notifyDataSetChanged();
     }
 
     private void findData() {

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.Start331AllResidential3">
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout3"
         android:layout_width="match_parent"
@@ -15,12 +16,12 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            app:title="More details to get relevent buyers"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:titleTextAppearance="@style/Toolbar.TitleText"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="More details to get relevent buyers"
+            app:titleTextAppearance="@style/Toolbar.TitleText" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -50,9 +51,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
             android:orientation="vertical">
 
 
@@ -66,6 +67,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/textView2"
                 app:layout_constraintStart_toStartOf="@+id/textView2"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
             <TextView
                 android:id="@+id/textv1"
                 android:layout_width="match_parent"
@@ -75,21 +77,17 @@
                 android:text="Number of Floors Allowed for Construction (optional)"
                 app:layout_constraintEnd_toEndOf="@+id/textView7"
                 app:layout_constraintStart_toStartOf="@+id/textView7"
-                app:layout_constraintTop_toBottomOf="@+id/textView7"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <Spinner
                 android:id="@+id/floorSpin1"
                 android:layout_width="match_parent"
-                android:entries="@array/TotalFloors"
                 android:layout_height="@dimen/spinnerHeight"
+                android:entries="@array/TotalFloors"
                 app:layout_constraintEnd_toEndOf="@+id/textv1"
                 app:layout_constraintStart_toStartOf="@+id/textv1"
                 app:layout_constraintTop_toBottomOf="@+id/textv1" />
 
-            <TextView
-                android:id="@+id/spinText1"
-                android:layout_width="0dp"
-                android:layout_height="0dp" />
             <TextView
                 android:id="@+id/textv2"
                 android:layout_width="match_parent"
@@ -99,22 +97,18 @@
                 android:text="No. of open sides (optional)"
                 app:layout_constraintEnd_toEndOf="@+id/floorSpin1"
                 app:layout_constraintStart_toStartOf="@+id/floorSpin1"
-                app:layout_constraintTop_toBottomOf="@+id/floorSpin1"/>
+                app:layout_constraintTop_toBottomOf="@+id/floorSpin1" />
+
             <Spinner
                 android:id="@+id/floorSpin2"
-                android:entries="@array/openSides"
-                android:spinnerMode="dialog"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/spinnerHeight"
+                android:entries="@array/openSides"
+                android:spinnerMode="dialog"
                 android:text="Total Number of Floors in Building"
                 app:layout_constraintEnd_toEndOf="@+id/textv2"
                 app:layout_constraintStart_toStartOf="@+id/textv2"
                 app:layout_constraintTop_toBottomOf="@+id/textv2" />
-
-            <TextView
-                android:id="@+id/spinText2"
-                android:layout_width="0dp"
-                android:layout_height="0dp" />
 
             <TextView
                 android:id="@+id/textView10"
@@ -142,10 +136,10 @@
                     android:id="@+id/road_Width"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Road Width"
                     android:inputType="number"
-                    android:padding="5dp"
                     android:maxLength="7"
-                    android:hint="Road Width" />
+                    android:padding="5dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -162,106 +156,119 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/road_width"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textStyle="bold"
                 android:text="Any  Construction Done"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/road_width"
                 app:layout_constraintStart_toStartOf="@+id/road_width"
                 app:layout_constraintTop_toBottomOf="@+id/road_width" />
+
             <RadioGroup
+                android:id="@+id/radiogroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radiogroup"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
                 app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/textView" >
+                app:layout_constraintTop_toBottomOf="@+id/textView">
+
                 <RadioButton
+                    android:id="@+id/radio1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Yes"
                     android:onClick="onRadioButtonClicked"
-                    android:id="@+id/radio1"/>
+                    android:text="Yes" />
+
                 <RadioButton
+                    android:id="@+id/radio2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="No"
                     android:onClick="onRadioButtonClicked"
-                    android:id="@+id/radio2"/>
+                    android:text="No" />
             </RadioGroup>
+
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textStyle="bold"
                 android:text="Boundary Wall made"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/radiogroup"
                 app:layout_constraintStart_toStartOf="@+id/radiogroup"
                 app:layout_constraintTop_toBottomOf="@+id/radiogroup" />
+
             <RadioGroup
+                android:id="@+id/radiogroup2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radiogroup2"
                 app:layout_constraintEnd_toEndOf="@+id/textView1"
                 app:layout_constraintStart_toStartOf="@+id/textView1"
-                app:layout_constraintTop_toBottomOf="@+id/textView1" >
+                app:layout_constraintTop_toBottomOf="@+id/textView1">
+
                 <RadioButton
+                    android:id="@+id/radio3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Yes"
                     android:onClick="onRadioButtonClicked2"
-                    android:id="@+id/radio3"/>
+                    android:text="Yes" />
+
                 <RadioButton
+                    android:id="@+id/radio4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="No"
                     android:onClick="onRadioButtonClicked2"
-                    android:id="@+id/radio4"/>
+                    android:text="No" />
             </RadioGroup>
+
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textStyle="bold"
                 android:text="Is in a gated colony"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/radiogroup2"
                 app:layout_constraintStart_toStartOf="@+id/radiogroup2"
                 app:layout_constraintTop_toBottomOf="@+id/radiogroup2" />
+
             <RadioGroup
+                android:id="@+id/radiogroup3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radiogroup3"
                 app:layout_constraintEnd_toEndOf="@+id/textView3"
                 app:layout_constraintStart_toStartOf="@+id/textView3"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" >
+                app:layout_constraintTop_toBottomOf="@+id/textView3">
+
                 <RadioButton
+                    android:id="@+id/radio5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Yes"
                     android:onClick="onRadioButtonClicked3"
-                    android:id="@+id/radio5"/>
+                    android:text="Yes" />
+
                 <RadioButton
+                    android:id="@+id/radio6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="No"
                     android:onClick="onRadioButtonClicked3"
-                    android:id="@+id/radio6"/>
+                    android:text="No" />
             </RadioGroup>
+
             <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textStyle="bold"
-            android:text="Property Area"
-            app:layout_constraintEnd_toEndOf="@+id/radiogroup3"
-            app:layout_constraintStart_toStartOf="@+id/radiogroup3"
-            app:layout_constraintTop_toBottomOf="@+id/radiogroup3" />
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Property Area"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/radiogroup3"
+                app:layout_constraintStart_toStartOf="@+id/radiogroup3"
+                app:layout_constraintTop_toBottomOf="@+id/radiogroup3" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/area1"
@@ -275,20 +282,20 @@
 
                 <EditText
                     android:id="@+id/areaEdit1"
-                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    android:hint="Plot Area"
+                    android:inputType="number"
                     android:maxLength="7"
-                    android:hint="Plot Area" />
+                    android:padding="5dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Spinner
                 android:id="@+id/areaSpin1"
                 android:layout_width="0dp"
-                android:entries="@array/area_parameter"
                 android:layout_height="@dimen/spinnerHeight"
                 android:layout_marginTop="20dp"
+                android:entries="@array/area_parameter"
                 android:spinnerMode="dialog"
                 app:layout_constraintEnd_toEndOf="@+id/textView4"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -304,13 +311,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/area1">
 
                 <EditText
+                    android:id="@+id/plot_length"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/plot_length"
-                    android:inputType="number"
-                    android:maxLength="10"
                     android:hint="Plot Length in yrd (optional)"
-                    />
+                    android:inputType="number"
+                    android:maxLength="10" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -328,22 +334,23 @@
                     android:id="@+id/plot_breadth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLength="10"
+                    android:hint="Plot breadth in yrd (optional)"
                     android:inputType="number"
-                    android:hint="Plot breadth in yrd (optional)" />
+                    android:maxLength="10" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
     <Button
         android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Next"
         android:onClick="next"
+        android:text="Next"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

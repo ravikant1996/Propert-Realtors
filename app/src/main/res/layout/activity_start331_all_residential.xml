@@ -24,21 +24,6 @@
             app:titleTextAppearance="@style/Toolbar.TitleText" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:id="@+id/errorBed"
-        android:layout_width="0dp"
-        android:layout_height="0dp" />
-
-    <TextView
-        android:id="@+id/errorBath"
-        android:layout_width="0dp"
-        android:layout_height="0dp" />
-
-    <TextView
-        android:id="@+id/errorFurnish"
-        android:layout_width="0dp"
-        android:layout_height="0dp" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
@@ -521,10 +506,6 @@
                 app:layout_constraintStart_toStartOf="@+id/textv1"
                 app:layout_constraintTop_toBottomOf="@+id/textv1" />
 
-            <TextView
-                android:id="@+id/spinText1"
-                android:layout_width="0dp"
-                android:layout_height="0dp" />
 
             <TextView
                 android:id="@+id/textv2"
@@ -547,10 +528,7 @@
                 app:layout_constraintStart_toStartOf="@+id/textv2"
                 app:layout_constraintTop_toBottomOf="@+id/textv2" />
 
-            <TextView
-                android:id="@+id/spinText2"
-                android:layout_width="0dp"
-                android:layout_height="0dp" />
+
 
             <TextView
                 android:id="@+id/textView8"
@@ -638,10 +616,6 @@
                 app:layout_constraintStart_toEndOf="@+id/area1"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-            <TextView
-                android:id="@+id/a1"
-                android:layout_width="0dp"
-                android:layout_height="0dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/area2"
@@ -678,11 +652,6 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/area2"
                 app:layout_constraintTop_toBottomOf="@+id/areaSpin1" />
-
-            <TextView
-                android:id="@+id/a2"
-                android:layout_width="0dp"
-                android:layout_height="0dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

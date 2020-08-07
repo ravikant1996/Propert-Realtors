@@ -21,6 +21,7 @@ import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+@SuppressWarnings("ALL")
 public class SearchPlaceLocalityAdapter extends RecyclerView.Adapter<SearchPlaceLocalityAdapter.SearchPlaceAdapterViewHolder> implements Filterable {
     Context context;
     public List<Locality> arrayList;
