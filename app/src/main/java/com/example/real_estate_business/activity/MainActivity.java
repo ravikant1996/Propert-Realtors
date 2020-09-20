@@ -1,11 +1,16 @@
 package com.example.real_estate_business.activity;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,11 +26,14 @@ import com.example.real_estate_business.A_EndUser.shortlisted_property;
 import com.example.real_estate_business.HideBottomViewOnScrollBehavior;
 import com.example.real_estate_business.R;
 import com.example.real_estate_business.SessionManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.HashMap;
 
@@ -34,6 +42,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -79,6 +89,19 @@ public class MainActivity extends AppCompatActivity {
 //        getSupportActionBar().setHomeButtonEnabled(true);
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        FirebaseMessaging.getInstance().subscribeToTopic("general")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "Successfull";
+                        if (!task.isSuccessful()) {
+                            msg = "failed";
+                        }
+                        Log.d(msg, msg);
+                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.Open, R.string.Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -89,7 +112,34 @@ public class MainActivity extends AppCompatActivity {
 
             HashMap<String, String> userID = session.getUserIDs();
             UID = userID.get(SessionManager.KEY_ID);
-            //  getDetails();
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
+                    .setContentTitle("Register")
+                    .setContentText("Ravikant Yadav" + UID)
+                    .setAutoCancel(true)
+                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                    //.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.win))
+                    .setContentInfo("Hello")
+                    .setLights(Color.RED, 1000, 300)
+                    .setSmallIcon(R.drawable.property_logo);
+
+
+            Intent resultIntent = getIntent();
+            resultIntent.setAction(Intent.ACTION_MAIN);
+            resultIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+                    resultIntent, 0);
+            notificationBuilder.setContentIntent(pendingIntent);
+
+
+            NotificationManagerCompat manager = NotificationManagerCompat.from(this);
+            manager.notify(999, notificationBuilder.build());
+
+
+
+//            NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//            mNotificationManager.notify(1, notificationBuilder.build());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -104,13 +154,12 @@ public class MainActivity extends AppCompatActivity {
         layoutParams.setBehavior(new HideBottomViewOnScrollBehavior());
 
         boolean connected = false;
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
             //we are connected to a network
             connected = true;
-        }
-        else
+        } else
             connected = false;
 
 
@@ -213,42 +262,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-     @Override
-     public boolean onCreateOptionsMenu(Menu menu) {
-         MenuInflater inflater = getMenuInflater();
-         inflater.inflate(R.menu.post_menu, menu);
-         return true;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.post_menu, menu);
+        return true;
 
-     }
+    }
 
-     public boolean onOptionsItemSelected(MenuItem item) {
-         int id = item.getItemId();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
 
-         if (id == R.id.app_bar_post) {
-             Bundle bundle = new Bundle();
-             if (TextUtils.isEmpty(UID)) {
-                 Intent intent = new Intent(MainActivity.this, Start31.class);
-                 Boolean Signal = true;
-                 bundle.putBoolean("SiGNAL", Signal);
-                 intent.putExtras(bundle);
-                 startActivity(intent);
-                 finish();
-             } else {
-                 Intent intent = new Intent(MainActivity.this, Start33.class);
-                 bundle.putString("UID", UID);
-                 intent.putExtras(bundle);
-                 startActivity(intent);
-                 finish();
-             }
-             return true;
-         } else if (id == R.id.favourite) {
-             Intent intent = new Intent(MainActivity.this, shortlisted_property.class);
-             startActivity(intent);
-             return true;
-         }
-         return super.onOptionsItemSelected(item);
+        if (id == R.id.app_bar_post) {
+            Bundle bundle = new Bundle();
+            if (TextUtils.isEmpty(UID)) {
+                Intent intent = new Intent(MainActivity.this, Start31.class);
+                Boolean Signal = true;
+                bundle.putBoolean("SiGNAL", Signal);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                finish();
+            } else {
+                Intent intent = new Intent(MainActivity.this, Start33.class);
+                bundle.putString("UID", UID);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                finish();
+            }
+            return true;
+        } else if (id == R.id.favourite) {
+            Intent intent = new Intent(MainActivity.this, shortlisted_property.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
 
-     }
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
@@ -258,7 +308,7 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     toolbar.setTitle("Home");
-                        fragment = new dashboard_EndUser();
+                    fragment = new dashboard_EndUser();
                     break;
 
                 case R.id.navigation_dashboard:
@@ -281,6 +331,7 @@ public class MainActivity extends AppCompatActivity {
             return loadFragment(fragment);
         }
     };
+
     private boolean loadFragment(Fragment fragment) {
         //switching fragment
         if (fragment != null) {
@@ -300,7 +351,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
             super.onBackPressed();
-           finishAffinity();
+            finishAffinity();
         } else {
             Toast.makeText(getBaseContext(), "Press back if you want to exit", Toast.LENGTH_SHORT).show();
         }

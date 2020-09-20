@@ -80,7 +80,6 @@ public class ShowPropertyAdapterR5 extends RecyclerView.Adapter<ShowPropertyAdap
                             .placeholder(R.drawable.property_logo)
                             .error(R.drawable.property_logo)
                             .into(holder.imageView);
-                    Log.e("ShowPropertyAdapterR5", urls);
 
                     SharedPreference sharedPreference= new SharedPreference();
                     List<PropertyModel> list= sharedPreference.getFavorites(context);

@@ -27,6 +27,8 @@ import com.tuyenmonkey.mkloader.MKLoader;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -264,37 +266,23 @@ public class dashboard_EndUser extends Fragment {
                         textView33.setVisibility(View.VISIBLE);
                         show1.setVisibility(View.VISIBLE);
                         view8.setVisibility(View.VISIBLE);
-                        long childrenCount = dataSnapshot.getChildrenCount();
-                        int count = (int) childrenCount;
 
-                        String themeTune; //Your random themeTune will be stored here
                         for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                            int randomNumber = new Random().nextInt(count);
-                            int i = 0;
-                            if (i == randomNumber) {
-                                PropertyModel details = areaSnapshot.getValue(PropertyModel.class);
-                                propertyModelArrayList1.add(details);
-                                String id1 = details.getKeyId();
-                                getImage(id1);
-//                                break;
+                            PropertyModel details = areaSnapshot.getValue(PropertyModel.class);
+                            ArrayList<PropertyModel> list = new ArrayList<>();
+                            list.add(details);
+                            Collections.shuffle(list);
+                            Log.e("List",""+list);
+                            for (PropertyModel model : list) {
+                                if (!propertyModelArrayList1.contains(model)) {
+                                    if (propertyModelArrayList1.size() < 5) {
+                                        propertyModelArrayList1.add(model);
+                                        String id1 = model.getKeyId();
+                                        getImage(id1);
+                                    }
+                                }
                             }
-                            i++;
                         }
-
-//                        for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-//                            PropertyModel details = areaSnapshot.getValue(PropertyModel.class);
-//                            ArrayList<PropertyModel> list = new ArrayList<>();
-//                            list.add(details);
-//                            for (PropertyModel model : list) {
-//                                if (!propertyModelArrayList1.contains(model)) {
-//                                    if (propertyModelArrayList1.size() < 5) {
-//                                        propertyModelArrayList1.add(details);
-//                                        String id1 = details.getKeyId();
-//                                        getImage(id1);
-//                                    }
-//                                }
-//                            }
-//                        }
                     } else {
                         recyclerView1.setVisibility(View.GONE);
                     }
@@ -316,15 +304,6 @@ public class dashboard_EndUser extends Fragment {
             }
         });
 
-    }
-
-    private void generateRandomSet(int max) {
-        Random randNum = new Random();
-        if (set.size() < 6) {
-            set.add(randNum.nextInt(max) + 1);
-        }
-        Random random = new Random();
-        Log.e("dashboard_EndUser", "" + random.nextInt(max) + 1);
     }
 
     private void getImage(String id1) {
@@ -392,11 +371,14 @@ public class dashboard_EndUser extends Fragment {
                             PropertyModel details = areaSnapshot.getValue(PropertyModel.class);
                             ArrayList<PropertyModel> list2 = new ArrayList<>();
                             list2.add(details);
+                            Collections.shuffle(list2);
+                            Log.e("List2",""+list2);
+
                             for (PropertyModel model : list2) {
                                 if (!propertyModelArrayList2.contains(model)) {
                                     if (propertyModelArrayList2.size() < 5) {
-                                        propertyModelArrayList2.add(details);
-                                        String id1 = details.getKeyId();
+                                        propertyModelArrayList2.add(model);
+                                        String id1 = model.getKeyId();
 
                                         Query query = reference.child(id1).child("images").orderByValue().limitToFirst(1);
                                         query.addChildEventListener(new ChildEventListener() {
@@ -485,11 +467,12 @@ public class dashboard_EndUser extends Fragment {
                             PropertyModel details = areaSnapshot.getValue(PropertyModel.class);
                             ArrayList<PropertyModel> list3 = new ArrayList<>();
                             list3.add(details);
+                            Collections.shuffle(list3);
                             for (PropertyModel model : list3) {
                                 if (!propertyModelArrayList3.contains(model)) {
                                     if (propertyModelArrayList3.size() < 5) {
-                                        propertyModelArrayList3.add(details);
-                                        String id1 = details.getKeyId();
+                                        propertyModelArrayList3.add(model);
+                                        String id1 = model.getKeyId();
                                         Query query = reference.child(id1).child("images").orderByValue().limitToFirst(1);
                                         query.addChildEventListener(new ChildEventListener() {
                                             @Override
@@ -580,14 +563,14 @@ public class dashboard_EndUser extends Fragment {
                             PropertyModel details = areaSnapshot.getValue(PropertyModel.class);
                             ArrayList<PropertyModel> list4 = new ArrayList<>();
                             list4.add(details);
+                            Collections.shuffle(list4);
                             if (details.getProperty_status().equals("Immediately") ||
                                     details.getProperty_status().equals("Ready to Move")) {
                                 for (PropertyModel model : list4) {
                                     if (!propertyModelArrayList4.contains(model)) {
                                         if (propertyModelArrayList4.size() < 5) {
-                                            propertyModelArrayList4.add(details);
-
-                                            String id1 = details.getKeyId();
+                                            propertyModelArrayList4.add(model);
+                                            String id1 = model.getKeyId();
                                             Query query = reference.child(id1).child("images").orderByValue().limitToFirst(1);
                                             query.addChildEventListener(new ChildEventListener() {
                                                 @Override
@@ -683,12 +666,12 @@ public class dashboard_EndUser extends Fragment {
                             PropertyModel details = areaSnapshot.getValue(PropertyModel.class);
                             ArrayList<PropertyModel> list5 = new ArrayList<>();
                             list5.add(details);
+                            Collections.shuffle(list5);
                             for (PropertyModel model : list5) {
                                 if (!propertyModelArrayList5.contains(model)) {
                                     if (propertyModelArrayList5.size() < 5) {
-                                        propertyModelArrayList5.add(details);
-
-                                        String id1 = details.getKeyId();
+                                        propertyModelArrayList5.add(model);
+                                        String id1 = model.getKeyId();
                                         Query query = reference.child(id1).child("images").orderByValue().limitToFirst(1);
                                         query.addChildEventListener(new ChildEventListener() {
                                             @Override

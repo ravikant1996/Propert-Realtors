@@ -22,6 +22,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/abc"
+
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -30,7 +31,7 @@
         android:clickable="true"
         android:elevation="30dp"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardElevation="15dp"
         app:layout_constraintEnd_toEndOf="@+id/textView32"
         app:layout_constraintStart_toStartOf="@+id/textView32"
         app:layout_constraintTop_toBottomOf="@+id/textView32">
@@ -55,7 +56,7 @@
         android:clickable="true"
         android:elevation="30dp"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardElevation="15dp"
         app:layout_constraintEnd_toEndOf="@+id/abc"
         app:layout_constraintStart_toStartOf="@+id/abc"
         app:layout_constraintTop_toBottomOf="@+id/abc">
@@ -80,7 +81,7 @@
         android:clickable="true"
         android:elevation="30dp"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardElevation="15dp"
         app:layout_constraintEnd_toEndOf="@+id/contacted"
         app:layout_constraintStart_toStartOf="@+id/contacted"
         app:layout_constraintTop_toBottomOf="@+id/contacted">
@@ -105,7 +106,7 @@
         android:clickable="true"
         android:elevation="30dp"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardElevation="15dp"
         app:layout_constraintEnd_toEndOf="@+id/shortlisted"
         app:layout_constraintStart_toStartOf="@+id/shortlisted"
         app:layout_constraintTop_toBottomOf="@+id/shortlisted">

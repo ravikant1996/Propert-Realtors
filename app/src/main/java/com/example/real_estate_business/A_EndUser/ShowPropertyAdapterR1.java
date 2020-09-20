@@ -81,7 +81,6 @@ public class ShowPropertyAdapterR1 extends RecyclerView.Adapter<ShowPropertyAdap
                             .placeholder(R.drawable.property_logo)
                             .error(R.drawable.property_logo)
                             .into(holder.imageView);
-                    Log.e("ShowPropertyAdapterR1", urls);
 
                     SharedPreference sharedPreference= new SharedPreference();
                     List<PropertyModel> list= sharedPreference.getFavorites(context);
